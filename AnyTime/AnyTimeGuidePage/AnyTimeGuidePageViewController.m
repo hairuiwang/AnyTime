@@ -4,12 +4,10 @@
 //
 //  Created by Tingyu on 2025/1/12.
 //
-// 屏幕宽高
-#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
-#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
 #import "AnyTimeGuidePageViewController.h"
-#import "Masonry.h"
+#import "AnyTimeLoginViewController.h"
+
 
 @interface AnyTimeGuidePageViewController ()<UIScrollViewDelegate>
 
@@ -49,7 +47,6 @@
     self.scrollView.delegate = self;
     [self.view addSubview:self.scrollView];
     
-    // 添加内容视图
     for (NSInteger i = 0; i < self.imagesArray.count; i++) 
     {
         UIView *pageView = [[UIView alloc] initWithFrame:CGRectMake(i * SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
@@ -87,7 +84,6 @@
             make.height.mas_equalTo(44);
         }];
 
-        // 添加描述
         UILabel *descriptionLabel = [[UILabel alloc] init];
         descriptionLabel.text = self.descriptionsArray[i];
         descriptionLabel.textAlignment = NSTextAlignmentCenter;
@@ -124,7 +120,6 @@
         [self.scrollView addSubview:pageView];
     }
     
-    // 设置 content size
     self.scrollView.contentSize = CGSizeMake(self.imagesArray.count * SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 
@@ -202,6 +197,9 @@
 - (void)transitionToLoginPage
 {
     
+    UIWindow *window = [UIApplication sharedApplication].windows.firstObject;
+    AnyTimeLoginViewController * loginVC = [[AnyTimeLoginViewController alloc] init];
+    window.rootViewController = loginVC;
 }
 
 @end

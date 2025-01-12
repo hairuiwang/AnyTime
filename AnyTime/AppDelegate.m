@@ -8,6 +8,7 @@
 #import "AppDelegate.h"
 #import "AnyTimeRootBarViewController.h"
 #import "AnyTimeGuidePageViewController.h"
+#import "AnyTimeLoginViewController.h"
 
 @interface AppDelegate ()
 
@@ -23,7 +24,7 @@
     // 判断是否是第一次启动
     BOOL isFirstLaunch = ![[NSUserDefaults standardUserDefaults] boolForKey:@"isFirstLaunch"];
     
-//    if (isFirstLaunch) {
+    if (isFirstLaunch) {
         // 设置为第一次启动，之后不再显示引导页
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstLaunch"];
         [[NSUserDefaults standardUserDefaults] synchronize];
@@ -31,12 +32,16 @@
         // 显示引导页
         AnyTimeGuidePageViewController *onboardingVC = [[AnyTimeGuidePageViewController alloc] init];
         self.window.rootViewController = onboardingVC;
-//    } else {
-//        // 显示登录页
+    } 
+    else
+    {
+        // 显示登录页
 //        AnyTimeRootBarViewController * rootVC = [[AnyTimeRootBarViewController alloc] init];
-//        self.window.rootViewController = rootVC;
-//    }
-//   
+        AnyTimeLoginViewController * rootVC = [[AnyTimeLoginViewController alloc] init];
+        self.window.rootViewController = rootVC;
+        self.window.rootViewController = rootVC;
+    }
+   
     [self.window makeKeyAndVisible];
     
     return YES;

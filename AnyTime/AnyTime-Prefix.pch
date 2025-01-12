@@ -1,0 +1,75 @@
+//
+//  AnyTime-Prefix.pch
+//  AnyTime
+//
+//  Created by Tingyu on 2025/1/12.
+//
+
+#ifndef AnyTime_Prefix_pch
+#define AnyTime_Prefix_pch
+
+#import "AppDelegate.h"
+#import "Masonry.h"
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+
+#define RGB(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+#define RGBA(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+
+// 设置字体大小，自动适配屏幕
+#define FONT_SIZE(size) [UIFont systemFontOfSize:size]
+#define BOLD_FONT_SIZE(size) [UIFont boldSystemFontOfSize:size]
+
+#define WEAK_SELF __weak typeof(self) weakSelf = self;
+#define STRONG_SELF __strong typeof(self) strongSelf = weakSelf;
+
+// 获取 app 版本
+#define APP_VERSION [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
+
+// 获取设备型号
+#define DEVICE_MODEL [[UIDevice currentDevice] model]
+
+// 获取设备系统版本
+#define DEVICE_SYSTEM_VERSION [[UIDevice currentDevice] systemVersion]
+
+// 获取当前语言
+#define CURRENT_LANGUAGE ([[NSLocale preferredLanguages] objectAtIndex:0])
+
+// 获取应用程序目录
+#define DOCUMENTS_PATH NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject
+
+
+#define TEMP_PATH NSTemporaryDirectory()
+
+// 防止空指针崩溃
+#define SAFE_OBJECT(obj) (obj != nil ? obj : [NSNull null])
+#define SAFE_ARRAY(array) (array != nil ? array : @[])
+#define SAFE_STRING(str) (str != nil ? str : @"")
+#define SAFE_DICTIONARY(dict) (dict != nil ? dict : @{})
+
+// 调试日志打印
+#ifdef DEBUG
+#define NSLog(fmt, ...) NSLog((@"[文件:%s]\n[方法:%s]\n[行号:%d]\n" fmt), __FILE__, __FUNCTION__, __LINE__, ##__VA_ARGS__)
+#else
+#define NSLog(fmt, ...)
+#endif
+
+
+#define PrintObject(obj) NSLog(@"%@", obj)
+
+
+#define PrintDictionary(dict) NSLog(@"%@", dict)
+
+
+// Futura Bold
+#define FuturaBoldFont(size) [UIFont fontWithName:@"Futura-Bold" size:size]
+
+// Futura Medium
+#define FuturaMediumFont(size) [UIFont fontWithName:@"Futura-Medium" size:size]
+
+#define PingFangSCFont(size) [UIFont fontWithName:@"PingFang-SC" size:size]
+
+#endif /* AnyTime_Prefix_pch */
