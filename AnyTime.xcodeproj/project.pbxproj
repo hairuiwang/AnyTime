@@ -20,6 +20,7 @@
 		046B6D9D2D33619900EE9EF7 /* AnyTimeHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6D9C2D33619900EE9EF7 /* AnyTimeHomeViewController.m */; };
 		046B6DA12D3361B200EE9EF7 /* AnyTimeOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6DA02D3361B200EE9EF7 /* AnyTimeOrderViewController.m */; };
 		046B6DA52D3361D200EE9EF7 /* AnyTimeMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6DA42D3361D200EE9EF7 /* AnyTimeMeViewController.m */; };
+		046B6DA92D337BAB00EE9EF7 /* AnyTimeGuidePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6DA82D337BAB00EE9EF7 /* AnyTimeGuidePageViewController.m */; };
 		826F54C2EA19383470FFFE00 /* Pods_AnyTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5144912D00E9046812AF323D /* Pods_AnyTime.framework */; };
 		8AADE94F471CDE3BFBDA66D7 /* Pods_AnyTimeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4B7405F01A2FAB655AFF70 /* Pods_AnyTimeTests.framework */; };
 		F693A9FC492260D76D367A52 /* Pods_AnyTime_AnyTimeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D88D01DB36709394BB553A /* Pods_AnyTime_AnyTimeUITests.framework */; };
@@ -67,6 +68,8 @@
 		046B6DA02D3361B200EE9EF7 /* AnyTimeOrderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyTimeOrderViewController.m; sourceTree = "<group>"; };
 		046B6DA32D3361D200EE9EF7 /* AnyTimeMeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyTimeMeViewController.h; sourceTree = "<group>"; };
 		046B6DA42D3361D200EE9EF7 /* AnyTimeMeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyTimeMeViewController.m; sourceTree = "<group>"; };
+		046B6DA72D337BAB00EE9EF7 /* AnyTimeGuidePageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyTimeGuidePageViewController.h; sourceTree = "<group>"; };
+		046B6DA82D337BAB00EE9EF7 /* AnyTimeGuidePageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyTimeGuidePageViewController.m; sourceTree = "<group>"; };
 		2D1011C7969C9D06831050AF /* Pods-AnyTimeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTimeTests.release.xcconfig"; path = "Target Support Files/Pods-AnyTimeTests/Pods-AnyTimeTests.release.xcconfig"; sourceTree = "<group>"; };
 		3414FFF15DC354AEA7298D8F /* Pods-AnyTimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTimeTests.debug.xcconfig"; path = "Target Support Files/Pods-AnyTimeTests/Pods-AnyTimeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4D9BAC4A1E243BC4268E3570 /* Pods-AnyTime-AnyTimeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime-AnyTimeUITests.debug.xcconfig"; path = "Target Support Files/Pods-AnyTime-AnyTimeUITests/Pods-AnyTime-AnyTimeUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -130,6 +133,7 @@
 		046B6D602D30F74000EE9EF7 /* AnyTime */ = {
 			isa = PBXGroup;
 			children = (
+				046B6DA62D337B9C00EE9EF7 /* AnyTimeGuidePage */,
 				046B6DA22D3361B600EE9EF7 /* AnyTimeMe */,
 				046B6D9E2D33619D00EE9EF7 /* AnyTimeOrder */,
 				046B6D9A2D33617A00EE9EF7 /* AnyTimeHome */,
@@ -198,6 +202,15 @@
 				046B6DA42D3361D200EE9EF7 /* AnyTimeMeViewController.m */,
 			);
 			path = AnyTimeMe;
+			sourceTree = "<group>";
+		};
+		046B6DA62D337B9C00EE9EF7 /* AnyTimeGuidePage */ = {
+			isa = PBXGroup;
+			children = (
+				046B6DA72D337BAB00EE9EF7 /* AnyTimeGuidePageViewController.h */,
+				046B6DA82D337BAB00EE9EF7 /* AnyTimeGuidePageViewController.m */,
+			);
+			path = AnyTimeGuidePage;
 			sourceTree = "<group>";
 		};
 		39B15E13D3C472CE2E77D7B4 /* Pods */ = {
@@ -461,6 +474,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				046B6DA92D337BAB00EE9EF7 /* AnyTimeGuidePageViewController.m in Sources */,
 				046B6D992D335F0600EE9EF7 /* AnyTimeRootBarViewController.m in Sources */,
 				046B6DA12D3361B200EE9EF7 /* AnyTimeOrderViewController.m in Sources */,
 				046B6D692D30F74000EE9EF7 /* ViewController.m in Sources */,
@@ -649,6 +663,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnyTime/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -661,6 +677,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
+				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.text.AnyTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -681,6 +698,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_APP_SANDBOX = NO;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREFIX_HEADER = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnyTime/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -693,6 +712,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
+				OTHER_CFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.text.AnyTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
