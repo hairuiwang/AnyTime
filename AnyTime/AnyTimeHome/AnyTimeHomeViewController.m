@@ -8,6 +8,7 @@
 #import "AnyTimeHomeViewController.h"
 #import "AnyTimeLargeCardSlotView.h"
 #import "AnyTimeSmallCardSlotView.h"
+#import "AnyTimeCustomPopupView.h"
 
 @interface AnyTimeHomeViewController ()
 
@@ -31,8 +32,31 @@
     
 //    AnyTimeLargeCardSlotView *customView = [[AnyTimeLargeCardSlotView alloc] initWithFrame:self.view.bounds];
 //    [self.view addSubview:customView];
-    AnyTimeSmallCardSlotView *customView = [[AnyTimeSmallCardSlotView alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:customView];
+//    AnyTimeSmallCardSlotView *customView = [[AnyTimeSmallCardSlotView alloc] initWithFrame:self.view.bounds];
+//    [self.view addSubview:customView];
+    
+    
+    AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] init];
+    popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbg"]; // 背景图
+    popupView.titleText = @"Recommended Products";
+    popupView.descriptionText = @"VIP lane available, acc rate up to 99%, click to apply";
+    popupView.firstButtonTitle = @"Apply For Products Now";
+    popupView.secondButtonTitle = @"Go Apply";
+    
+    popupView.firstButtonAction = ^{
+        NSLog(@"First button tapped");
+    };
+
+    popupView.secondButtonAction = ^{
+        NSLog(@"Second button tapped");
+    };
+
+    popupView.closeAction = ^{
+        NSLog(@"Close button tapped");
+    };
+
+    [popupView showInView:self.view];
+
 }
 
 /*

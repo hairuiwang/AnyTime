@@ -36,6 +36,7 @@
 		046B6DD72D34B76000EE9EF7 /* AnyTimeSmallCardSlotSecondCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6DD62D34B76000EE9EF7 /* AnyTimeSmallCardSlotSecondCell.m */; };
 		046B6DDA2D34B76F00EE9EF7 /* AnyTimeSmallCardSlotThirdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6DD92D34B76F00EE9EF7 /* AnyTimeSmallCardSlotThirdCell.m */; };
 		046B6DDD2D34E45400EE9EF7 /* OutlineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6DDC2D34E45400EE9EF7 /* OutlineLabel.m */; };
+		046B6DE02D3512D400EE9EF7 /* AnyTimeCustomPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6DDF2D3512D400EE9EF7 /* AnyTimeCustomPopupView.m */; };
 		826F54C2EA19383470FFFE00 /* Pods_AnyTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5144912D00E9046812AF323D /* Pods_AnyTime.framework */; };
 		8AADE94F471CDE3BFBDA66D7 /* Pods_AnyTimeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4B7405F01A2FAB655AFF70 /* Pods_AnyTimeTests.framework */; };
 		F693A9FC492260D76D367A52 /* Pods_AnyTime_AnyTimeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D88D01DB36709394BB553A /* Pods_AnyTime_AnyTimeUITests.framework */; };
@@ -116,6 +117,8 @@
 		046B6DD92D34B76F00EE9EF7 /* AnyTimeSmallCardSlotThirdCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyTimeSmallCardSlotThirdCell.m; sourceTree = "<group>"; };
 		046B6DDB2D34E45400EE9EF7 /* OutlineLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OutlineLabel.h; sourceTree = "<group>"; };
 		046B6DDC2D34E45400EE9EF7 /* OutlineLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OutlineLabel.m; sourceTree = "<group>"; };
+		046B6DDE2D3512D400EE9EF7 /* AnyTimeCustomPopupView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyTimeCustomPopupView.h; sourceTree = "<group>"; };
+		046B6DDF2D3512D400EE9EF7 /* AnyTimeCustomPopupView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyTimeCustomPopupView.m; sourceTree = "<group>"; };
 		2D1011C7969C9D06831050AF /* Pods-AnyTimeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTimeTests.release.xcconfig"; path = "Target Support Files/Pods-AnyTimeTests/Pods-AnyTimeTests.release.xcconfig"; sourceTree = "<group>"; };
 		3414FFF15DC354AEA7298D8F /* Pods-AnyTimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTimeTests.debug.xcconfig"; path = "Target Support Files/Pods-AnyTimeTests/Pods-AnyTimeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4D9BAC4A1E243BC4268E3570 /* Pods-AnyTime-AnyTimeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime-AnyTimeUITests.debug.xcconfig"; path = "Target Support Files/Pods-AnyTime-AnyTimeUITests/Pods-AnyTime-AnyTimeUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -286,6 +289,8 @@
 				046B6DCF2D34B1B200EE9EF7 /* GradientBorderLabel.m */,
 				046B6DDB2D34E45400EE9EF7 /* OutlineLabel.h */,
 				046B6DDC2D34E45400EE9EF7 /* OutlineLabel.m */,
+				046B6DDE2D3512D400EE9EF7 /* AnyTimeCustomPopupView.h */,
+				046B6DDF2D3512D400EE9EF7 /* AnyTimeCustomPopupView.m */,
 			);
 			path = AnyTimePublic;
 			sourceTree = "<group>";
@@ -587,6 +592,7 @@
 				046B6D992D335F0600EE9EF7 /* AnyTimeRootBarViewController.m in Sources */,
 				046B6DD42D34B75100EE9EF7 /* AnyTimeSmallCardSlotFirstCell.m in Sources */,
 				046B6DC62D33DEB400EE9EF7 /* AnyTimeLargeCardSlotFourthCell.m in Sources */,
+				046B6DE02D3512D400EE9EF7 /* AnyTimeCustomPopupView.m in Sources */,
 				046B6DA12D3361B200EE9EF7 /* AnyTimeOrderViewController.m in Sources */,
 				046B6DB72D33D90700EE9EF7 /* AnyTimeLargeCardSlotView.m in Sources */,
 				046B6DC32D33DE8100EE9EF7 /* AnyTimeLargeCardSlotThirdCell.m in Sources */,
