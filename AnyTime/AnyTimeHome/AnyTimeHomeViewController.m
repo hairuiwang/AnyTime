@@ -20,7 +20,8 @@
     self.view.backgroundColor = UIColor.redColor;
     
     UIImageView * homeBgView = [[UIImageView alloc] init];
-    homeBgView.image = [UIImage imageNamed:@"anytime_home_bg"];
+//    homeBgView.image = [UIImage imageNamed:@"anytime_home_bg"];
+    homeBgView.image = [UIImage imageNamed:@"anytime_home_smallcard_bg"];
     [self.view addSubview:homeBgView];
     
     [homeBgView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -28,9 +29,10 @@
         make.top.bottom.mas_equalTo(self.view);
     }];
     
-    AnyTimeLargeCardSlotView *customView = [[AnyTimeLargeCardSlotView alloc] initWithFrame:self.view.bounds];
+//    AnyTimeLargeCardSlotView *customView = [[AnyTimeLargeCardSlotView alloc] initWithFrame:self.view.bounds];
+//    [self.view addSubview:customView];
+    AnyTimeSmallCardSlotView *customView = [[AnyTimeSmallCardSlotView alloc] initWithFrame:self.view.bounds];
     [self.view addSubview:customView];
-
 }
 
 /*

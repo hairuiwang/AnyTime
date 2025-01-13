@@ -56,6 +56,7 @@
 
     
     UIImageView * bgImage = [[UIImageView alloc] init];
+    bgImage.image = [UIImage imageNamed:@"anytime_home_thirdbg"];
     [self.contentView addSubview:bgImage];
     [bgImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(tipsImage.mas_bottom);

@@ -1,0 +1,125 @@
+//
+//  AnyTimeSmallCardSlotView.m
+//  AnyTime
+//
+//  Created by Tingyu on 2025/1/12.
+//
+
+#import "AnyTimeSmallCardSlotView.h"
+#import "AnyTimeSmallCardSlotFirstCell.h"
+#import "AnyTimeSmallCardSlotSecondCell.h"
+#import "AnyTimeSmallCardSlotThirdCell.h"
+
+@interface AnyTimeSmallCardSlotView () <UICollectionViewDelegate, UICollectionViewDataSource>
+
+@property (nonatomic, strong) UICollectionView *collectionView;
+
+@end
+@implementation AnyTimeSmallCardSlotView
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setupCollectionView];
+    }
+    return self;
+}
+
+- (void)setupCollectionView {
+    
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    
+    self.collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    self.collectionView.backgroundColor = rgba(0, 0, 0, 0);
+    
+    [self.collectionView registerClass:[AnyTimeSmallCardSlotFirstCell class] forCellWithReuseIdentifier:@"AnyTimeSmallCardSlotFirstCell"];
+    [self.collectionView registerClass:[AnyTimeSmallCardSlotSecondCell class] forCellWithReuseIdentifier:@"AnyTimeSmallCardSlotSecondCell"];
+    [self.collectionView registerClass:[AnyTimeSmallCardSlotThirdCell class] forCellWithReuseIdentifier:@"AnyTimeSmallCardSlotThirdCell"];
+    
+    self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    self.collectionView.scrollIndicatorInsets = self.collectionView.contentInset;
+    [self addSubview:self.collectionView];
+}
+
+#pragma mark - UICollectionViewDataSource
+
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 5;
+}
+
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell *cell;
+    
+    switch (indexPath.section) {
+        case 0:
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AnyTimeSmallCardSlotFirstCell" forIndexPath:indexPath];
+            break;
+        case 1:
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AnyTimeSmallCardSlotSecondCell" forIndexPath:indexPath];
+            break;
+        case 2:
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AnyTimeSmallCardSlotThirdCell" forIndexPath:indexPath];
+            break;
+        case 3:
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AnyTimeSmallCardSlotThirdCell" forIndexPath:indexPath];
+            break;
+        case 4:
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AnyTimeSmallCardSlotThirdCell" forIndexPath:indexPath];
+            break;
+        default:
+            cell.backgroundColor = [UIColor whiteColor];
+            break;
+    }
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger itemIndex = indexPath.item;
+    
+    NSLog(@"Clicked item at index: %ld", (long)itemIndex);
+}
+
+
+#pragma mark - UICollectionViewDelegateFlowLayout
+
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat width = self.bounds.size.width; // 设置宽度为自定义视图的宽度
+    
+    // 根据不同的 section 设置不同的高度
+    CGFloat height = 0;
+    switch (indexPath.section) {
+        case 0:
+            height = 310;
+            break;
+        case 1:
+            height = 151;
+            break;
+        case 2:
+            height = 180;
+            break;
+        case 3:
+            height = 180;
+            break;
+        case 4:
+            height = 180;
+            break;
+        default:
+            height = 100;
+            break;
+    }
+    
+    return CGSizeMake(width, height);
+}
+
+
+@end
