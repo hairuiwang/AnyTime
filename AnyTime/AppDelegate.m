@@ -24,9 +24,6 @@
     BOOL isFirstLaunch = ![[NSUserDefaults standardUserDefaults] boolForKey:@"isFirstLaunch"];
     
     if (isFirstLaunch) {
-
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstLaunch"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
         
         AnyTimeGuidePageViewController *onboardingVC = [[AnyTimeGuidePageViewController alloc] init];
         self.window.rootViewController = onboardingVC;
