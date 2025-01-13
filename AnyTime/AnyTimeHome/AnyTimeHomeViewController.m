@@ -6,6 +6,8 @@
 //
 
 #import "AnyTimeHomeViewController.h"
+#import "AnyTimeLargeCardSlotView.h"
+#import "AnyTimeSmallCardSlotView.h"
 
 @interface AnyTimeHomeViewController ()
 
@@ -16,6 +18,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.redColor;
+    
+    UIImageView * homeBgView = [[UIImageView alloc] init];
+    homeBgView.image = [UIImage imageNamed:@"anytime_home_bg"];
+    [self.view addSubview:homeBgView];
+    
+    [homeBgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(self.view);
+        make.top.bottom.mas_equalTo(self.view);
+    }];
+    
+    AnyTimeLargeCardSlotView *customView = [[AnyTimeLargeCardSlotView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:customView];
+
 }
 
 /*

@@ -23,6 +23,15 @@
 		046B6DA92D337BAB00EE9EF7 /* AnyTimeGuidePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6DA82D337BAB00EE9EF7 /* AnyTimeGuidePageViewController.m */; };
 		046B6DAF2D3393E900EE9EF7 /* AnyTimeLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6DAE2D3393E900EE9EF7 /* AnyTimeLoginViewController.m */; };
 		046B6DB42D339E8200EE9EF7 /* AnyTimeCustomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6DB32D339E8200EE9EF7 /* AnyTimeCustomTextField.m */; };
+		046B6DB72D33D90700EE9EF7 /* AnyTimeLargeCardSlotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6DB62D33D90700EE9EF7 /* AnyTimeLargeCardSlotView.m */; };
+		046B6DBA2D33D91900EE9EF7 /* AnyTimeSmallCardSlotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6DB92D33D91900EE9EF7 /* AnyTimeSmallCardSlotView.m */; };
+		046B6DBD2D33DE5400EE9EF7 /* AnyTimeLargeCardSlotFirstCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6DBC2D33DE5400EE9EF7 /* AnyTimeLargeCardSlotFirstCell.m */; };
+		046B6DC02D33DE7000EE9EF7 /* AnyTimeLargeCardSlotSecondCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6DBF2D33DE7000EE9EF7 /* AnyTimeLargeCardSlotSecondCell.m */; };
+		046B6DC32D33DE8100EE9EF7 /* AnyTimeLargeCardSlotThirdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6DC22D33DE8100EE9EF7 /* AnyTimeLargeCardSlotThirdCell.m */; };
+		046B6DC62D33DEB400EE9EF7 /* AnyTimeLargeCardSlotFourthCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6DC52D33DEB400EE9EF7 /* AnyTimeLargeCardSlotFourthCell.m */; };
+		046B6DCA2D33E94D00EE9EF7 /* AnyTimePublic.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6DC92D33E94D00EE9EF7 /* AnyTimePublic.m */; };
+		046B6DCD2D34AF6200EE9EF7 /* BorderLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6DCC2D34AF6200EE9EF7 /* BorderLabel.m */; };
+		046B6DD02D34B1B200EE9EF7 /* GradientBorderLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6DCF2D34B1B200EE9EF7 /* GradientBorderLabel.m */; };
 		826F54C2EA19383470FFFE00 /* Pods_AnyTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5144912D00E9046812AF323D /* Pods_AnyTime.framework */; };
 		8AADE94F471CDE3BFBDA66D7 /* Pods_AnyTimeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4B7405F01A2FAB655AFF70 /* Pods_AnyTimeTests.framework */; };
 		F693A9FC492260D76D367A52 /* Pods_AnyTime_AnyTimeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D88D01DB36709394BB553A /* Pods_AnyTime_AnyTimeUITests.framework */; };
@@ -77,6 +86,24 @@
 		046B6DB02D33958F00EE9EF7 /* AnyTime-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AnyTime-Prefix.pch"; sourceTree = "<group>"; };
 		046B6DB22D339E8200EE9EF7 /* AnyTimeCustomTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyTimeCustomTextField.h; sourceTree = "<group>"; };
 		046B6DB32D339E8200EE9EF7 /* AnyTimeCustomTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyTimeCustomTextField.m; sourceTree = "<group>"; };
+		046B6DB52D33D90700EE9EF7 /* AnyTimeLargeCardSlotView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AnyTimeLargeCardSlotView.h; path = AnyTime/AnyTimeHome/AnyTimeLargeCardSlotView/AnyTimeLargeCardSlotView.h; sourceTree = SOURCE_ROOT; };
+		046B6DB62D33D90700EE9EF7 /* AnyTimeLargeCardSlotView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AnyTimeLargeCardSlotView.m; path = AnyTime/AnyTimeHome/AnyTimeLargeCardSlotView/AnyTimeLargeCardSlotView.m; sourceTree = SOURCE_ROOT; };
+		046B6DB82D33D91900EE9EF7 /* AnyTimeSmallCardSlotView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyTimeSmallCardSlotView.h; sourceTree = "<group>"; };
+		046B6DB92D33D91900EE9EF7 /* AnyTimeSmallCardSlotView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyTimeSmallCardSlotView.m; sourceTree = "<group>"; };
+		046B6DBB2D33DE5400EE9EF7 /* AnyTimeLargeCardSlotFirstCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyTimeLargeCardSlotFirstCell.h; sourceTree = "<group>"; };
+		046B6DBC2D33DE5400EE9EF7 /* AnyTimeLargeCardSlotFirstCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyTimeLargeCardSlotFirstCell.m; sourceTree = "<group>"; };
+		046B6DBE2D33DE7000EE9EF7 /* AnyTimeLargeCardSlotSecondCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyTimeLargeCardSlotSecondCell.h; sourceTree = "<group>"; };
+		046B6DBF2D33DE7000EE9EF7 /* AnyTimeLargeCardSlotSecondCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyTimeLargeCardSlotSecondCell.m; sourceTree = "<group>"; };
+		046B6DC12D33DE8100EE9EF7 /* AnyTimeLargeCardSlotThirdCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyTimeLargeCardSlotThirdCell.h; sourceTree = "<group>"; };
+		046B6DC22D33DE8100EE9EF7 /* AnyTimeLargeCardSlotThirdCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyTimeLargeCardSlotThirdCell.m; sourceTree = "<group>"; };
+		046B6DC42D33DEB400EE9EF7 /* AnyTimeLargeCardSlotFourthCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyTimeLargeCardSlotFourthCell.h; sourceTree = "<group>"; };
+		046B6DC52D33DEB400EE9EF7 /* AnyTimeLargeCardSlotFourthCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyTimeLargeCardSlotFourthCell.m; sourceTree = "<group>"; };
+		046B6DC82D33E94D00EE9EF7 /* AnyTimePublic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyTimePublic.h; sourceTree = "<group>"; };
+		046B6DC92D33E94D00EE9EF7 /* AnyTimePublic.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyTimePublic.m; sourceTree = "<group>"; };
+		046B6DCB2D34AF6200EE9EF7 /* BorderLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BorderLabel.h; sourceTree = "<group>"; };
+		046B6DCC2D34AF6200EE9EF7 /* BorderLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BorderLabel.m; sourceTree = "<group>"; };
+		046B6DCE2D34B1B200EE9EF7 /* GradientBorderLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GradientBorderLabel.h; sourceTree = "<group>"; };
+		046B6DCF2D34B1B200EE9EF7 /* GradientBorderLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GradientBorderLabel.m; sourceTree = "<group>"; };
 		2D1011C7969C9D06831050AF /* Pods-AnyTimeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTimeTests.release.xcconfig"; path = "Target Support Files/Pods-AnyTimeTests/Pods-AnyTimeTests.release.xcconfig"; sourceTree = "<group>"; };
 		3414FFF15DC354AEA7298D8F /* Pods-AnyTimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTimeTests.debug.xcconfig"; path = "Target Support Files/Pods-AnyTimeTests/Pods-AnyTimeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4D9BAC4A1E243BC4268E3570 /* Pods-AnyTime-AnyTimeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime-AnyTimeUITests.debug.xcconfig"; path = "Target Support Files/Pods-AnyTime-AnyTimeUITests/Pods-AnyTime-AnyTimeUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -190,8 +217,11 @@
 		046B6D9A2D33617A00EE9EF7 /* AnyTimeHome */ = {
 			isa = PBXGroup;
 			children = (
+				046B6DC72D33DEBC00EE9EF7 /* AnyTimeLargeCardSlotView */,
 				046B6D9B2D33619900EE9EF7 /* AnyTimeHomeViewController.h */,
 				046B6D9C2D33619900EE9EF7 /* AnyTimeHomeViewController.m */,
+				046B6DB82D33D91900EE9EF7 /* AnyTimeSmallCardSlotView.h */,
+				046B6DB92D33D91900EE9EF7 /* AnyTimeSmallCardSlotView.m */,
 			);
 			path = AnyTimeHome;
 			sourceTree = "<group>";
@@ -237,8 +267,31 @@
 			children = (
 				046B6DB22D339E8200EE9EF7 /* AnyTimeCustomTextField.h */,
 				046B6DB32D339E8200EE9EF7 /* AnyTimeCustomTextField.m */,
+				046B6DC82D33E94D00EE9EF7 /* AnyTimePublic.h */,
+				046B6DC92D33E94D00EE9EF7 /* AnyTimePublic.m */,
+				046B6DCB2D34AF6200EE9EF7 /* BorderLabel.h */,
+				046B6DCC2D34AF6200EE9EF7 /* BorderLabel.m */,
+				046B6DCE2D34B1B200EE9EF7 /* GradientBorderLabel.h */,
+				046B6DCF2D34B1B200EE9EF7 /* GradientBorderLabel.m */,
 			);
 			path = AnyTimePublic;
+			sourceTree = "<group>";
+		};
+		046B6DC72D33DEBC00EE9EF7 /* AnyTimeLargeCardSlotView */ = {
+			isa = PBXGroup;
+			children = (
+				046B6DB52D33D90700EE9EF7 /* AnyTimeLargeCardSlotView.h */,
+				046B6DB62D33D90700EE9EF7 /* AnyTimeLargeCardSlotView.m */,
+				046B6DBB2D33DE5400EE9EF7 /* AnyTimeLargeCardSlotFirstCell.h */,
+				046B6DBC2D33DE5400EE9EF7 /* AnyTimeLargeCardSlotFirstCell.m */,
+				046B6DBE2D33DE7000EE9EF7 /* AnyTimeLargeCardSlotSecondCell.h */,
+				046B6DBF2D33DE7000EE9EF7 /* AnyTimeLargeCardSlotSecondCell.m */,
+				046B6DC12D33DE8100EE9EF7 /* AnyTimeLargeCardSlotThirdCell.h */,
+				046B6DC22D33DE8100EE9EF7 /* AnyTimeLargeCardSlotThirdCell.m */,
+				046B6DC42D33DEB400EE9EF7 /* AnyTimeLargeCardSlotFourthCell.h */,
+				046B6DC52D33DEB400EE9EF7 /* AnyTimeLargeCardSlotFourthCell.m */,
+			);
+			path = AnyTimeLargeCardSlotView;
 			sourceTree = "<group>";
 		};
 		39B15E13D3C472CE2E77D7B4 /* Pods */ = {
@@ -504,11 +557,20 @@
 			files = (
 				046B6DA92D337BAB00EE9EF7 /* AnyTimeGuidePageViewController.m in Sources */,
 				046B6D992D335F0600EE9EF7 /* AnyTimeRootBarViewController.m in Sources */,
+				046B6DC62D33DEB400EE9EF7 /* AnyTimeLargeCardSlotFourthCell.m in Sources */,
 				046B6DA12D3361B200EE9EF7 /* AnyTimeOrderViewController.m in Sources */,
+				046B6DB72D33D90700EE9EF7 /* AnyTimeLargeCardSlotView.m in Sources */,
+				046B6DC32D33DE8100EE9EF7 /* AnyTimeLargeCardSlotThirdCell.m in Sources */,
 				046B6D692D30F74000EE9EF7 /* ViewController.m in Sources */,
 				046B6DA52D3361D200EE9EF7 /* AnyTimeMeViewController.m in Sources */,
+				046B6DCD2D34AF6200EE9EF7 /* BorderLabel.m in Sources */,
+				046B6DC02D33DE7000EE9EF7 /* AnyTimeLargeCardSlotSecondCell.m in Sources */,
+				046B6DD02D34B1B200EE9EF7 /* GradientBorderLabel.m in Sources */,
 				046B6D632D30F74000EE9EF7 /* AppDelegate.m in Sources */,
 				046B6DB42D339E8200EE9EF7 /* AnyTimeCustomTextField.m in Sources */,
+				046B6DBD2D33DE5400EE9EF7 /* AnyTimeLargeCardSlotFirstCell.m in Sources */,
+				046B6DCA2D33E94D00EE9EF7 /* AnyTimePublic.m in Sources */,
+				046B6DBA2D33D91900EE9EF7 /* AnyTimeSmallCardSlotView.m in Sources */,
 				046B6DAF2D3393E900EE9EF7 /* AnyTimeLoginViewController.m in Sources */,
 				046B6D742D30F74500EE9EF7 /* main.m in Sources */,
 				046B6D9D2D33619900EE9EF7 /* AnyTimeHomeViewController.m in Sources */,
@@ -697,8 +759,9 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/AnyTime/AnyTime-Prefix.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnyTime/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "AnyTime Loan";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -732,8 +795,9 @@
 				GCC_PREFIX_HEADER = "$(SRCROOT)/AnyTime/AnyTime-Prefix.pch";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnyTime/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "AnyTime Loan";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;

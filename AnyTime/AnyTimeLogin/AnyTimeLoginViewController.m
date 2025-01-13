@@ -8,6 +8,7 @@
 #import "AnyTimeLoginViewController.h"
 #import "AnyTimeCustomTextField.h"
 #import <YYText/YYText.h>
+#import "AnyTimeRootBarViewController.h"
 
 @interface AnyTimeLoginViewController ()
 
@@ -182,15 +183,17 @@
 }
 
 - (void)showPrivacyAgreement {
-    // 显示隐私协议的具体内容（例如，跳转到新的页面等）
+    
     NSLog(@"Privacy Agreement clicked");
-    // 你可以在这里弹出一个新的视图控制器或打开网页
+    
 }
 
 
 -(void)loginButtonTapped
 {
-    
+    UIWindow *window = [UIApplication sharedApplication].windows.firstObject;
+    AnyTimeRootBarViewController * rootVC = [[AnyTimeRootBarViewController alloc] init];
+    window.rootViewController = rootVC;
 }
 
 /*

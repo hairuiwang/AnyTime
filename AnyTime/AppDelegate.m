@@ -21,24 +21,20 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
-    // 判断是否是第一次启动
     BOOL isFirstLaunch = ![[NSUserDefaults standardUserDefaults] boolForKey:@"isFirstLaunch"];
     
     if (isFirstLaunch) {
-        // 设置为第一次启动，之后不再显示引导页
+
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstLaunch"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         
-        // 显示引导页
         AnyTimeGuidePageViewController *onboardingVC = [[AnyTimeGuidePageViewController alloc] init];
         self.window.rootViewController = onboardingVC;
     } 
     else
     {
-        // 显示登录页
-//        AnyTimeRootBarViewController * rootVC = [[AnyTimeRootBarViewController alloc] init];
-        AnyTimeLoginViewController * rootVC = [[AnyTimeLoginViewController alloc] init];
-        self.window.rootViewController = rootVC;
+        AnyTimeRootBarViewController * rootVC = [[AnyTimeRootBarViewController alloc] init];
+//        AnyTimeLoginViewController * rootVC = [[AnyTimeLoginViewController alloc] init];
         self.window.rootViewController = rootVC;
     }
    

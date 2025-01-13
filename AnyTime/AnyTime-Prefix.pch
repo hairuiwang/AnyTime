@@ -10,6 +10,7 @@
 
 #import "AppDelegate.h"
 #import "Masonry.h"
+#import "AnyTimePublic.h"
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
@@ -17,7 +18,7 @@
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
 #define RGB(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
-#define RGBA(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+#define rgba(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
 
 // 设置字体大小，自动适配屏幕
 #define FONT_SIZE(size) [UIFont systemFontOfSize:size]
@@ -70,6 +71,11 @@
 // Futura Medium
 #define FuturaMediumFont(size) [UIFont fontWithName:@"Futura-Medium" size:size]
 
-#define PingFangSCFont(size) [UIFont fontWithName:@"PingFang-SC" size:size]
+#define PFSCFont(size) [AnyTimePublic pingFangFontWithSize:size]
+
+#define FuturaFont(size) [AnyTimePublic futuraFontWithSize:size]
+
+#define ArialFont(size) [AnyTimePublic arialFontWithSize:size]
+
 
 #endif /* AnyTime_Prefix_pch */
