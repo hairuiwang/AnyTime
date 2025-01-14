@@ -32,12 +32,15 @@
     orderVC.tabBarItem.selectedImage = [[UIImage imageNamed:@"anytime_order_s"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
     
+    
+    
     AnyTimeMeViewController * meVC = [[AnyTimeMeViewController alloc] init];
-    meVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"anytime_me_uns"] selectedImage:[UIImage imageNamed:@"anytime_me_s"]];
-    meVC.tabBarItem.image = [[UIImage imageNamed:@"anytime_me_uns"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    meVC.tabBarItem.selectedImage = [[UIImage imageNamed:@"anytime_me_s"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UINavigationController *nav_meVC = [[UINavigationController alloc] initWithRootViewController:meVC];
+    nav_meVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"anytime_me_uns"] selectedImage:[UIImage imageNamed:@"anytime_me_s"]];
+    nav_meVC.tabBarItem.image = [[UIImage imageNamed:@"anytime_me_uns"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    nav_meVC.tabBarItem.selectedImage = [[UIImage imageNamed:@"anytime_me_s"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
-    self.viewControllers = @[homeVC,orderVC,meVC];
+    self.viewControllers = @[homeVC,orderVC,nav_meVC];
 }
 
 /*

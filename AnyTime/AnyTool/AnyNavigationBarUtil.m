@@ -39,28 +39,24 @@
 }
 
 #pragma mark - 自定义返回按钮
-+ (void)setCustomBackButton:(UIViewController *)viewController image:(UIImage * _Nullable)image action:(void(^ _Nullable)(void))action {
++ (void)setCustomBackButton:(UIViewController *)viewController image:(UIImage * _Nullable)image action:(SEL)action {
     UIImage *backImage = image ?: [UIImage imageNamed:@"nav_back"]; // 默认返回箭头
-    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:backImage
-                                                                   style:UIBarButtonItemStylePlain
-                                                                  target:viewController
-                                                                  action:@selector(customBackAction)];
-    viewController.navigationItem.leftBarButtonItem = backButton;
-    
-    // 绑定 block 方式的回调
-    if (action) {
-        objc_setAssociatedObject(viewController, @selector(customBackAction), action, OBJC_ASSOCIATION_COPY_NONATOMIC);
-    }
-}
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    // 设置图片
+    [backButton setImage:[backImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] forState:UIControlStateNormal];
 
-#pragma mark - 自定义返回按钮的点击事件
-+ (void)customBackAction {
-    UIViewController *vc = (UIViewController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-    void (^action)(void) = objc_getAssociatedObject(vc, @selector(customBackAction));
-    if (action) {
-        action();
-    } else {
-        [vc.navigationController popViewControllerAnimated:YES];
-    }
+    // 设置按钮大小（根据实际需求调整）
+    backButton.frame = CGRectMake(0, 0, 44, 44); // 适当的尺寸
+
+    // 添加点击事件
+    [backButton addTarget:viewController action:action forControlEvents:UIControlEventTouchUpInside];
+
+    // 使用 customView 创建 UIBarButtonItem
+    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+
+    // 设置导航栏左侧按钮
+    viewController.navigationItem.leftBarButtonItem = backBarButtonItem;
+    
 }
 @end

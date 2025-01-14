@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param viewController 目标 ViewController
 /// @param image 返回按钮图片（nil 则使用默认返回箭头）
 /// @param action 返回按钮点击事件（nil 则默认 pop）
-+ (void)setCustomBackButton:(UIViewController *)viewController image:(UIImage * _Nullable)image action:(void(^ _Nullable)(void))action;
++ (void)setCustomBackButton:(UIViewController *)viewController image:(UIImage * _Nullable)image action:(SEL)action;
 
 @end
 

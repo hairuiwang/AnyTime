@@ -45,6 +45,7 @@
 		657544152D35207C00A63988 /* AnyCertificationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544142D35207C00A63988 /* AnyCertificationDetailsViewController.m */; };
 		657544182D3520D500A63988 /* AnyNavigationBarUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544172D3520D500A63988 /* AnyNavigationBarUtil.m */; };
 		6575441B2D3522FF00A63988 /* AnyUIFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6575441A2D3522FF00A63988 /* AnyUIFactory.m */; };
+		657544622D36519C00A63988 /* UINavigationController+AutoHideTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544612D36519C00A63988 /* UINavigationController+AutoHideTabBar.m */; };
 		826F54C2EA19383470FFFE00 /* Pods_AnyTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5144912D00E9046812AF323D /* Pods_AnyTime.framework */; };
 		8AADE94F471CDE3BFBDA66D7 /* Pods_AnyTimeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4B7405F01A2FAB655AFF70 /* Pods_AnyTimeTests.framework */; };
 		F693A9FC492260D76D367A52 /* Pods_AnyTime_AnyTimeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D88D01DB36709394BB553A /* Pods_AnyTime_AnyTimeUITests.framework */; };
@@ -147,6 +148,8 @@
 		657544172D3520D500A63988 /* AnyNavigationBarUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyNavigationBarUtil.m; sourceTree = "<group>"; };
 		657544192D3522FF00A63988 /* AnyUIFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyUIFactory.h; sourceTree = "<group>"; };
 		6575441A2D3522FF00A63988 /* AnyUIFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyUIFactory.m; sourceTree = "<group>"; };
+		657544602D36519C00A63988 /* UINavigationController+AutoHideTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+AutoHideTabBar.h"; sourceTree = "<group>"; };
+		657544612D36519C00A63988 /* UINavigationController+AutoHideTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+AutoHideTabBar.m"; sourceTree = "<group>"; };
 		8B64C75E68F112EDC47D02D0 /* Pods-AnyTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime.release.xcconfig"; path = "Target Support Files/Pods-AnyTime/Pods-AnyTime.release.xcconfig"; sourceTree = "<group>"; };
 		C87E2FEB068C01887AD0C655 /* Pods-AnyTime-AnyTimeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime-AnyTimeUITests.release.xcconfig"; path = "Target Support Files/Pods-AnyTime-AnyTimeUITests/Pods-AnyTime-AnyTimeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CE4B7405F01A2FAB655AFF70 /* Pods_AnyTimeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnyTimeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -383,6 +386,8 @@
 				657544172D3520D500A63988 /* AnyNavigationBarUtil.m */,
 				657544192D3522FF00A63988 /* AnyUIFactory.h */,
 				6575441A2D3522FF00A63988 /* AnyUIFactory.m */,
+				657544602D36519C00A63988 /* UINavigationController+AutoHideTabBar.h */,
+				657544612D36519C00A63988 /* UINavigationController+AutoHideTabBar.m */,
 			);
 			path = AnyTool;
 			sourceTree = "<group>";
@@ -651,6 +656,7 @@
 				046B6DC62D33DEB400EE9EF7 /* AnyTimeLargeCardSlotFourthCell.m in Sources */,
 				046B6DE02D3512D400EE9EF7 /* AnyTimeCustomPopupView.m in Sources */,
 				046B6DA12D3361B200EE9EF7 /* AnyTimeOrderViewController.m in Sources */,
+				657544622D36519C00A63988 /* UINavigationController+AutoHideTabBar.m in Sources */,
 				046B6DB72D33D90700EE9EF7 /* AnyTimeLargeCardSlotView.m in Sources */,
 				046B6DC32D33DE8100EE9EF7 /* AnyTimeLargeCardSlotThirdCell.m in Sources */,
 				046B6D692D30F74000EE9EF7 /* ViewController.m in Sources */,
