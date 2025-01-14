@@ -13,7 +13,9 @@
 #import "AnyTimePublic.h"
 #import "AnyDevHelper.h"
 #import "AnyRouter.h"
-
+#import "AnyRouterTool.h"
+#import "AnyNavigationBarUtil.h"
+#import "AnyUIFactory.h"
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
@@ -41,7 +43,17 @@
 
 #define RGB(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 #define rgba(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
+// 十六进制 HEX 颜色 (6位, 不带透明度)
+#define HEXCOLOR(hex) [UIColor colorWithRed:((hex >> 16) & 0xFF) / 255.0 \
+                                      green:((hex >> 8) & 0xFF) / 255.0 \
+                                       blue:(hex & 0xFF) / 255.0 \
+                                      alpha:1.0]
 
+// 十六进制 HEX 颜色 (带透明度)
+#define HEXCOLORA(hex, a) [UIColor colorWithRed:((hex >> 16) & 0xFF) / 255.0 \
+                                          green:((hex >> 8) & 0xFF) / 255.0 \
+                                           blue:(hex & 0xFF) / 255.0 \
+                                          alpha:(a)]
 // 设置字体大小，自动适配屏幕
 #define FONT_SIZE(size) [UIFont systemFontOfSize:size]
 #define BOLD_FONT_SIZE(size) [UIFont boldSystemFontOfSize:size]

@@ -8,15 +8,16 @@
     
 
 #import "AnyRouterTool.h"
-
+#import "AnyCertificationDetailsViewController.h"
 @implementation AnyRouterTool
 
 + (void) registered {
     [self certificationDetails];
 }
 + (void)certificationDetails {
-    [[AnyRouter sharedInstance] registerRoute:@"" handler:^(NSDictionary * _Nullable, UIViewController * _Nullable, RouterCallback _Nullable) {
-        
+    [[AnyRouter sharedInstance] registerRoute:@"/certificationDetails" handler:^(NSDictionary * parameters, UIViewController * vc, RouterCallback callback) {
+        AnyCertificationDetailsViewController *toVC = [[AnyCertificationDetailsViewController alloc]init];
+        [vc.navigationController pushViewController:toVC animated:true];
     }];
 }
 @end

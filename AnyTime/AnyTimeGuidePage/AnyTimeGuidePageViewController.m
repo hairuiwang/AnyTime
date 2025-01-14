@@ -196,7 +196,7 @@
 
 - (void)transitionToLoginPage
 {
-    
+    [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"isFirstLaunch"];
     UIWindow *window = [UIApplication sharedApplication].windows.firstObject;
     AnyTimeLoginViewController * loginVC = [[AnyTimeLoginViewController alloc] init];
     window.rootViewController = loginVC;
