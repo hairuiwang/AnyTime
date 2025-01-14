@@ -20,8 +20,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = UIColor.whiteColor;
-    
-
+   
     AnyTimeHomeViewController * homeVC = [[AnyTimeHomeViewController alloc] init];
     homeVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"anytime_home_uns"] selectedImage:[UIImage imageNamed:@"anytime_home_s"]];
     homeVC.tabBarItem.image = [[UIImage imageNamed:@"anytime_home_uns"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

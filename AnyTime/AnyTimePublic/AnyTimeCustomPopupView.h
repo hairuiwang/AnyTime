@@ -28,7 +28,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) void (^secondButtonAction)(void);
 
+- (instancetype)initGoOutAccountWithFrame:(CGRect)frame;
+
+- (instancetype)initCancellationAccountWithFrame:(CGRect)frame;
+
 - (void)showInView:(UIView *)parentView;
+
 - (void)dismiss;
 @end
 

@@ -16,9 +16,32 @@
 @property (nonatomic, strong) UIButton *secondButton;
 @property (nonatomic, strong) UIButton *closeButton;
 
+@property (nonatomic, strong) UIButton *checkboxButton;
+@property (nonatomic, assign) BOOL isChecked;
+
 @end
 
 @implementation AnyTimeCustomPopupView
+
+- (instancetype)initGoOutAccountWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setupUI];
+        [self setupConstraints];
+    }
+    return self;
+}
+
+- (instancetype)initCancellationAccountWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setupUI];
+        [self setupCancellationConstraints];
+    }
+    return self;
+}
 
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -75,8 +98,6 @@
     [self.closeButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [self.closeButton addTarget:self action:@selector(closeButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.closeButton];
-    
-    [self setupConstraints];
 }
 
 - (void)setupConstraints
@@ -124,6 +145,81 @@
     }];
     
 }
+
+- (void)setupCancellationConstraints
+{
+    CGFloat padding = 15;
+    
+    [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mas_top).offset(150);
+        make.centerX.equalTo(self.mas_centerX);
+        make.width.equalTo(@300);
+        make.height.equalTo(@353);
+    }];
+      
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.backgroundImageView.mas_top).offset(80);
+        make.left.equalTo(self.backgroundImageView.mas_left).offset(padding);
+        make.right.equalTo(self.backgroundImageView.mas_right).offset(-padding);
+        make.height.equalTo(@30);
+    }];
+    
+    [self.descriptionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.backgroundImageView.mas_top).offset(190);
+        make.left.equalTo(self.backgroundImageView.mas_left).offset(padding);
+        make.right.equalTo(self.backgroundImageView.mas_right).offset(-padding);
+    }];
+    
+    self.checkboxButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.checkboxButton setImage:[UIImage imageNamed:@"anytime_login_unse"] forState:UIControlStateNormal];
+    [self.checkboxButton setImage:[UIImage imageNamed:@"anytime_login_se"] forState:UIControlStateSelected];
+    [self.checkboxButton addTarget:self action:@selector(toggleCheckboxState) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:self.checkboxButton];
+    [self.checkboxButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.descriptionLabel.mas_left).offset(22);
+        make.height.width.mas_equalTo(20);
+        make.top.mas_equalTo(self.descriptionLabel.mas_bottom);
+    }];
+    
+    UILabel * tipsLabel = [[UILabel alloc] init];
+    tipsLabel.text = @"I have read and agree to the above";
+    tipsLabel.font = PFSCFont(12);
+    tipsLabel.textColor = rgba(255, 134, 2, 1);
+    [self addSubview:tipsLabel];
+    [tipsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.checkboxButton.mas_right).offset(10);
+        make.height.mas_equalTo(20);
+        make.centerY.mas_equalTo(self.checkboxButton.mas_centerY);
+    }];
+    
+    [self.firstButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.backgroundImageView.mas_bottom).offset(10);
+        make.left.equalTo(self.backgroundImageView.mas_left).offset(padding);
+        make.right.equalTo(self.backgroundImageView.mas_right).offset(-padding);
+        make.height.equalTo(@44);
+    }];
+    
+    [self.secondButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.firstButton.mas_bottom).offset(10);
+        make.left.equalTo(self.backgroundImageView.mas_left).offset(padding);
+        make.right.equalTo(self.backgroundImageView.mas_right).offset(-padding);
+        make.height.equalTo(@44);
+    }];
+    
+    [self.closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.secondButton.mas_bottom).offset(10);
+        make.centerX.equalTo(self.backgroundImageView.mas_centerX);
+        make.width.height.equalTo(@20);
+    }];
+    
+}
+
+- (void)toggleCheckboxState {
+    // 切换选中状态
+    self.isChecked = !self.isChecked;
+    self.checkboxButton.selected = self.isChecked;
+}
+
 
 #pragma mark - Setter Methods
 

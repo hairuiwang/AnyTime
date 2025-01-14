@@ -30,32 +30,32 @@
         make.top.bottom.mas_equalTo(self.view);
     }];
     
-//    AnyTimeLargeCardSlotView *customView = [[AnyTimeLargeCardSlotView alloc] initWithFrame:self.view.bounds];
-//    [self.view addSubview:customView];
+    AnyTimeLargeCardSlotView *customView = [[AnyTimeLargeCardSlotView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:customView];
 //    AnyTimeSmallCardSlotView *customView = [[AnyTimeSmallCardSlotView alloc] initWithFrame:self.view.bounds];
 //    [self.view addSubview:customView];
     
     
-    AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] init];
-    popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbg"]; // 背景图
-    popupView.titleText = @"Recommended Products";
-    popupView.descriptionText = @"VIP lane available, acc rate up to 99%, click to apply";
-    popupView.firstButtonTitle = @"Apply For Products Now";
-    popupView.secondButtonTitle = @"Go Apply";
-    
-    popupView.firstButtonAction = ^{
-        NSLog(@"First button tapped");
-    };
-
-    popupView.secondButtonAction = ^{
-        NSLog(@"Second button tapped");
-    };
-
-    popupView.closeAction = ^{
-        NSLog(@"Close button tapped");
-    };
-
-    [popupView showInView:self.view];
+//    AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initCancellationAccountWithFrame:self.view.bounds];
+//    popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbigbg"]; // 背景图
+//    popupView.titleText = @"Recommended Products";
+//    popupView.descriptionText = @"Once an account is cancelled, itcannot be restored. To ensure thesecurity of your account, pleaseconfrm that account-relatedservices have been handleproperlybefore submitting your application.";
+//    popupView.firstButtonTitle = @"Apply For Products Now";
+//    popupView.secondButtonTitle = @"Go Apply";
+//    
+//    popupView.firstButtonAction = ^{
+//        NSLog(@"First button tapped");
+//    };
+//
+//    popupView.secondButtonAction = ^{
+//        NSLog(@"Second button tapped");
+//    };
+//
+//    popupView.closeAction = ^{
+//        NSLog(@"Close button tapped");
+//    };
+//
+//    [popupView showInView:self.view];
 
 }
 
