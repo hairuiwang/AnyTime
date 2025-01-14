@@ -39,6 +39,9 @@
 		046B6DE02D3512D400EE9EF7 /* AnyTimeCustomPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6DDF2D3512D400EE9EF7 /* AnyTimeCustomPopupView.m */; };
 		046B6DE32D36356800EE9EF7 /* AnyTimeOrderCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6DE22D36356800EE9EF7 /* AnyTimeOrderCardCell.m */; };
 		046B6DE62D364F2500EE9EF7 /* EmptyOrdersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6DE52D364F2500EE9EF7 /* EmptyOrdersViewController.m */; };
+		046B6DE92D36892400EE9EF7 /* AnyTimeMeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6DE82D36892400EE9EF7 /* AnyTimeMeTableViewCell.m */; };
+		046B6DED2D368D9100EE9EF7 /* AnyTimeMeSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6DEC2D368D9100EE9EF7 /* AnyTimeMeSettingViewController.m */; };
+		046B6DF02D3691A700EE9EF7 /* AnyTimeMeSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6DEF2D3691A700EE9EF7 /* AnyTimeMeSettingTableViewCell.m */; };
 		6575440B2D34DC4F00A63988 /* AnyRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6575440A2D34DC4F00A63988 /* AnyRouter.m */; };
 		6575440E2D3505B700A63988 /* AnyDevHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6575440D2D3505B700A63988 /* AnyDevHelper.m */; };
 		657544112D35063F00A63988 /* AnyRouterTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544102D35063F00A63988 /* AnyRouterTool.m */; };
@@ -132,6 +135,12 @@
 		046B6DE22D36356800EE9EF7 /* AnyTimeOrderCardCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyTimeOrderCardCell.m; sourceTree = "<group>"; };
 		046B6DE42D364F2500EE9EF7 /* EmptyOrdersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmptyOrdersViewController.h; sourceTree = "<group>"; };
 		046B6DE52D364F2500EE9EF7 /* EmptyOrdersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmptyOrdersViewController.m; sourceTree = "<group>"; };
+		046B6DE72D36892400EE9EF7 /* AnyTimeMeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyTimeMeTableViewCell.h; sourceTree = "<group>"; };
+		046B6DE82D36892400EE9EF7 /* AnyTimeMeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyTimeMeTableViewCell.m; sourceTree = "<group>"; };
+		046B6DEB2D368D9100EE9EF7 /* AnyTimeMeSettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyTimeMeSettingViewController.h; sourceTree = "<group>"; };
+		046B6DEC2D368D9100EE9EF7 /* AnyTimeMeSettingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyTimeMeSettingViewController.m; sourceTree = "<group>"; };
+		046B6DEE2D3691A700EE9EF7 /* AnyTimeMeSettingTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyTimeMeSettingTableViewCell.h; sourceTree = "<group>"; };
+		046B6DEF2D3691A700EE9EF7 /* AnyTimeMeSettingTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyTimeMeSettingTableViewCell.m; sourceTree = "<group>"; };
 		2D1011C7969C9D06831050AF /* Pods-AnyTimeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTimeTests.release.xcconfig"; path = "Target Support Files/Pods-AnyTimeTests/Pods-AnyTimeTests.release.xcconfig"; sourceTree = "<group>"; };
 		3414FFF15DC354AEA7298D8F /* Pods-AnyTimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTimeTests.debug.xcconfig"; path = "Target Support Files/Pods-AnyTimeTests/Pods-AnyTimeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4D9BAC4A1E243BC4268E3570 /* Pods-AnyTime-AnyTimeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime-AnyTimeUITests.debug.xcconfig"; path = "Target Support Files/Pods-AnyTime-AnyTimeUITests/Pods-AnyTime-AnyTimeUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -285,8 +294,11 @@
 		046B6DA22D3361B600EE9EF7 /* AnyTimeMe */ = {
 			isa = PBXGroup;
 			children = (
+				046B6DEA2D368D6F00EE9EF7 /* AnyTimeMeSetting */,
 				046B6DA32D3361D200EE9EF7 /* AnyTimeMeViewController.h */,
 				046B6DA42D3361D200EE9EF7 /* AnyTimeMeViewController.m */,
+				046B6DE72D36892400EE9EF7 /* AnyTimeMeTableViewCell.h */,
+				046B6DE82D36892400EE9EF7 /* AnyTimeMeTableViewCell.m */,
 			);
 			path = AnyTimeMe;
 			sourceTree = "<group>";
@@ -358,6 +370,17 @@
 				046B6DD92D34B76F00EE9EF7 /* AnyTimeSmallCardSlotThirdCell.m */,
 			);
 			path = AnyTimeSmallCardSlotView;
+			sourceTree = "<group>";
+		};
+		046B6DEA2D368D6F00EE9EF7 /* AnyTimeMeSetting */ = {
+			isa = PBXGroup;
+			children = (
+				046B6DEB2D368D9100EE9EF7 /* AnyTimeMeSettingViewController.h */,
+				046B6DEC2D368D9100EE9EF7 /* AnyTimeMeSettingViewController.m */,
+				046B6DEE2D3691A700EE9EF7 /* AnyTimeMeSettingTableViewCell.h */,
+				046B6DEF2D3691A700EE9EF7 /* AnyTimeMeSettingTableViewCell.m */,
+			);
+			path = AnyTimeMeSetting;
 			sourceTree = "<group>";
 		};
 		39B15E13D3C472CE2E77D7B4 /* Pods */ = {
@@ -672,16 +695,19 @@
 				6575440E2D3505B700A63988 /* AnyDevHelper.m in Sources */,
 				046B6DE32D36356800EE9EF7 /* AnyTimeOrderCardCell.m in Sources */,
 				046B6DB42D339E8200EE9EF7 /* AnyTimeCustomTextField.m in Sources */,
+				046B6DED2D368D9100EE9EF7 /* AnyTimeMeSettingViewController.m in Sources */,
 				046B6DBD2D33DE5400EE9EF7 /* AnyTimeLargeCardSlotFirstCell.m in Sources */,
 				046B6DCA2D33E94D00EE9EF7 /* AnyTimePublic.m in Sources */,
 				046B6DBA2D33D91900EE9EF7 /* AnyTimeSmallCardSlotView.m in Sources */,
 				6575441B2D3522FF00A63988 /* AnyUIFactory.m in Sources */,
+				046B6DF02D3691A700EE9EF7 /* AnyTimeMeSettingTableViewCell.m in Sources */,
 				046B6DAF2D3393E900EE9EF7 /* AnyTimeLoginViewController.m in Sources */,
 				046B6D742D30F74500EE9EF7 /* main.m in Sources */,
 				046B6DD72D34B76000EE9EF7 /* AnyTimeSmallCardSlotSecondCell.m in Sources */,
 				046B6DE62D364F2500EE9EF7 /* EmptyOrdersViewController.m in Sources */,
 				046B6D9D2D33619900EE9EF7 /* AnyTimeHomeViewController.m in Sources */,
 				6575440B2D34DC4F00A63988 /* AnyRouter.m in Sources */,
+				046B6DE92D36892400EE9EF7 /* AnyTimeMeTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

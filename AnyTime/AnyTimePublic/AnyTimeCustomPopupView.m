@@ -150,6 +150,10 @@
 {
     CGFloat padding = 15;
     
+    [self.firstButton addTarget:self action:@selector(firstCButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+
+    [self.secondButton addTarget:self action:@selector(secondCButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    
     [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top).offset(150);
         make.centerX.equalTo(self.mas_centerX);
@@ -272,6 +276,26 @@
 }
 
 - (void)secondButtonTapped {
+    if (self.secondButtonAction) {
+        self.secondButtonAction();
+    }
+    [self dismiss];
+}
+
+- (void)firstCButtonTapped {
+    if (self.isChecked == NO) {
+        NSLog(@"no select");
+    }
+    if (self.firstButtonAction) {
+        self.firstButtonAction();
+    }
+    [self dismiss];
+}
+
+- (void)secondCButtonTapped {
+    if (self.isChecked == NO) {
+        NSLog(@"no select");
+    }
     if (self.secondButtonAction) {
         self.secondButtonAction();
     }
