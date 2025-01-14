@@ -40,6 +40,9 @@
 		6575440B2D34DC4F00A63988 /* AnyRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6575440A2D34DC4F00A63988 /* AnyRouter.m */; };
 		6575440E2D3505B700A63988 /* AnyDevHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6575440D2D3505B700A63988 /* AnyDevHelper.m */; };
 		657544112D35063F00A63988 /* AnyRouterTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544102D35063F00A63988 /* AnyRouterTool.m */; };
+		657544152D35207C00A63988 /* AnyCertificationDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544142D35207C00A63988 /* AnyCertificationDetailsViewController.m */; };
+		657544182D3520D500A63988 /* AnyNavigationBarUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544172D3520D500A63988 /* AnyNavigationBarUtil.m */; };
+		6575441B2D3522FF00A63988 /* AnyUIFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6575441A2D3522FF00A63988 /* AnyUIFactory.m */; };
 		826F54C2EA19383470FFFE00 /* Pods_AnyTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5144912D00E9046812AF323D /* Pods_AnyTime.framework */; };
 		8AADE94F471CDE3BFBDA66D7 /* Pods_AnyTimeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4B7405F01A2FAB655AFF70 /* Pods_AnyTimeTests.framework */; };
 		F693A9FC492260D76D367A52 /* Pods_AnyTime_AnyTimeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D88D01DB36709394BB553A /* Pods_AnyTime_AnyTimeUITests.framework */; };
@@ -132,6 +135,12 @@
 		6575440D2D3505B700A63988 /* AnyDevHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyDevHelper.m; sourceTree = "<group>"; };
 		6575440F2D35063F00A63988 /* AnyRouterTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyRouterTool.h; sourceTree = "<group>"; };
 		657544102D35063F00A63988 /* AnyRouterTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyRouterTool.m; sourceTree = "<group>"; };
+		657544132D35207C00A63988 /* AnyCertificationDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyCertificationDetailsViewController.h; sourceTree = "<group>"; };
+		657544142D35207C00A63988 /* AnyCertificationDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyCertificationDetailsViewController.m; sourceTree = "<group>"; };
+		657544162D3520D500A63988 /* AnyNavigationBarUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyNavigationBarUtil.h; sourceTree = "<group>"; };
+		657544172D3520D500A63988 /* AnyNavigationBarUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyNavigationBarUtil.m; sourceTree = "<group>"; };
+		657544192D3522FF00A63988 /* AnyUIFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyUIFactory.h; sourceTree = "<group>"; };
+		6575441A2D3522FF00A63988 /* AnyUIFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyUIFactory.m; sourceTree = "<group>"; };
 		8B64C75E68F112EDC47D02D0 /* Pods-AnyTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime.release.xcconfig"; path = "Target Support Files/Pods-AnyTime/Pods-AnyTime.release.xcconfig"; sourceTree = "<group>"; };
 		C87E2FEB068C01887AD0C655 /* Pods-AnyTime-AnyTimeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime-AnyTimeUITests.release.xcconfig"; path = "Target Support Files/Pods-AnyTime-AnyTimeUITests/Pods-AnyTime-AnyTimeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CE4B7405F01A2FAB655AFF70 /* Pods_AnyTimeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnyTimeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +200,7 @@
 		046B6D602D30F74000EE9EF7 /* AnyTime */ = {
 			isa = PBXGroup;
 			children = (
+				657544122D35205F00A63988 /* AnyCertificationDetails */,
 				657544062D34DC2500A63988 /* AnyTool */,
 				046B6DB12D339E5700EE9EF7 /* AnyTimePublic */,
 				046B6D612D30F74000EE9EF7 /* AppDelegate.h */,
@@ -359,8 +369,21 @@
 				6575440D2D3505B700A63988 /* AnyDevHelper.m */,
 				6575440F2D35063F00A63988 /* AnyRouterTool.h */,
 				657544102D35063F00A63988 /* AnyRouterTool.m */,
+				657544162D3520D500A63988 /* AnyNavigationBarUtil.h */,
+				657544172D3520D500A63988 /* AnyNavigationBarUtil.m */,
+				657544192D3522FF00A63988 /* AnyUIFactory.h */,
+				6575441A2D3522FF00A63988 /* AnyUIFactory.m */,
 			);
 			path = AnyTool;
+			sourceTree = "<group>";
+		};
+		657544122D35205F00A63988 /* AnyCertificationDetails */ = {
+			isa = PBXGroup;
+			children = (
+				657544132D35207C00A63988 /* AnyCertificationDetailsViewController.h */,
+				657544142D35207C00A63988 /* AnyCertificationDetailsViewController.m */,
+			);
+			path = AnyCertificationDetails;
 			sourceTree = "<group>";
 		};
 		D4419434A67CECABB965C0E6 /* Frameworks */ = {
@@ -623,6 +646,8 @@
 				046B6D692D30F74000EE9EF7 /* ViewController.m in Sources */,
 				046B6DA52D3361D200EE9EF7 /* AnyTimeMeViewController.m in Sources */,
 				046B6DDA2D34B76F00EE9EF7 /* AnyTimeSmallCardSlotThirdCell.m in Sources */,
+				657544152D35207C00A63988 /* AnyCertificationDetailsViewController.m in Sources */,
+				657544182D3520D500A63988 /* AnyNavigationBarUtil.m in Sources */,
 				046B6DCD2D34AF6200EE9EF7 /* BorderLabel.m in Sources */,
 				046B6DDD2D34E45400EE9EF7 /* OutlineLabel.m in Sources */,
 				046B6DC02D33DE7000EE9EF7 /* AnyTimeLargeCardSlotSecondCell.m in Sources */,
@@ -633,6 +658,7 @@
 				046B6DBD2D33DE5400EE9EF7 /* AnyTimeLargeCardSlotFirstCell.m in Sources */,
 				046B6DCA2D33E94D00EE9EF7 /* AnyTimePublic.m in Sources */,
 				046B6DBA2D33D91900EE9EF7 /* AnyTimeSmallCardSlotView.m in Sources */,
+				6575441B2D3522FF00A63988 /* AnyUIFactory.m in Sources */,
 				046B6DAF2D3393E900EE9EF7 /* AnyTimeLoginViewController.m in Sources */,
 				046B6D742D30F74500EE9EF7 /* main.m in Sources */,
 				046B6DD72D34B76000EE9EF7 /* AnyTimeSmallCardSlotSecondCell.m in Sources */,

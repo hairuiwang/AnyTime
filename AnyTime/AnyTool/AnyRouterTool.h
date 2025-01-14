@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AnyRouterTool : NSObject
-
++ (void) registered;
 @end
 
 NS_ASSUME_NONNULL_END
