@@ -1,5 +1,5 @@
 //
-//  AnyVerifyldentity02ViewController.m
+//  AnyContactInforViewController.m
 //  AnyTime
 //  
 //  Created by wealon on 2025.
@@ -7,22 +7,21 @@
 //  
     
 
-#import "AnyVerifyldentity02ViewController.h"
-#import "AnyVerifyldentity02Cell.h"
+#import "AnyContactInforViewController.h"
+#import "AnyContactInforCell.h"
 
-@interface AnyVerifyldentity02ViewController ()<UITableViewDelegate, UITableViewDataSource>
+
+@interface AnyContactInforViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 
 @end
 
-@implementation AnyVerifyldentity02ViewController
+@implementation AnyContactInforViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"Verify ldentity";
-    
+    self.topImageView.image = [UIImage imageNamed:@"contact-Information"];
 }
-
 - (void)setupUI {
     [super setupUI];
     UIImageView *bgImageView = [UIImageView new];
@@ -32,14 +31,16 @@
     UIImage *resizableImage = [originalImage resizableImageWithCapInsets:insets resizingMode:UIImageResizingModeStretch];
     bgImageView.image = resizableImage;
     [self.view addSubview:bgImageView];
+ 
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.tableHeaderView = [UIView new] ;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 20)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView registerClass:[AnyVerifyldentity02Cell class] forCellReuseIdentifier:@"AnyVerifyldentity02Cell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"AnyContactInforCell" bundle:nil] forCellReuseIdentifier:@"AnyContactInforCell"];
     // 添加到视图
     [self.view addSubview:self.tableView];
     self.tableView.layer.maskedCorners = kCALayerMinXMaxYCorner|kCALayerMaxXMaxYCorner;
@@ -54,46 +55,30 @@
         make.top.mas_equalTo(self.topImageView.mas_bottom).offset(-5);
         make.bottom.mas_equalTo(self.sureButton.mas_top).offset(-20);
     }];
+    
     [bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self.tableView);
     }];
-    [self.sureButton setTitle:@"Next" forState:(UIControlStateNormal)];
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 1;
 }
 // 返回行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return 3;
 }
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *headerView = [UIView new];
-    headerView.backgroundColor = [UIColor blackColor];
-    headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH - 30, 44);
-    UILabel *tableHeaderLabel = [UILabel new];
-    tableHeaderLabel.text = section == 0 ? self.type:   @"Please confrm your identity information";
-    tableHeaderLabel.font = [UIFont boldSystemFontOfSize:15];
-    tableHeaderLabel.textColor = [UIColor whiteColor];
-    [headerView addSubview:tableHeaderLabel];
-    [tableHeaderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(headerView);
-        make.centerY.mas_equalTo(headerView);
-    }];
-    
-    return headerView;
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return [[UIView alloc]initWithFrame:(CGRectMake(0, 0, 0.01, 0.01))];
 }
-- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 44;
+- (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return  0.01;
 }
 // 返回 Cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    AnyVerifyldentity02Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"AnyVerifyldentity02Cell" forIndexPath:indexPath];
-    if (indexPath.section == 0) {
-        cell.image = [UIImage imageNamed:@"description02"];
-    } else {
-        cell.image = [UIImage imageNamed:@"description01"];
-    }
+    AnyContactInforCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AnyContactInforCell" forIndexPath:indexPath];
+    
     return cell;
 }
 
@@ -103,11 +88,4 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
 }
-
-- (void) sureButtonClick {
-    [[AnyRouter sharedInstance] openURL:@"/anyVerifyldentity03ViewController?type=3333" parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {
-
-    }];
-}
-
 @end

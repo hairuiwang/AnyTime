@@ -93,7 +93,7 @@
             if (success) success(data);
         }
     } else if (statusCode == -2) {
-        [[AnyRouter sharedInstance] openURL:@"/login" from:nil callback:^(NSDictionary * _Nullable result) {
+        [[AnyRouter sharedInstance] openURL:@"/login" parameters:nil  from:nil callback:^(NSDictionary * _Nullable result) {
         }];
     } else {
         NSString *errorMessage = responseObject[MSG] ?: @"Unknown error";

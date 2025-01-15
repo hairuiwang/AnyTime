@@ -32,6 +32,13 @@
 
 - (void)setupUI {
     [super setupUI];
+    UIImageView *bgImageView = [UIImageView new];
+    CGPoint stretchPoint = CGPointMake(100, 100); // 以 (100,100) 为基准点
+    UIEdgeInsets insets = UIEdgeInsetsMake(stretchPoint.y, stretchPoint.x, stretchPoint.y, stretchPoint.x);
+    UIImage *originalImage = [UIImage imageNamed:@"cer-bg-icon"];
+    UIImage *resizableImage = [originalImage resizableImageWithCapInsets:insets resizingMode:UIImageResizingModeStretch];
+    bgImageView.image = resizableImage;
+    [self.view addSubview:bgImageView];
     
     UIView *tableHeaderView = [UIView new];
     tableHeaderView.backgroundColor = [UIColor blackColor];
@@ -60,13 +67,17 @@
     self.tableView.layer.cornerRadius = 12;
     self.tableView.layer.masksToBounds = YES;
     self.tableView.layer.borderColor = [UIColor blackColor].CGColor;
-    self.tableView.backgroundColor = [UIColor whiteColor];
+    self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.layer.borderWidth = 1;
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15);
         make.right.mas_equalTo(-15);
         make.top.mas_equalTo(self.topImageView.mas_bottom).offset(-5);
         make.bottom.mas_equalTo(self.sureButton.mas_top).offset(-20);
+    }];
+    
+    [bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self.tableView);
     }];
 }
 #pragma mark - UITableViewDataSource
@@ -85,15 +96,17 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 40)];
-    headerView.backgroundColor = [UIColor whiteColor];
+    headerView.backgroundColor = [UIColor clearColor];
     UILabel *headerLabel = [UILabel new];
     headerLabel.text = @"Recommended lD Type";
     headerLabel.font = [UIFont boldSystemFontOfSize:15];
+    headerLabel.backgroundColor = [UIColor whiteColor];
     headerLabel.textColor = [UIColor blackColor];
     [headerView addSubview:headerLabel];
     [headerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(headerView.mas_left).offset(15);
-        make.centerY.mas_equalTo(headerView.mas_centerY);
+        make.left.mas_equalTo(headerView.mas_left).offset(5);
+        make.right.mas_equalTo(headerView.mas_right).offset(-5);
+        make.top.bottom.mas_equalTo(headerView);
     }];
     NSString *key = [NSString stringWithFormat:@"%ld", section];
     NSString *number = self.openDict[key];
@@ -159,6 +172,8 @@
         NSLog(@"请选择");
         return;
     }
-    
+    [[AnyRouter sharedInstance] openURL:@"/anyVerifyldentity02ViewController?type=3333" parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {
+
+    }];
 }
 @end

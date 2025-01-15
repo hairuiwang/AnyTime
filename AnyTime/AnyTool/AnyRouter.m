@@ -56,7 +56,10 @@
 }
 
 /// **跳转路由**
-- (void)openURL:(NSString *)url from:(UIViewController * _Nullable)sourceVC callback:(RouterCallback _Nullable)callback {
+- (void)openURL:(NSString *)url
+     parameters:(NSDictionary * _Nullable)parameters
+           from:(UIViewController * _Nullable)sourceVC
+       callback:(RouterCallback _Nullable)callback {
     // 如果 `from` 为空，自动获取当前 VC
     if (!sourceVC) {
         sourceVC = [self getCurrentViewController];
@@ -64,8 +67,11 @@
     
     NSURL *parsedURL = [NSURL URLWithString:url];
     NSString *path = parsedURL.path;
-    NSDictionary *params = [self parseURLParams:url];
-
+    NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:[self parseURLParams:url]];
+    if (parameters) {
+        [params setObject:parameters forKey:@"parameters"];
+    }
+   
     void (^handler)(NSDictionary * _Nullable, UIViewController * _Nullable, RouterCallback _Nullable) = self.routeHandlers[path];
     
     if (handler) {

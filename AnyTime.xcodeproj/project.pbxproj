@@ -58,6 +58,16 @@
 		657544802D376AF800A63988 /* AnyNetRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6575447F2D376AF800A63988 /* AnyNetRequest.m */; };
 		657544832D37719A00A63988 /* AnyVerifyldentity02ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544822D37719A00A63988 /* AnyVerifyldentity02ViewController.m */; };
 		657544862D37728100A63988 /* AnyVerifyldentity02Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544852D37728100A63988 /* AnyVerifyldentity02Cell.m */; };
+		6575448A2D37A1A700A63988 /* AnyVerifyldentity03ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544892D37A1A700A63988 /* AnyVerifyldentity03ViewController.m */; };
+		6575448D2D37A8D700A63988 /* AnyVerifyldentitySuccessfulViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6575448C2D37A8D700A63988 /* AnyVerifyldentitySuccessfulViewController.m */; };
+		657544902D37B0F200A63988 /* AnyVerifyldentitySuccessfull01Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6575448F2D37B0F200A63988 /* AnyVerifyldentitySuccessfull01Cell.m */; };
+		657544952D37B93600A63988 /* AnyCertificationInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544932D37B93600A63988 /* AnyCertificationInfoCell.m */; };
+		657544962D37B93600A63988 /* AnyCertificationInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 657544942D37B93600A63988 /* AnyCertificationInfoCell.xib */; };
+		6575449A2D37BC7C00A63988 /* AnyPersonalInforBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544992D37BC7C00A63988 /* AnyPersonalInforBaseViewController.m */; };
+		6575449D2D37BCAF00A63988 /* AnyPersonalInforViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6575449C2D37BCAF00A63988 /* AnyPersonalInforViewController.m */; };
+		657544A02D37CC5D00A63988 /* AnyContactInforViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6575449F2D37CC5D00A63988 /* AnyContactInforViewController.m */; };
+		657544A52D37CE5900A63988 /* AnyContactInforCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 657544A42D37CE5900A63988 /* AnyContactInforCell.xib */; };
+		657544A62D37CE5900A63988 /* AnyContactInforCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544A32D37CE5900A63988 /* AnyContactInforCell.m */; };
 		826F54C2EA19383470FFFE00 /* Pods_AnyTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5144912D00E9046812AF323D /* Pods_AnyTime.framework */; };
 		8AADE94F471CDE3BFBDA66D7 /* Pods_AnyTimeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4B7405F01A2FAB655AFF70 /* Pods_AnyTimeTests.framework */; };
 		F693A9FC492260D76D367A52 /* Pods_AnyTime_AnyTimeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D88D01DB36709394BB553A /* Pods_AnyTime_AnyTimeUITests.framework */; };
@@ -187,6 +197,24 @@
 		657544842D37728100A63988 /* AnyVerifyldentity02Cell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyVerifyldentity02Cell.h; sourceTree = "<group>"; };
 		657544852D37728100A63988 /* AnyVerifyldentity02Cell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyVerifyldentity02Cell.m; sourceTree = "<group>"; };
 		657544872D37920A00A63988 /* AnyURLString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyURLString.h; sourceTree = "<group>"; };
+		657544882D37A1A700A63988 /* AnyVerifyldentity03ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyVerifyldentity03ViewController.h; sourceTree = "<group>"; };
+		657544892D37A1A700A63988 /* AnyVerifyldentity03ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyVerifyldentity03ViewController.m; sourceTree = "<group>"; };
+		6575448B2D37A8D700A63988 /* AnyVerifyldentitySuccessfulViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyVerifyldentitySuccessfulViewController.h; sourceTree = "<group>"; };
+		6575448C2D37A8D700A63988 /* AnyVerifyldentitySuccessfulViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyVerifyldentitySuccessfulViewController.m; sourceTree = "<group>"; };
+		6575448E2D37B0F200A63988 /* AnyVerifyldentitySuccessfull01Cell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyVerifyldentitySuccessfull01Cell.h; sourceTree = "<group>"; };
+		6575448F2D37B0F200A63988 /* AnyVerifyldentitySuccessfull01Cell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyVerifyldentitySuccessfull01Cell.m; sourceTree = "<group>"; };
+		657544922D37B93600A63988 /* AnyCertificationInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyCertificationInfoCell.h; sourceTree = "<group>"; };
+		657544932D37B93600A63988 /* AnyCertificationInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyCertificationInfoCell.m; sourceTree = "<group>"; };
+		657544942D37B93600A63988 /* AnyCertificationInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnyCertificationInfoCell.xib; sourceTree = "<group>"; };
+		657544982D37BC7C00A63988 /* AnyPersonalInforBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyPersonalInforBaseViewController.h; sourceTree = "<group>"; };
+		657544992D37BC7C00A63988 /* AnyPersonalInforBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyPersonalInforBaseViewController.m; sourceTree = "<group>"; };
+		6575449B2D37BCAF00A63988 /* AnyPersonalInforViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyPersonalInforViewController.h; sourceTree = "<group>"; };
+		6575449C2D37BCAF00A63988 /* AnyPersonalInforViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyPersonalInforViewController.m; sourceTree = "<group>"; };
+		6575449E2D37CC5D00A63988 /* AnyContactInforViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyContactInforViewController.h; sourceTree = "<group>"; };
+		6575449F2D37CC5D00A63988 /* AnyContactInforViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyContactInforViewController.m; sourceTree = "<group>"; };
+		657544A22D37CE5900A63988 /* AnyContactInforCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyContactInforCell.h; sourceTree = "<group>"; };
+		657544A32D37CE5900A63988 /* AnyContactInforCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyContactInforCell.m; sourceTree = "<group>"; };
+		657544A42D37CE5900A63988 /* AnyContactInforCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnyContactInforCell.xib; sourceTree = "<group>"; };
 		8B64C75E68F112EDC47D02D0 /* Pods-AnyTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime.release.xcconfig"; path = "Target Support Files/Pods-AnyTime/Pods-AnyTime.release.xcconfig"; sourceTree = "<group>"; };
 		C87E2FEB068C01887AD0C655 /* Pods-AnyTime-AnyTimeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime-AnyTimeUITests.release.xcconfig"; path = "Target Support Files/Pods-AnyTime-AnyTimeUITests/Pods-AnyTime-AnyTimeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CE4B7405F01A2FAB655AFF70 /* Pods_AnyTimeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnyTimeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -451,6 +479,9 @@
 		657544122D35205F00A63988 /* AnyCertificationDetails */ = {
 			isa = PBXGroup;
 			children = (
+				657544A12D37CE3C00A63988 /* AnyContactInforCell */,
+				657544972D37BC4900A63988 /* Personal Information */,
+				657544912D37B76E00A63988 /* AnyCertificationInfoCell */,
 				6575446E2D36AB4A00A63988 /* Verify ldentity */,
 				6575446A2D369B3700A63988 /* AnyCertificationDetailsCell */,
 				657544632D365E5000A63988 /* ProductInformation */,
@@ -491,8 +522,47 @@
 				657544822D37719A00A63988 /* AnyVerifyldentity02ViewController.m */,
 				657544842D37728100A63988 /* AnyVerifyldentity02Cell.h */,
 				657544852D37728100A63988 /* AnyVerifyldentity02Cell.m */,
+				657544882D37A1A700A63988 /* AnyVerifyldentity03ViewController.h */,
+				657544892D37A1A700A63988 /* AnyVerifyldentity03ViewController.m */,
+				6575448B2D37A8D700A63988 /* AnyVerifyldentitySuccessfulViewController.h */,
+				6575448C2D37A8D700A63988 /* AnyVerifyldentitySuccessfulViewController.m */,
+				6575448E2D37B0F200A63988 /* AnyVerifyldentitySuccessfull01Cell.h */,
+				6575448F2D37B0F200A63988 /* AnyVerifyldentitySuccessfull01Cell.m */,
 			);
 			path = "Verify ldentity";
+			sourceTree = "<group>";
+		};
+		657544912D37B76E00A63988 /* AnyCertificationInfoCell */ = {
+			isa = PBXGroup;
+			children = (
+				657544922D37B93600A63988 /* AnyCertificationInfoCell.h */,
+				657544932D37B93600A63988 /* AnyCertificationInfoCell.m */,
+				657544942D37B93600A63988 /* AnyCertificationInfoCell.xib */,
+			);
+			path = AnyCertificationInfoCell;
+			sourceTree = "<group>";
+		};
+		657544972D37BC4900A63988 /* Personal Information */ = {
+			isa = PBXGroup;
+			children = (
+				657544982D37BC7C00A63988 /* AnyPersonalInforBaseViewController.h */,
+				657544992D37BC7C00A63988 /* AnyPersonalInforBaseViewController.m */,
+				6575449B2D37BCAF00A63988 /* AnyPersonalInforViewController.h */,
+				6575449C2D37BCAF00A63988 /* AnyPersonalInforViewController.m */,
+				6575449E2D37CC5D00A63988 /* AnyContactInforViewController.h */,
+				6575449F2D37CC5D00A63988 /* AnyContactInforViewController.m */,
+			);
+			path = "Personal Information";
+			sourceTree = "<group>";
+		};
+		657544A12D37CE3C00A63988 /* AnyContactInforCell */ = {
+			isa = PBXGroup;
+			children = (
+				657544A22D37CE5900A63988 /* AnyContactInforCell.h */,
+				657544A32D37CE5900A63988 /* AnyContactInforCell.m */,
+				657544A42D37CE5900A63988 /* AnyContactInforCell.xib */,
+			);
+			path = AnyContactInforCell;
 			sourceTree = "<group>";
 		};
 		D4419434A67CECABB965C0E6 /* Frameworks */ = {
@@ -614,8 +684,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				046B6D712D30F74500EE9EF7 /* LaunchScreen.storyboard in Resources */,
+				657544962D37B93600A63988 /* AnyCertificationInfoCell.xib in Resources */,
 				046B6D6E2D30F74500EE9EF7 /* Assets.xcassets in Resources */,
 				046B6D6C2D30F74000EE9EF7 /* Main.storyboard in Resources */,
+				657544A52D37CE5900A63988 /* AnyContactInforCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -756,13 +828,17 @@
 				657544622D36519C00A63988 /* UINavigationController+AutoHideTabBar.m in Sources */,
 				046B6DB72D33D90700EE9EF7 /* AnyTimeLargeCardSlotView.m in Sources */,
 				046B6DC32D33DE8100EE9EF7 /* AnyTimeLargeCardSlotThirdCell.m in Sources */,
+				6575449A2D37BC7C00A63988 /* AnyPersonalInforBaseViewController.m in Sources */,
+				657544A62D37CE5900A63988 /* AnyContactInforCell.m in Sources */,
 				046B6D692D30F74000EE9EF7 /* ViewController.m in Sources */,
 				046B6DA52D3361D200EE9EF7 /* AnyTimeMeViewController.m in Sources */,
 				046B6DDA2D34B76F00EE9EF7 /* AnyTimeSmallCardSlotThirdCell.m in Sources */,
 				657544152D35207C00A63988 /* AnyCertificationDetailsViewController.m in Sources */,
 				657544692D365EA200A63988 /* AnyBottomProductInfor.m in Sources */,
+				657544A02D37CC5D00A63988 /* AnyContactInforViewController.m in Sources */,
 				657544182D3520D500A63988 /* AnyNavigationBarUtil.m in Sources */,
 				046B6DCD2D34AF6200EE9EF7 /* BorderLabel.m in Sources */,
+				6575448D2D37A8D700A63988 /* AnyVerifyldentitySuccessfulViewController.m in Sources */,
 				657544862D37728100A63988 /* AnyVerifyldentity02Cell.m in Sources */,
 				046B6DDD2D34E45400EE9EF7 /* OutlineLabel.m in Sources */,
 				046B6DC02D33DE7000EE9EF7 /* AnyTimeLargeCardSlotSecondCell.m in Sources */,
@@ -779,7 +855,9 @@
 				046B6DBA2D33D91900EE9EF7 /* AnyTimeSmallCardSlotView.m in Sources */,
 				6575441B2D3522FF00A63988 /* AnyUIFactory.m in Sources */,
 				046B6DF02D3691A700EE9EF7 /* AnyTimeMeSettingTableViewCell.m in Sources */,
+				657544952D37B93600A63988 /* AnyCertificationInfoCell.m in Sources */,
 				046B6DAF2D3393E900EE9EF7 /* AnyTimeLoginViewController.m in Sources */,
+				657544902D37B0F200A63988 /* AnyVerifyldentitySuccessfull01Cell.m in Sources */,
 				046B6D742D30F74500EE9EF7 /* main.m in Sources */,
 				046B6DD72D34B76000EE9EF7 /* AnyTimeSmallCardSlotSecondCell.m in Sources */,
 				04690EEF2D3788EF00BB8F5A /* UIButton+AnyEdge.m in Sources */,
@@ -787,7 +865,9 @@
 				046B6D9D2D33619900EE9EF7 /* AnyTimeHomeViewController.m in Sources */,
 				6575440B2D34DC4F00A63988 /* AnyRouter.m in Sources */,
 				657544832D37719A00A63988 /* AnyVerifyldentity02ViewController.m in Sources */,
+				6575448A2D37A1A700A63988 /* AnyVerifyldentity03ViewController.m in Sources */,
 				046B6DE92D36892400EE9EF7 /* AnyTimeMeTableViewCell.m in Sources */,
+				6575449D2D37BCAF00A63988 /* AnyPersonalInforViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

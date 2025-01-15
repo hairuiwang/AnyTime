@@ -199,7 +199,7 @@
 }
 
 - (void) buttonClick {
-    [[AnyRouter sharedInstance] openURL:@"/certificationDetails" from:self callback:^(NSDictionary * _Nullable result) {
+    [[AnyRouter sharedInstance] openURL:@"/certificationDetails" parameters:nil from:self callback:^(NSDictionary * _Nullable result) {
 
     }];
 }
