@@ -1,5 +1,5 @@
 //
-//  AnyVerifyldentityIDTypeViewController.h
+//  AnyVerifyldentity02ViewController.h
 //  AnyTime
 //  
 //  Created by wealon on 2025.
@@ -11,7 +11,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AnyVerifyldentityIDTypeViewController : AnyVerifyldentityBaseViewController
+@interface AnyVerifyldentity02ViewController : AnyVerifyldentityBaseViewController
+@property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSDictionary *parameters;
 @end
 

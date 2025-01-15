@@ -1,11 +1,11 @@
 //
 //  AnyDevHelper.m
 //  AnyTime
-//  
+//
 //  Created by wealon on 2025.
 //  AnyTime.
-//  
-    
+//
+
 
 #import "AnyDevHelper.h"
 #import <sys/utsname.h>
@@ -38,8 +38,8 @@
 }
 
 + (NSString *) IDFV {
-    NSString *IDFV = [self loadFromKeychain:@"Any-idfv"] ?: [[[UIDevice currentDevice] identifierForVendor] UUIDString];
-    [self saveToKeychain:IDFV value:@"Any-idfv"];
+    NSString *IDFV = [self loadFromKeychain:@"Any-idfv-app"] ?: [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    [self saveToKeychain:IDFV value:@"Any-idfv-app"];
     return IDFV;
 }
 
@@ -134,12 +134,41 @@
 
 /// 读取 Keychain
 + (NSString *)loadFromKeychain:(NSString *)key {
-    return @"示例 Keychain 读取";
+    NSDictionary *query = @{(__bridge id)kSecClass: (__bridge id)kSecClassGenericPassword,
+                            (__bridge id)kSecAttrAccount: key,
+                            (__bridge id)kSecReturnData: @YES,
+                            (__bridge id)kSecMatchLimit: (__bridge id)kSecMatchLimitOne};
+    
+    CFTypeRef result = NULL;
+    OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, &result);
+    
+    if (status == errSecSuccess) {
+        NSData *data = (__bridge_transfer NSData *)result;
+        NSString *value = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        return value;
+    } else {
+        NSLog(@"⚠️ Keychain 读取失败: %d", (int)status);
+        return nil;
+    }
 }
 
 /// 保存到 Keychain
 + (void)saveToKeychain:(NSString *)key value:(NSString *)value {
-    NSLog(@"示例 Keychain 存储");
+    NSData *valueData = [value dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *query = @{(__bridge id)kSecClass: (__bridge id)kSecClassGenericPassword,
+                            (__bridge id)kSecAttrAccount: key};
+    SecItemDelete((__bridge CFDictionaryRef)query);
+    
+    NSDictionary *attributes = @{(__bridge id)kSecClass: (__bridge id)kSecClassGenericPassword,
+                                 (__bridge id)kSecAttrAccount: key,
+                                 (__bridge id)kSecValueData: valueData};
+    OSStatus status = SecItemAdd((__bridge CFDictionaryRef)attributes, NULL);
+    
+    if (status == errSecSuccess) {
+        NSLog(@"✅ Keychain 存储成功: %@", key);
+    } else {
+        NSLog(@"❌ Keychain 存储失败: %d", (int)status);
+    }
 }
 
 #pragma mark - 📱 应用相关

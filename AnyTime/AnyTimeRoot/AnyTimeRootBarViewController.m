@@ -22,9 +22,10 @@
     self.view.backgroundColor = UIColor.whiteColor;
    
     AnyTimeHomeViewController * homeVC = [[AnyTimeHomeViewController alloc] init];
-    homeVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"anytime_home_uns"] selectedImage:[UIImage imageNamed:@"anytime_home_s"]];
-    homeVC.tabBarItem.image = [[UIImage imageNamed:@"anytime_home_uns"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    homeVC.tabBarItem.selectedImage = [[UIImage imageNamed:@"anytime_home_s"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    UINavigationController *nav_homeVC = [[UINavigationController alloc] initWithRootViewController:homeVC];
+    nav_homeVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"anytime_home_uns"] selectedImage:[UIImage imageNamed:@"anytime_home_s"]];
+    nav_homeVC.tabBarItem.image = [[UIImage imageNamed:@"anytime_home_uns"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    nav_homeVC.tabBarItem.selectedImage = [[UIImage imageNamed:@"anytime_home_s"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     
     AnyTimeOrderViewController * orderVC = [[AnyTimeOrderViewController alloc] init];
     orderVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"anytime_order_uns"] selectedImage:[UIImage imageNamed:@"anytime_order_s"]];
@@ -40,7 +41,7 @@
     nav_meVC.tabBarItem.image = [[UIImage imageNamed:@"anytime_me_uns"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     nav_meVC.tabBarItem.selectedImage = [[UIImage imageNamed:@"anytime_me_s"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 
-    self.viewControllers = @[homeVC,orderVC,nav_meVC];
+    self.viewControllers = @[nav_homeVC,orderVC,nav_meVC];
 }
 
 /*

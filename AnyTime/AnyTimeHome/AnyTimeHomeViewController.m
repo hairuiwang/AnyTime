@@ -54,7 +54,13 @@
         NSLog(@"Close button tapped");
     };
 
-    [popupView showInView:self.view];
+//    [popupView showInView:self.view];
+    
+    [[AnyNetRequest sharedManager] POST:GetCode parameters:@{@"turning":@"9012345678", @"direction":@"fasfdsaf"} success:^(id  _Nonnull responseObject) {
+        NSLog("responseObject = %@", responseObject);
+    } failure:^(NSError * _Nonnull error) {
+        NSLog("error = %@", error);
+    }];
 
 }
 

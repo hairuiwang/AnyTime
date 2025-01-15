@@ -56,6 +56,8 @@
 		657544742D36AC9E00A63988 /* AnyVerifyldentityIDTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544732D36AC9E00A63988 /* AnyVerifyldentityIDTypeViewController.m */; };
 		657544772D374A4A00A63988 /* AnyVerifyldentityIDTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544762D374A4A00A63988 /* AnyVerifyldentityIDTypeCell.m */; };
 		657544802D376AF800A63988 /* AnyNetRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6575447F2D376AF800A63988 /* AnyNetRequest.m */; };
+		657544832D37719A00A63988 /* AnyVerifyldentity02ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544822D37719A00A63988 /* AnyVerifyldentity02ViewController.m */; };
+		657544862D37728100A63988 /* AnyVerifyldentity02Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544852D37728100A63988 /* AnyVerifyldentity02Cell.m */; };
 		826F54C2EA19383470FFFE00 /* Pods_AnyTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5144912D00E9046812AF323D /* Pods_AnyTime.framework */; };
 		8AADE94F471CDE3BFBDA66D7 /* Pods_AnyTimeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4B7405F01A2FAB655AFF70 /* Pods_AnyTimeTests.framework */; };
 		F693A9FC492260D76D367A52 /* Pods_AnyTime_AnyTimeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D88D01DB36709394BB553A /* Pods_AnyTime_AnyTimeUITests.framework */; };
@@ -180,6 +182,11 @@
 		657544762D374A4A00A63988 /* AnyVerifyldentityIDTypeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyVerifyldentityIDTypeCell.m; sourceTree = "<group>"; };
 		6575447E2D376AF800A63988 /* AnyNetRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyNetRequest.h; sourceTree = "<group>"; };
 		6575447F2D376AF800A63988 /* AnyNetRequest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyNetRequest.m; sourceTree = "<group>"; };
+		657544812D37719A00A63988 /* AnyVerifyldentity02ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyVerifyldentity02ViewController.h; sourceTree = "<group>"; };
+		657544822D37719A00A63988 /* AnyVerifyldentity02ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyVerifyldentity02ViewController.m; sourceTree = "<group>"; };
+		657544842D37728100A63988 /* AnyVerifyldentity02Cell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyVerifyldentity02Cell.h; sourceTree = "<group>"; };
+		657544852D37728100A63988 /* AnyVerifyldentity02Cell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyVerifyldentity02Cell.m; sourceTree = "<group>"; };
+		657544872D37920A00A63988 /* AnyURLString.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyURLString.h; sourceTree = "<group>"; };
 		8B64C75E68F112EDC47D02D0 /* Pods-AnyTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime.release.xcconfig"; path = "Target Support Files/Pods-AnyTime/Pods-AnyTime.release.xcconfig"; sourceTree = "<group>"; };
 		C87E2FEB068C01887AD0C655 /* Pods-AnyTime-AnyTimeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime-AnyTimeUITests.release.xcconfig"; path = "Target Support Files/Pods-AnyTime-AnyTimeUITests/Pods-AnyTime-AnyTimeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CE4B7405F01A2FAB655AFF70 /* Pods_AnyTimeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnyTimeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -436,6 +443,7 @@
 				6575441A2D3522FF00A63988 /* AnyUIFactory.m */,
 				657544602D36519C00A63988 /* UINavigationController+AutoHideTabBar.h */,
 				657544612D36519C00A63988 /* UINavigationController+AutoHideTabBar.m */,
+				657544872D37920A00A63988 /* AnyURLString.h */,
 			);
 			path = AnyTool;
 			sourceTree = "<group>";
@@ -479,6 +487,10 @@
 				657544732D36AC9E00A63988 /* AnyVerifyldentityIDTypeViewController.m */,
 				657544752D374A4A00A63988 /* AnyVerifyldentityIDTypeCell.h */,
 				657544762D374A4A00A63988 /* AnyVerifyldentityIDTypeCell.m */,
+				657544812D37719A00A63988 /* AnyVerifyldentity02ViewController.h */,
+				657544822D37719A00A63988 /* AnyVerifyldentity02ViewController.m */,
+				657544842D37728100A63988 /* AnyVerifyldentity02Cell.h */,
+				657544852D37728100A63988 /* AnyVerifyldentity02Cell.m */,
 			);
 			path = "Verify ldentity";
 			sourceTree = "<group>";
@@ -751,6 +763,7 @@
 				657544692D365EA200A63988 /* AnyBottomProductInfor.m in Sources */,
 				657544182D3520D500A63988 /* AnyNavigationBarUtil.m in Sources */,
 				046B6DCD2D34AF6200EE9EF7 /* BorderLabel.m in Sources */,
+				657544862D37728100A63988 /* AnyVerifyldentity02Cell.m in Sources */,
 				046B6DDD2D34E45400EE9EF7 /* OutlineLabel.m in Sources */,
 				046B6DC02D33DE7000EE9EF7 /* AnyTimeLargeCardSlotSecondCell.m in Sources */,
 				046B6DD02D34B1B200EE9EF7 /* GradientBorderLabel.m in Sources */,
@@ -773,6 +786,7 @@
 				046B6DE62D364F2500EE9EF7 /* EmptyOrdersViewController.m in Sources */,
 				046B6D9D2D33619900EE9EF7 /* AnyTimeHomeViewController.m in Sources */,
 				6575440B2D34DC4F00A63988 /* AnyRouter.m in Sources */,
+				657544832D37719A00A63988 /* AnyVerifyldentity02ViewController.m in Sources */,
 				046B6DE92D36892400EE9EF7 /* AnyTimeMeTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

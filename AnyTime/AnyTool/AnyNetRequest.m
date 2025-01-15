@@ -40,14 +40,14 @@
 - (NSDictionary *)fetchGlobalParameters {
     NSString *sessionId = [AnyDevHelper loadFromUserDefaults:SESSIONID] ?: @"";
     return @{
-        @"times":@"ios",
-        @"sessionId": sessionId,
-        @"appVersion": [AnyDevHelper appVersion],
-        @"terrible": [AnyDevHelper deviceModel],
-        @"idfv": [AnyDevHelper IDFV],
-        @"iOSVersion": [AnyDevHelper iOSVersion],
-        @"clever": @"apples",
-        @"receive": [AnyDevHelper IDFV],
+        @"gaze":@"ios",
+        @"innocent": sessionId,
+        @"avoided": [AnyDevHelper appVersion],
+        @"last": [AnyDevHelper deviceModel],
+        @"meeting": [AnyDevHelper IDFV],
+        @"fated": [AnyDevHelper iOSVersion],
+        @"their": @"apples",
+        @"sure": [AnyDevHelper IDFV],
         @"boyfine":@"xxxxsssxxws123"
     };
 }
@@ -111,9 +111,9 @@
     success:(void (^)(id responseObject))success
     failure:(void (^)(NSError *error))failure {
     NSString *baseAddurl = [NSString stringWithFormat:@"%@%@",BASE_URL, url];
-    NSString *fullURL = [self appendParamsToURL:baseAddurl parameters:parameters];
+    NSString *fullURL = [self appendParamsToURL:baseAddurl parameters:nil];
 
-    [_sessionManager GET:fullURL parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [_sessionManager GET:fullURL parameters:parameters headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self handleResponse:responseObject success:success failure:failure];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure) failure(error);
@@ -127,9 +127,19 @@
      failure:(void (^)(NSError *error))failure {
     NSString *baseAddurl = [NSString stringWithFormat:@"%@%@",BASE_URL, url];
     NSString *fullURL = [self appendParamsToURL:baseAddurl parameters:nil];
-    NSDictionary *finalParams = [self fetchGlobalParameters];
-
-    [_sessionManager POST:fullURL parameters:finalParams headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [_sessionManager POST:fullURL parameters:nil headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        // ✅ 遍历参数，添加到 multipart/form-data
+        [parameters enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            if ([obj isKindOfClass:[NSString class]]) {
+                [formData appendPartWithFormData:[obj dataUsingEncoding:NSUTF8StringEncoding] name:key];
+            } else if ([obj isKindOfClass:[NSData class]]) {
+                // ⚠️ 适用于文件上传
+                [formData appendPartWithFileData:obj name:key fileName:@"file.jpg" mimeType:@"image/jpeg"];
+            }
+        }];
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self handleResponse:responseObject success:success failure:failure];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure) failure(error);
@@ -160,7 +170,7 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self->_sessionManager POST:fullURL
-                             parameters:finalParams
+                             parameters:parameters
                                 headers:nil
               constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
                 

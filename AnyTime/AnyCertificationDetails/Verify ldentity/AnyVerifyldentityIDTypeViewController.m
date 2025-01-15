@@ -154,4 +154,11 @@
     }
     [self.tableView reloadData];
 }
+- (void) sureButtonClick {
+    if (self.indexPath == nil) {
+        NSLog(@"请选择");
+        return;
+    }
+    
+}
 @end

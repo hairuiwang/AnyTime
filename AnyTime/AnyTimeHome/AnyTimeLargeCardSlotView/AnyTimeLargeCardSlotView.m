@@ -87,6 +87,9 @@
     NSInteger itemIndex = indexPath.item;
     
     NSLog(@"Clicked item at index: %ld", (long)itemIndex);
+    [[AnyRouter sharedInstance] openURL:@"/certificationDetails" from:nil callback:^(NSDictionary * _Nullable result) {
+
+    }];
 }
 
 
