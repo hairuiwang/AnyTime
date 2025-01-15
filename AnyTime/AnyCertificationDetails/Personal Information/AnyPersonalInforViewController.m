@@ -1,5 +1,5 @@
 //
-//  AnyVerifyldentity02ViewController.m
+//  AnyPersonalInforViewController.m
 //  AnyTime
 //  
 //  Created by wealon on 2025.
@@ -7,22 +7,20 @@
 //  
     
 
-#import "AnyVerifyldentity02ViewController.h"
-#import "AnyVerifyldentity02Cell.h"
+#import "AnyPersonalInforViewController.h"
+#import "AnyCertificationInfoCell.h"
 
-@interface AnyVerifyldentity02ViewController ()<UITableViewDelegate, UITableViewDataSource>
+@interface AnyPersonalInforViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 
 @end
 
-@implementation AnyVerifyldentity02ViewController
+@implementation AnyPersonalInforViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"Verify ldentity";
-    
+    self.topImageView.image = [UIImage imageNamed:@"personal-info"] ;
 }
-
 - (void)setupUI {
     [super setupUI];
     UIImageView *bgImageView = [UIImageView new];
@@ -32,14 +30,16 @@
     UIImage *resizableImage = [originalImage resizableImageWithCapInsets:insets resizingMode:UIImageResizingModeStretch];
     bgImageView.image = resizableImage;
     [self.view addSubview:bgImageView];
+ 
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.backgroundColor = [UIColor clearColor];
+    self.tableView.tableHeaderView = [UIView new] ;
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 20)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    [self.tableView registerClass:[AnyVerifyldentity02Cell class] forCellReuseIdentifier:@"AnyVerifyldentity02Cell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"AnyCertificationInfoCell" bundle:nil] forCellReuseIdentifier:@"AnyCertificationInfoCell"];
     // 添加到视图
     [self.view addSubview:self.tableView];
     self.tableView.layer.maskedCorners = kCALayerMinXMaxYCorner|kCALayerMaxXMaxYCorner;
@@ -54,46 +54,25 @@
         make.top.mas_equalTo(self.topImageView.mas_bottom).offset(-5);
         make.bottom.mas_equalTo(self.sureButton.mas_top).offset(-20);
     }];
+    
     [bgImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.mas_equalTo(self.tableView);
     }];
-    [self.sureButton setTitle:@"Next" forState:(UIControlStateNormal)];
 }
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 3;
 }
 // 返回行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return 2;
 }
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *headerView = [UIView new];
-    headerView.backgroundColor = [UIColor blackColor];
-    headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH - 30, 44);
-    UILabel *tableHeaderLabel = [UILabel new];
-    tableHeaderLabel.text = section == 0 ? self.type:   @"Please confrm your identity information";
-    tableHeaderLabel.font = [UIFont boldSystemFontOfSize:15];
-    tableHeaderLabel.textColor = [UIColor whiteColor];
-    [headerView addSubview:tableHeaderLabel];
-    [tableHeaderLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(headerView);
-        make.centerY.mas_equalTo(headerView);
-    }];
-    
-    return headerView;
-}
-- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 44;
-}
+
 // 返回 Cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    AnyVerifyldentity02Cell *cell = [tableView dequeueReusableCellWithIdentifier:@"AnyVerifyldentity02Cell" forIndexPath:indexPath];
-    if (indexPath.section == 0) {
-        cell.image = [UIImage imageNamed:@"description02"];
-    } else {
-        cell.image = [UIImage imageNamed:@"description01"];
-    }
+    AnyCertificationInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AnyCertificationInfoCell" forIndexPath:indexPath];
+    
+    
     return cell;
 }
 
@@ -101,13 +80,6 @@
 
 // 选中 Cell
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    NSLog(@"选中了第 %ld 行", (long)indexPath.row);
 }
-
-- (void) sureButtonClick {
-    [[AnyRouter sharedInstance] openURL:@"/anyVerifyldentity03ViewController?type=3333" parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {
-
-    }];
-}
-
 @end

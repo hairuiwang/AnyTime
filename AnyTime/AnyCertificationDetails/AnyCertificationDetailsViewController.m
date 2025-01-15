@@ -87,8 +87,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"选中了第 %ld 行", (long)indexPath.row);
     if (indexPath.section == 0) {
-        AnyVerifyldentityIDTypeViewController *vc = [[AnyVerifyldentityIDTypeViewController alloc]init];
-        [self.navigationController pushViewController:vc animated:YES];
+//        AnyVerifyldentityIDTypeViewController *vc = [[AnyVerifyldentityIDTypeViewController alloc]init];
+//        [self.navigationController pushViewController:vc animated:YES];
+        
+        [[AnyRouter sharedInstance] openURL:@"/anyVerifyldentityIDTypeViewController" parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {}];
+    } else if (indexPath.section == 1 ){
+        [[AnyRouter sharedInstance] openURL:@"/anyPersonalInforViewController" parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {}];
+        
+    }else if (indexPath.section == 2 ){
+        [[AnyRouter sharedInstance] openURL:@"/anyContactInforViewController" parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {}];
+        
     }
 }
 
