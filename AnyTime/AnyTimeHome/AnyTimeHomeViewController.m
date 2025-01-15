@@ -56,10 +56,17 @@
 
 //    [popupView showInView:self.view];
     
-    [[AnyNetRequest sharedManager] POST:GetCode parameters:@{@"turning":@"9012345678", @"direction":@"fasfdsaf"} success:^(id  _Nonnull responseObject) {
+//    [[AnyNetRequest sharedManager] POST:GetCode parameters:@{@"turning":@"9012345678", @"direction":@"fasfdsaf"} success:^(id  _Nonnull responseObject) {
+//        NSLog("responseObject = %@", responseObject);
+//    } failure:^(NSError * _Nonnull error) {
+//        NSLog("error = %@", error);
+//    }];
+    
+    [AnyHttpTool requestCodeWithTurning:@"9012345678" direction:@"fasfdsaf" success:^(id  _Nonnull responseObject) {
         NSLog("responseObject = %@", responseObject);
+
     } failure:^(NSError * _Nonnull error) {
-        NSLog("error = %@", error);
+        
     }];
 
 }
