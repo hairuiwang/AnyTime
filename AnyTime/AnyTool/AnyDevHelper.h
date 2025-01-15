@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 获取 iOS 版本号（如 "17.2"）
 + (NSString *)iOSVersion;
 
++ (NSString *) IDFV;
 /// 判断是否是模拟器
 + (BOOL)isSimulator;
 

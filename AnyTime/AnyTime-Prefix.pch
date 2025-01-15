@@ -112,5 +112,11 @@
 
 #define ArialFont(size) [AnyTimePublic arialFontWithSize:size]
 
+/// 网络请求
+#define BASE_URL @"http://8.220.131.237:9493/anytimeloanapi"
+#define CODE @"momentarily"
+#define MSG @"few"
+#define DATA @"gone"
+#define SESSIONID @"sure"
 
 #endif /* AnyTime_Prefix_pch */

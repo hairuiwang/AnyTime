@@ -37,6 +37,12 @@
     return [[UIDevice currentDevice] systemVersion];
 }
 
++ (NSString *) IDFV {
+    NSString *IDFV = [self loadFromKeychain:@"Any-idfv"] ?: [[[UIDevice currentDevice] identifierForVendor] UUIDString];
+    [self saveToKeychain:IDFV value:@"Any-idfv"];
+    return IDFV;
+}
+
 /// 判断是否是模拟器
 + (BOOL)isSimulator {
     return TARGET_OS_SIMULATOR;

@@ -1,0 +1,197 @@
+//
+//  AnyNetRequest.m
+//  AnyTime
+//  
+//  Created by wealon on 2025.
+//  AnyTime.
+//  
+    
+
+#import "AnyNetRequest.h"
+
+@interface AnyNetRequest ()
+@property (nonatomic, strong) AFHTTPSessionManager *sessionManager;
+@end
+
+@implementation AnyNetRequest
+/// **单例**
++ (instancetype)sharedManager {
+    static AnyNetRequest *instance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [[self alloc] init];
+    });
+    return instance;
+}
+
+/// **初始化**
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _sessionManager = [AFHTTPSessionManager manager];
+        _sessionManager.requestSerializer = [AFJSONRequestSerializer serializer];
+        _sessionManager.responseSerializer = [AFJSONResponseSerializer serializer];
+        _sessionManager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/plain", @"text/html", nil];
+    }
+    return self;
+}
+
+/// **动态获取公共参数**
+- (NSDictionary *)fetchGlobalParameters {
+    NSString *sessionId = [AnyDevHelper loadFromUserDefaults:SESSIONID] ?: @"";
+    return @{
+        @"times":@"ios",
+        @"sessionId": sessionId,
+        @"appVersion": [AnyDevHelper appVersion],
+        @"terrible": [AnyDevHelper deviceModel],
+        @"idfv": [AnyDevHelper IDFV],
+        @"iOSVersion": [AnyDevHelper iOSVersion],
+        @"clever": @"apples",
+        @"receive": [AnyDevHelper IDFV],
+        @"boyfine":@"xxxxsssxxws123"
+    };
+}
+
+/// **拼接公共参数**
+- (NSString *)appendParamsToURL:(NSString *)url parameters:(NSDictionary *)parameters {
+    NSMutableDictionary *allParams = [NSMutableDictionary dictionaryWithDictionary:[self fetchGlobalParameters]];
+    if (parameters) {
+        [allParams addEntriesFromDictionary:parameters];
+    }
+
+    NSMutableArray *queryArray = [NSMutableArray array];
+    [allParams enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
+        NSString *query = [NSString stringWithFormat:@"%@=%@", key, [self urlEncode:value]];
+        [queryArray addObject:query];
+    }];
+
+    NSString *queryString = [queryArray componentsJoinedByString:@"&"];
+    return [url containsString:@"?"] ? [NSString stringWithFormat:@"%@&%@", url, queryString] : [NSString stringWithFormat:@"%@?%@", url, queryString];
+}
+
+/// **URL 编码**
+- (NSString *)urlEncode:(NSString *)string {
+    return [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+}
+/// **统一处理网络返回结果**
+- (void)handleResponse:(id)responseObject
+               success:(void (^)(id responseObject))success
+               failure:(void (^)(NSError *error))failure {
+    
+    if (![responseObject isKindOfClass:[NSDictionary class]]) {
+        NSError *error = [NSError errorWithDomain:@"NetworkError"
+                                             code:-1
+                                         userInfo:@{NSLocalizedDescriptionKey: @"Invalid response format"}];
+        if (failure) failure(error);
+        return;
+    }
+    
+    NSInteger statusCode = [responseObject[CODE] integerValue];
+    if (statusCode == 0) {
+        NSDictionary *data = responseObject[DATA];
+        if ([data isKindOfClass:[NSDictionary class]]) {
+            if (success) success(data);
+        }
+    } else if (statusCode == -2) {
+        [[AnyRouter sharedInstance] openURL:@"/login" from:nil callback:^(NSDictionary * _Nullable result) {
+        }];
+    } else {
+        NSString *errorMessage = responseObject[MSG] ?: @"Unknown error";
+        NSError *error = [NSError
+                          errorWithDomain:@"NetworkError"
+                          code:statusCode
+                          userInfo:@{NSLocalizedDescriptionKey: errorMessage}];
+        if (failure) failure(error);
+    }
+}
+
+#pragma mark - **GET 请求**
+- (void)GET:(NSString *)url
+ parameters:(nullable NSDictionary *)parameters
+    success:(void (^)(id responseObject))success
+    failure:(void (^)(NSError *error))failure {
+    NSString *baseAddurl = [NSString stringWithFormat:@"%@%@",BASE_URL, url];
+    NSString *fullURL = [self appendParamsToURL:baseAddurl parameters:parameters];
+
+    [_sessionManager GET:fullURL parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [self handleResponse:responseObject success:success failure:failure];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (failure) failure(error);
+    }];
+}
+
+#pragma mark - **POST 请求**
+- (void)POST:(NSString *)url
+  parameters:(nullable NSDictionary *)parameters
+     success:(void (^)(id responseObject))success
+     failure:(void (^)(NSError *error))failure {
+    NSString *baseAddurl = [NSString stringWithFormat:@"%@%@",BASE_URL, url];
+    NSString *fullURL = [self appendParamsToURL:baseAddurl parameters:nil];
+    NSDictionary *finalParams = [self fetchGlobalParameters];
+
+    [_sessionManager POST:fullURL parameters:finalParams headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [self handleResponse:responseObject success:success failure:failure];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (failure) failure(error);
+    }];
+}
+
+#pragma mark - **图片上传**
+- (void)uploadImages:(NSString *)url
+          parameters:(nullable NSDictionary *)parameters
+              images:(NSArray<UIImage *> *)images
+                name:(NSString *)name
+           fileName:(NSString *)fileName
+            success:(void (^)(id responseObject))success
+            failure:(void (^)(NSError *error))failure {
+    
+    NSString *baseAddurl = [NSString stringWithFormat:@"%@%@", BASE_URL, url];
+    NSString *fullURL = [self appendParamsToURL:baseAddurl parameters:nil]; // 拼接公共参数
+    NSDictionary *finalParams = [self fetchGlobalParameters]; // 确保参数最新
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSMutableArray<NSData *> *compressedImages = [NSMutableArray array];
+        for (UIImage *image in images) {
+            NSData *compressedData = [self compressImage:image toMaxSize:650 * 1024]; // 650KB
+            if (compressedData) {
+                [compressedImages addObject:compressedData];
+            }
+        }
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self->_sessionManager POST:fullURL
+                             parameters:finalParams
+                                headers:nil
+              constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+                
+                [compressedImages enumerateObjectsUsingBlock:^(NSData * _Nonnull imageData, NSUInteger idx, BOOL * _Nonnull stop) {
+                    NSString *imageFileName = [NSString stringWithFormat:@"%@_%lu.jpg", fileName, (unsigned long)idx];
+                    
+                    [formData appendPartWithFileData:imageData
+                                                name:name
+                                            fileName:imageFileName
+                                            mimeType:@"image/jpeg"];
+                }];
+                
+            } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                [self handleResponse:responseObject success:success failure:failure];
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                if (failure) failure(error);
+            }];
+        });
+    });
+}
+
+/// **压缩图片到指定大小**
+- (NSData *)compressImage:(UIImage *)image toMaxSize:(NSUInteger)maxSize {
+    CGFloat compression = 0.9;
+    NSData *imageData = UIImageJPEGRepresentation(image, compression);
+    
+    while ([imageData length] > maxSize && compression > 0.1) {
+        compression -= 0.1;
+        imageData = UIImageJPEGRepresentation(image, compression);
+    }
+    
+    return imageData;
+}
+@end

@@ -48,8 +48,7 @@
     }];
     
     self.stateImageView = [UIImageView new];
-    self.stateImageView.backgroundColor = [UIColor yellowColor];
-    self.stateImageView.image = [UIImage imageNamed:@""];
+    self.stateImageView.image = [UIImage imageNamed:@"no-certified"];
     [self addSubview:self.stateImageView];
     [self.stateImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.mas_left).offset(9);
@@ -92,5 +91,12 @@
 
     // Configure the view for the selected state
 }
-
+- (void) setIsBy:(BOOL)isBy {
+    _isBy = isBy;
+    if (_isBy) {
+        self.stateImageView.image = [UIImage imageNamed:@"certified"];
+    } else {
+        self.stateImageView.image = [UIImage imageNamed:@"no-certified"];
+    }
+}
 @end
