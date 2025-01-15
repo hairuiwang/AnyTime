@@ -11,7 +11,8 @@ target 'AnyTime' do
   pod 'MJRefresh'
   pod 'Masonry'
   pod 'YYText'
-
+  
+  pod 'LookinServer'
   target 'AnyTimeTests' do
     inherit! :search_paths
     # Pods for testing

@@ -49,6 +49,11 @@
 		657544182D3520D500A63988 /* AnyNavigationBarUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544172D3520D500A63988 /* AnyNavigationBarUtil.m */; };
 		6575441B2D3522FF00A63988 /* AnyUIFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6575441A2D3522FF00A63988 /* AnyUIFactory.m */; };
 		657544622D36519C00A63988 /* UINavigationController+AutoHideTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544612D36519C00A63988 /* UINavigationController+AutoHideTabBar.m */; };
+		657544692D365EA200A63988 /* AnyBottomProductInfor.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544682D365EA200A63988 /* AnyBottomProductInfor.m */; };
+		6575446D2D369B5C00A63988 /* AnyCertificationDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6575446C2D369B5C00A63988 /* AnyCertificationDetailsCell.m */; };
+		657544712D36AB7100A63988 /* AnyVerifyldentityBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544702D36AB7100A63988 /* AnyVerifyldentityBaseViewController.m */; };
+		657544742D36AC9E00A63988 /* AnyVerifyldentityIDTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544732D36AC9E00A63988 /* AnyVerifyldentityIDTypeViewController.m */; };
+		657544772D374A4A00A63988 /* AnyVerifyldentityIDTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544762D374A4A00A63988 /* AnyVerifyldentityIDTypeCell.m */; };
 		826F54C2EA19383470FFFE00 /* Pods_AnyTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5144912D00E9046812AF323D /* Pods_AnyTime.framework */; };
 		8AADE94F471CDE3BFBDA66D7 /* Pods_AnyTimeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4B7405F01A2FAB655AFF70 /* Pods_AnyTimeTests.framework */; };
 		F693A9FC492260D76D367A52 /* Pods_AnyTime_AnyTimeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D88D01DB36709394BB553A /* Pods_AnyTime_AnyTimeUITests.framework */; };
@@ -159,6 +164,16 @@
 		6575441A2D3522FF00A63988 /* AnyUIFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyUIFactory.m; sourceTree = "<group>"; };
 		657544602D36519C00A63988 /* UINavigationController+AutoHideTabBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+AutoHideTabBar.h"; sourceTree = "<group>"; };
 		657544612D36519C00A63988 /* UINavigationController+AutoHideTabBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+AutoHideTabBar.m"; sourceTree = "<group>"; };
+		657544672D365EA200A63988 /* AnyBottomProductInfor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyBottomProductInfor.h; sourceTree = "<group>"; };
+		657544682D365EA200A63988 /* AnyBottomProductInfor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyBottomProductInfor.m; sourceTree = "<group>"; };
+		6575446B2D369B5C00A63988 /* AnyCertificationDetailsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyCertificationDetailsCell.h; sourceTree = "<group>"; };
+		6575446C2D369B5C00A63988 /* AnyCertificationDetailsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyCertificationDetailsCell.m; sourceTree = "<group>"; };
+		6575446F2D36AB7100A63988 /* AnyVerifyldentityBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyVerifyldentityBaseViewController.h; sourceTree = "<group>"; };
+		657544702D36AB7100A63988 /* AnyVerifyldentityBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyVerifyldentityBaseViewController.m; sourceTree = "<group>"; };
+		657544722D36AC9E00A63988 /* AnyVerifyldentityIDTypeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyVerifyldentityIDTypeViewController.h; sourceTree = "<group>"; };
+		657544732D36AC9E00A63988 /* AnyVerifyldentityIDTypeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyVerifyldentityIDTypeViewController.m; sourceTree = "<group>"; };
+		657544752D374A4A00A63988 /* AnyVerifyldentityIDTypeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyVerifyldentityIDTypeCell.h; sourceTree = "<group>"; };
+		657544762D374A4A00A63988 /* AnyVerifyldentityIDTypeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyVerifyldentityIDTypeCell.m; sourceTree = "<group>"; };
 		8B64C75E68F112EDC47D02D0 /* Pods-AnyTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime.release.xcconfig"; path = "Target Support Files/Pods-AnyTime/Pods-AnyTime.release.xcconfig"; sourceTree = "<group>"; };
 		C87E2FEB068C01887AD0C655 /* Pods-AnyTime-AnyTimeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime-AnyTimeUITests.release.xcconfig"; path = "Target Support Files/Pods-AnyTime-AnyTimeUITests/Pods-AnyTime-AnyTimeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CE4B7405F01A2FAB655AFF70 /* Pods_AnyTimeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnyTimeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -418,10 +433,44 @@
 		657544122D35205F00A63988 /* AnyCertificationDetails */ = {
 			isa = PBXGroup;
 			children = (
+				6575446E2D36AB4A00A63988 /* Verify ldentity */,
+				6575446A2D369B3700A63988 /* AnyCertificationDetailsCell */,
+				657544632D365E5000A63988 /* ProductInformation */,
 				657544132D35207C00A63988 /* AnyCertificationDetailsViewController.h */,
 				657544142D35207C00A63988 /* AnyCertificationDetailsViewController.m */,
 			);
 			path = AnyCertificationDetails;
+			sourceTree = "<group>";
+		};
+		657544632D365E5000A63988 /* ProductInformation */ = {
+			isa = PBXGroup;
+			children = (
+				657544672D365EA200A63988 /* AnyBottomProductInfor.h */,
+				657544682D365EA200A63988 /* AnyBottomProductInfor.m */,
+			);
+			path = ProductInformation;
+			sourceTree = "<group>";
+		};
+		6575446A2D369B3700A63988 /* AnyCertificationDetailsCell */ = {
+			isa = PBXGroup;
+			children = (
+				6575446B2D369B5C00A63988 /* AnyCertificationDetailsCell.h */,
+				6575446C2D369B5C00A63988 /* AnyCertificationDetailsCell.m */,
+			);
+			path = AnyCertificationDetailsCell;
+			sourceTree = "<group>";
+		};
+		6575446E2D36AB4A00A63988 /* Verify ldentity */ = {
+			isa = PBXGroup;
+			children = (
+				6575446F2D36AB7100A63988 /* AnyVerifyldentityBaseViewController.h */,
+				657544702D36AB7100A63988 /* AnyVerifyldentityBaseViewController.m */,
+				657544722D36AC9E00A63988 /* AnyVerifyldentityIDTypeViewController.h */,
+				657544732D36AC9E00A63988 /* AnyVerifyldentityIDTypeViewController.m */,
+				657544752D374A4A00A63988 /* AnyVerifyldentityIDTypeCell.h */,
+				657544762D374A4A00A63988 /* AnyVerifyldentityIDTypeCell.m */,
+			);
+			path = "Verify ldentity";
 			sourceTree = "<group>";
 		};
 		D4419434A67CECABB965C0E6 /* Frameworks */ = {
@@ -672,6 +721,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				657544712D36AB7100A63988 /* AnyVerifyldentityBaseViewController.m in Sources */,
+				6575446D2D369B5C00A63988 /* AnyCertificationDetailsCell.m in Sources */,
 				046B6DA92D337BAB00EE9EF7 /* AnyTimeGuidePageViewController.m in Sources */,
 				657544112D35063F00A63988 /* AnyRouterTool.m in Sources */,
 				046B6D992D335F0600EE9EF7 /* AnyTimeRootBarViewController.m in Sources */,
@@ -686,12 +737,15 @@
 				046B6DA52D3361D200EE9EF7 /* AnyTimeMeViewController.m in Sources */,
 				046B6DDA2D34B76F00EE9EF7 /* AnyTimeSmallCardSlotThirdCell.m in Sources */,
 				657544152D35207C00A63988 /* AnyCertificationDetailsViewController.m in Sources */,
+				657544692D365EA200A63988 /* AnyBottomProductInfor.m in Sources */,
 				657544182D3520D500A63988 /* AnyNavigationBarUtil.m in Sources */,
 				046B6DCD2D34AF6200EE9EF7 /* BorderLabel.m in Sources */,
 				046B6DDD2D34E45400EE9EF7 /* OutlineLabel.m in Sources */,
 				046B6DC02D33DE7000EE9EF7 /* AnyTimeLargeCardSlotSecondCell.m in Sources */,
 				046B6DD02D34B1B200EE9EF7 /* GradientBorderLabel.m in Sources */,
 				046B6D632D30F74000EE9EF7 /* AppDelegate.m in Sources */,
+				657544772D374A4A00A63988 /* AnyVerifyldentityIDTypeCell.m in Sources */,
+				657544742D36AC9E00A63988 /* AnyVerifyldentityIDTypeViewController.m in Sources */,
 				6575440E2D3505B700A63988 /* AnyDevHelper.m in Sources */,
 				046B6DE32D36356800EE9EF7 /* AnyTimeOrderCardCell.m in Sources */,
 				046B6DB42D339E8200EE9EF7 /* AnyTimeCustomTextField.m in Sources */,

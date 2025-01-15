@@ -38,7 +38,8 @@
 // 是否是刘海屏（全面屏设备）
 #define IS_NOTCH_SCREEN (SAFE_AREA_BOTTOM > 0)
 
-
+#define SCALED_HEIGHT(originalWidth, originalHeight, targetWidth) \
+    ((originalWidth) > 0 && (originalHeight) > 0 && (targetWidth) > 0 ? ((targetWidth) * (originalHeight) / (originalWidth)) : 0)
 
 
 #define RGB(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
