@@ -7,7 +7,7 @@
 
 #import "AnyTimeCustomPopupView.h"
 
-@interface AnyTimeCustomPopupView ()
+@interface AnyTimeCustomPopupView ()<UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 @property (nonatomic, strong) UILabel *titleLabel;
@@ -18,6 +18,14 @@
 
 @property (nonatomic, strong) UIButton *checkboxButton;
 @property (nonatomic, assign) BOOL isChecked;
+
+
+//date select
+@property (nonatomic, strong) UIPickerView *datePicker;
+@property (nonatomic, strong) NSMutableArray *days;
+@property (nonatomic, strong) NSArray *months;
+@property (nonatomic, strong) NSArray *years;
+
 
 @end
 
@@ -43,6 +51,35 @@
     return self;
 }
 
+- (instancetype)initNoNetWorkWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setupUI];
+        [self setupNoNetWork];
+    }
+    return self;
+}
+
+- (instancetype)initDateSelectionWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setupUI];
+        [self setupDateSelection];
+    }
+    return self;
+}
+
+- (instancetype)initPhotoGraphWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self setupUI];
+        [self setupPhotoGraph];
+    }
+    return self;
+}
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -57,7 +94,7 @@
     self.backgroundColor = rgba(0, 0, 0, 0.7);
     
     self.backgroundImageView = [[UIImageView alloc] init];
-    self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
+    self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFit;
     self.backgroundImageView.clipsToBounds = YES;
     [self addSubview:self.backgroundImageView];
     
@@ -80,7 +117,6 @@
     [self.firstButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.firstButton.layer.cornerRadius = 22;
     self.firstButton.clipsToBounds = YES;
-    [self.firstButton addTarget:self action:@selector(firstButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.firstButton];
 
     self.secondButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -89,8 +125,7 @@
     [self.secondButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     self.secondButton.layer.cornerRadius = 22;
     self.secondButton.clipsToBounds = YES;
-    
-    [self.secondButton addTarget:self action:@selector(secondButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+   
     [self addSubview:self.secondButton];
     
     self.closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -103,6 +138,10 @@
 - (void)setupConstraints
 {
     CGFloat padding = 15;
+    
+    [self.firstButton addTarget:self action:@selector(firstButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+
+    [self.secondButton addTarget:self action:@selector(secondButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     
     [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top).offset(150);
@@ -218,14 +257,230 @@
     
 }
 
-- (void)toggleCheckboxState {
-    // 切换选中状态
-    self.isChecked = !self.isChecked;
-    self.checkboxButton.selected = self.isChecked;
+- (void)setupNoNetWork
+{
+    CGFloat padding = 15;
+ 
+    [self.firstButton addTarget:self action:@selector(firstButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+
+    [self.secondButton addTarget:self action:@selector(secondButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self);
+        make.width.equalTo(@300);
+        make.height.equalTo(@238);
+    }];
+   
+    [self.descriptionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.backgroundImageView.mas_top).offset(30);
+        make.left.equalTo(self.backgroundImageView.mas_left).offset(padding);
+        make.right.equalTo(self.backgroundImageView.mas_right).offset(-padding);
+    }];
+    
+    [self.secondButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.backgroundImageView.mas_bottom).offset(-30);
+        make.left.equalTo(self.backgroundImageView.mas_left).offset(padding);
+        make.right.equalTo(self.backgroundImageView.mas_right).offset(-padding);
+        make.height.equalTo(@44);
+    }];
+    
+    [self.firstButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.secondButton.mas_top).offset(-10);
+        make.left.equalTo(self.backgroundImageView.mas_left).offset(padding);
+        make.right.equalTo(self.backgroundImageView.mas_right).offset(-padding);
+        make.height.equalTo(@44);
+    }];
+}
+
+- (void)setupDateSelection
+{
+    CGFloat padding = 15;
+ 
+    [self.firstButton addTarget:self action:@selector(firstButtonDateSelect) forControlEvents:UIControlEventTouchUpInside];
+
+    [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self);
+        make.width.equalTo(@300);
+        make.height.equalTo(@395);
+    }];
+   
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.backgroundImageView.mas_top).offset(80);
+        make.left.equalTo(self.backgroundImageView.mas_left).offset(padding);
+        make.right.equalTo(self.backgroundImageView.mas_right).offset(-padding);
+    }];
+    
+    [self.firstButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.backgroundImageView.mas_bottom).offset(10);
+        make.left.equalTo(self.backgroundImageView.mas_left).offset(padding);
+        make.right.equalTo(self.backgroundImageView.mas_right).offset(-padding);
+        make.height.equalTo(@44);
+    }];
+    
+    [self.closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.firstButton.mas_bottom).offset(10);
+        make.centerX.equalTo(self.backgroundImageView.mas_centerX);
+        make.width.height.equalTo(@20);
+    }];
+    
+    self.months = [self generateArrayFrom:1 to:12];
+    self.years = [self generateArrayFrom:1900 to:9999];
+    self.days = [NSMutableArray arrayWithArray:[self generateArrayFrom:1 to:31]];
+
+    self.datePicker = [[UIPickerView alloc] init];
+    self.datePicker.delegate = self;
+    self.datePicker.dataSource = self;
+    
+    [self addSubview:self.datePicker];
+    
+    [self.datePicker mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.backgroundImageView.mas_top).offset(180);
+        make.left.equalTo(self.backgroundImageView.mas_left).offset(padding);
+        make.right.equalTo(self.backgroundImageView.mas_right).offset(-padding);
+        make.bottom.equalTo(self.backgroundImageView.mas_bottom).offset(-padding);
+    }];
+ 
+}
+
+- (void)firstButtonDateSelect
+{
+    NSInteger selectedDayIndex = [self.datePicker selectedRowInComponent:0];
+    NSInteger selectedMonthIndex = [self.datePicker selectedRowInComponent:1];
+    NSInteger selectedYearIndex = [self.datePicker selectedRowInComponent:2];
+
+    NSString *selectedDay = self.days[selectedDayIndex];
+    NSString *selectedMonth = self.months[selectedMonthIndex];
+    NSString *selectedYear = self.years[selectedYearIndex];
+
+    NSLog(@"date: %@-%@-%@", selectedDay, selectedMonth, selectedYear);
+    NSString * dateStr = [NSString stringWithFormat:@"%@-%@-%@", selectedDay, selectedMonth, selectedYear];
+    if (self.dateSelectAction) {
+        self.dateSelectAction(dateStr);
+    }
+}
+
+- (NSArray *)generateArrayFrom:(NSInteger)start to:(NSInteger)end {
+    NSMutableArray *array = [NSMutableArray array];
+    for (NSInteger i = start; i <= end; i++) {
+        [array addObject:[NSString stringWithFormat:@"%02ld", (long)i]];
+    }
+    return [array copy];
+}
+
+
+- (void)updateDaysForMonth:(NSInteger)month year:(NSInteger)year {
+    NSInteger daysInMonth;
+
+    if (month == 2) {
+        BOOL isLeapYear = (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+        daysInMonth = isLeapYear ? 29 : 28;
+    } else if (month == 4 || month == 6 || month == 9 || month == 11) {
+        daysInMonth = 30;
+    } else {
+        daysInMonth = 31;
+    }
+
+    [self.days removeAllObjects];
+    [self.days addObjectsFromArray:[self generateArrayFrom:1 to:daysInMonth]];
+    [self.datePicker reloadComponent:0];
+}
+
+#pragma mark - UIPickerViewDataSource
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 3;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    if (component == 0) {
+        return self.days.count;
+    } else if (component == 1) {
+        return self.months.count;
+    } else {
+        return self.years.count;
+    }
+}
+
+#pragma mark - UIPickerViewDelegate
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    if (component == 0) {
+        return self.days[row];
+    } else if (component == 1) {
+        return self.months[row];
+    } else {
+        return self.years[row];
+    }
+}
+
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component 
+{
+    if (component == 1 || component == 2)
+    {
+        NSInteger selectedMonth = [self.months[[pickerView selectedRowInComponent:1]] intValue];
+        NSInteger selectedYear = [self.years[[pickerView selectedRowInComponent:2]] intValue];
+        [self updateDaysForMonth:selectedMonth year:selectedYear];
+    }
+}
+
+
+- (void)setupPhotoGraph
+{
+    CGFloat padding = 20;
+ 
+    [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.center.equalTo(self);
+        make.width.equalTo(@300);
+        make.height.equalTo(@330);
+    }];
+   
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.backgroundImageView.mas_top).offset(80);
+        make.left.equalTo(self.backgroundImageView.mas_left).offset(padding);
+        make.right.equalTo(self.backgroundImageView.mas_right).offset(-padding);
+    }];
+    
+//    self.firstButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [self.firstButton setBackgroundColor:[UIColor blackColor]];
+//    [self.firstButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    self.firstButton.layer.cornerRadius = 22;
+//    self.firstButton.clipsToBounds = YES;
+//    [self addSubview:self.firstButton];
+
+//    self.secondButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    self.secondButton.layer.borderColor = rgba(0, 0, 0, 1).CGColor;
+//    self.secondButton.layer.borderWidth = 1;
+//    [self.secondButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+//    self.secondButton.layer.cornerRadius = 22;
+//    [self.secondButton setImage:[UIImage imageNamed:@"anytime_alert_camera"] forState:UIControlStateNormal];
+//    [self.secondButton setTitle:@"Photograph" forState:UIControlStateNormal];
+//    self.secondButton.clipsToBounds = YES;
+//   
+//    [self addSubview:self.secondButton];
+//    
+//    [self.secondButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.equalTo(self.backgroundImageView.mas_bottom).offset(-30);
+//        make.left.equalTo(self.backgroundImageView.mas_left).offset(padding);
+//        make.right.equalTo(self.backgroundImageView.mas_right).offset(-padding);
+//        make.height.equalTo(@58);
+//    }];
+//    
+//    [self.firstButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.equalTo(self.secondButton.mas_top).offset(-10);
+//        make.left.equalTo(self.backgroundImageView.mas_left).offset(padding);
+//        make.right.equalTo(self.backgroundImageView.mas_right).offset(-padding);
+//        make.height.equalTo(@58);
+//    }];
 }
 
 
 #pragma mark - Setter Methods
+
+- (void)toggleCheckboxState {
+    self.isChecked = !self.isChecked;
+    self.checkboxButton.selected = self.isChecked;
+}
+
 
 - (void)setBackgroundImage:(UIImage *)backgroundImage {
     self.backgroundImageView.image = backgroundImage;

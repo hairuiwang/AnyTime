@@ -36,26 +36,25 @@
 //    [self.view addSubview:customView];
     
     
-//    AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initCancellationAccountWithFrame:self.view.bounds];
-//    popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbigbg"]; // 背景图
-//    popupView.titleText = @"Recommended Products";
-//    popupView.descriptionText = @"Once an account is cancelled, itcannot be restored. To ensure thesecurity of your account, pleaseconfrm that account-relatedservices have been handleproperlybefore submitting your application.";
-//    popupView.firstButtonTitle = @"Apply For Products Now";
-//    popupView.secondButtonTitle = @"Go Apply";
-//    
-//    popupView.firstButtonAction = ^{
-//        NSLog(@"First button tapped");
-//    };
-//
-//    popupView.secondButtonAction = ^{
-//        NSLog(@"Second button tapped");
-//    };
-//
-//    popupView.closeAction = ^{
-//        NSLog(@"Close button tapped");
-//    };
-//
-//    [popupView showInView:self.view];
+    AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initPhotoGraphWithFrame:self.view.bounds];
+    popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbigbg"];
+    popupView.titleText = @"Date Selection";
+    popupView.firstButtonTitle = @"Confirm";
+//    popupView.secondButtonTitle = @"Stop";
+    
+    popupView.firstButtonAction = ^{
+        NSLog(@"First button tapped");
+    };
+
+    popupView.secondButtonAction = ^{
+        NSLog(@"Second button tapped");
+    };
+
+    popupView.closeAction = ^{
+        NSLog(@"Close button tapped");
+    };
+
+    [popupView showInView:self.view];
 
 }
 

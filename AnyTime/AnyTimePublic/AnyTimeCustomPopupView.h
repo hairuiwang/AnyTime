@@ -28,9 +28,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) void (^secondButtonAction)(void);
 
+@property (nonatomic, copy) void (^dateSelectAction)(NSString * date);
+
 - (instancetype)initGoOutAccountWithFrame:(CGRect)frame;
 
 - (instancetype)initCancellationAccountWithFrame:(CGRect)frame;
+
+- (instancetype)initNoNetWorkWithFrame:(CGRect)frame;
+
+- (instancetype)initDateSelectionWithFrame:(CGRect)frame;
+
+- (instancetype)initPhotoGraphWithFrame:(CGRect)frame;
 
 - (void)showInView:(UIView *)parentView;
 
