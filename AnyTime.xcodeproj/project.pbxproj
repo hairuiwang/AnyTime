@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04690EEF2D3788EF00BB8F5A /* UIButton+AnyEdge.m in Sources */ = {isa = PBXBuildFile; fileRef = 04690EEE2D3788EF00BB8F5A /* UIButton+AnyEdge.m */; };
 		046B6D632D30F74000EE9EF7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6D622D30F74000EE9EF7 /* AppDelegate.m */; };
 		046B6D692D30F74000EE9EF7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B6D682D30F74000EE9EF7 /* ViewController.m */; };
 		046B6D6C2D30F74000EE9EF7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 046B6D6A2D30F74000EE9EF7 /* Main.storyboard */; };
@@ -79,6 +80,8 @@
 
 /* Begin PBXFileReference section */
 		01D88D01DB36709394BB553A /* Pods_AnyTime_AnyTimeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnyTime_AnyTimeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		04690EED2D3788EF00BB8F5A /* UIButton+AnyEdge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+AnyEdge.h"; sourceTree = "<group>"; };
+		04690EEE2D3788EF00BB8F5A /* UIButton+AnyEdge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+AnyEdge.m"; sourceTree = "<group>"; };
 		046B6D5E2D30F74000EE9EF7 /* AnyTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnyTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		046B6D612D30F74000EE9EF7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		046B6D622D30F74000EE9EF7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -354,6 +357,8 @@
 				046B6DDC2D34E45400EE9EF7 /* OutlineLabel.m */,
 				046B6DDE2D3512D400EE9EF7 /* AnyTimeCustomPopupView.h */,
 				046B6DDF2D3512D400EE9EF7 /* AnyTimeCustomPopupView.m */,
+				04690EED2D3788EF00BB8F5A /* UIButton+AnyEdge.h */,
+				04690EEE2D3788EF00BB8F5A /* UIButton+AnyEdge.m */,
 			);
 			path = AnyTimePublic;
 			sourceTree = "<group>";
@@ -764,6 +769,7 @@
 				046B6DAF2D3393E900EE9EF7 /* AnyTimeLoginViewController.m in Sources */,
 				046B6D742D30F74500EE9EF7 /* main.m in Sources */,
 				046B6DD72D34B76000EE9EF7 /* AnyTimeSmallCardSlotSecondCell.m in Sources */,
+				04690EEF2D3788EF00BB8F5A /* UIButton+AnyEdge.m in Sources */,
 				046B6DE62D364F2500EE9EF7 /* EmptyOrdersViewController.m in Sources */,
 				046B6D9D2D33619900EE9EF7 /* AnyTimeHomeViewController.m in Sources */,
 				6575440B2D34DC4F00A63988 /* AnyRouter.m in Sources */,

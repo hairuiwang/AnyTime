@@ -30,6 +30,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy) void (^dateSelectAction)(NSString * date);
 
+@property (nonatomic, copy) void (^camcerButtonAction)(void);
+
+@property (nonatomic, copy) void (^photosButtonAction)(void);
+
 - (instancetype)initGoOutAccountWithFrame:(CGRect)frame;
 
 - (instancetype)initCancellationAccountWithFrame:(CGRect)frame;

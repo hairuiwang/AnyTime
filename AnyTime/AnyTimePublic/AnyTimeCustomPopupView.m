@@ -26,6 +26,8 @@
 @property (nonatomic, strong) NSArray *months;
 @property (nonatomic, strong) NSArray *years;
 
+@property (nonatomic, strong) UIButton * cameraBtn;
+@property (nonatomic, strong) UIButton * photosBtn;
 
 @end
 
@@ -75,7 +77,6 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self setupUI];
         [self setupPhotoGraph];
     }
     return self;
@@ -98,7 +99,6 @@
     self.backgroundImageView.clipsToBounds = YES;
     [self addSubview:self.backgroundImageView];
     
-
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.font = [UIFont boldSystemFontOfSize:16];
     self.titleLabel.textColor = [UIColor blackColor];
@@ -427,7 +427,18 @@
 - (void)setupPhotoGraph
 {
     CGFloat padding = 20;
- 
+    
+    self.backgroundImageView = [[UIImageView alloc] init];
+    self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFit;
+    self.backgroundImageView.clipsToBounds = YES;
+    [self addSubview:self.backgroundImageView];
+    
+    self.titleLabel = [[UILabel alloc] init];
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+    self.titleLabel.textColor = [UIColor blackColor];
+    self.titleLabel.textAlignment = NSTextAlignmentLeft;
+    [self addSubview:self.titleLabel];
+    
     [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self);
         make.width.equalTo(@300);
@@ -440,39 +451,59 @@
         make.right.equalTo(self.backgroundImageView.mas_right).offset(-padding);
     }];
     
-//    self.firstButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [self.firstButton setBackgroundColor:[UIColor blackColor]];
-//    [self.firstButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    self.firstButton.layer.cornerRadius = 22;
-//    self.firstButton.clipsToBounds = YES;
-//    [self addSubview:self.firstButton];
+    self.cameraBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.cameraBtn setImage:[UIImage imageNamed:@"anytime_alert_camera"] forState:UIControlStateNormal];
+    [self.cameraBtn setTitle:@"Photograph" forState:UIControlStateNormal];
+    [self.cameraBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.cameraBtn.titleLabel.font = PFSCFont(10);
+    [self.cameraBtn addTarget:self action:@selector(cameraBtnClick) forControlEvents:UIControlEventTouchUpInside];
 
-//    self.secondButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    self.secondButton.layer.borderColor = rgba(0, 0, 0, 1).CGColor;
-//    self.secondButton.layer.borderWidth = 1;
-//    [self.secondButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-//    self.secondButton.layer.cornerRadius = 22;
-//    [self.secondButton setImage:[UIImage imageNamed:@"anytime_alert_camera"] forState:UIControlStateNormal];
-//    [self.secondButton setTitle:@"Photograph" forState:UIControlStateNormal];
-//    self.secondButton.clipsToBounds = YES;
-//   
-//    [self addSubview:self.secondButton];
-//    
-//    [self.secondButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.bottom.equalTo(self.backgroundImageView.mas_bottom).offset(-30);
-//        make.left.equalTo(self.backgroundImageView.mas_left).offset(padding);
-//        make.right.equalTo(self.backgroundImageView.mas_right).offset(-padding);
-//        make.height.equalTo(@58);
-//    }];
-//    
-//    [self.firstButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.bottom.equalTo(self.secondButton.mas_top).offset(-10);
-//        make.left.equalTo(self.backgroundImageView.mas_left).offset(padding);
-//        make.right.equalTo(self.backgroundImageView.mas_right).offset(-padding);
-//        make.height.equalTo(@58);
-//    }];
+    [self addSubview:self.cameraBtn];
+    
+    [self.cameraBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.backgroundImageView.mas_left).offset(30);
+        make.bottom.equalTo(self.backgroundImageView.mas_bottom).offset(-60);
+        make.width.equalTo(@100);
+        make.height.equalTo(@58);
+    }];
+    
+    self.photosBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.photosBtn setImage:[UIImage imageNamed:@"anytime_alert_photos"] forState:UIControlStateNormal];
+    [self.photosBtn setTitle:@"Photo Album" forState:UIControlStateNormal];
+    [self.photosBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    self.photosBtn.titleLabel.font = PFSCFont(10);
+    [self.photosBtn addTarget:self action:@selector(photosBtnClick) forControlEvents:UIControlEventTouchUpInside];
+
+    [self addSubview:self.photosBtn];
+    
+    [self.photosBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.backgroundImageView.mas_right).offset(-30);
+        make.bottom.equalTo(self.backgroundImageView.mas_bottom).offset(-60);
+        make.width.equalTo(@100);
+        make.height.equalTo(@58);
+    }];
 }
 
+- (void)cameraBtnClick
+{
+    if (self.camcerButtonAction) {
+        self.camcerButtonAction();
+    }
+}
+
+- (void)photosBtnClick
+{
+    if (self.photosButtonAction) {
+        self.photosButtonAction();
+    }
+}
+
+-(void)layoutSubviews
+{
+    [self.cameraBtn layoutButtonWithEdgeStyle:ButtonEdgeStyleImageTop spacing:10];
+    [self.photosBtn layoutButtonWithEdgeStyle:ButtonEdgeStyleImageTop spacing:10];
+
+}
 
 #pragma mark - Setter Methods
 
