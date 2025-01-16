@@ -114,7 +114,10 @@
     WEAK_SELF
     self.codeTextField.textFieldDidChangeBlock = ^(NSString * _Nonnull text) {
         NSLog(@"text === %@",text);
-        [weakSelf goLogin];
+        if (text.length >= 6) {
+            [weakSelf goLogin];
+
+        }
     };
     self.codeTextField.codeButtonTapped = ^{
         NSLog(@"code");
@@ -191,23 +194,27 @@
 //    9123123123
     if (self.phoneTextField.textField.text.length <= 0 ||self.phoneTextField.textField.text == nil)
     {
-        [[AnyTimeHUD sharedManager] showTextWithText:@"Please enter your phone number" inView:self.view];
+        [AnyTimeHUD showTextWithText:@"Please enter your phone number"];
     }
-    [[AnyTimeHUD sharedManager] showLoadingHUDInView:self.view];
+    
+    [AnyTimeHUD showLoadingHUD];
    
     [AnyHttpTool requestCodeWithTurning:self.phoneTextField.textField.text direction:@"daasdasdaddd" success:^(id  _Nonnull responseObject) {
         NSLog(@"responseObject ==== %@",responseObject);
-        [[AnyTimeHUD sharedManager] hideHUDInView:self.view];
+        [AnyTimeHUD hideHUD];
         
     } failure:^(NSError * _Nonnull error) {
       
-        [[AnyTimeHUD sharedManager] hideHUDInView:self.view];
+        [AnyTimeHUD hideHUD];
     }];
 }
 
 - (void)goLogin
 {
+    [AnyTimeHUD showLoadingHUD];
     [AnyHttpTool loginWithBoy:self.phoneTextField.textField.text talk:self.codeTextField.textField.text events:@"sadadadsdasdd" success:^(id  _Nonnull responseObject) {
+      
+        [AnyTimeHUD hideHUD];
         
         [AnyDevHelper saveToUserDefaults:@"LOGIN_COUNT" value:self.phoneTextField.textField.text];
         
@@ -216,7 +223,7 @@
         window.rootViewController = rootVC;
         
     } failure:^(NSError * _Nonnull error) {
-        
+        [AnyTimeHUD hideHUD];
     }];
 }
 

@@ -13,14 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)sharedManager;
 
-- (void)showTextWithText:(nullable NSString *)text inView:(UIView *)view;
++ (void)showTextWithText:(nullable NSString *)text;
 
-- (void)showLoadingHUDWithText:(nullable NSString *)text InView:(UIView *)view;
++ (void)showLoadingHUDWithText:(nullable NSString *)text;
 
-- (void)showLoadingHUDInView:(UIView *)view;
-
-- (void)hideHUDInView:(UIView *)view;
-
++(void)showLoadingHUD;
++(void)hideHUD;
 @end
 
 NS_ASSUME_NONNULL_END

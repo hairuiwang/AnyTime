@@ -10,7 +10,7 @@
 
 @interface AnyTimeHUD()
 
-@property (nonatomic, strong) MBProgressHUD *hud;
+@property (nonatomic, strong) MBProgressHUD * hud;
 
 @end
 
@@ -25,9 +25,9 @@
     return manager;
 }
 
-- (void)showTextWithText:(nullable NSString *)text inView:(UIView *)view
+- (void)showTextWithText:(nullable NSString *)text
 {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[[AnyRouter sharedInstance] getCurrentViewController].view animated:YES];
     hud.mode = MBProgressHUDModeText;
     hud.label.text = text;
     hud.offset = CGPointMake(0.f, 0.f);
@@ -35,25 +35,25 @@
     [hud hideAnimated:YES afterDelay:2.f];
 }
 
-- (void)showLoadingHUDWithText:(nullable NSString *)text InView:(UIView *)view
+- (void)showLoadingHUDWithText:(nullable NSString *)text
 {
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
-    hud.mode = MBProgressHUDModeIndeterminate;
-    hud.label.text = text;
-    hud.backgroundView.color = [UIColor colorWithWhite:0.f alpha:0.1f];
+    self.hud = [MBProgressHUD showHUDAddedTo:[[AnyRouter sharedInstance] getCurrentViewController].view animated:YES];
+    self.hud.mode = MBProgressHUDModeIndeterminate;
+    self.hud.label.text = text;
+    self.hud.backgroundView.color = [UIColor colorWithWhite:0.f alpha:0.1f];
+}
+
+- (void)showLoadingHUD
+{
+    self.hud = [MBProgressHUD showHUDAddedTo:[[AnyRouter sharedInstance] getCurrentViewController].view animated:YES];
+    self.hud.mode = MBProgressHUDModeIndeterminate;
+    self.hud.backgroundView.color = [UIColor colorWithWhite:0.f alpha:0.1f];
 
 }
 
-- (void)showLoadingHUDInView:(UIView *)view
-{
-    
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:view animated:YES];
-    hud.mode = MBProgressHUDModeIndeterminate;
-    hud.backgroundView.color = [UIColor colorWithWhite:0.f alpha:0.1f];
 
-}
 
-- (void)hideHUDInView:(UIView *)view 
+- (void)hideHUD
 {
     if (self.hud) {
         [self.hud hideAnimated:YES];
@@ -61,5 +61,24 @@
     }
 }
 
++ (void)showTextWithText:(nullable NSString *)text
+{
+    [[self sharedManager] showTextWithText:text];
+}
+
++ (void)showLoadingHUDWithText:(nullable NSString *)text
+{
+    [[self sharedManager] showLoadingHUDWithText:text];
+}
+
++(void)showLoadingHUD
+{
+    [[self sharedManager] showLoadingHUD];
+}
+
++(void)hideHUD
+{
+    [[self sharedManager] hideHUD];
+}
 
 @end

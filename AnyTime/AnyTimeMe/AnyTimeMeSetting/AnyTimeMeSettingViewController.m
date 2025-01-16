@@ -119,13 +119,14 @@
         
         popupView.firstButtonAction = ^{
             NSLog(@"First button tapped");
+            [AnyTimeHUD showLoadingHUD];
             [AnyHttpTool logoutWithShowered:@"adsdasdassadad" assassins:@"asdadaaddaass" success:^(id  _Nonnull responseObject) {
-                
+                [AnyTimeHUD hideHUD];
                 AnyTimeLoginViewController * rootVC = [[AnyTimeLoginViewController alloc] init];
                 CURRENT_WINDOW.rootViewController = rootVC;
                 
             } failure:^(NSError * _Nonnull error) {
-                
+                [AnyTimeHUD hideHUD];
             }];
         };
 
@@ -154,6 +155,12 @@
 
         popupView.secondButtonAction = ^{
             NSLog(@"Second button tapped");
+            [AnyTimeHUD showLoadingHUD];
+            [AnyHttpTool deactivateAccountWithGotten:@"adsasdadadsa" success:^(id  _Nonnull responseObject) {
+                [AnyTimeHUD hideHUD];
+            } failure:^(NSError * _Nonnull error) {
+                [AnyTimeHUD hideHUD];
+            }];
         };
 
         popupView.closeAction = ^{
