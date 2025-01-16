@@ -113,6 +113,8 @@
     NSString *baseAddurl = [NSString stringWithFormat:@"%@%@",BASE_URL, url];
     NSString *fullURL = [self appendParamsToURL:baseAddurl parameters:nil];
 
+    NSLog(@"url === %@",fullURL);
+    
     [_sessionManager GET:fullURL parameters:parameters headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [self handleResponse:responseObject success:success failure:failure];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -127,6 +129,9 @@
      failure:(void (^)(NSError *error))failure {
     NSString *baseAddurl = [NSString stringWithFormat:@"%@%@",BASE_URL, url];
     NSString *fullURL = [self appendParamsToURL:baseAddurl parameters:nil];
+    
+    NSLog(@"url === %@",fullURL);
+    
     [_sessionManager POST:fullURL parameters:nil headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         // ✅ 遍历参数，添加到 multipart/form-data
         [parameters enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {

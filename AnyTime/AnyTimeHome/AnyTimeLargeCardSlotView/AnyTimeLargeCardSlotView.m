@@ -41,7 +41,6 @@
     [self.collectionView registerClass:[AnyTimeLargeCardSlotThirdCell class] forCellWithReuseIdentifier:@"AnyTimeLargeCardSlotThirdCell"];
     [self.collectionView registerClass:[AnyTimeLargeCardSlotFourthCell class] forCellWithReuseIdentifier:@"AnyTimeLargeCardSlotFourthCell"];
        
-    
     self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     self.collectionView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     self.collectionView.scrollIndicatorInsets = self.collectionView.contentInset;

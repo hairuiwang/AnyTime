@@ -23,6 +23,8 @@
 #import "AnyTimeHUD.h"
 #import "AnyAddressPop.h"
 #import <MJRefresh/MJRefresh.h>
+#import "AnyTimeHomeModel.h"
+#import <MJExtension.h>
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
@@ -95,6 +97,12 @@
 #define SAFE_ARRAY(array) (array != nil ? array : @[])
 #define SAFE_STRING(str) (str != nil ? str : @"")
 #define SAFE_DICTIONARY(dict) (dict != nil ? dict : @{})
+
+#define RStr(X)  ([X isKindOfClass:[NSString class]] ? X : @"")
+
+#define RDic(X)  ([X isKindOfClass:[NSDictionary class]] ? X : @{})
+
+#define RArr(X)  ([X isKindOfClass:[NSArray class]] ? X : @[])
 
 // 调试日志打印
 #ifdef DEBUG
