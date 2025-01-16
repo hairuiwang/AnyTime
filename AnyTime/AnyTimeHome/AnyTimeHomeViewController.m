@@ -58,11 +58,8 @@
 //        NSLog("error = %@", error);
 //    }];
     
-    [AnyTimeHUD showLoadingHUD];
     [AnyHttpTool fetchHomePageWithAuras:@"saadaffffgf" apart:@"sdadadsad" success:^(id  _Nonnull responseObject) {
         NSLog(@"responseObject == %@",responseObject);
-        
-        [AnyTimeHUD hideHUD];
         
         NSDictionary * dic = RDic(responseObject);
         AnyTimeHomeModel * homeModel = [AnyTimeHomeModel mj_objectWithKeyValues:dic];
@@ -84,7 +81,7 @@
             [self.view addSubview:customView];
         }
     } failure:^(NSError * _Nonnull error) {
-        [AnyTimeHUD hideHUD];
+    
     }];
 
     

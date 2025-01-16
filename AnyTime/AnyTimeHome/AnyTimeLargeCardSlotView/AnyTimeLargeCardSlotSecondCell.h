@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AnyTimeLargeCardSlotSecondCell : UICollectionViewCell
 
+@property (nonatomic,strong) NSArray * bannerArray;
+
 @end
 
 NS_ASSUME_NONNULL_END

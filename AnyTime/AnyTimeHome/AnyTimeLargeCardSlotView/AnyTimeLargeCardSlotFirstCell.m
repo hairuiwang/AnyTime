@@ -6,7 +6,13 @@
 //
 
 #import "AnyTimeLargeCardSlotFirstCell.h"
+@interface AnyTimeLargeCardSlotFirstCell()
 
+@property(nonatomic,strong) UILabel * jsqLabel;
+@property(nonatomic,strong) UILabel * szLabel;
+@property(nonatomic,strong) UIButton * goButton;
+
+@end
 @implementation AnyTimeLargeCardSlotFirstCell
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -48,7 +54,7 @@
         make.height.mas_equalTo(77);
     }];
     
-    NSString *numberString = @"66000";
+    NSString * numberString = @"66000";
        
     CGFloat labelWidth = 30;
     CGFloat labelHeight = 44;
@@ -60,8 +66,8 @@
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(xOffset, 16, labelWidth, labelHeight)];
         
-        label.text = [NSString stringWithFormat:@"%C", [numberString characterAtIndex:i]];
-        
+//        label.text = [NSString stringWithFormat:@"%C", [numberString characterAtIndex:i]];
+        label.tag = 1001 + i;
         label.textAlignment = NSTextAlignmentCenter;
         label.font = FuturaFont(38);
         label.layer.borderWidth = 1.5;
@@ -94,27 +100,28 @@
         make.height.mas_equalTo(21);
     }];
     
-    UILabel * jsqLabel = [[UILabel alloc] init];
-    jsqLabel.text = @"0.04% / day";
-    jsqLabel.textColor = UIColor.blackColor;
-    jsqLabel.font = PFSCFont(15);
-    [jsqBgImage addSubview:jsqLabel];
-    [jsqLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.jsqLabel = [[UILabel alloc] init];
+//    self.jsqLabel.text = @"0.04% / day";
+    self.jsqLabel.textColor = UIColor.blackColor;
+    self.jsqLabel.font = PFSCFont(15);
+    self.jsqLabel.adjustsFontSizeToFitWidth = YES;
+    [jsqBgImage addSubview:self.jsqLabel];
+    [self.jsqLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(jsqImage.mas_right);
         make.centerY.mas_equalTo(jsqImage.mas_centerY);
         make.height.mas_equalTo(21);
     }];
     
-    UIButton * goButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [goButton setTitle:@"Go Apply" forState:UIControlStateNormal];
-    goButton.titleLabel.font = ArialFont(18);
-    [goButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    goButton.backgroundColor = [UIColor blackColor];
-    goButton.layer.cornerRadius = 18;
-    goButton.userInteractionEnabled = NO;
-    [self.contentView addSubview:goButton];
+    self.goButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [self.goButton setTitle:@"Go Apply" forState:UIControlStateNormal];
+    self.goButton.titleLabel.font = ArialFont(18);
+    [self.goButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.goButton.backgroundColor = [UIColor blackColor];
+    self.goButton.layer.cornerRadius = 18;
+    self.goButton.userInteractionEnabled = NO;
+    [self.contentView addSubview:self.goButton];
     
-    [goButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.goButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-22);
         make.width.mas_equalTo(184);
         make.height.mas_equalTo(36);
@@ -141,17 +148,43 @@
         make.height.mas_equalTo(21);
     }];
     
-    UILabel * szLabel = [[UILabel alloc] init];
-    szLabel.text = @"150days";
-    szLabel.textColor = UIColor.blackColor;
-    szLabel.font = PFSCFont(15);
-    [szBgImage addSubview:szLabel];
-    [szLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(szImage.mas_right);
+    self.szLabel = [[UILabel alloc] init];
+//    self.szLabel.text = @"150days";
+    self.szLabel.textColor = UIColor.blackColor;
+    self.szLabel.font = PFSCFont(15);
+    self.szLabel.adjustsFontSizeToFitWidth = YES;
+    [szBgImage addSubview:self.szLabel];
+    [self.szLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(szImage.mas_right).offset(5);
         make.centerY.mas_equalTo(szImage.mas_centerY);
+        make.width.mas_equalTo(50);
         make.height.mas_equalTo(21);
     }];
     
+}
+
+- (void)setMurderousModel:(AnyTimeActMurderousModel *)murderousModel
+{
+    if([murderousModel.similar containsString:@","])
+    {
+        NSString *numberString = murderousModel.similar;
+        NSString *formattedString = [numberString stringByReplacingOccurrencesOfString:@"," withString:@""];
+        NSLog(@"Formatted string: %@", formattedString);  // 输出: 50000
+        for (int i = 0; i < 5; i++) {
+            
+            UILabel *labelToModify = (UILabel *)[self viewWithTag:1001 + i];
+            if (labelToModify) {
+                labelToModify.text = [NSString stringWithFormat:@"%C", [formattedString characterAtIndex:i]];
+            }
+        }
+    }
+    NSLog(@"murderousModel === %@",murderousModel.similar);
+    
+    self.jsqLabel.text = murderousModel.disgust;
+    self.szLabel.text = murderousModel.killed;
+    
+    [self.goButton setTitle:murderousModel.scent forState:UIControlStateNormal];
+
 }
 
 @end

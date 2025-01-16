@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AnyTimeLargeCardSlotFirstCell : UICollectionViewCell
 
+@property (nonatomic,strong) AnyTimeActMurderousModel * murderousModel;
+
 @end
 
 NS_ASSUME_NONNULL_END

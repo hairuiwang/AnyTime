@@ -45,20 +45,6 @@
     [super layoutSubviews];
     
     [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    
-    for (int i = 0; i < 2; i++) 
-    {
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * 360, 0, 360, 114)];
-        imageView.image = [UIImage imageNamed:self.bannerArr[i]];
-        imageView.contentMode = UIViewContentModeScaleToFill;
-        imageView.userInteractionEnabled = YES;
-        [self.scrollView addSubview:imageView];
-        
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
-        tapGesture.numberOfTapsRequired = 1;
-        imageView.tag = i;
-        [imageView addGestureRecognizer:tapGesture];
-    }
 }
 
 
@@ -104,5 +90,26 @@
     NSLog(@"page === %ld",(long)page);
 }
 
+- (void)setBannerArray:(NSArray *)bannerArray
+{
+    NSArray * mModelArray = [AnyTimeForestMurderousModel mj_objectArrayWithKeyValuesArray:bannerArray];
+    NSLog(@"mModel === %@",mModelArray);
+    
+    for (int i = 0; i < mModelArray.count; i++)
+    {
+        AnyTimeForestMurderousModel * murModel = mModelArray[i];
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * 360, 0, 360, 114)];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:murModel.violent]];
+        imageView.contentMode = UIViewContentModeScaleToFill;
+        imageView.userInteractionEnabled = YES;
+        [self.scrollView addSubview:imageView];
+        
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
+        tapGesture.numberOfTapsRequired = 1;
+        imageView.tag = 2000 + i;
+        [imageView addGestureRecognizer:tapGesture];
+    }
+}
 
 @end
