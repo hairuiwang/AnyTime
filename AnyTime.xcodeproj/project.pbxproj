@@ -79,6 +79,7 @@
 		657544EF2D38D99B00A63988 /* AnySelectPop.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544EE2D38D99B00A63988 /* AnySelectPop.m */; };
 		657544F32D38EB8200A63988 /* AnySelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544F22D38EB8200A63988 /* AnySelectCell.m */; };
 		657544F62D38F28600A63988 /* AnySelectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544F52D38F28600A63988 /* AnySelectModel.m */; };
+		657544F92D390A2000A63988 /* AnyLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544F82D390A2000A63988 /* AnyLocationManager.m */; };
 		826F54C2EA19383470FFFE00 /* Pods_AnyTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5144912D00E9046812AF323D /* Pods_AnyTime.framework */; };
 		8AADE94F471CDE3BFBDA66D7 /* Pods_AnyTimeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4B7405F01A2FAB655AFF70 /* Pods_AnyTimeTests.framework */; };
 		F693A9FC492260D76D367A52 /* Pods_AnyTime_AnyTimeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D88D01DB36709394BB553A /* Pods_AnyTime_AnyTimeUITests.framework */; };
@@ -248,6 +249,8 @@
 		657544F22D38EB8200A63988 /* AnySelectCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnySelectCell.m; sourceTree = "<group>"; };
 		657544F42D38F28600A63988 /* AnySelectModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnySelectModel.h; sourceTree = "<group>"; };
 		657544F52D38F28600A63988 /* AnySelectModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnySelectModel.m; sourceTree = "<group>"; };
+		657544F72D390A2000A63988 /* AnyLocationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyLocationManager.h; sourceTree = "<group>"; };
+		657544F82D390A2000A63988 /* AnyLocationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyLocationManager.m; sourceTree = "<group>"; };
 		8B64C75E68F112EDC47D02D0 /* Pods-AnyTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime.release.xcconfig"; path = "Target Support Files/Pods-AnyTime/Pods-AnyTime.release.xcconfig"; sourceTree = "<group>"; };
 		C87E2FEB068C01887AD0C655 /* Pods-AnyTime-AnyTimeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime-AnyTimeUITests.release.xcconfig"; path = "Target Support Files/Pods-AnyTime-AnyTimeUITests/Pods-AnyTime-AnyTimeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CE4B7405F01A2FAB655AFF70 /* Pods_AnyTimeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnyTimeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -525,6 +528,8 @@
 				657544E72D38A52800A63988 /* AnyAddressPop.m */,
 				657544ED2D38D99B00A63988 /* AnySelectPop.h */,
 				657544EE2D38D99B00A63988 /* AnySelectPop.m */,
+				657544F72D390A2000A63988 /* AnyLocationManager.h */,
+				657544F82D390A2000A63988 /* AnyLocationManager.m */,
 			);
 			path = AnyTool;
 			sourceTree = "<group>";
@@ -905,6 +910,7 @@
 				657544802D376AF800A63988 /* AnyNetRequest.m in Sources */,
 				657544EC2D38A9BA00A63988 /* AnyAddressCell.m in Sources */,
 				046B6DA12D3361B200EE9EF7 /* AnyTimeOrderViewController.m in Sources */,
+				657544F92D390A2000A63988 /* AnyLocationManager.m in Sources */,
 				657544622D36519C00A63988 /* UINavigationController+AutoHideTabBar.m in Sources */,
 				046B6DB72D33D90700EE9EF7 /* AnyTimeLargeCardSlotView.m in Sources */,
 				046B6DC32D33DE8100EE9EF7 /* AnyTimeLargeCardSlotThirdCell.m in Sources */,

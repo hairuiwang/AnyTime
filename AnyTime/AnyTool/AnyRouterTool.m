@@ -8,6 +8,7 @@
     
 
 #import "AnyRouterTool.h"
+#import "AnyTimeCustomPopupView.h"
 #import "AnyCertificationDetailsViewController.h"
 #import "AnyTimeLoginViewController.h"
 #import "AnyVerifyldentityIDTypeViewController.h"
@@ -18,6 +19,8 @@
 #import "AnyContactInforViewController.h"
 #import "AnyWithdrawalInfoViewController.h"
 #import "AnyVerifyIdentityInfoConfirmedPop.h"
+#import "AnyCertificationDetailsViewController.h"
+#import "AnyLocationManager.h"
 
 @implementation AnyRouterTool
 + (instancetype)sharedInstance {
@@ -41,10 +44,37 @@
     [self anyWithdrawalInfoViewController];
     [self anyVerifyIdentityInfoConfirmedPop];
 }
+
+
 + (void)certificationDetails {
     [[AnyRouter sharedInstance] registerRoute:@"/certificationDetails" handler:^(NSDictionary * parameters, UIViewController * vc, RouterCallback callback) {
-        AnyCertificationDetailsViewController *toVC = [[AnyCertificationDetailsViewController alloc]init];
-        [vc.navigationController pushViewController:toVC animated:true];
+        NSString *box = parameters[@"box"];
+        [[AnyLocationManager sharedInstance] requestAuthorization:^(BOOL granted) {
+            if ([AnyRouterTool sharedInstance].chin == 1) { //
+                AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initGoOutAccountWithFrame:vc.view.bounds];
+                popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbg"];
+                popupView.titleText = @"Location of position";
+                popupView.descriptionText = @"Need location permission";
+                popupView.firstButtonTitle = @"Confirm";
+                popupView.secondButtonTitle = @"Cancel";
+                
+                popupView.firstButtonAction = ^{
+                    [self openAppSettings];
+                };
+                popupView.secondButtonAction = ^{
+                    NSLog(@"Second button tapped");
+                };
+                popupView.closeAction = ^{
+                    NSLog(@"Close button tapped");
+                };
+
+                [popupView showInView:vc.view];
+            } else {
+                AnyCertificationDetailsViewController *toVC = [[AnyCertificationDetailsViewController alloc]init];
+                toVC.box = box;
+                [vc.navigationController pushViewController:toVC animated:true];
+            }
+        }];
     }];
 }
 + (void)login {
@@ -53,6 +83,7 @@
         [vc.navigationController pushViewController:toVC animated:true];
     }];
 }
+
 + (void)anyVerifyldentityIDTypeViewController {
     [[AnyRouter sharedInstance] registerRoute:@"/anyVerifyldentityIDTypeViewController" handler:^(NSDictionary * parameters, UIViewController * vc, RouterCallback callback) {
         AnyVerifyldentityIDTypeViewController *toVC = [[AnyVerifyldentityIDTypeViewController alloc]init];
@@ -126,5 +157,12 @@
     [[AnyRouter sharedInstance] registerRoute:@"/authenticationJump" handler:^(NSDictionary * parameters, UIViewController * vc, RouterCallback callback) {
         
     }];
+}
+/// **跳转到 iOS 设置界面**
++ (void)openAppSettings {
+    NSURL *settingsURL = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+    if ([[UIApplication sharedApplication] canOpenURL:settingsURL]) {
+        [[UIApplication sharedApplication] openURL:settingsURL options:@{} completionHandler:nil];
+    }
 }
 @end
