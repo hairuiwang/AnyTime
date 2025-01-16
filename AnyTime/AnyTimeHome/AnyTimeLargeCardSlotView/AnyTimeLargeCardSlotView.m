@@ -87,8 +87,13 @@
     NSInteger itemIndex = indexPath.item;
     
     NSLog(@"Clicked item at index: %ld", (long)itemIndex);
-    [[AnyRouter sharedInstance] openURL:@"/certificationDetails" parameters:nil from:nil callback:^(NSDictionary * _Nullable result) {
-
+//    [[AnyRouter sharedInstance] openURL:@"/certificationDetails" parameters:nil from:nil callback:^(NSDictionary * _Nullable result) {
+//
+//    }];
+    
+    AnyAddressPop *toVC = [[AnyAddressPop alloc]init];
+    toVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    [[[AnyRouter sharedInstance] getCurrentViewController] presentViewController:toVC animated:YES completion:^{
     }];
 }
 

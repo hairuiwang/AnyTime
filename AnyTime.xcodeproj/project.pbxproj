@@ -69,6 +69,12 @@
 		657544A02D37CC5D00A63988 /* AnyContactInforViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6575449F2D37CC5D00A63988 /* AnyContactInforViewController.m */; };
 		657544A52D37CE5900A63988 /* AnyContactInforCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 657544A42D37CE5900A63988 /* AnyContactInforCell.xib */; };
 		657544A62D37CE5900A63988 /* AnyContactInforCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544A32D37CE5900A63988 /* AnyContactInforCell.m */; };
+		657544A92D37DD3C00A63988 /* AnyWithdrawalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544A82D37DD3C00A63988 /* AnyWithdrawalInfoViewController.m */; };
+		657544AC2D37FA4E00A63988 /* AnyVerifyIdentityInfoConfirmedPop.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544AB2D37FA4E00A63988 /* AnyVerifyIdentityInfoConfirmedPop.m */; };
+		657544AF2D38001E00A63988 /* AnyInfoConfirmedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544AE2D38001E00A63988 /* AnyInfoConfirmedView.m */; };
+		657544E82D38A52800A63988 /* AnyAddressPop.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544E72D38A52800A63988 /* AnyAddressPop.m */; };
+		657544EC2D38A9BA00A63988 /* AnyAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544EB2D38A9BA00A63988 /* AnyAddressCell.m */; };
+		657544EF2D38D99B00A63988 /* AnySelectPop.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544EE2D38D99B00A63988 /* AnySelectPop.m */; };
 		826F54C2EA19383470FFFE00 /* Pods_AnyTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5144912D00E9046812AF323D /* Pods_AnyTime.framework */; };
 		8AADE94F471CDE3BFBDA66D7 /* Pods_AnyTimeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4B7405F01A2FAB655AFF70 /* Pods_AnyTimeTests.framework */; };
 		F693A9FC492260D76D367A52 /* Pods_AnyTime_AnyTimeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D88D01DB36709394BB553A /* Pods_AnyTime_AnyTimeUITests.framework */; };
@@ -218,6 +224,18 @@
 		657544A22D37CE5900A63988 /* AnyContactInforCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyContactInforCell.h; sourceTree = "<group>"; };
 		657544A32D37CE5900A63988 /* AnyContactInforCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyContactInforCell.m; sourceTree = "<group>"; };
 		657544A42D37CE5900A63988 /* AnyContactInforCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnyContactInforCell.xib; sourceTree = "<group>"; };
+		657544A72D37DD3C00A63988 /* AnyWithdrawalInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyWithdrawalInfoViewController.h; sourceTree = "<group>"; };
+		657544A82D37DD3C00A63988 /* AnyWithdrawalInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyWithdrawalInfoViewController.m; sourceTree = "<group>"; };
+		657544AA2D37FA4E00A63988 /* AnyVerifyIdentityInfoConfirmedPop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyVerifyIdentityInfoConfirmedPop.h; sourceTree = "<group>"; };
+		657544AB2D37FA4E00A63988 /* AnyVerifyIdentityInfoConfirmedPop.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyVerifyIdentityInfoConfirmedPop.m; sourceTree = "<group>"; };
+		657544AD2D38001E00A63988 /* AnyInfoConfirmedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyInfoConfirmedView.h; sourceTree = "<group>"; };
+		657544AE2D38001E00A63988 /* AnyInfoConfirmedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyInfoConfirmedView.m; sourceTree = "<group>"; };
+		657544E62D38A52800A63988 /* AnyAddressPop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyAddressPop.h; sourceTree = "<group>"; };
+		657544E72D38A52800A63988 /* AnyAddressPop.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyAddressPop.m; sourceTree = "<group>"; };
+		657544EA2D38A9BA00A63988 /* AnyAddressCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyAddressCell.h; sourceTree = "<group>"; };
+		657544EB2D38A9BA00A63988 /* AnyAddressCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyAddressCell.m; sourceTree = "<group>"; };
+		657544ED2D38D99B00A63988 /* AnySelectPop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnySelectPop.h; sourceTree = "<group>"; };
+		657544EE2D38D99B00A63988 /* AnySelectPop.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnySelectPop.m; sourceTree = "<group>"; };
 		8B64C75E68F112EDC47D02D0 /* Pods-AnyTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime.release.xcconfig"; path = "Target Support Files/Pods-AnyTime/Pods-AnyTime.release.xcconfig"; sourceTree = "<group>"; };
 		C87E2FEB068C01887AD0C655 /* Pods-AnyTime-AnyTimeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime-AnyTimeUITests.release.xcconfig"; path = "Target Support Files/Pods-AnyTime-AnyTimeUITests/Pods-AnyTime-AnyTimeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CE4B7405F01A2FAB655AFF70 /* Pods_AnyTimeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnyTimeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -460,6 +478,7 @@
 		657544062D34DC2500A63988 /* AnyTool */ = {
 			isa = PBXGroup;
 			children = (
+				657544E92D38A99A00A63988 /* AnyAddressCell */,
 				657544092D34DC4F00A63988 /* AnyRouter.h */,
 				6575440A2D34DC4F00A63988 /* AnyRouter.m */,
 				6575440C2D3505B700A63988 /* AnyDevHelper.h */,
@@ -477,6 +496,10 @@
 				657544872D37920A00A63988 /* AnyURLString.h */,
 				04690EF02D37CBF600BB8F5A /* AnyHttpTool.h */,
 				04690EF12D37CBF600BB8F5A /* AnyHttpTool.m */,
+				657544E62D38A52800A63988 /* AnyAddressPop.h */,
+				657544E72D38A52800A63988 /* AnyAddressPop.m */,
+				657544ED2D38D99B00A63988 /* AnySelectPop.h */,
+				657544EE2D38D99B00A63988 /* AnySelectPop.m */,
 			);
 			path = AnyTool;
 			sourceTree = "<group>";
@@ -533,6 +556,10 @@
 				6575448C2D37A8D700A63988 /* AnyVerifyldentitySuccessfulViewController.m */,
 				6575448E2D37B0F200A63988 /* AnyVerifyldentitySuccessfull01Cell.h */,
 				6575448F2D37B0F200A63988 /* AnyVerifyldentitySuccessfull01Cell.m */,
+				657544AA2D37FA4E00A63988 /* AnyVerifyIdentityInfoConfirmedPop.h */,
+				657544AB2D37FA4E00A63988 /* AnyVerifyIdentityInfoConfirmedPop.m */,
+				657544AD2D38001E00A63988 /* AnyInfoConfirmedView.h */,
+				657544AE2D38001E00A63988 /* AnyInfoConfirmedView.m */,
 			);
 			path = "Verify ldentity";
 			sourceTree = "<group>";
@@ -556,6 +583,8 @@
 				6575449C2D37BCAF00A63988 /* AnyPersonalInforViewController.m */,
 				6575449E2D37CC5D00A63988 /* AnyContactInforViewController.h */,
 				6575449F2D37CC5D00A63988 /* AnyContactInforViewController.m */,
+				657544A72D37DD3C00A63988 /* AnyWithdrawalInfoViewController.h */,
+				657544A82D37DD3C00A63988 /* AnyWithdrawalInfoViewController.m */,
 			);
 			path = "Personal Information";
 			sourceTree = "<group>";
@@ -568,6 +597,15 @@
 				657544A42D37CE5900A63988 /* AnyContactInforCell.xib */,
 			);
 			path = AnyContactInforCell;
+			sourceTree = "<group>";
+		};
+		657544E92D38A99A00A63988 /* AnyAddressCell */ = {
+			isa = PBXGroup;
+			children = (
+				657544EA2D38A9BA00A63988 /* AnyAddressCell.h */,
+				657544EB2D38A9BA00A63988 /* AnyAddressCell.m */,
+			);
+			path = AnyAddressCell;
 			sourceTree = "<group>";
 		};
 		D4419434A67CECABB965C0E6 /* Frameworks */ = {
@@ -829,6 +867,7 @@
 				046B6DC62D33DEB400EE9EF7 /* AnyTimeLargeCardSlotFourthCell.m in Sources */,
 				046B6DE02D3512D400EE9EF7 /* AnyTimeCustomPopupView.m in Sources */,
 				657544802D376AF800A63988 /* AnyNetRequest.m in Sources */,
+				657544EC2D38A9BA00A63988 /* AnyAddressCell.m in Sources */,
 				046B6DA12D3361B200EE9EF7 /* AnyTimeOrderViewController.m in Sources */,
 				657544622D36519C00A63988 /* UINavigationController+AutoHideTabBar.m in Sources */,
 				046B6DB72D33D90700EE9EF7 /* AnyTimeLargeCardSlotView.m in Sources */,
@@ -837,6 +876,7 @@
 				657544A62D37CE5900A63988 /* AnyContactInforCell.m in Sources */,
 				046B6D692D30F74000EE9EF7 /* ViewController.m in Sources */,
 				046B6DA52D3361D200EE9EF7 /* AnyTimeMeViewController.m in Sources */,
+				657544AC2D37FA4E00A63988 /* AnyVerifyIdentityInfoConfirmedPop.m in Sources */,
 				046B6DDA2D34B76F00EE9EF7 /* AnyTimeSmallCardSlotThirdCell.m in Sources */,
 				657544152D35207C00A63988 /* AnyCertificationDetailsViewController.m in Sources */,
 				657544692D365EA200A63988 /* AnyBottomProductInfor.m in Sources */,
@@ -848,6 +888,7 @@
 				046B6DDD2D34E45400EE9EF7 /* OutlineLabel.m in Sources */,
 				046B6DC02D33DE7000EE9EF7 /* AnyTimeLargeCardSlotSecondCell.m in Sources */,
 				046B6DD02D34B1B200EE9EF7 /* GradientBorderLabel.m in Sources */,
+				657544E82D38A52800A63988 /* AnyAddressPop.m in Sources */,
 				046B6D632D30F74000EE9EF7 /* AppDelegate.m in Sources */,
 				657544772D374A4A00A63988 /* AnyVerifyldentityIDTypeCell.m in Sources */,
 				657544742D36AC9E00A63988 /* AnyVerifyldentityIDTypeViewController.m in Sources */,
@@ -866,11 +907,14 @@
 				046B6D742D30F74500EE9EF7 /* main.m in Sources */,
 				046B6DD72D34B76000EE9EF7 /* AnyTimeSmallCardSlotSecondCell.m in Sources */,
 				04690EEF2D3788EF00BB8F5A /* UIButton+AnyEdge.m in Sources */,
+				657544AF2D38001E00A63988 /* AnyInfoConfirmedView.m in Sources */,
 				046B6DE62D364F2500EE9EF7 /* EmptyOrdersViewController.m in Sources */,
 				046B6D9D2D33619900EE9EF7 /* AnyTimeHomeViewController.m in Sources */,
+				657544EF2D38D99B00A63988 /* AnySelectPop.m in Sources */,
 				6575440B2D34DC4F00A63988 /* AnyRouter.m in Sources */,
 				657544832D37719A00A63988 /* AnyVerifyldentity02ViewController.m in Sources */,
 				04690EF22D37CBF600BB8F5A /* AnyHttpTool.m in Sources */,
+				657544A92D37DD3C00A63988 /* AnyWithdrawalInfoViewController.m in Sources */,
 				6575448A2D37A1A700A63988 /* AnyVerifyldentity03ViewController.m in Sources */,
 				046B6DE92D36892400EE9EF7 /* AnyTimeMeTableViewCell.m in Sources */,
 				6575449D2D37BCAF00A63988 /* AnyPersonalInforViewController.m in Sources */,

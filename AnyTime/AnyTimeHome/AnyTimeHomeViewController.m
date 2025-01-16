@@ -69,6 +69,20 @@
         
     }];
 
+    
+    [AnyHttpTool initializeAddressInfoWithSuccess:^(id  _Nonnull responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            [AnyRouter sharedInstance].cityData = responseObject;
+//            [AnyDevHelper saveToUserDefaults:@"cityData" value:responseObject];
+        }
+    } failure:^(NSError * _Nonnull error) {
+        
+    }];
+    
+//    anyVerifyIdentityInfoConfirmedPop
+//    [[AnyRouter sharedInstance] openURL:@"/anyVerifyIdentityInfoConfirmedPop" parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {
+//            
+//    }];
 }
 
 /*

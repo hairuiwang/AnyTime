@@ -16,6 +16,9 @@
 #import "AnyVerifyldentitySuccessfulViewController.h"
 #import "AnyPersonalInforViewController.h"
 #import "AnyContactInforViewController.h"
+#import "AnyWithdrawalInfoViewController.h"
+#import "AnyVerifyIdentityInfoConfirmedPop.h"
+
 @implementation AnyRouterTool
 
 + (void) registered {
@@ -27,6 +30,8 @@
     [self anyVerifyldentitySuccessfulViewController];
     [self anyPersonalInforViewController];
     [self anyContactInforViewController];
+    [self anyWithdrawalInfoViewController];
+    [self anyVerifyIdentityInfoConfirmedPop];
 }
 + (void)certificationDetails {
     [[AnyRouter sharedInstance] registerRoute:@"/certificationDetails" handler:^(NSDictionary * parameters, UIViewController * vc, RouterCallback callback) {
@@ -91,4 +96,21 @@
     }];
 }
 
++ (void)anyWithdrawalInfoViewController {
+    
+    [[AnyRouter sharedInstance] registerRoute:@"/anyWithdrawalInfoViewController" handler:^(NSDictionary * parameters, UIViewController * vc, RouterCallback callback) {
+        NSDictionary *par = parameters[@"parameters"];
+        AnyWithdrawalInfoViewController *toVC = [[AnyWithdrawalInfoViewController alloc]init];
+        toVC.parameters = par;
+        [vc.navigationController pushViewController:toVC animated:true];
+    }];
+}
++ (void)anyVerifyIdentityInfoConfirmedPop {
+    [[AnyRouter sharedInstance] registerRoute:@"/anyVerifyIdentityInfoConfirmedPop" handler:^(NSDictionary * parameters, UIViewController * vc, RouterCallback callback) {
+        AnyVerifyIdentityInfoConfirmedPop *toVC = [[AnyVerifyIdentityInfoConfirmedPop alloc]init];
+        toVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+        [vc presentViewController:toVC animated:YES completion:^{
+        }];
+    }];
+}
 @end
