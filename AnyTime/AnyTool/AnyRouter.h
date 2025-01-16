@@ -16,7 +16,7 @@ typedef void (^RouterCallback)(NSDictionary * _Nullable result);
 
 @interface AnyRouter : NSObject
 
-
+@property (nonatomic, strong) NSDictionary *cityData;
 /// **单例**
 + (instancetype)sharedInstance;
 
@@ -29,7 +29,7 @@ typedef void (^RouterCallback)(NSDictionary * _Nullable result);
            from:(UIViewController * _Nullable)sourceVC
        callback:(RouterCallback _Nullable)callback;
 
-
+- (UIViewController *)getCurrentViewController;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -97,6 +97,9 @@
     }else if (indexPath.section == 2 ){
         [[AnyRouter sharedInstance] openURL:@"/anyContactInforViewController" parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {}];
         
+    } else if (indexPath.section == 3 ){
+        [[AnyRouter sharedInstance] openURL:@"/anyWithdrawalInfoViewController" parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {}];
+        
     }
 }
 
