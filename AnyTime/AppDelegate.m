@@ -30,8 +30,8 @@
     } 
     else
     {
-        AnyTimeRootBarViewController * rootVC = [[AnyTimeRootBarViewController alloc] init];
-//        AnyTimeLoginViewController * rootVC = [[AnyTimeLoginViewController alloc] init];
+//        AnyTimeRootBarViewController * rootVC = [[AnyTimeRootBarViewController alloc] init];
+        AnyTimeLoginViewController * rootVC = [[AnyTimeLoginViewController alloc] init];
         self.window.rootViewController = rootVC;
     }
    

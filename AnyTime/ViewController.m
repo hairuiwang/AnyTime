@@ -18,9 +18,9 @@
     self.view.backgroundColor = [UIColor redColor];
     
     [[AnyNetRequest sharedManager] POST:GetCode parameters:@{@"turning":@"9123123123"} success:^(id  _Nonnull responseObject) {
-        NSLog("responseObject = %@", responseObject);
+        NSLog(@"responseObject = %@", responseObject);
     } failure:^(NSError * _Nonnull error) {
-        NSLog("error = %@", error);
+        NSLog(@"error = %@", error);
     }];
 }
 

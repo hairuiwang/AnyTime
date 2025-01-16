@@ -8,6 +8,7 @@
 #import "AnyTimeMeSettingViewController.h"
 #import "AnyTimeMeSettingTableViewCell.h"
 #import "AnyTimeCustomPopupView.h"
+#import "AnyTimeLoginViewController.h"
 
 @interface AnyTimeMeSettingViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -118,6 +119,14 @@
         
         popupView.firstButtonAction = ^{
             NSLog(@"First button tapped");
+            [AnyHttpTool logoutWithShowered:@"adsdasdassadad" assassins:@"asdadaaddaass" success:^(id  _Nonnull responseObject) {
+                
+                AnyTimeLoginViewController * rootVC = [[AnyTimeLoginViewController alloc] init];
+                CURRENT_WINDOW.rootViewController = rootVC;
+                
+            } failure:^(NSError * _Nonnull error) {
+                
+            }];
         };
 
         popupView.secondButtonAction = ^{

@@ -74,6 +74,13 @@
         make.right.mas_equalTo(contentBgImage.mas_right).offset(-14);
         make.height.mas_equalTo(44);
     }];
+    
+    NSString * currentText = [AnyDevHelper loadFromUserDefaults:@"LOGIN_COUNT"];
+    if (currentText.length > 0)
+    {
+        self.phoneTextField.textField.text = currentText;
+    }
+    
     self.phoneTextField.textFieldDidChangeBlock = ^(NSString * _Nonnull text) {
         NSLog(@"phoneTextField === %@",text);
     };
@@ -103,11 +110,15 @@
         make.right.mas_equalTo(contentBgImage.mas_right).offset(-14);
         make.height.mas_equalTo(44);
     }];
+    
+    WEAK_SELF
     self.codeTextField.textFieldDidChangeBlock = ^(NSString * _Nonnull text) {
         NSLog(@"text === %@",text);
+        [weakSelf goLogin];
     };
     self.codeTextField.codeButtonTapped = ^{
         NSLog(@"code");
+        [weakSelf getCode];
     };
     
     UIButton * loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -139,6 +150,8 @@
     self.checkboxButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.checkboxButton setImage:[UIImage imageNamed:@"anytime_login_unse"] forState:UIControlStateNormal];
     [self.checkboxButton setImage:[UIImage imageNamed:@"anytime_login_se"] forState:UIControlStateSelected];
+    self.checkboxButton.selected = YES;
+    self.isChecked = YES;
     [self.checkboxButton addTarget:self action:@selector(toggleCheckboxState) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.checkboxButton];
     [self.checkboxButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -173,11 +186,41 @@
 
 }
 
+- (void)getCode
+{
+//    9123123123
+    if (self.phoneTextField.textField.text.length <= 0 ||self.phoneTextField.textField.text == nil)
+    {
+        [[AnyTimeHUD sharedManager] showTextWithText:@"Please enter your phone number" inView:self.view];
+    }
+    [[AnyTimeHUD sharedManager] showLoadingHUDInView:self.view];
+   
+    [AnyHttpTool requestCodeWithTurning:self.phoneTextField.textField.text direction:@"daasdasdaddd" success:^(id  _Nonnull responseObject) {
+        NSLog(@"responseObject ==== %@",responseObject);
+        [[AnyTimeHUD sharedManager] hideHUDInView:self.view];
+        
+    } failure:^(NSError * _Nonnull error) {
+      
+        [[AnyTimeHUD sharedManager] hideHUDInView:self.view];
+    }];
+}
 
-
+- (void)goLogin
+{
+    [AnyHttpTool loginWithBoy:self.phoneTextField.textField.text talk:self.codeTextField.textField.text events:@"sadadadsdasdd" success:^(id  _Nonnull responseObject) {
+        
+        [AnyDevHelper saveToUserDefaults:@"LOGIN_COUNT" value:self.phoneTextField.textField.text];
+        
+        UIWindow *window = [UIApplication sharedApplication].windows.firstObject;
+        AnyTimeRootBarViewController * rootVC = [[AnyTimeRootBarViewController alloc] init];
+        window.rootViewController = rootVC;
+        
+    } failure:^(NSError * _Nonnull error) {
+        
+    }];
+}
 
 - (void)toggleCheckboxState {
-    // 切换选中状态
     self.isChecked = !self.isChecked;
     self.checkboxButton.selected = self.isChecked;
 }
@@ -191,9 +234,7 @@
 
 -(void)loginButtonTapped
 {
-    UIWindow *window = [UIApplication sharedApplication].windows.firstObject;
-    AnyTimeRootBarViewController * rootVC = [[AnyTimeRootBarViewController alloc] init];
-    window.rootViewController = rootVC;
+    [self goLogin];
 }
 
 /*

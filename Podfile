@@ -11,6 +11,7 @@ target 'AnyTime' do
   pod 'MJRefresh'
   pod 'Masonry'
   pod 'YYText'
+  pod 'MBProgressHUD'
   
   pod 'LookinServer'
   target 'AnyTimeTests' do

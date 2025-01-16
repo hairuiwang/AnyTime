@@ -62,9 +62,8 @@
 //        NSLog("error = %@", error);
 //    }];
     
-    [AnyHttpTool requestCodeWithTurning:@"9012345678" direction:@"fasfdsaf" success:^(id  _Nonnull responseObject) {
-        NSLog("responseObject = %@", responseObject);
-
+    [AnyHttpTool fetchHomePageWithAuras:@"saadaffffgf" apart:@"sdadadsad" success:^(id  _Nonnull responseObject) {
+        NSLog(@"responseObject == %@",responseObject);
     } failure:^(NSError * _Nonnull error) {
         
     }];

@@ -151,7 +151,7 @@
 }
 
 - (void)startCountdown {
-    self.countdown = 30;
+    self.countdown = 60;
     [self.codeButton setEnabled:NO];
     [self.codeButton setBackgroundColor:[UIColor colorWithRed:210/255.0 green:210/255.0 blue:210/255.0 alpha:1.0]];
     
@@ -202,12 +202,12 @@
     
     NSString *newText = [textField.text stringByReplacingCharactersInRange:range withString:string];
        
-
-       if (newText.length > self.maxLength) {
-//           [self showAlertWithMessage:self.inputHint];
-           NSLog(@"inputHint === %@",self.inputHint);
-           return NO;
-       }
+//
+//       if (newText.length > self.maxLength) {
+////           [self showAlertWithMessage:self.inputHint];
+//           NSLog(@"inputHint === %@",self.inputHint);
+//           return NO;
+//       }
        
     if (self.textFieldDidChangeBlock) {
         self.textFieldDidChangeBlock(textField.text);
