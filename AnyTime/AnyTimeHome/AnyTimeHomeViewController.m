@@ -68,6 +68,9 @@
         AnyTimeHomeModel * homeModel = [AnyTimeHomeModel mj_objectWithKeyValues:dic];
         AnyTimeActingModel * actModel = homeModel.acting;
         NSLog(@"homeModel ==%@",actModel.aura);
+        
+        [AnyRouterTool sharedInstance].chin = homeModel.chin;
+        
         if ([actModel.aura isEqualToString:@"anytimeb"])
         {
             //大卡位
