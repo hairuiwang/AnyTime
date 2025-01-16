@@ -186,8 +186,6 @@
             [self dismissViewControllerAnimated:true completion:^{
             }];
         }
-    } else {
-        
     }
 }
 #pragma mark - UITableViewDataSource

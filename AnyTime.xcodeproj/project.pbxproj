@@ -76,6 +76,8 @@
 		657544E82D38A52800A63988 /* AnyAddressPop.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544E72D38A52800A63988 /* AnyAddressPop.m */; };
 		657544EC2D38A9BA00A63988 /* AnyAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544EB2D38A9BA00A63988 /* AnyAddressCell.m */; };
 		657544EF2D38D99B00A63988 /* AnySelectPop.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544EE2D38D99B00A63988 /* AnySelectPop.m */; };
+		657544F32D38EB8200A63988 /* AnySelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544F22D38EB8200A63988 /* AnySelectCell.m */; };
+		657544F62D38F28600A63988 /* AnySelectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544F52D38F28600A63988 /* AnySelectModel.m */; };
 		826F54C2EA19383470FFFE00 /* Pods_AnyTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5144912D00E9046812AF323D /* Pods_AnyTime.framework */; };
 		8AADE94F471CDE3BFBDA66D7 /* Pods_AnyTimeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4B7405F01A2FAB655AFF70 /* Pods_AnyTimeTests.framework */; };
 		F693A9FC492260D76D367A52 /* Pods_AnyTime_AnyTimeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D88D01DB36709394BB553A /* Pods_AnyTime_AnyTimeUITests.framework */; };
@@ -239,6 +241,10 @@
 		657544EB2D38A9BA00A63988 /* AnyAddressCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyAddressCell.m; sourceTree = "<group>"; };
 		657544ED2D38D99B00A63988 /* AnySelectPop.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnySelectPop.h; sourceTree = "<group>"; };
 		657544EE2D38D99B00A63988 /* AnySelectPop.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnySelectPop.m; sourceTree = "<group>"; };
+		657544F12D38EB8200A63988 /* AnySelectCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnySelectCell.h; sourceTree = "<group>"; };
+		657544F22D38EB8200A63988 /* AnySelectCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnySelectCell.m; sourceTree = "<group>"; };
+		657544F42D38F28600A63988 /* AnySelectModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnySelectModel.h; sourceTree = "<group>"; };
+		657544F52D38F28600A63988 /* AnySelectModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnySelectModel.m; sourceTree = "<group>"; };
 		8B64C75E68F112EDC47D02D0 /* Pods-AnyTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime.release.xcconfig"; path = "Target Support Files/Pods-AnyTime/Pods-AnyTime.release.xcconfig"; sourceTree = "<group>"; };
 		C87E2FEB068C01887AD0C655 /* Pods-AnyTime-AnyTimeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime-AnyTimeUITests.release.xcconfig"; path = "Target Support Files/Pods-AnyTime-AnyTimeUITests/Pods-AnyTime-AnyTimeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CE4B7405F01A2FAB655AFF70 /* Pods_AnyTimeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnyTimeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -481,6 +487,7 @@
 		657544062D34DC2500A63988 /* AnyTool */ = {
 			isa = PBXGroup;
 			children = (
+				657544F02D38EB7100A63988 /* AnySelectCell */,
 				657544E92D38A99A00A63988 /* AnyAddressCell */,
 				657544092D34DC4F00A63988 /* AnyRouter.h */,
 				6575440A2D34DC4F00A63988 /* AnyRouter.m */,
@@ -611,6 +618,17 @@
 				657544EB2D38A9BA00A63988 /* AnyAddressCell.m */,
 			);
 			path = AnyAddressCell;
+			sourceTree = "<group>";
+		};
+		657544F02D38EB7100A63988 /* AnySelectCell */ = {
+			isa = PBXGroup;
+			children = (
+				657544F12D38EB8200A63988 /* AnySelectCell.h */,
+				657544F22D38EB8200A63988 /* AnySelectCell.m */,
+				657544F42D38F28600A63988 /* AnySelectModel.h */,
+				657544F52D38F28600A63988 /* AnySelectModel.m */,
+			);
+			path = AnySelectCell;
 			sourceTree = "<group>";
 		};
 		D4419434A67CECABB965C0E6 /* Frameworks */ = {
@@ -880,6 +898,7 @@
 				6575449A2D37BC7C00A63988 /* AnyPersonalInforBaseViewController.m in Sources */,
 				657544A62D37CE5900A63988 /* AnyContactInforCell.m in Sources */,
 				046B6D692D30F74000EE9EF7 /* ViewController.m in Sources */,
+				657544F32D38EB8200A63988 /* AnySelectCell.m in Sources */,
 				046B6DA52D3361D200EE9EF7 /* AnyTimeMeViewController.m in Sources */,
 				657544AC2D37FA4E00A63988 /* AnyVerifyIdentityInfoConfirmedPop.m in Sources */,
 				046B6DDA2D34B76F00EE9EF7 /* AnyTimeSmallCardSlotThirdCell.m in Sources */,
@@ -888,6 +907,7 @@
 				657544A02D37CC5D00A63988 /* AnyContactInforViewController.m in Sources */,
 				657544182D3520D500A63988 /* AnyNavigationBarUtil.m in Sources */,
 				046B6DCD2D34AF6200EE9EF7 /* BorderLabel.m in Sources */,
+				657544F62D38F28600A63988 /* AnySelectModel.m in Sources */,
 				6575448D2D37A8D700A63988 /* AnyVerifyldentitySuccessfulViewController.m in Sources */,
 				657544862D37728100A63988 /* AnyVerifyldentity02Cell.m in Sources */,
 				046B6DDD2D34E45400EE9EF7 /* OutlineLabel.m in Sources */,

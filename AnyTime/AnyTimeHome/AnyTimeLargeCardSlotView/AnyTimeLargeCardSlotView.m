@@ -91,9 +91,21 @@
 //
 //    }];
     
-    AnyAddressPop *toVC = [[AnyAddressPop alloc]init];
-    toVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
-    [[[AnyRouter sharedInstance] getCurrentViewController] presentViewController:toVC animated:YES completion:^{
+//    AnyAddressPop *toVC = [[AnyAddressPop alloc]init];
+//    toVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+//    [[[AnyRouter sharedInstance] getCurrentViewController] presentViewController:toVC animated:YES completion:^{
+//    }];
+    AnySelectPop *pop = [[AnySelectPop alloc]init];
+    pop.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    AnySelectModel *model = [[AnySelectModel alloc] init];
+    model.title = @"11111";
+    AnySelectModel *model2 = [[AnySelectModel alloc] init];
+    model2.title = @"2222";
+    pop.dataSourceArray = @[
+        model,
+        model2
+    ];
+    [[[AnyRouter sharedInstance] getCurrentViewController] presentViewController:pop animated:YES completion:^{
     }];
 }
 

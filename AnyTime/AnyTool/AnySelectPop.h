@@ -8,11 +8,14 @@
     
 
 #import <UIKit/UIKit.h>
-
+#import "AnySelectCell.h"
 NS_ASSUME_NONNULL_BEGIN
+typedef void(^MyAnySelectValue)(NSString *address, NSInteger index);
 
 @interface AnySelectPop : UIViewController
-
+@property (nonatomic, copy) MyAnySelectValue selectHandler;
+@property (nonatomic, assign) BOOL isImage;
+@property (nonatomic, strong) NSArray<AnySelectModel *> *dataSourceArray;
 @end
 
 NS_ASSUME_NONNULL_END
