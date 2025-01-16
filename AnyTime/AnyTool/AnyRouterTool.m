@@ -20,6 +20,14 @@
 #import "AnyVerifyIdentityInfoConfirmedPop.h"
 
 @implementation AnyRouterTool
++ (instancetype)sharedInstance {
+    static AnyRouterTool *instance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [[self alloc] init];
+    });
+    return instance;
+}
 
 + (void) registered {
     [self certificationDetails];
@@ -111,6 +119,12 @@
         toVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
         [vc presentViewController:toVC animated:YES completion:^{
         }];
+    }];
+}
+
++ (void)authenticationJump {
+    [[AnyRouter sharedInstance] registerRoute:@"/authenticationJump" handler:^(NSDictionary * parameters, UIViewController * vc, RouterCallback callback) {
+        
     }];
 }
 @end
