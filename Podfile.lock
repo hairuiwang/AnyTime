@@ -19,6 +19,7 @@ PODS:
   - LookinServer/Core (1.2.8)
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
+  - MJExtension (3.4.2)
   - MJRefresh (3.7.9)
   - SDWebImage (5.19.1):
     - SDWebImage/Core (= 5.19.1)
@@ -30,6 +31,7 @@ DEPENDENCIES:
   - LookinServer
   - Masonry
   - MBProgressHUD
+  - MJExtension
   - MJRefresh
   - SDWebImage
   - YYText
@@ -40,6 +42,7 @@ SPEC REPOS:
     - LookinServer
     - Masonry
     - MBProgressHUD
+    - MJExtension
     - MJRefresh
     - SDWebImage
     - YYText
@@ -49,10 +52,11 @@ SPEC CHECKSUMS:
   LookinServer: 1b2b61c6402ae29fa22182d48f5cd067b4e99e80
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  MJExtension: e97d164cb411aa9795cf576093a1fa208b4a8dd8
   MJRefresh: ff9e531227924c84ce459338414550a05d2aea78
   SDWebImage: 40b0b4053e36c660a764958bff99eed16610acbb
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: c297e266e123cae826ce69ca97163e000c49bb71
+PODFILE CHECKSUM: 632f9d2b3b4b68a85dcdeb8775716daaf5714c54
 
 COCOAPODS: 1.13.0

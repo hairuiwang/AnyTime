@@ -12,8 +12,12 @@ target 'AnyTime' do
   pod 'Masonry'
   pod 'YYText'
   pod 'MBProgressHUD'
-  
+  pod 'MJExtension'
   pod 'LookinServer'
+  
+  
+  
+  
   target 'AnyTimeTests' do
     inherit! :search_paths
     # Pods for testing
