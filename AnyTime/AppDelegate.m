@@ -23,20 +23,27 @@
     [AnyRouterTool registered];
     BOOL isFirstLaunch = ![[NSUserDefaults standardUserDefaults] boolForKey:@"isFirstLaunch"];
     
-    if (isFirstLaunch) {
-        
+    if (isFirstLaunch) 
+    {
         AnyTimeGuidePageViewController *onboardingVC = [[AnyTimeGuidePageViewController alloc] init];
         self.window.rootViewController = onboardingVC;
     } 
     else
     {
-        AnyTimeRootBarViewController * rootVC = [[AnyTimeRootBarViewController alloc] init];
-//        AnyTimeLoginViewController * rootVC = [[AnyTimeLoginViewController alloc] init];
-        self.window.rootViewController = rootVC;
+        BOOL isLogin = [AnyDevHelper loadBoolFromUserDefaults:LOGIN_STATUS];
+        if (isLogin)
+        {
+            AnyTimeRootBarViewController * rootVC = [[AnyTimeRootBarViewController alloc] init];
+            self.window.rootViewController = rootVC;
+        }
+        else
+        {
+            AnyTimeLoginViewController * rootVC = [[AnyTimeLoginViewController alloc] init];
+            self.window.rootViewController = rootVC;
+        }
     }
    
     [self.window makeKeyAndVisible];
-    
     return YES;
 }
 

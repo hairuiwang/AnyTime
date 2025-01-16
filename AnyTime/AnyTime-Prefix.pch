@@ -143,4 +143,10 @@
 #define DATA @"gone"
 #define SESSIONID @"sure"
 
+//本地存储
+#define LOGIN_COUNT @"LOGIN_COUNT"
+#define LOGIN_STATUS @"LOGIN_STATUS"
+
+
+
 #endif /* AnyTime_Prefix_pch */

@@ -122,6 +122,9 @@
             [AnyTimeHUD showLoadingHUD];
             [AnyHttpTool logoutWithShowered:@"adsdasdassadad" assassins:@"asdadaaddaass" success:^(id  _Nonnull responseObject) {
                 [AnyTimeHUD hideHUD];
+                
+                [AnyDevHelper saveBoolToUserDefaults:LOGIN_STATUS value:NO];
+
                 AnyTimeLoginViewController * rootVC = [[AnyTimeLoginViewController alloc] init];
                 CURRENT_WINDOW.rootViewController = rootVC;
                 
@@ -157,6 +160,9 @@
             NSLog(@"Second button tapped");
             [AnyTimeHUD showLoadingHUD];
             [AnyHttpTool deactivateAccountWithGotten:@"adsasdadadsa" success:^(id  _Nonnull responseObject) {
+                
+                [AnyDevHelper saveBoolToUserDefaults:LOGIN_STATUS value:NO];
+                
                 [AnyTimeHUD hideHUD];
             } failure:^(NSError * _Nonnull error) {
                 [AnyTimeHUD hideHUD];

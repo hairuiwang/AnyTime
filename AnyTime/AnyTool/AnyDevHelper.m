@@ -132,6 +132,19 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+/// 读取BOOL UserDefaults
++ (BOOL)loadBoolFromUserDefaults:(NSString *)key 
+{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:key];
+}
+
+/// 保存BOOL到 UserDefaults
++ (void)saveBoolToUserDefaults:(NSString *)key value:(BOOL)value
+{
+    [[NSUserDefaults standardUserDefaults] setBool:value forKey:key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 /// 读取 Keychain
 + (NSString *)loadFromKeychain:(NSString *)key {
     NSDictionary *query = @{(__bridge id)kSecClass: (__bridge id)kSecClassGenericPassword,

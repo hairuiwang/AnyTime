@@ -75,7 +75,7 @@
         make.height.mas_equalTo(44);
     }];
     
-    NSString * currentText = [AnyDevHelper loadFromUserDefaults:@"LOGIN_COUNT"];
+    NSString * currentText = [AnyDevHelper loadFromUserDefaults:LOGIN_COUNT];
     if (currentText.length > 0)
     {
         self.phoneTextField.textField.text = currentText;
@@ -213,11 +213,20 @@
 {
     [AnyTimeHUD showLoadingHUD];
     [AnyHttpTool loginWithBoy:self.phoneTextField.textField.text talk:self.codeTextField.textField.text events:@"sadadadsdasdd" success:^(id  _Nonnull responseObject) {
-      
+        NSLog(@"login === %@",responseObject);
+        NSDictionary * loginDic = RDic(responseObject);
+        NSString * ssidStr = loginDic[@"sure"];
+        if (ssidStr.length)
+        {
+            [AnyDevHelper saveToUserDefaults:SESSIONID value:ssidStr];
+        }
+        
         [AnyTimeHUD hideHUD];
         
-        [AnyDevHelper saveToUserDefaults:@"LOGIN_COUNT" value:self.phoneTextField.textField.text];
+        [AnyDevHelper saveToUserDefaults:LOGIN_COUNT value:self.phoneTextField.textField.text];
         
+        [AnyDevHelper saveBoolToUserDefaults:LOGIN_STATUS value:YES];
+
         UIWindow *window = [UIApplication sharedApplication].windows.firstObject;
         AnyTimeRootBarViewController * rootVC = [[AnyTimeRootBarViewController alloc] init];
         window.rootViewController = rootVC;

@@ -60,6 +60,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 保存到 UserDefaults
 + (void)saveToUserDefaults:(NSString *)key value:(id)value;
 
+/// 读取 BOOL UserDefaults
++ (BOOL)loadBoolFromUserDefaults:(NSString *)key;
+/// 保存BOOL 到 UserDefaults
++ (void)saveBoolToUserDefaults:(NSString *)key value:(BOOL)value;
+
 /// 读取 Keychain
 + (nullable NSString *)loadFromKeychain:(NSString *)key;
 
