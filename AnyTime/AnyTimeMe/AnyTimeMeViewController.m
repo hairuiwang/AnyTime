@@ -62,7 +62,11 @@
     }];
     
     UILabel * numLabel = [[UILabel alloc] init];
-    numLabel.text = @"123456789";
+    NSString * currentText = [AnyDevHelper loadFromUserDefaults:LOGIN_COUNT];
+    if (currentText.length > 0)
+    {
+        numLabel.text = currentText;
+    }
     numLabel.textAlignment = NSTextAlignmentCenter;
     numLabel.font = [UIFont boldSystemFontOfSize:18];
     numLabel.textColor = UIColor.whiteColor;
