@@ -12,7 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AnyVerifyIdentityInfoConfirmedPop : UIViewController
-
+@property (nonatomic, strong) NSDictionary *parameters;
 @end
 
 NS_ASSUME_NONNULL_END

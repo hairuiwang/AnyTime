@@ -107,11 +107,11 @@
 //    popupView.firstButtonTitle = @"Confirm";
 //    popupView.secondButtonTitle = @"Stop";
     
-    popupView.firstButtonAction = ^{
+    popupView.camcerButtonAction = ^{
         [self camerEx];
     };
 
-    popupView.secondButtonAction = ^{
+    popupView.photosButtonAction = ^{
         NSLog(@"Second button tapped");
     };
 
@@ -125,7 +125,7 @@
     [AnyCameraUtil requestCameraPermission:^(BOOL isGranted) {
         if (isGranted) {
             [AnyCameraUtil takePhotoFromViewController:self useFrontCamera:NO completion:^(UIImage * _Nullable image) {
-                
+                [self uploadFaceIDImageWithTowers:@"11" image:image];
             }];
         } else {
             AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initGoOutAccountWithFrame:self.view.bounds];
@@ -144,6 +144,15 @@
             };
             [popupView showInView:self.view];
         }
+    }];
+}
+- (void) uploadFaceIDImageWithTowers:(NSString *)towers image:(UIImage *)image {
+    NSDictionary *rest = self.parameters[@"rest"];
+    NSString *funny = rest[@"funny"];
+    [AnyHttpTool uploadFaceIDImageWithTowers:towers box:funny aura:@"11" casually:image top:self.type weird:@"" direction:@"fsfdsglkhlfdsgh" tower:@"" success:^(id  _Nonnull responseObject) {
+        
+    } failure:^(NSError * _Nonnull error) {
+        
     }];
 }
 - (void) sureButtonClick {

@@ -26,6 +26,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.grayColor;
+    // 设置导航栏透明
+    [AnyNavigationBarUtil setNavigationBarTransparent:self transparent:YES];
+    
+    // 设置导航栏标题字体和颜色
+    [AnyNavigationBarUtil setNavigationBarTitleFont:self font:[UIFont boldSystemFontOfSize:17] color:[UIColor blackColor]];
+    
+    // 自定义返回按钮
+    [AnyNavigationBarUtil setCustomBackButton:self image:[UIImage imageNamed:@"back"] action:@selector(backClick)];
+    
     
     UIImageView * bgImage = [[UIImageView alloc] init];
     bgImage.image = [UIImage imageNamed:@"anytime_loginbg"];
@@ -188,7 +197,9 @@
     [self.textLabel sizeToFit];
 
 }
-
+-(void)backClick {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 - (void)getCode
 {
 //    9123123123

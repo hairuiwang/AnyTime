@@ -131,10 +131,10 @@
 - (void)setDetailsDict:(NSDictionary *)detailsDict {
     _detailsDict = detailsDict;
     NSDictionary *rest = _detailsDict[@"rest"];
-    NSString *talking = _detailsDict[@"talking"] ?: @"";
-    NSString *kitten = _detailsDict[@"kitten"] ?: @"";
-    NSString *pretending = _detailsDict[@"pretending"] ?: @"";
-    NSString *sir = _detailsDict[@"sir"] ?: @"";
+    NSString *talking = rest[@"talking"] ?: @"";
+    NSString *kitten = rest[@"kitten"] ?: @"";
+    NSString *pretending = rest[@"pretending"] ?: @"";
+    NSString *sir =  [NSString stringWithFormat:@"%@", rest[@"sir"]];
     
     [self.leftButton setTitle:talking forState:(UIControlStateNormal)];
     [self.rightButton setTitle:kitten forState:(UIControlStateNormal)];

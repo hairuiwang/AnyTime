@@ -130,7 +130,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)uploadFaceIDImageWithTowers:(NSString *)towers
                                box:(NSString *)box
                              aura:(NSString *)aura
-                          casually:(NSData *)casually  // 图片数据
+                           casually:(UIImage *)casually  // 图片数据
                                top:(NSString *)top
                             weird:(NSString *)weird
                         direction:(NSString *)direction

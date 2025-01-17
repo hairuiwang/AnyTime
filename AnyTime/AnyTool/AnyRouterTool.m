@@ -46,22 +46,73 @@
     [self anyContactInforViewController];
     [self anyWithdrawalInfoViewController];
     [self anyVerifyIdentityInfoConfirmedPop];
+    [self anyoneAnytimef];
     [self halibutQuinc];
     [self sauceAnchovy];
     [self kiwiVanillaY];
+    [self tilapiaNutme];
 }
 
 + (void)applyForBox:(NSString *)box {
-    [AnyTimeHUD showLoadingHUD];
-    [AnyHttpTool fetchProductDetailWithBox:box magic:@"adejjmu890hnggj" following:@"kj840jjsuy" success:^(id  _Nonnull responseObject) {
-        [AnyTimeHUD hideHUD];
-        NSString *disgusting = responseObject[@"disgusting"];
-        [[AnyRouter sharedInstance] openURL:disgusting parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {
+    BOOL isLogin = [AnyDevHelper loadBoolFromUserDefaults:LOGIN_STATUS];
+    if (isLogin) {
+        [[AnyLocationManager sharedInstance] requestAuthorization:^(BOOL granted) {
+            if (granted) {
+                [AnyTimeHUD showLoadingHUD];
+                [AnyHttpTool fetchProductDetailWithBox:box magic:@"adejjmu890hnggj" following:@"kj840jjsuy" success:^(id  _Nonnull responseObject) {
+                    [AnyTimeHUD hideHUD];
+                    NSString *disgusting = responseObject[@"disgusting"];
+                    [[AnyRouter sharedInstance] openURL:disgusting parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {
+                        
+                        [[AnyRouter sharedInstance] openURL:@"/anyVerifyIdentityInfoConfirmedPop" parameters:result from:nil callback:^(NSDictionary * _Nullable result) {
+                            
+                        }];
+                    }];
+                } failure:^(NSError * _Nonnull error) {
+                    [AnyTimeHUD hideHUD];
+                    [AnyTimeHUD showTextWithText:error.localizedDescription];
+                }];
+            } else {
+                if ([AnyRouterTool sharedInstance].chin == 1) { //
+                    AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initGoOutAccountWithFrame:[[AnyRouter sharedInstance] getCurrentViewController].view.bounds];
+                    popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbg"];
+                    popupView.titleText = @"Location of position";
+                    popupView.descriptionText = @"Need location permission";
+                    popupView.firstButtonTitle = @"Confirm";
+                    popupView.secondButtonTitle = @"Cancel";
+                    
+                    popupView.firstButtonAction = ^{
+                        [self openAppSettings];
+                    };
+                    popupView.secondButtonAction = ^{
+                        NSLog(@"Second button tapped");
+                    };
+                    popupView.closeAction = ^{
+                        NSLog(@"Close button tapped");
+                    };
+                    [popupView showInView:[[AnyRouter sharedInstance] getCurrentViewController].view];
+                } else {
+                    [AnyTimeHUD showLoadingHUD];
+                    [AnyHttpTool fetchProductDetailWithBox:box magic:@"adejjmu890hnggj" following:@"kj840jjsuy" success:^(id  _Nonnull responseObject) {
+                        [AnyTimeHUD hideHUD];
+                        NSString *disgusting = responseObject[@"disgusting"];
+                        [[AnyRouter sharedInstance] openURL:disgusting parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {
+                            
+                            [[AnyRouter sharedInstance] openURL:@"/anyVerifyIdentityInfoConfirmedPop" parameters:result from:nil callback:^(NSDictionary * _Nullable result) {
+                                
+                            }];
+                        }];
+                    } failure:^(NSError * _Nonnull error) {
+                        [AnyTimeHUD hideHUD];
+                        [AnyTimeHUD showTextWithText:error.localizedDescription];
+                    }];
+                }
+            }
         }];
-    } failure:^(NSError * _Nonnull error) {
-        [AnyTimeHUD hideHUD];
-        [AnyTimeHUD showTextWithText:error.localizedDescription];
-    }];
+    } else {
+        [[AnyRouter sharedInstance] openURL:@"/login" parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {
+        }];
+    }
 }
 
 + (void)jumpCertificationDetails:(NSString *)box {
@@ -131,7 +182,7 @@
             [AnyTimeHUD hideHUD];
             NSDictionary *productDetail = responseObject;
             NSDictionary *rocks = productDetail[@"rocks"];
-            NSString *natural = rocks[@"rocks"];
+            NSString *natural = rocks[@"natural"];
             if (natural.length > 0) {
                 if ([natural isEqualToString:@"anytimef"]) { // 证件和人脸
                     [[AnyRouter sharedInstance] openURL:@"/anyoneAnytimef" parameters:productDetail from:nil callback:^(NSDictionary * _Nullable result) {}];
@@ -214,8 +265,10 @@
 /// 信息确认页面
 + (void)anyVerifyIdentityInfoConfirmedPop {
     [[AnyRouter sharedInstance] registerRoute:@"/anyVerifyIdentityInfoConfirmedPop" handler:^(NSDictionary * parameters, UIViewController * vc, RouterCallback callback) {
+        NSDictionary *par = parameters[@"parameters"];
         AnyVerifyIdentityInfoConfirmedPop *toVC = [[AnyVerifyIdentityInfoConfirmedPop alloc]init];
         toVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+        toVC.parameters = par;
         [vc presentViewController:toVC animated:YES completion:^{
         }];
     }];
@@ -275,25 +328,25 @@
 }
 
 + (void)halibutQuinc {
-    [[AnyRouter sharedInstance] registerRoute:@"any://one.ios.app/halibutQuinc" handler:^(NSDictionary * _Nullable parameters, UIViewController * _Nullable viewController, RouterCallback _Nullable callback) {
+    [[AnyRouter sharedInstance] registerRoute:@"/halibutQuinc" handler:^(NSDictionary * _Nullable parameters, UIViewController * _Nullable viewController, RouterCallback _Nullable callback) {
         AnyTimeMeSettingViewController *toVC = [[AnyTimeMeSettingViewController alloc]init];
         [viewController.navigationController pushViewController:toVC animated:true];
     }];
 }
 + (void)sauceAnchovy {
-    [[AnyRouter sharedInstance] registerRoute:@"any://one.ios.app/sauceAnchovy" handler:^(NSDictionary * _Nullable parameters, UIViewController * _Nullable viewController, RouterCallback _Nullable callback) {
+    [[AnyRouter sharedInstance] registerRoute:@"/sauceAnchovy" handler:^(NSDictionary * _Nullable parameters, UIViewController * _Nullable viewController, RouterCallback _Nullable callback) {
         AnyTimeRootBarViewController * rootVC = [[AnyTimeRootBarViewController alloc] init];
         [UIApplication sharedApplication].keyWindow.rootViewController = rootVC;
     }];
 }
 + (void) kiwiVanillaY {
-    [[AnyRouter sharedInstance] registerRoute:@"any://one.ios.app/kiwiVanillaY" handler:^(NSDictionary * _Nullable parameters, UIViewController * _Nullable viewController, RouterCallback _Nullable callback) {
+    [[AnyRouter sharedInstance] registerRoute:@"/kiwiVanillaY" handler:^(NSDictionary * _Nullable parameters, UIViewController * _Nullable viewController, RouterCallback _Nullable callback) {
         [[AnyRouter sharedInstance] openURL:@"/login" parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {
         }];
     }];
 }
 + (void)tilapiaNutme {
-    [[AnyRouter sharedInstance] registerRoute:@"any://one.ios.app/tilapiaNutme" handler:^(NSDictionary * _Nullable parameters, UIViewController * _Nullable viewController, RouterCallback _Nullable callback) {
+    [[AnyRouter sharedInstance] registerRoute:@"/tilapiaNutme" handler:^(NSDictionary * _Nullable parameters, UIViewController * _Nullable viewController, RouterCallback _Nullable callback) {
         NSString *box = parameters[@"box"];
         NSString *url = [NSString stringWithFormat:@"/certificationDetails?box=%@",box];
         [[AnyRouter sharedInstance] openURL:url parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {}];

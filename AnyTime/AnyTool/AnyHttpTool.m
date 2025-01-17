@@ -282,7 +282,7 @@
 + (void)uploadFaceIDImageWithTowers:(NSString *)towers
                                box:(NSString *)box
                              aura:(NSString *)aura
-                          casually:(NSData *)casually  // 图片数据
+                           casually:(UIImage *)casually  // 图片数据
                                top:(NSString *)top
                             weird:(NSString *)weird
                         direction:(NSString *)direction
@@ -297,8 +297,13 @@
         @"top": top ?: @"",
         @"weird": weird ?: @"",
         @"direction": direction ?: @"",
-        @"tower": tower ?: @"1"    // 默认 tower 为 1
+        @"tower": @"1"    // 默认 tower 为 1
     };
+    [[AnyNetRequest sharedManager] uploadImages:UploadFaceId parameters:parameters images:@[casually] name:@"casually" fileName:@"MKDFGH" success:^(id  _Nonnull responseObject) {
+        
+    } failure:^(NSError * _Nonnull error) {
+        
+    }];
     
     [[AnyNetRequest sharedManager] POST:UploadFaceId parameters:parameters success:^(id  _Nonnull responseObject) {
         if (success) {

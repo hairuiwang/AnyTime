@@ -47,7 +47,9 @@
 
     if (status == kCLAuthorizationStatusAuthorizedAlways || status == kCLAuthorizationStatusAuthorizedWhenInUse) {
         if (callback) callback(YES);
-    } else {
+    } else if (status == kCLAuthorizationStatusDenied) {
+        if (callback) callback(NO);
+    } else if (status == kCLAuthorizationStatusNotDetermined) {
         self.authCallback = callback;
         [_locationManager requestWhenInUseAuthorization];
     }
@@ -112,7 +114,7 @@
 
 #pragma mark - 监听授权状态变化
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-    if (self.authCallback) {
+    if (self.authCallback && status != kCLAuthorizationStatusNotDetermined) {
         if (status == kCLAuthorizationStatusAuthorizedWhenInUse || status == kCLAuthorizationStatusAuthorizedAlways) {
             self.authCallback(YES);
         } else {

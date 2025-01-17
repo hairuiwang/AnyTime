@@ -58,7 +58,7 @@
     self.iconImageView = [UIImageView new];
     [self addSubview:self.iconImageView];
     
-    self.iconImageView.backgroundColor = [UIColor redColor];
+    self.iconImageView.backgroundColor = [UIColor clearColor];
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(bgImageView.mas_right).offset(-17);
         make.top.mas_equalTo(bgImageView.mas_top).offset(53);

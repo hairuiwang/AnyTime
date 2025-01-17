@@ -35,6 +35,7 @@
     
     self.navigationItem.title = @"Product Detail";
     [self setupView];
+    [self getData];
 }
 - (void)setupView {
     self.bottomInforView = [[AnyBottomProductInfor alloc]initWithFrame:(CGRectZero)];

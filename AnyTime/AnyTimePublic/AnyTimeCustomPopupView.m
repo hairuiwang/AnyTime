@@ -427,7 +427,7 @@
 - (void)setupPhotoGraph
 {
     CGFloat padding = 20;
-    
+    self.backgroundColor = rgba(0, 0, 0, 0.7);
     self.backgroundImageView = [[UIImageView alloc] init];
     self.backgroundImageView.contentMode = UIViewContentModeScaleAspectFit;
     self.backgroundImageView.clipsToBounds = YES;
@@ -482,12 +482,25 @@
         make.width.equalTo(@100);
         make.height.equalTo(@58);
     }];
+    
+    self.closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.closeButton setImage:[UIImage imageNamed:@"anytime_alertcancel"] forState:UIControlStateNormal];
+    [self.closeButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    [self.closeButton addTarget:self action:@selector(closeButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:self.closeButton];
+    
+    [self.closeButton  mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self);
+        make.top.mas_equalTo(self.backgroundImageView.mas_bottom).offset(10);
+    }];
+    
 }
 
 - (void)cameraBtnClick
 {
     if (self.camcerButtonAction) {
         self.camcerButtonAction();
+        [self dismiss] ;
     }
 }
 
@@ -495,6 +508,7 @@
 {
     if (self.photosButtonAction) {
         self.photosButtonAction();
+        [self dismiss] ;
     }
 }
 
