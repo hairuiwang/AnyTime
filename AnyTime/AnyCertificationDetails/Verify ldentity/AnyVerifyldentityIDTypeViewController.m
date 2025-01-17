@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSMutableDictionary *openDict;
 @property (nonatomic, strong) NSMutableArray *selectArray;
 @property (nonatomic, strong) NSIndexPath *indexPath;
+@property (nonatomic, strong) NSArray *famous;
 @end
 
 @implementation AnyVerifyldentityIDTypeViewController
@@ -28,6 +29,7 @@
     [self.openDict setObject:@"0" forKey:@"3"];
     [self.openDict setObject:@"0" forKey:@"4"];
     self.navigationItem.title = @"Verify ldentity";
+    [self requestData];
 }
 
 - (void)setupUI {
@@ -80,9 +82,23 @@
         make.edges.mas_equalTo(self.tableView);
     }];
 }
+- (void) requestData {
+    NSDictionary *rest = self.parameters[@"rest"];
+    NSString *funny = rest[@"funny"];
+    [AnyTimeHUD showLoadingHUD];
+    [AnyHttpTool fetchUserIdentityWithBox:funny ten:@"879hk740sd40mgy" success:^(id  _Nonnull responseObject) {
+        [AnyTimeHUD hideHUD];
+        NSDictionary *shouldn = responseObject[@"shouldn"];
+        self.famous = responseObject[@"famous"] ?: @[];
+        [self.tableView reloadData];
+    } failure:^(NSError * _Nonnull error) {
+        [AnyTimeHUD hideHUD];
+        [AnyTimeHUD showTextWithText:error.localizedDescription];
+    }];
+}
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return self.famous.count;
 }
 // 返回行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -91,7 +107,15 @@
     if ([number isEqualToString:@"0"]) {
         return 0;
     } else {
-        return 5;
+        if ([self.famous isKindOfClass:[NSArray class]]) {
+            NSArray *array = self.famous[section];
+            if ([array isKindOfClass:[NSArray class]]) {
+                return array.count;
+            } else {
+                return 0;
+            }
+        }
+        return 0;
     }
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -137,6 +161,8 @@
 // 返回 Cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AnyVerifyldentityIDTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AnyVerifyldentityIDTypeCell" forIndexPath:indexPath];
+    NSArray *array = self.famous[indexPath.section];
+    cell.titleLabel.text = array[indexPath.row];
     if (self.indexPath == indexPath) {
         cell.isChose = true;
     } else {
@@ -172,7 +198,10 @@
         NSLog(@"请选择");
         return;
     }
-    [[AnyRouter sharedInstance] openURL:@"/anyVerifyldentity02ViewController?type=3333" parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {
+    NSArray *array = self.famous[self.indexPath.section];
+    NSString *type = array[self.indexPath.row];
+    NSString *url = [NSString stringWithFormat:@"/anyVerifyldentity02ViewController?type=%@", type];
+    [[AnyRouter sharedInstance] openURL:url parameters:self.parameters from:nil callback:^(NSDictionary * _Nullable result) {
 
     }];
 }

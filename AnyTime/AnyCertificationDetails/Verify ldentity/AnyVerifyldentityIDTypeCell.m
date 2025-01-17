@@ -11,7 +11,6 @@
 
 @interface AnyVerifyldentityIDTypeCell ()
 @property (nonatomic, strong) UIView *bgView;
-@property (nonatomic, strong) UILabel *titleLabel;
 @end
 
 @implementation AnyVerifyldentityIDTypeCell

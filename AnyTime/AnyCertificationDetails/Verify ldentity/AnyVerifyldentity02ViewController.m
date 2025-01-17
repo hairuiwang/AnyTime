@@ -6,10 +6,10 @@
 //  AnyTime.
 //  
     
-
+#import "AnyCameraUtil.h"
 #import "AnyVerifyldentity02ViewController.h"
 #import "AnyVerifyldentity02Cell.h"
-
+#import "AnyTimeCustomPopupView.h"
 @interface AnyVerifyldentity02ViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -101,9 +101,51 @@
 
 // 选中 Cell
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initPhotoGraphWithFrame:self.view.bounds];
+    popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbigbg"];
+    popupView.titleText = @"Please select";
+//    popupView.firstButtonTitle = @"Confirm";
+//    popupView.secondButtonTitle = @"Stop";
     
-}
+    popupView.firstButtonAction = ^{
+        [self camerEx];
+    };
 
+    popupView.secondButtonAction = ^{
+        NSLog(@"Second button tapped");
+    };
+
+    popupView.closeAction = ^{
+        NSLog(@"Close button tapped");
+    };
+
+    [popupView showInView:self.view];
+}
+- (void)camerEx {
+    [AnyCameraUtil requestCameraPermission:^(BOOL isGranted) {
+        if (isGranted) {
+            [AnyCameraUtil takePhotoFromViewController:self useFrontCamera:NO completion:^(UIImage * _Nullable image) {
+                
+            }];
+        } else {
+            AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initGoOutAccountWithFrame:self.view.bounds];
+            popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbg"];
+            popupView.titleText = @"Camera permissions";
+            popupView.descriptionText = @"Requires camera rights";
+            popupView.firstButtonTitle = @"Confirm";
+            popupView.secondButtonTitle = @"Cancel";
+            
+            popupView.firstButtonAction = ^{
+                [AnyRouterTool  openAppSettings];
+            };
+            popupView.secondButtonAction = ^{
+            };
+            popupView.closeAction = ^{
+            };
+            [popupView showInView:self.view];
+        }
+    }];
+}
 - (void) sureButtonClick {
     [[AnyRouter sharedInstance] openURL:@"/anyVerifyldentity03ViewController?type=3333" parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {
 

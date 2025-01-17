@@ -41,13 +41,13 @@
     NSString *sessionId = [AnyDevHelper loadFromUserDefaults:SESSIONID] ?: @"";
     return @{
         @"gaze":@"ios",
-        @"innocent": sessionId,
+        @"innocent":  [AnyDevHelper IDFV],
         @"avoided": [AnyDevHelper appVersion],
         @"last": [AnyDevHelper deviceModel],
         @"meeting": [AnyDevHelper IDFV],
         @"fated": [AnyDevHelper iOSVersion],
         @"their": @"apples",
-        @"sure": [AnyDevHelper IDFV],
+        @"sure": sessionId,
         @"boyfine":@"xxxxsssxxws123"
     };
 }
@@ -93,6 +93,7 @@
             if (success) success(data);
         }
     } else if (statusCode == -2) {
+        
         [[AnyRouter sharedInstance] openURL:@"/login" parameters:nil  from:nil callback:^(NSDictionary * _Nullable result) {
         }];
     } else {

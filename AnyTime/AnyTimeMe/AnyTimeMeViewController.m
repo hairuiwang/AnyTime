@@ -197,7 +197,7 @@
     if ([self.data[indexPath.row] isEqualToString:@"Settings"])
     {
         AnyTimeMeSettingViewController * setVC = [[AnyTimeMeSettingViewController alloc] init];
-        setVC.hidesBottomBarWhenPushed = YES;
+//        setVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:setVC animated:YES];
     }
 }

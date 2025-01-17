@@ -80,6 +80,8 @@
 		657544F32D38EB8200A63988 /* AnySelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544F22D38EB8200A63988 /* AnySelectCell.m */; };
 		657544F62D38F28600A63988 /* AnySelectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544F52D38F28600A63988 /* AnySelectModel.m */; };
 		657544F92D390A2000A63988 /* AnyLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544F82D390A2000A63988 /* AnyLocationManager.m */; };
+		657544FE2D3A131200A63988 /* AnyBeCommonWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544FD2D3A131200A63988 /* AnyBeCommonWebViewController.m */; };
+		657545012D3A607900A63988 /* AnyCameraUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 657545002D3A607900A63988 /* AnyCameraUtil.m */; };
 		826F54C2EA19383470FFFE00 /* Pods_AnyTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5144912D00E9046812AF323D /* Pods_AnyTime.framework */; };
 		8AADE94F471CDE3BFBDA66D7 /* Pods_AnyTimeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4B7405F01A2FAB655AFF70 /* Pods_AnyTimeTests.framework */; };
 		F693A9FC492260D76D367A52 /* Pods_AnyTime_AnyTimeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D88D01DB36709394BB553A /* Pods_AnyTime_AnyTimeUITests.framework */; };
@@ -251,6 +253,10 @@
 		657544F52D38F28600A63988 /* AnySelectModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnySelectModel.m; sourceTree = "<group>"; };
 		657544F72D390A2000A63988 /* AnyLocationManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyLocationManager.h; sourceTree = "<group>"; };
 		657544F82D390A2000A63988 /* AnyLocationManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyLocationManager.m; sourceTree = "<group>"; };
+		657544FC2D3A131200A63988 /* AnyBeCommonWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyBeCommonWebViewController.h; sourceTree = "<group>"; };
+		657544FD2D3A131200A63988 /* AnyBeCommonWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyBeCommonWebViewController.m; sourceTree = "<group>"; };
+		657544FF2D3A607900A63988 /* AnyCameraUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyCameraUtil.h; sourceTree = "<group>"; };
+		657545002D3A607900A63988 /* AnyCameraUtil.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyCameraUtil.m; sourceTree = "<group>"; };
 		8B64C75E68F112EDC47D02D0 /* Pods-AnyTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime.release.xcconfig"; path = "Target Support Files/Pods-AnyTime/Pods-AnyTime.release.xcconfig"; sourceTree = "<group>"; };
 		C87E2FEB068C01887AD0C655 /* Pods-AnyTime-AnyTimeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime-AnyTimeUITests.release.xcconfig"; path = "Target Support Files/Pods-AnyTime-AnyTimeUITests/Pods-AnyTime-AnyTimeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CE4B7405F01A2FAB655AFF70 /* Pods_AnyTimeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnyTimeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -530,6 +536,10 @@
 				657544EE2D38D99B00A63988 /* AnySelectPop.m */,
 				657544F72D390A2000A63988 /* AnyLocationManager.h */,
 				657544F82D390A2000A63988 /* AnyLocationManager.m */,
+				657544FC2D3A131200A63988 /* AnyBeCommonWebViewController.h */,
+				657544FD2D3A131200A63988 /* AnyBeCommonWebViewController.m */,
+				657544FF2D3A607900A63988 /* AnyCameraUtil.h */,
+				657545002D3A607900A63988 /* AnyCameraUtil.m */,
 			);
 			path = AnyTool;
 			sourceTree = "<group>";
@@ -902,6 +912,7 @@
 				657544712D36AB7100A63988 /* AnyVerifyldentityBaseViewController.m in Sources */,
 				6575446D2D369B5C00A63988 /* AnyCertificationDetailsCell.m in Sources */,
 				046B6DA92D337BAB00EE9EF7 /* AnyTimeGuidePageViewController.m in Sources */,
+				657545012D3A607900A63988 /* AnyCameraUtil.m in Sources */,
 				657544112D35063F00A63988 /* AnyRouterTool.m in Sources */,
 				046B6D992D335F0600EE9EF7 /* AnyTimeRootBarViewController.m in Sources */,
 				046B6DD42D34B75100EE9EF7 /* AnyTimeSmallCardSlotFirstCell.m in Sources */,
@@ -947,6 +958,7 @@
 				046B6DF02D3691A700EE9EF7 /* AnyTimeMeSettingTableViewCell.m in Sources */,
 				657544952D37B93600A63988 /* AnyCertificationInfoCell.m in Sources */,
 				04E89A642D38F2FB008EA16E /* AnyTimeHomeModel.m in Sources */,
+				657544FE2D3A131200A63988 /* AnyBeCommonWebViewController.m in Sources */,
 				046B6DAF2D3393E900EE9EF7 /* AnyTimeLoginViewController.m in Sources */,
 				657544902D37B0F200A63988 /* AnyVerifyldentitySuccessfull01Cell.m in Sources */,
 				046B6D742D30F74500EE9EF7 /* main.m in Sources */,
@@ -1150,6 +1162,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnyTime/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "AnyTime Loan";
+				INFOPLIST_KEY_NSCameraUsageDescription = "App需要相机权限";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App需要定位权限";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1186,6 +1200,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AnyTime/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "AnyTime Loan";
+				INFOPLIST_KEY_NSCameraUsageDescription = "App需要相机权限";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App需要定位权限";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

@@ -118,6 +118,7 @@
     [self.goApplyButton setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
     self.goApplyButton.layer.cornerRadius = 20;
     self.goApplyButton.layer.masksToBounds = YES;
+    [self.goApplyButton addTarget:self action:@selector(goApplyTouch) forControlEvents:(UIControlEventTouchUpInside)];
     [self addSubview:self.goApplyButton];
     [self addSubview:self.goApplyButton];
     [self.goApplyButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -126,5 +127,32 @@
         make.width.mas_equalTo(181);
         make.height.mas_equalTo(40);
     }];
+}
+- (void)setDetailsDict:(NSDictionary *)detailsDict {
+    _detailsDict = detailsDict;
+    NSDictionary *rest = _detailsDict[@"rest"];
+    NSString *talking = _detailsDict[@"talking"] ?: @"";
+    NSString *kitten = _detailsDict[@"kitten"] ?: @"";
+    NSString *pretending = _detailsDict[@"pretending"] ?: @"";
+    NSString *sir = _detailsDict[@"sir"] ?: @"";
+    
+    [self.leftButton setTitle:talking forState:(UIControlStateNormal)];
+    [self.rightButton setTitle:kitten forState:(UIControlStateNormal)];
+    self.priceNameLabel.text = pretending;
+    
+    self.priceLabel.text = sir;
+    // 创建描边属性
+    NSDictionary *attributes = @{
+        NSStrokeColorAttributeName : [UIColor whiteColor],  // 描边颜色（白色）
+        NSForegroundColorAttributeName : [UIColor blackColor],  // 文字颜色（黑色）
+        NSStrokeWidthAttributeName : @(-7)  // 描边宽度（负数表示填充文字）
+    };
+    // 设置富文本
+    self.priceLabel.attributedText = [[NSAttributedString alloc] initWithString:self.priceLabel.text attributes:attributes];
+}
+- (void)goApplyTouch {
+    NSDictionary *rest = _detailsDict[@"rest"];
+    NSString *box = rest[@"funny"];
+    [AnyRouterTool jumpCertificationDetails:box];
 }
 @end

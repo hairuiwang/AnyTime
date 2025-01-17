@@ -1,5 +1,5 @@
 //
-//  AnyBottomProductInfor.h
+//  AnyBeCommonWebViewController.h
 //  AnyTime
 //  
 //  Created by wealon on 2025.
@@ -11,8 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AnyBottomProductInfor : UIView
-@property (nonatomic, strong) NSDictionary *detailsDict;
+@interface AnyBeCommonWebViewController : UIViewController
+@property (nonatomic, strong) NSString *urlString;
+
 @end
 
 NS_ASSUME_NONNULL_END

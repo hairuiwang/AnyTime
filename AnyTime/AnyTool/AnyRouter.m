@@ -80,17 +80,9 @@
     } else {
         if ([url hasPrefix:@"http"]) {
             // WebView 跳转处理
-            UIViewController *webVC = [[UIViewController alloc] init];
-            UIWebView *webView = [[UIWebView alloc] initWithFrame:webVC.view.bounds];
-            [webVC.view addSubview:webView];
-            [webView loadRequest:[NSURLRequest requestWithURL:parsedURL]];
-
-            if (sourceVC.navigationController) {
-                [sourceVC.navigationController pushViewController:webVC animated:YES];
-            } else {
-                [sourceVC presentViewController:webVC animated:YES completion:nil];
-            }
-
+            AnyBeCommonWebViewController *webVC = [[AnyBeCommonWebViewController alloc]init];
+            webVC.urlString = url;
+            [sourceVC.navigationController pushViewController:webVC animated:YES];
             // 执行回调并传递 `from`
             if (callback) {
                 callback(@{@"status": @"success", @"from": sourceVC});
