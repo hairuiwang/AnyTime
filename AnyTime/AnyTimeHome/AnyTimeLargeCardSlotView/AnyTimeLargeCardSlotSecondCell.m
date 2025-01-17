@@ -45,22 +45,39 @@
     [super layoutSubviews];
     
     [self.scrollView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    for (int i = 0; i < self.bannerArr.count; i++)
+    {
+        AnyTimeForestMurderousModel * murModel = self.bannerArr[i];
+        NSLog(@"murModel === %@",murModel.disgusting);
+
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * 360, 0, 360, 114)];
+//        [imageView sd_setImageWithURL:[NSURL URLWithString:murModel.violent]];
+        imageView.contentMode = UIViewContentModeScaleToFill;
+        imageView.userInteractionEnabled = YES;
+        imageView.backgroundColor = UIColor.redColor;
+        [self.scrollView addSubview:imageView];
+        
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
+        tapGesture.numberOfTapsRequired = 1;
+        imageView.tag = 2000 + i;
+        [imageView addGestureRecognizer:tapGesture];
+    }
 }
+
 
 
 - (void)imageTapped:(UITapGestureRecognizer *)gesture {
     
-    NSInteger index = gesture.view.tag;
+    NSInteger index = gesture.view.tag - 2000;
     
     NSLog(@"Clicked image at index: %ld", (long)index);
     
-    
-    if (index == 0) {
-        
-        NSLog(@"Go to detail for banner 1");
-    } else if (index == 1) {
-        
-        NSLog(@"Go to detail for banner 2");
+    AnyTimeForestMurderousModel * murModel = self.bannerArr[index];
+       
+    NSLog(@"murModel: %@", murModel.disgusting);
+    if (self.largeCardSlotBannerSelect) {
+        self.largeCardSlotBannerSelect(murModel.disgusting);
     }
 }
 
@@ -68,15 +85,18 @@
 
 - (void)autoScroll
 {
-    CGFloat currentOffset = self.scrollView.contentOffset.x;
-    
-    CGFloat nextOffset = currentOffset + 360;
-    if (nextOffset >= self.scrollView.contentSize.width)
+    if (self.bannerArr.count >= 2)
     {
-        nextOffset = 0;
+        CGFloat currentOffset = self.scrollView.contentOffset.x;
+        
+        CGFloat nextOffset = currentOffset + 360;
+        if (nextOffset >= self.scrollView.contentSize.width)
+        {
+            nextOffset = 0;
+        }
+        
+        [self.scrollView setContentOffset:CGPointMake(nextOffset, 0) animated:YES];
     }
-    
-    [self.scrollView setContentOffset:CGPointMake(nextOffset, 0) animated:YES];
 }
 
 
@@ -93,23 +113,7 @@
 - (void)setBannerArray:(NSArray *)bannerArray
 {
     NSArray * mModelArray = [AnyTimeForestMurderousModel mj_objectArrayWithKeyValuesArray:bannerArray];
-    NSLog(@"mModel === %@",mModelArray);
-    
-    for (int i = 0; i < mModelArray.count; i++)
-    {
-        AnyTimeForestMurderousModel * murModel = mModelArray[i];
-        
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * 360, 0, 360, 114)];
-        [imageView sd_setImageWithURL:[NSURL URLWithString:murModel.violent]];
-        imageView.contentMode = UIViewContentModeScaleToFill;
-        imageView.userInteractionEnabled = YES;
-        [self.scrollView addSubview:imageView];
-        
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
-        tapGesture.numberOfTapsRequired = 1;
-        imageView.tag = 2000 + i;
-        [imageView addGestureRecognizer:tapGesture];
-    }
+    self.bannerArr = mModelArray;
 }
 
 @end

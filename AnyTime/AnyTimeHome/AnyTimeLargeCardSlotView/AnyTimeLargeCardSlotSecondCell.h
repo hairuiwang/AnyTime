@@ -9,9 +9,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^LargeCardSlotBannerSelect)(NSString *disgusting);
+
 @interface AnyTimeLargeCardSlotSecondCell : UICollectionViewCell
 
 @property (nonatomic,strong) NSArray * bannerArray;
+
+@property (nonatomic, copy) LargeCardSlotBannerSelect largeCardSlotBannerSelect;
 
 @end
 
