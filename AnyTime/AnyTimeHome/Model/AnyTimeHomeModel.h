@@ -35,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *blood;
 @property (nonatomic, strong) NSString *disgust;
 @property (nonatomic, strong) NSString *figured;
-@property (nonatomic, assign) NSInteger funny;
+@property (nonatomic, assign) NSString * funny;
 @property (nonatomic, strong) NSString *killed;
 @property (nonatomic, strong) NSString *loanRateImg;
 @property (nonatomic, strong) NSString *loanRateUnit;

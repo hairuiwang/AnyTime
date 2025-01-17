@@ -169,7 +169,11 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger itemIndex = indexPath.item;
-    
+    if (itemIndex == 0)
+    {
+        AnyTimeActMurderousModel * murderousModel = [AnyTimeActMurderousModel mj_objectWithKeyValues:self.largeCardData[0]];
+        [AnyRouterTool applyForBox:murderousModel.funny];
+    }
     NSLog(@"Clicked item at index: %ld", (long)itemIndex);
 //    [[AnyRouter sharedInstance] openURL:@"/certificationDetails" parameters:nil from:nil callback:^(NSDictionary * _Nullable result) {
 //
@@ -179,18 +183,18 @@
 //    toVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
 //    [[[AnyRouter sharedInstance] getCurrentViewController] presentViewController:toVC animated:YES completion:^{
 //    }];
-    AnySelectPop *pop = [[AnySelectPop alloc]init];
-    pop.modalPresentationStyle = UIModalPresentationOverFullScreen;
-    AnySelectModel *model = [[AnySelectModel alloc] init];
-    model.title = @"11111";
-    AnySelectModel *model2 = [[AnySelectModel alloc] init];
-    model2.title = @"2222";
-    pop.dataSourceArray = @[
-        model,
-        model2
-    ];
-    [[[AnyRouter sharedInstance] getCurrentViewController] presentViewController:pop animated:YES completion:^{
-    }];
+//    AnySelectPop *pop = [[AnySelectPop alloc]init];
+//    pop.modalPresentationStyle = UIModalPresentationOverFullScreen;
+//    AnySelectModel *model = [[AnySelectModel alloc] init];
+//    model.title = @"11111";
+//    AnySelectModel *model2 = [[AnySelectModel alloc] init];
+//    model2.title = @"2222";
+//    pop.dataSourceArray = @[
+//        model,
+//        model2
+//    ];
+//    [[[AnyRouter sharedInstance] getCurrentViewController] presentViewController:pop animated:YES completion:^{
+//    }];
 }
 
 
