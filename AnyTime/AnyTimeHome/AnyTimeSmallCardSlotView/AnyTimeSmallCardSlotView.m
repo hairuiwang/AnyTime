@@ -140,7 +140,7 @@
     {
         AnyTimeKeepMurderousModel * murderousModel = [AnyTimeKeepMurderousModel mj_objectWithKeyValues:self.smallCardKeepData[indexPath.row]];
         NSLog(@"funny === %@",murderousModel.funny);
-
+        [AnyRouterTool applyForBox:murderousModel.funny];
     }
     
     NSLog(@"Clicked item at index: %ld", (long)itemIndex);
