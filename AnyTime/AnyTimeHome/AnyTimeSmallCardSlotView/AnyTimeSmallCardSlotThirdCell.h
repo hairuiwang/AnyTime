@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AnyTimeSmallCardSlotThirdCell : UICollectionViewCell
 
+@property (nonatomic,strong) AnyTimeKeepMurderousModel * murderousModel;
+
 @end
 
 NS_ASSUME_NONNULL_END

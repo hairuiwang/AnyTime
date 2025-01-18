@@ -146,6 +146,9 @@
                 
                 AnyTimeLargeCardSlotSecondCell * secondCell = (AnyTimeLargeCardSlotSecondCell *)cell;
                 secondCell.bannerArray = self.largeCardBannerData;
+                secondCell.largeCardSlotBannerSelect = ^(NSString * _Nonnull disgusting) {
+                    //点击Banner跳转
+                };
             }
                 break;
             case 2: {
@@ -169,7 +172,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger itemIndex = indexPath.item;
-    if (itemIndex == 0)
+    if (indexPath.section == 0)
     {
         AnyTimeActMurderousModel * murderousModel = [AnyTimeActMurderousModel mj_objectWithKeyValues:self.largeCardData[0]];
         [AnyRouterTool applyForBox:murderousModel.funny];

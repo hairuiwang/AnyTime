@@ -35,3 +35,11 @@
 
 @end
 
+@implementation AnyTimeKeepModel
+
+@end
+
+@implementation AnyTimeKeepMurderousModel
+
+
+@end
