@@ -9,7 +9,7 @@
 #import "AnyTimeRootBarViewController.h"
 #import "AnyTimeGuidePageViewController.h"
 #import "AnyTimeLoginViewController.h"
-
+#import <IQKeyboardManager/IQKeyboardManager.h>
 @interface AppDelegate ()
 
 @end
@@ -44,6 +44,9 @@
     }
    
     [self.window makeKeyAndVisible];
+    
+    [IQKeyboardManager sharedManager].enable = YES;
+    [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     return YES;
 }
 

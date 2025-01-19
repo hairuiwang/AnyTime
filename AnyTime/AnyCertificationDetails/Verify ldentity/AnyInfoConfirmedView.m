@@ -65,7 +65,9 @@
     }];
 }
 - (void) buttonClick {
-    
+    if (self.dateHandler) {
+        self.dateHandler();
+    }
 }
 - (void)setIsClick:(BOOL)isClick {
     _isClick = isClick;

@@ -61,7 +61,7 @@
 #pragma mark - 选择照片
 + (void)selectPhotoFromViewController:(UIViewController *)viewController completion:(CameraImageBlock)completion {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = (id<UINavigationControllerDelegate, UIImagePickerControllerDelegate>)self;
+    picker.delegate = [AnyCameraUtil sharedInstance];
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     picker.allowsEditing = NO;
     
@@ -75,19 +75,23 @@
     UIImage *originalImage = info[UIImagePickerControllerEditedImage] ?: info[UIImagePickerControllerOriginalImage];
     
     if (originalImage) {
-        [AnyTimeHUD showLoadingHUD];
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            NSData *compressedData = [self compressImage:originalImage toMaxSize:500 * 1024]; // 500KB
-            UIImage *compressedImage = [UIImage imageWithData:compressedData];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [AnyTimeHUD hideHUD];
-                if (self.imageCompletion) {
-                    self.imageCompletion(compressedImage);
-                }
-                self.imageCompletion = nil;
-            });
-        });
+        if (self.imageCompletion) {
+            self.imageCompletion(originalImage);
+        }
+        self.imageCompletion = nil;
+//        [AnyTimeHUD showLoadingHUD];
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//            NSData *compressedData = [self compressImage:originalImage toMaxSize:500 * 1024]; // 500KB
+//            UIImage *compressedImage = [UIImage imageWithData:compressedData];
+//            
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [AnyTimeHUD hideHUD];
+//                if (self.imageCompletion) {
+//                    self.imageCompletion(compressedImage);
+//                }
+//                self.imageCompletion = nil;
+//            });
+//        });
     } else {
         if (self.imageCompletion) {
             self.imageCompletion(nil);

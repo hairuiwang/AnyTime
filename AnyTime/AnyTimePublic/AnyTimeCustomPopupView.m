@@ -339,6 +339,16 @@
         make.right.equalTo(self.backgroundImageView.mas_right).offset(-padding);
         make.bottom.equalTo(self.backgroundImageView.mas_bottom).offset(-padding);
     }];
+    
+    UIButton *confirmButton = [AnyUIFactory buttonWithTitle:@"Confirm" textColor:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:18] backgroundColor:[UIColor blackColor] cornerRadius:22 target:self action:@selector(dateConfirmButtonClick)];
+    [self addSubview:confirmButton];
+    
+    [confirmButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.mas_left).offset(50);
+        make.right.mas_equalTo(self.mas_right).offset(-50);
+        make.top.mas_equalTo(self.backgroundImageView.mas_bottom).offset(13);
+        make.height.mas_equalTo(44);
+    }];
  
 }
 
@@ -400,7 +410,20 @@
         return self.years.count;
     }
 }
+- (void) dateConfirmButtonClick {
+    if (self.dateSelectAction) {
+        NSInteger selectedRow1 = [self.datePicker selectedRowInComponent:0];
+        NSInteger selectedRow2 = [self.datePicker selectedRowInComponent:1];
+        NSInteger selectedRow3 = [self.datePicker selectedRowInComponent:2];
 
+        NSString *value1 = self.days[selectedRow1];
+        NSString *value2 = self.months[selectedRow2];
+        NSString *value3 = self.years[selectedRow3];
+        self.dateSelectAction([NSString stringWithFormat:@"%@-%@-%@",value1, value2, value3]);
+        
+        [self dismiss];
+    }
+}
 #pragma mark - UIPickerViewDelegate
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     if (component == 0) {
@@ -498,18 +521,21 @@
 
 - (void)cameraBtnClick
 {
+    [self dismiss] ;
     if (self.camcerButtonAction) {
         self.camcerButtonAction();
-        [self dismiss] ;
+       
     }
 }
 
 - (void)photosBtnClick
 {
-    if (self.photosButtonAction) {
-        self.photosButtonAction();
-        [self dismiss] ;
-    }
+    [self dismisscompletion:^{
+        if (self.photosButtonAction) {
+            self.photosButtonAction();
+        }
+    }];
+    
 }
 
 -(void)layoutSubviews
@@ -563,6 +589,14 @@
         self.alpha = 0;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
+    }];
+}
+-(void)dismisscompletion:(void (^ __nullable)(void))completion {
+    [UIView animateWithDuration:0.3 animations:^{
+        self.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+        completion();
     }];
 }
 

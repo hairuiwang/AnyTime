@@ -63,10 +63,6 @@
                     [AnyTimeHUD hideHUD];
                     NSString *disgusting = responseObject[@"disgusting"];
                     [[AnyRouter sharedInstance] openURL:disgusting parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {
-                        
-                        [[AnyRouter sharedInstance] openURL:@"/anyVerifyIdentityInfoConfirmedPop" parameters:result from:nil callback:^(NSDictionary * _Nullable result) {
-                            
-                        }];
                     }];
                 } failure:^(NSError * _Nonnull error) {
                     [AnyTimeHUD hideHUD];
@@ -97,10 +93,6 @@
                         [AnyTimeHUD hideHUD];
                         NSString *disgusting = responseObject[@"disgusting"];
                         [[AnyRouter sharedInstance] openURL:disgusting parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {
-                            
-                            [[AnyRouter sharedInstance] openURL:@"/anyVerifyIdentityInfoConfirmedPop" parameters:result from:nil callback:^(NSDictionary * _Nullable result) {
-                                
-                            }];
                         }];
                     } failure:^(NSError * _Nonnull error) {
                         [AnyTimeHUD hideHUD];
@@ -221,7 +213,7 @@
                     [[AnyRouter sharedInstance] openURL:@"/anyVerifyldentitySuccessfulViewController" parameters:detailParameters from:nil callback:^(NSDictionary * _Nullable result) { }];
                 } else {
                     /// 跳转到证件
-                    [[AnyRouter sharedInstance] openURL:@"/anyVerifyldentityIDTypeViewController" parameters:detailParameters from:nil callback:^(NSDictionary * _Nullable result) { }];
+                    [[AnyRouter sharedInstance] openURL:@"/anyVerifyldentity03ViewController" parameters:detailParameters from:nil callback:^(NSDictionary * _Nullable result) { }];
                 }
             } else {
                 /// 跳转到证件
@@ -266,10 +258,14 @@
 + (void)anyVerifyIdentityInfoConfirmedPop {
     [[AnyRouter sharedInstance] registerRoute:@"/anyVerifyIdentityInfoConfirmedPop" handler:^(NSDictionary * parameters, UIViewController * vc, RouterCallback callback) {
         NSDictionary *par = parameters[@"parameters"];
+        NSString *type = parameters[@"type"];
         AnyVerifyIdentityInfoConfirmedPop *toVC = [[AnyVerifyIdentityInfoConfirmedPop alloc]init];
         toVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
-        toVC.parameters = par;
+        toVC.parameters = par[@"parameters"];
+        toVC.detailParameters = par[@"detailParameters"];
+        toVC.type = type;
         [vc presentViewController:toVC animated:YES completion:^{
+            
         }];
     }];
 }

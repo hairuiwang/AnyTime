@@ -6,7 +6,7 @@
 //  AnyTime.
 //  
     
-
+#import "AnyTimeCustomPopupView.h"
 #import "AnyVerifyIdentityInfoConfirmedPop.h"
 #import "AnyInfoConfirmedView.h"
 @interface AnyVerifyIdentityInfoConfirmedPop ()
@@ -76,6 +76,10 @@
         make.right.mas_equalTo(_bgImageView.mas_right).offset(-19);
         make.top.mas_equalTo(self.IDNO.mas_bottom);
     }];
+    __weak typeof(self) weakSelf = self;
+    self.dateBirth.dateHandler = ^{
+        [weakSelf dateSelect];
+    };
     
     UIButton *confirmButton = [AnyUIFactory buttonWithTitle:@"Confirm" textColor:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:18] backgroundColor:[UIColor blackColor] cornerRadius:22 target:self action:@selector(confirmButtonClick)];
     [self.view addSubview:confirmButton];
@@ -96,11 +100,62 @@
         make.centerX.mas_equalTo(self.view.mas_centerX);
         make.top.mas_equalTo(confirmButton.mas_bottom).offset(15);
     }];
+    [self dataconfigured];
+}
+- (void) dataconfigured {
+    if (self.parameters != nil) {
+        NSString *groove = self.parameters[@"groove"];
+        NSString *people = self.parameters[@"people"];
+        NSString *ruins = self.parameters[@"ruins"];
+        
+        self.fullName.textField.text = groove;
+        self.IDNO.textField.text = people;
+        self.dateBirth.textField.text = ruins;
+    }
 }
 
+- (void)dateSelect {
+    AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initDateSelectionWithFrame:self.view.bounds];
+    popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbigbg"];
+    popupView.titleText = @"Date select";
+    popupView.dateSelectAction = ^(NSString * _Nonnull date) {
+        NSLog(@"date = %@",date);
+        self.dateBirth.textField.text = date;
+    };
+
+    popupView.closeAction = ^{
+        NSLog(@"Close button tapped");
+    };
+
+    [popupView showInView:self.view];
+}
 
 - (void) confirmButtonClick {
-    [self dismissViewControllerAnimated:YES completion:^{
+    if (self.dateBirth.textField.text.length == 0) {
+        [AnyTimeHUD showTextWithText:@"Please select your date of birth"];
+        return;
+    }
+    if (self.fullName.textField.text.length == 0) {
+        [AnyTimeHUD showTextWithText:@"Please enter your full name"];
+        return;
+    }
+    if (self.IDNO.textField.text.length == 0) {
+        [AnyTimeHUD showTextWithText:@"Please enter your ID number"];
+        return;
+    }
+    [AnyTimeHUD showLoadingHUD];
+    [AnyHttpTool saveUserIdentityWithRuins:self.dateBirth.textField.text people:self.IDNO.textField.text groove:self.dateBirth.textField.text aura:@"11" top:self.type flinched:@"cxczlkjsaldjalskdjlad" success:^(id  _Nonnull responseObject) {
+        [AnyTimeHUD hideHUD];
+        [self dismissViewControllerAnimated:YES completion:^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [[AnyRouter sharedInstance] openURL:@"/next" parameters:self.detailParameters from:nil callback:^(NSDictionary * _Nullable result) {
+                }];
+            });
+            
+        }];
+    } failure:^(NSError * _Nonnull error) {
+        [AnyTimeHUD hideHUD];
+        [AnyTimeHUD showTextWithText:error.localizedDescription];
     }];
 }
 - (void) closeTouchClick {

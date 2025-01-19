@@ -101,32 +101,12 @@
 
 // 选中 Cell
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initPhotoGraphWithFrame:self.view.bounds];
-    popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbigbg"];
-    popupView.titleText = @"Please select";
-//    popupView.firstButtonTitle = @"Confirm";
-//    popupView.secondButtonTitle = @"Stop";
-    
-    popupView.camcerButtonAction = ^{
-        [self camerEx];
-    };
-
-    popupView.photosButtonAction = ^{
-        NSLog(@"Second button tapped");
-    };
-
-    popupView.closeAction = ^{
-        NSLog(@"Close button tapped");
-    };
-
-    [popupView showInView:self.view];
+    [self clickImage];
 }
-- (void)camerEx {
+- (void)clickImage {
     [AnyCameraUtil requestCameraPermission:^(BOOL isGranted) {
         if (isGranted) {
-            [AnyCameraUtil takePhotoFromViewController:self useFrontCamera:NO completion:^(UIImage * _Nullable image) {
-                [self uploadFaceIDImageWithTowers:@"11" image:image];
-            }];
+            [self typeSelect];
         } else {
             AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initGoOutAccountWithFrame:self.view.bounds];
             popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbg"];
@@ -146,19 +126,56 @@
         }
     }];
 }
+- (void)typeSelect {
+    AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initPhotoGraphWithFrame:self.view.bounds];
+    popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbigbg"];
+    popupView.titleText = @"Please select";
+//    popupView.firstButtonTitle = @"Confirm";
+//    popupView.secondButtonTitle = @"Stop";
+    
+    popupView.camcerButtonAction = ^{
+        [self camerEx];
+    };
+
+    popupView.photosButtonAction = ^{
+        NSLog(@"Second button tapped");
+        [self phoneEx];
+    };
+
+    popupView.closeAction = ^{
+        NSLog(@"Close button tapped");
+    };
+
+    [popupView showInView:self.view];
+}
+- (void)camerEx {
+    [AnyCameraUtil takePhotoFromViewController:self useFrontCamera:NO completion:^(UIImage * _Nullable image) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self uploadFaceIDImageWithTowers:@"1" image:image];
+        });
+    }];
+}
+- (void)phoneEx {
+    [AnyCameraUtil selectPhotoFromViewController:self completion:^(UIImage * _Nullable image) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self uploadFaceIDImageWithTowers:@"2" image:image];
+        });
+        
+    }];
+}
 - (void) uploadFaceIDImageWithTowers:(NSString *)towers image:(UIImage *)image {
     NSDictionary *rest = self.parameters[@"rest"];
     NSString *funny = rest[@"funny"];
     [AnyHttpTool uploadFaceIDImageWithTowers:towers box:funny aura:@"11" casually:image top:self.type weird:@"" direction:@"fsfdsglkhlfdsgh" tower:@"" success:^(id  _Nonnull responseObject) {
-        
+        [AnyTimeHUD hideHUD];
+        [[AnyRouter sharedInstance] openURL:@"/anyVerifyIdentityInfoConfirmedPop" parameters: @{@"detailParameters": self.parameters, @"parameters": responseObject} from:nil callback:^(NSDictionary * _Nullable result) {}];
     } failure:^(NSError * _Nonnull error) {
-        
+        [AnyTimeHUD hideHUD];
+        [AnyTimeHUD showTextWithText:error.localizedDescription];
     }];
 }
 - (void) sureButtonClick {
-    [[AnyRouter sharedInstance] openURL:@"/anyVerifyldentity03ViewController?type=3333" parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {
-
-    }];
+    [self clickImage];
 }
 
 @end

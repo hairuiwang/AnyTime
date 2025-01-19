@@ -299,21 +299,28 @@
         @"direction": direction ?: @"",
         @"tower": @"1"    // 默认 tower 为 1
     };
+    [AnyTimeHUD showLoadingHUD];
     [[AnyNetRequest sharedManager] uploadImages:UploadFaceId parameters:parameters images:@[casually] name:@"casually" fileName:@"MKDFGH" success:^(id  _Nonnull responseObject) {
-        
-    } failure:^(NSError * _Nonnull error) {
-        
-    }];
-    
-    [[AnyNetRequest sharedManager] POST:UploadFaceId parameters:parameters success:^(id  _Nonnull responseObject) {
+        [AnyTimeHUD hideHUD];
         if (success) {
             success(responseObject);
         }
     } failure:^(NSError * _Nonnull error) {
+        [AnyTimeHUD hideHUD];
         if (failure) {
             failure(error);
         }
     }];
+    
+//    [[AnyNetRequest sharedManager] POST:UploadFaceId parameters:parameters success:^(id  _Nonnull responseObject) {
+//        if (success) {
+//            success(responseObject);
+//        }
+//    } failure:^(NSError * _Nonnull error) {
+//        if (failure) {
+//            failure(error);
+//        }
+//    }];
 }
 
 

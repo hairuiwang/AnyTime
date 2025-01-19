@@ -13,6 +13,7 @@ target 'AnyTime' do
   pod 'YYText'
   pod 'MBProgressHUD'
   pod 'MJExtension'
+  pod 'IQKeyboardManager'
   pod 'LookinServer'
   
   

@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
+  - IQKeyboardManager (6.5.19)
   - LookinServer (1.2.8):
     - LookinServer/Core (= 1.2.8)
   - LookinServer/Core (1.2.8)
@@ -28,6 +29,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - IQKeyboardManager
   - LookinServer
   - Masonry
   - MBProgressHUD
@@ -39,6 +41,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AFNetworking
+    - IQKeyboardManager
     - LookinServer
     - Masonry
     - MBProgressHUD
@@ -49,6 +52,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
+  IQKeyboardManager: c8665b3396bd0b79402b4c573eac345a31c7d485
   LookinServer: 1b2b61c6402ae29fa22182d48f5cd067b4e99e80
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
@@ -57,6 +61,6 @@ SPEC CHECKSUMS:
   SDWebImage: 40b0b4053e36c660a764958bff99eed16610acbb
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 632f9d2b3b4b68a85dcdeb8775716daaf5714c54
+PODFILE CHECKSUM: 706ee890dbb8637546ed41d03385f108d6503885
 
 COCOAPODS: 1.15.2
