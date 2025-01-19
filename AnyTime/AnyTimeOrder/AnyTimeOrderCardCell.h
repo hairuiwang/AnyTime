@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AnyTimeOrderCardCell : UICollectionViewCell
 
+@property (nonatomic,strong) AnyTimeOrderBlowGoldenModel * goldenModel;
+
 @end
 
 NS_ASSUME_NONNULL_END

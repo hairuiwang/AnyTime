@@ -17,6 +17,9 @@
 @property (nonatomic, strong) NSArray<NSString *> *tabSImages;
 @property (nonatomic, strong) NSArray<NSString *> *tabUSImages;
 
+@property (nonatomic, strong) NSMutableArray * dataArray;
+@property (nonatomic, strong) UICollectionViewController *currentVC;
+
 @end
 
 @implementation AnyTimeOrderViewController
@@ -63,7 +66,6 @@
         make.height.mas_equalTo(33);
     }];
     
-    
     CGFloat buttonWidth = (self.view.frame.size.width - 30) / 4;
     UIView *buttonContainer = [[UIView alloc] init];
     buttonContainer.tag = 101;
@@ -75,7 +77,8 @@
         make.height.mas_equalTo(33);
     }];
     
-    for (int i = 0; i < self.tabTitles.count; i++) {
+    for (int i = 0; i < self.tabTitles.count; i++)
+    {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(15 + i * buttonWidth, 0, buttonWidth, 33);
         [button setTitle:self.tabTitles[i] forState:UIControlStateNormal];
@@ -122,6 +125,99 @@
     self.tabBarController.tabBar.backgroundColor = rgba(0, 0, 0, 0);
     self.pageViewController.view.backgroundColor = rgba(0, 0, 0, 0);
 
+    [self getOrderAllList];
+}
+
+- (void)getOrderAllList
+{
+    [self.dataArray removeAllObjects];
+
+    [AnyHttpTool getOrderListWithTurtle:@"4" success:^(id  _Nonnull responseObject) {
+        NSLog(@"%@",responseObject);
+        
+        AnyTimeOrderModel * orderModel = [AnyTimeOrderModel mj_objectWithKeyValues:responseObject];
+        NSLog(@"responseObject == %@",orderModel.puppy);
+       
+        self.dataArray = [AnyTimeOrderBlowModel mj_objectArrayWithKeyValuesArray:orderModel.blow];
+        
+        [self.currentVC.collectionView reloadData];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.currentVC.collectionView.mj_header endRefreshing];
+        });
+        
+//        EmptyOrdersViewController * vc = [[EmptyOrdersViewController alloc] init];
+//        vc.tryAgainButtonAction = ^{
+//            [self getOrderAllList];
+//        };
+//        [self.pageViewController setViewControllers:@[vc] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+//        
+    } failure:^(NSError * _Nonnull error) {
+        
+    }];
+}
+
+- (void)getOrderApplyList
+{
+    [self.dataArray removeAllObjects];
+
+    [AnyHttpTool getOrderListWithTurtle:@"7" success:^(id  _Nonnull responseObject) {
+        NSLog(@"%@",responseObject);
+        
+        AnyTimeOrderModel * orderModel = [AnyTimeOrderModel mj_objectWithKeyValues:responseObject];
+        NSLog(@"responseObject == %@",orderModel.puppy);
+       
+        self.dataArray = [AnyTimeOrderBlowModel mj_objectArrayWithKeyValuesArray:orderModel.blow];
+        
+        [self.currentVC.collectionView reloadData];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.currentVC.collectionView.mj_header endRefreshing];
+        });
+    } failure:^(NSError * _Nonnull error) {
+        
+    }];
+}
+
+- (void)getOrderRepaymentList
+{
+    [self.dataArray removeAllObjects];
+
+    [AnyHttpTool getOrderListWithTurtle:@"6" success:^(id  _Nonnull responseObject) {
+        NSLog(@"%@",responseObject);
+                
+        AnyTimeOrderModel * orderModel = [AnyTimeOrderModel mj_objectWithKeyValues:responseObject];
+        NSLog(@"responseObject == %@",orderModel.puppy);
+       
+        self.dataArray = [AnyTimeOrderBlowModel mj_objectArrayWithKeyValuesArray:orderModel.blow];
+        
+        [self.currentVC.collectionView reloadData];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.currentVC.collectionView.mj_header endRefreshing];
+        });
+    } failure:^(NSError * _Nonnull error) {
+        
+    }];
+}
+
+- (void)getOrderFinishedList
+{
+    [self.dataArray removeAllObjects];
+
+    [AnyHttpTool getOrderListWithTurtle:@"5" success:^(id  _Nonnull responseObject) {
+        NSLog(@"%@",responseObject);
+        
+        AnyTimeOrderModel * orderModel = [AnyTimeOrderModel mj_objectWithKeyValues:responseObject];
+        NSLog(@"responseObject == %@",orderModel.puppy);
+       
+        self.dataArray = [AnyTimeOrderBlowModel mj_objectArrayWithKeyValuesArray:orderModel.blow];
+        
+        [self.currentVC.collectionView reloadData];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self.currentVC.collectionView.mj_header endRefreshing];
+        });
+        
+    } failure:^(NSError * _Nonnull error) {
+        
+    }];
 }
 
 #pragma mark - Tab Button Action
@@ -130,7 +226,27 @@
     NSInteger index = sender.tag;
     NSLog(@"index === %ld",(long)index);
     if (index == self.currentIndex) return;
-
+    if (index == 0)
+    {
+        //all
+        [self getOrderAllList];
+    }
+    else if (index == 1)
+    {
+        //apply
+        [self getOrderApplyList];
+    }
+    else if (index == 2)
+    {
+        //repayment
+        [self getOrderRepaymentList];
+    }
+    else
+    {
+        //finished
+        [self getOrderFinishedList];
+    }
+    
     UIPageViewControllerNavigationDirection direction = index > self.currentIndex ? UIPageViewControllerNavigationDirectionForward : UIPageViewControllerNavigationDirectionReverse;
     self.currentIndex = index;
     
@@ -185,7 +301,7 @@
 {
     if (index < 0 || index >= self.tabTitles.count) return nil;
     
-    UICollectionViewController *vc = [[UICollectionViewController alloc] initWithCollectionViewLayout:[self createLayout]];
+    UICollectionViewController * vc = [[UICollectionViewController alloc] initWithCollectionViewLayout:[self createLayout]];
     vc.collectionView.tag = index;
     vc.collectionView.backgroundColor = rgba(0, 0, 0, 0);
     [vc.collectionView registerClass:[AnyTimeOrderCardCell class] forCellWithReuseIdentifier:@"AnyTimeOrderCardCell"];
@@ -193,8 +309,33 @@
     vc.collectionView.delegate = self;
 //    no data or 404
 //    EmptyOrdersViewController * vc = [[EmptyOrdersViewController alloc] init];
+    NSLog(@"indes ==== %ld",(long)index);
+    
+    self.currentVC = vc;
+    
+    if (index == 0)
+    {
+        vc.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getOrderAllList)];
+    }
+    else if (index == 1)
+    {
+        vc.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getOrderApplyList)];
+    }
+    else if (index == 2)
+    {
+        vc.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getOrderRepaymentList)];
+    }
+    else
+    {
+        vc.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getOrderFinishedList)];
+
+    }
+    [vc.collectionView.mj_header beginRefreshing];
+    vc.collectionView.mj_header.automaticallyChangeAlpha = YES;
+    
     return vc;
 }
+
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
     NSInteger index = ((UICollectionViewController *)viewController).collectionView.tag;
@@ -216,7 +357,7 @@
 
 #pragma mark - UICollectionView DataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 5;
+    return self.dataArray.count;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -227,7 +368,12 @@
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath 
 {
     AnyTimeOrderCardCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AnyTimeOrderCardCell" forIndexPath:indexPath];
-
+    if (self.dataArray.count > 0)
+    {
+        AnyTimeOrderBlowModel * blowModel = self.dataArray[indexPath.row];
+        
+        cell.goldenModel = [AnyTimeOrderBlowGoldenModel mj_objectWithKeyValues: blowModel.golden];
+    }
     return cell;
 }
 
@@ -237,7 +383,10 @@
 
     // 执行点击逻辑，例如打印信息
     NSLog(@"Tapped on Page %ld - Item %ld", (long)collectionView.tag, (long)indexPath.item);
+    AnyTimeOrderBlowModel * blowModel = self.dataArray[indexPath.row];
     
+    AnyTimeOrderBlowGoldenModel * goldenModel = [AnyTimeOrderBlowGoldenModel mj_objectWithKeyValues: blowModel.golden];
+    NSLog(@"goldenModel === %@",goldenModel.sour);
 }
 
 @end

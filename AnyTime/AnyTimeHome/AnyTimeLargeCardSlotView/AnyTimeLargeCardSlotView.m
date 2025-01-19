@@ -24,7 +24,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self setupCollectionView];
+        [self getLargeCardData];
     }
     return self;
 }
@@ -45,7 +45,8 @@
       
         AnyTimeForestModel * forsetModel = homeModel.forest;
         self.largeCardBannerData = RArr(forsetModel.murderous);
-        
+       
+        [self setupCollectionView];
         [self.collectionView reloadData];
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

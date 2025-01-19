@@ -105,8 +105,10 @@
         cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AnyTimeSmallCardSlotFirstCell" forIndexPath:indexPath];
         
         AnyTimeSmallCardSlotFirstCell *firstCell = (AnyTimeSmallCardSlotFirstCell *)cell;  // 强制转换为对应的类型
-        
-        firstCell.murderousModel = [AnyTimeActMurderousModel mj_objectWithKeyValues:self.smallCardData[0]];
+        if (self.smallCardData.count > 0)
+        {
+            firstCell.murderousModel = [AnyTimeActMurderousModel mj_objectWithKeyValues:self.smallCardData[0]];
+        }
     }
     else if (indexPath.section == 1)
     {
