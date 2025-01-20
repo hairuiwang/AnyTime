@@ -125,6 +125,11 @@
     self.tabBarController.tabBar.backgroundColor = rgba(0, 0, 0, 0);
     self.pageViewController.view.backgroundColor = rgba(0, 0, 0, 0);
   
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self orderNoData];
+
+    });
+
 }
 
 - (void)getOrderAllList
@@ -162,8 +167,9 @@
 - (void)orderNoData
 {
     EmptyOrdersViewController * vc = [[EmptyOrdersViewController alloc] init];
+    vc.isNoData = YES;
     vc.applyButtonAction = ^{
-        
+        self.tabBarController.selectedIndex = 0;
     };
     [self.pageViewController setViewControllers:@[vc] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 }
@@ -171,6 +177,7 @@
 - (void)orderNoFound:(NSInteger)index
 {
     EmptyOrdersViewController * vc = [[EmptyOrdersViewController alloc] init];
+    vc.isNoData = NO;
     vc.tryAgainButtonAction = ^{
         if (index == 0)
         {

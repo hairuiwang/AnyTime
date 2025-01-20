@@ -31,9 +31,6 @@
     orderVC.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"anytime_order_uns"] selectedImage:[UIImage imageNamed:@"anytime_order_s"]];
     orderVC.tabBarItem.image = [[UIImage imageNamed:@"anytime_order_uns"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     orderVC.tabBarItem.selectedImage = [[UIImage imageNamed:@"anytime_order_s"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-
-    
-    
     
     AnyTimeMeViewController * meVC = [[AnyTimeMeViewController alloc] init];
     UINavigationController *nav_meVC = [[UINavigationController alloc] initWithRootViewController:meVC];

@@ -63,7 +63,7 @@
     }
     else
     {
-        [applyButton addTarget:self action:@selector(applyButtonAction) forControlEvents:UIControlEventTouchUpInside];
+        [applyButton addTarget:self action:@selector(applyButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     }
 }
 
