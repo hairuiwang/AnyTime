@@ -124,8 +124,7 @@
     self.tabBarController.tabBar.barTintColor = rgba(0, 0, 0, 0);
     self.tabBarController.tabBar.backgroundColor = rgba(0, 0, 0, 0);
     self.pageViewController.view.backgroundColor = rgba(0, 0, 0, 0);
-
-    [self getOrderAllList];
+  
 }
 
 - (void)getOrderAllList
@@ -135,6 +134,11 @@
     [AnyHttpTool getOrderListWithTurtle:@"4" success:^(id  _Nonnull responseObject) {
         NSLog(@"%@",responseObject);
         
+        if (![responseObject isKindOfClass:[NSDictionary class]] || responseObject == nil)
+        {
+            [self orderNoData];
+            return;
+        }
         AnyTimeOrderModel * orderModel = [AnyTimeOrderModel mj_objectWithKeyValues:responseObject];
         NSLog(@"responseObject == %@",orderModel.puppy);
        
@@ -144,16 +148,48 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.currentVC.collectionView.mj_header endRefreshing];
         });
-        
-//        EmptyOrdersViewController * vc = [[EmptyOrdersViewController alloc] init];
-//        vc.tryAgainButtonAction = ^{
-//            [self getOrderAllList];
-//        };
-//        [self.pageViewController setViewControllers:@[vc] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-//        
+
+        if (orderModel.blow == nil || orderModel.blow.count == 0) {
+            [self orderNoData];
+            return;
+        }
+
     } failure:^(NSError * _Nonnull error) {
-        
+        [self orderNoFound:0];
     }];
+}
+
+- (void)orderNoData
+{
+    EmptyOrdersViewController * vc = [[EmptyOrdersViewController alloc] init];
+    vc.applyButtonAction = ^{
+        
+    };
+    [self.pageViewController setViewControllers:@[vc] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+}
+
+- (void)orderNoFound:(NSInteger)index
+{
+    EmptyOrdersViewController * vc = [[EmptyOrdersViewController alloc] init];
+    vc.tryAgainButtonAction = ^{
+        if (index == 0)
+        {
+            [self getOrderAllList];
+        }
+        else if (index == 1)
+        {
+            [self getOrderApplyList];
+        }
+        else if (index == 2)
+        {
+            [self getOrderRepaymentList];
+        }
+        else
+        {
+            [self getOrderFinishedList];
+        }
+    };
+    [self.pageViewController setViewControllers:@[vc] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 }
 
 - (void)getOrderApplyList
@@ -162,7 +198,11 @@
 
     [AnyHttpTool getOrderListWithTurtle:@"7" success:^(id  _Nonnull responseObject) {
         NSLog(@"%@",responseObject);
-        
+        if (![responseObject isKindOfClass:[NSDictionary class]] || responseObject == nil)
+        {
+            [self orderNoData];
+            return;
+        }
         AnyTimeOrderModel * orderModel = [AnyTimeOrderModel mj_objectWithKeyValues:responseObject];
         NSLog(@"responseObject == %@",orderModel.puppy);
        
@@ -172,8 +212,14 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.currentVC.collectionView.mj_header endRefreshing];
         });
-    } failure:^(NSError * _Nonnull error) {
         
+        if (orderModel.blow == nil || orderModel.blow.count == 0) {
+            [self orderNoData];
+            return;
+        }
+        
+    } failure:^(NSError * _Nonnull error) {
+        [self orderNoFound:1];
     }];
 }
 
@@ -183,7 +229,11 @@
 
     [AnyHttpTool getOrderListWithTurtle:@"6" success:^(id  _Nonnull responseObject) {
         NSLog(@"%@",responseObject);
-                
+        if (![responseObject isKindOfClass:[NSDictionary class]] || responseObject == nil)
+        {
+            [self orderNoData];
+            return;
+        }
         AnyTimeOrderModel * orderModel = [AnyTimeOrderModel mj_objectWithKeyValues:responseObject];
         NSLog(@"responseObject == %@",orderModel.puppy);
        
@@ -193,8 +243,13 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.currentVC.collectionView.mj_header endRefreshing];
         });
-    } failure:^(NSError * _Nonnull error) {
         
+        if (orderModel.blow == nil || orderModel.blow.count == 0) {
+            [self orderNoData];
+            return;
+        }
+    } failure:^(NSError * _Nonnull error) {
+        [self orderNoFound:2];
     }];
 }
 
@@ -204,7 +259,11 @@
 
     [AnyHttpTool getOrderListWithTurtle:@"5" success:^(id  _Nonnull responseObject) {
         NSLog(@"%@",responseObject);
-        
+        if (![responseObject isKindOfClass:[NSDictionary class]] || responseObject == nil)
+        {
+            [self orderNoData];
+            return;
+        }
         AnyTimeOrderModel * orderModel = [AnyTimeOrderModel mj_objectWithKeyValues:responseObject];
         NSLog(@"responseObject == %@",orderModel.puppy);
        
@@ -215,8 +274,13 @@
             [self.currentVC.collectionView.mj_header endRefreshing];
         });
         
-    } failure:^(NSError * _Nonnull error) {
+        if (orderModel.blow == nil || orderModel.blow.count == 0) {
+            [self orderNoData];
+            return;
+        }
         
+    } failure:^(NSError * _Nonnull error) {
+        [self orderNoFound:3];
     }];
 }
 
@@ -330,6 +394,7 @@
         vc.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getOrderFinishedList)];
 
     }
+    
     [vc.collectionView.mj_header beginRefreshing];
     vc.collectionView.mj_header.automaticallyChangeAlpha = YES;
     
@@ -387,6 +452,10 @@
     
     AnyTimeOrderBlowGoldenModel * goldenModel = [AnyTimeOrderBlowGoldenModel mj_objectWithKeyValues: blowModel.golden];
     NSLog(@"goldenModel === %@",goldenModel.sour);
+    [[AnyRouter sharedInstance] openURL:goldenModel.sour parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {
+            
+    }];
+
 }
 
 @end
