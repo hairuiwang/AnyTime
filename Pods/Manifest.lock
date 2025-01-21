@@ -22,6 +22,7 @@ PODS:
   - MBProgressHUD (1.2.0)
   - MJExtension (3.4.2)
   - MJRefresh (3.7.9)
+  - Reachability (3.7.6)
   - SDWebImage (5.19.1):
     - SDWebImage/Core (= 5.19.1)
   - SDWebImage/Core (5.19.1)
@@ -35,6 +36,7 @@ DEPENDENCIES:
   - MBProgressHUD
   - MJExtension
   - MJRefresh
+  - Reachability
   - SDWebImage
   - YYText
 
@@ -47,6 +49,7 @@ SPEC REPOS:
     - MBProgressHUD
     - MJExtension
     - MJRefresh
+    - Reachability
     - SDWebImage
     - YYText
 
@@ -58,9 +61,10 @@ SPEC CHECKSUMS:
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJExtension: e97d164cb411aa9795cf576093a1fa208b4a8dd8
   MJRefresh: ff9e531227924c84ce459338414550a05d2aea78
+  Reachability: fd0ecd23705e2599e4cceeb943222ae02296cbc6
   SDWebImage: 40b0b4053e36c660a764958bff99eed16610acbb
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 706ee890dbb8637546ed41d03385f108d6503885
+PODFILE CHECKSUM: 88583c284cba60253b164a8298e025a6e069c396
 
 COCOAPODS: 1.13.0

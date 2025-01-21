@@ -15,8 +15,8 @@ target 'AnyTime' do
   pod 'MJExtension'
   pod 'IQKeyboardManager'
   pod 'LookinServer'
-  
-  
+  pod 'Reachability'
+
   
   
   target 'AnyTimeTests' do

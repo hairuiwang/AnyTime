@@ -47,6 +47,7 @@
 		04E89A602D38BF6A008EA16E /* AnyTimeHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E89A5F2D38BF6A008EA16E /* AnyTimeHUD.m */; };
 		04E89A642D38F2FB008EA16E /* AnyTimeHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E89A632D38F2FB008EA16E /* AnyTimeHomeModel.m */; };
 		04E89A682D3C9D50008EA16E /* AnyTimeOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E89A672D3C9D50008EA16E /* AnyTimeOrderModel.m */; };
+		04E89A6C2D3F9AE2008EA16E /* AnyTimeNoNetWorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E89A6B2D3F9AE2008EA16E /* AnyTimeNoNetWorkViewController.m */; };
 		6575440B2D34DC4F00A63988 /* AnyRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6575440A2D34DC4F00A63988 /* AnyRouter.m */; };
 		6575440E2D3505B700A63988 /* AnyDevHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6575440D2D3505B700A63988 /* AnyDevHelper.m */; };
 		657544112D35063F00A63988 /* AnyRouterTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544102D35063F00A63988 /* AnyRouterTool.m */; };
@@ -185,6 +186,8 @@
 		04E89A632D38F2FB008EA16E /* AnyTimeHomeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyTimeHomeModel.m; sourceTree = "<group>"; };
 		04E89A662D3C9D50008EA16E /* AnyTimeOrderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyTimeOrderModel.h; sourceTree = "<group>"; };
 		04E89A672D3C9D50008EA16E /* AnyTimeOrderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyTimeOrderModel.m; sourceTree = "<group>"; };
+		04E89A6A2D3F9AE2008EA16E /* AnyTimeNoNetWorkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyTimeNoNetWorkViewController.h; sourceTree = "<group>"; };
+		04E89A6B2D3F9AE2008EA16E /* AnyTimeNoNetWorkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyTimeNoNetWorkViewController.m; sourceTree = "<group>"; };
 		2D1011C7969C9D06831050AF /* Pods-AnyTimeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTimeTests.release.xcconfig"; path = "Target Support Files/Pods-AnyTimeTests/Pods-AnyTimeTests.release.xcconfig"; sourceTree = "<group>"; };
 		3414FFF15DC354AEA7298D8F /* Pods-AnyTimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTimeTests.debug.xcconfig"; path = "Target Support Files/Pods-AnyTimeTests/Pods-AnyTimeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4D9BAC4A1E243BC4268E3570 /* Pods-AnyTime-AnyTimeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime-AnyTimeUITests.debug.xcconfig"; path = "Target Support Files/Pods-AnyTime-AnyTimeUITests/Pods-AnyTime-AnyTimeUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -326,6 +329,7 @@
 				046B6D622D30F74000EE9EF7 /* AppDelegate.m */,
 				046B6D672D30F74000EE9EF7 /* ViewController.h */,
 				046B6D682D30F74000EE9EF7 /* ViewController.m */,
+				04E89A692D3F9AB5008EA16E /* AnyTimeNoNetWork */,
 				046B6DAC2D3393A500EE9EF7 /* AnyTimeLogin */,
 				046B6DA62D337B9C00EE9EF7 /* AnyTimeGuidePage */,
 				046B6D9A2D33617A00EE9EF7 /* AnyTimeHome */,
@@ -504,6 +508,15 @@
 				04E89A672D3C9D50008EA16E /* AnyTimeOrderModel.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		04E89A692D3F9AB5008EA16E /* AnyTimeNoNetWork */ = {
+			isa = PBXGroup;
+			children = (
+				04E89A6A2D3F9AE2008EA16E /* AnyTimeNoNetWorkViewController.h */,
+				04E89A6B2D3F9AE2008EA16E /* AnyTimeNoNetWorkViewController.m */,
+			);
+			path = AnyTimeNoNetWork;
 			sourceTree = "<group>";
 		};
 		39B15E13D3C472CE2E77D7B4 /* Pods */ = {
@@ -923,6 +936,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				657544712D36AB7100A63988 /* AnyVerifyldentityBaseViewController.m in Sources */,
+				04E89A6C2D3F9AE2008EA16E /* AnyTimeNoNetWorkViewController.m in Sources */,
 				6575446D2D369B5C00A63988 /* AnyCertificationDetailsCell.m in Sources */,
 				046B6DA92D337BAB00EE9EF7 /* AnyTimeGuidePageViewController.m in Sources */,
 				657545012D3A607900A63988 /* AnyCameraUtil.m in Sources */,

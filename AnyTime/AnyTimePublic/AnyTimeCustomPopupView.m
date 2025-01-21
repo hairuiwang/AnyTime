@@ -261,7 +261,7 @@
 {
     CGFloat padding = 15;
  
-    [self.firstButton addTarget:self action:@selector(firstButtonTapped) forControlEvents:UIControlEventTouchUpInside];
+    [self.firstButton addTarget:self action:@selector(turningOnButtonTapped) forControlEvents:UIControlEventTouchUpInside];
 
     [self.secondButton addTarget:self action:@selector(secondButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     
@@ -410,7 +410,7 @@
         return self.years.count;
     }
 }
-- (void) dateConfirmButtonClick {
+- (void)dateConfirmButtonClick {
     if (self.dateSelectAction) {
         NSInteger selectedRow1 = [self.datePicker selectedRowInComponent:0];
         NSInteger selectedRow2 = [self.datePicker selectedRowInComponent:1];
@@ -601,6 +601,13 @@
 }
 
 #pragma mark - Button Actions
+
+- (void)turningOnButtonTapped
+{
+    if (self.firstButtonAction) {
+        self.firstButtonAction();
+    }
+}
 
 - (void)firstButtonTapped {
     if (self.firstButtonAction) {
