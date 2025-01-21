@@ -124,12 +124,50 @@
     self.tabBarController.tabBar.barTintColor = rgba(0, 0, 0, 0);
     self.tabBarController.tabBar.backgroundColor = rgba(0, 0, 0, 0);
     self.pageViewController.view.backgroundColor = rgba(0, 0, 0, 0);
-  
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self orderNoData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(handleRequestNotification:)
+                                                     name:@"OrderVCRequestNotification"
+                                                   object:nil];
+}
 
-    });
+- (void)handleRequestNotification:(NSNotification *)notification 
+{
+    NSString * actionType = notification.userInfo[@"actionType"];
+    NSLog(@"actionType === %@",actionType);
+    if ([actionType integerValue] == 0)
+    {
+        //all
+        [self getOrderAllList];
+    }
+    else if ([actionType integerValue] == 1)
+    {
+        //apply
+        [self getOrderApplyList];
+    }
+    else if ([actionType integerValue] == 2)
+    {
+        //repayment
+        [self getOrderRepaymentList];
+    }
+    else
+    {
+        //finished
+        [self getOrderFinishedList];
+    }
+    
+    UIPageViewControllerNavigationDirection direction = [actionType integerValue] > self.currentIndex ? UIPageViewControllerNavigationDirectionForward : UIPageViewControllerNavigationDirectionReverse;
+    self.currentIndex = [actionType integerValue];
+    
+    UIViewController *vc = [self viewControllerAtIndex:[actionType integerValue]];
+    [self.pageViewController setViewControllers:@[vc] direction:direction animated:YES completion:nil];
+    
+    [self updateTabButtonColorsForSelectedIndex:[actionType integerValue]];
+}
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)getOrderAllList

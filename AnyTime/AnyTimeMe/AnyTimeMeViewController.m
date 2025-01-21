@@ -144,6 +144,12 @@
 {
     NSInteger index = sender.tag;
     NSLog(@"index === %ld",(long)index);
+    self.tabBarController.selectedIndex = 1;
+    
+    NSString *actionType = [NSString stringWithFormat:@"%ld",(long)index];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"OrderVCRequestNotification"
+                                                           object:nil
+                                                         userInfo:@{@"actionType": actionType}];
 }
 
 
