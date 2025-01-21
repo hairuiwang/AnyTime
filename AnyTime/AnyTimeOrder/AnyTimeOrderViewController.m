@@ -416,10 +416,7 @@
     [vc.collectionView registerClass:[AnyTimeOrderCardCell class] forCellWithReuseIdentifier:@"AnyTimeOrderCardCell"];
     vc.collectionView.dataSource = self;
     vc.collectionView.delegate = self;
-//    no data or 404
-//    EmptyOrdersViewController * vc = [[EmptyOrdersViewController alloc] init];
-    NSLog(@"indes ==== %ld",(long)index);
-    
+
     self.currentVC = vc;
     
     if (index == 0)
@@ -498,7 +495,7 @@
     AnyTimeOrderBlowGoldenModel * goldenModel = [AnyTimeOrderBlowGoldenModel mj_objectWithKeyValues: blowModel.golden];
     NSLog(@"goldenModel === %@",goldenModel.sour);
     [[AnyRouter sharedInstance] openURL:goldenModel.sour parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {
-            
+        NSLog(@"result %@",result);
     }];
 
 }

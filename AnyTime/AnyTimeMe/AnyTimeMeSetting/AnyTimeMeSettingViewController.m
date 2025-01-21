@@ -119,6 +119,11 @@
         
         popupView.firstButtonAction = ^{
             NSLog(@"First button tapped");
+         
+        };
+
+        popupView.secondButtonAction = ^{
+            NSLog(@"Second button tapped");
             [AnyTimeHUD showLoadingHUD];
             [AnyHttpTool logoutWithShowered:@"adsdasdassadad" assassins:@"asdadaaddaass" success:^(id  _Nonnull responseObject) {
                 [AnyTimeHUD hideHUD];
@@ -131,10 +136,6 @@
             } failure:^(NSError * _Nonnull error) {
                 [AnyTimeHUD hideHUD];
             }];
-        };
-
-        popupView.secondButtonAction = ^{
-            NSLog(@"Second button tapped");
         };
 
         popupView.closeAction = ^{
