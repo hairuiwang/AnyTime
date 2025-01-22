@@ -14,7 +14,7 @@
 
 @interface AnyVerifyldentitySuccessfulViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
-
+@property (nonatomic, strong) NSDictionary *infoDictionary;
 @end
 
 @implementation AnyVerifyldentitySuccessfulViewController
@@ -22,6 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
+    [self getData];
 }
 - (void)setupUI {
     self.view.backgroundColor = HEXCOLOR(0xFFECD7);
@@ -107,12 +108,30 @@
     [sureButton setTitle:@"Next" forState:(UIControlStateNormal)];
     
 }
+
+- (void) getData {
+    NSDictionary *rest = self.parameters[@"rest"];
+    NSString *funny = rest[@"funny"];
+    [AnyTimeHUD showLoadingHUD];
+    [AnyHttpTool fetchUserIdentityWithBox:funny ten:@"879hk740sd40mgy" success:^(id  _Nonnull responseObject) {
+        [AnyTimeHUD hideHUD];
+        NSDictionary *shouldn = responseObject[@"shouldn"];
+        self.infoDictionary = shouldn[@"windows"] ?: @[];
+        [self.tableView reloadData];
+    } failure:^(NSError * _Nonnull error) {
+        [AnyTimeHUD hideHUD];
+        [AnyTimeHUD showTextWithText:error.localizedDescription];
+    }];
+}
 - (void)backClick {
     [self.navigationController popViewControllerAnimated:true];
 }
 - (void) sureButtonClick {
-    
+    [[AnyRouter sharedInstance] openURL:@"/next" parameters:self.parameters from:nil callback:^(NSDictionary * _Nullable result) {
+            
+    }];
 }
+
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 3;
@@ -162,10 +181,13 @@
         cell.textField.userInteractionEnabled = NO;
         if (indexPath.row == 0) {
             cell.titleLabel.text = @"Full Name";
+            cell.textField.text = self.infoDictionary [@"groove"] ?: @"";
         } else if (indexPath.row == 1) {
             cell.titleLabel.text = @"ID NO.";
+            cell.textField.text = self.infoDictionary [@"people"] ?: @"";
         } else if (indexPath.row == 2) {
             cell.titleLabel.text = @"Date of Birth";
+            cell.textField.text = self.infoDictionary [@"ruins"] ?: @"";
         }
         return cell;
     } else {

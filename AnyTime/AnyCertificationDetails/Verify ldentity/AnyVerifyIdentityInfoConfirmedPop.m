@@ -144,7 +144,7 @@
         return;
     }
     [AnyTimeHUD showLoadingHUD];
-    [AnyHttpTool saveUserIdentityWithRuins:self.dateBirth.textField.text people:self.IDNO.textField.text groove:self.dateBirth.textField.text aura:@"11" top:self.type flinched:@"cxczlkjsaldjalskdjlad" success:^(id  _Nonnull responseObject) {
+    [AnyHttpTool saveUserIdentityWithRuins:self.dateBirth.textField.text people:self.IDNO.textField.text groove:self.fullName.textField.text aura:@"11" top:self.type flinched:@"cxczlkjsaldjalskdjlad" success:^(id  _Nonnull responseObject) {
         [AnyTimeHUD hideHUD];
         [self dismissViewControllerAnimated:YES completion:^{
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

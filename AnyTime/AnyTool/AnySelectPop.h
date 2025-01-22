@@ -16,6 +16,7 @@ typedef void(^MyAnySelectValue)(NSString *address, NSInteger index);
 @property (nonatomic, copy) MyAnySelectValue selectHandler;
 @property (nonatomic, assign) BOOL isImage;
 @property (nonatomic, strong) NSArray<AnySelectModel *> *dataSourceArray;
+@property (nonatomic, strong)UILabel *titleLabel;
 @end
 
 NS_ASSUME_NONNULL_END

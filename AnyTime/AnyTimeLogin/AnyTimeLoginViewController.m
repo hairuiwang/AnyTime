@@ -124,7 +124,7 @@
     self.codeTextField.textFieldDidChangeBlock = ^(NSString * _Nonnull text) {
         NSLog(@"text === %@",text);
         if (text.length >= 6) {
-            [weakSelf goLogin];
+            [weakSelf goLogin:text];
 
         }
     };
@@ -220,10 +220,10 @@
     }];
 }
 
-- (void)goLogin
+- (void)goLogin:(NSString *)code
 {
     [AnyTimeHUD showLoadingHUD];
-    [AnyHttpTool loginWithBoy:self.phoneTextField.textField.text talk:self.codeTextField.textField.text events:@"sadadadsdasdd" success:^(id  _Nonnull responseObject) {
+    [AnyHttpTool loginWithBoy:self.phoneTextField.textField.text talk:code events:@"sadadadsdasdd" success:^(id  _Nonnull responseObject) {
         NSLog(@"login === %@",responseObject);
         NSDictionary * loginDic = RDic(responseObject);
         NSString * ssidStr = loginDic[@"sure"];
@@ -261,7 +261,7 @@
 
 -(void)loginButtonTapped
 {
-    [self goLogin];
+    [self goLogin:self.codeTextField.textField.text];
 }
 
 /*

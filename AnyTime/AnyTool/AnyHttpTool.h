@@ -157,6 +157,10 @@ NS_ASSUME_NONNULL_BEGIN
                            success:(void (^)(id responseObject))success
                           failure:(void (^)(NSError *error))failure;
 
++ (void)fetchUserInfoWithBox:(NSString *)box
+                      success:(void (^)(id responseObject))success
+                     failure:(void (^)(NSError *error))failure;
+
 /// 保存用户信息（第二项）
 /// - Parameters:
 ///   - box: 产品ID
@@ -184,6 +188,8 @@ NS_ASSUME_NONNULL_BEGIN
                     success:(void (^)(id responseObject))success
                     failure:(void (^)(NSError *error))failure;
 
+
++ (void)saveUserInfoWithParameters:(NSDictionary *)parameters success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure;
 
 /// 获取工作信息（第三项）
 /// - Parameters:
@@ -225,6 +231,11 @@ NS_ASSUME_NONNULL_BEGIN
                     describe:(NSString *)describe
                      success:(void (^)(id responseObject))success
                     failure:(void (^)(NSError *error))failure;
+
+
++ (void)saveWorkInfoWith:(NSDictionary *)parameters
+                     success:(void (^)(id responseObject))success
+                 failure:(void (^)(NSError *error))failure;
 
 
 /// 获取联系人信息
@@ -273,15 +284,7 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - far: 混淆
 ///   - success: 成功
 ///   - failure: 失败
-+ (void)submitBindCardInfoWithBox:(NSString *)box
-                              top:(NSString *)top
-                             isn:(NSString *)isn
-                            food:(NSString *)food
-                            drop:(NSString *)drop
-                          morning:(NSString *)morning
-                            early:(NSString *)early
-                         distance:(NSString *)distance
-                              far:(NSString *)far
++ (void)submitBindCardInfoWithParameters:(NSDictionary *)parameters
                           success:(void (^)(id responseObject))success
                           failure:(void (^)(NSError *error))failure;
 

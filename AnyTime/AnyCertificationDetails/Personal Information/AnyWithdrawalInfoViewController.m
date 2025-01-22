@@ -15,13 +15,30 @@
 @property (nonatomic, strong) UIButton *threeButton;
 @property (nonatomic, strong) UIButton *selectButton;
 @property (nonatomic, strong) UITableView *tableView;
+
+@property (nonatomic, strong) NSMutableArray<NSMutableDictionary *> *blow;
+
+@property (nonatomic, strong) NSMutableArray<NSMutableDictionary *> *oneArray;
+@property (nonatomic, strong) NSMutableArray<NSMutableDictionary *> *twoArray;
+@property (nonatomic, strong) NSMutableArray<NSMutableDictionary *> *threeArray;
+
+
+@property (nonatomic, strong) NSString  *one_momentarily;
+@property (nonatomic, strong) NSString  *two_momentarily;
+@property (nonatomic, strong) NSString  *three_momentarily;
 @end
 
 @implementation AnyWithdrawalInfoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.oneArray = [NSMutableArray array];
+    self.twoArray = [NSMutableArray array];
+    self.threeArray = [NSMutableArray array];
+    
+    self.blow = [NSMutableArray array];
+    self.topImageView.image = [UIImage imageNamed:@"withdrawal-Info"];
+    [self getData];
 }
 - (void)setupUI {
     [super setupUI];
@@ -67,6 +84,9 @@
         make.width.mas_equalTo(102);
         make.height.mas_equalTo(44);
     }];
+    self.oneButton.hidden = YES;
+    self.twoButton.hidden = YES;
+    self.threeButton.hidden = YES;
     
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
@@ -92,7 +112,48 @@
     
     
 }
-
+- (void) getData {
+    [AnyTimeHUD showLoadingHUD];
+    [AnyHttpTool fetchBindCardInfoWithHasn:@"0" kid:@"ssc931aRFScalk" success:^(id  _Nonnull responseObject) {
+        [AnyTimeHUD hideHUD];
+        NSArray *excitedly = responseObject[@"excitedly"];
+        for (int index = 0; index < excitedly.count; index++) {
+            NSDictionary *dict = excitedly[index];
+            [self.blow addObject:[NSMutableDictionary dictionaryWithDictionary:dict]];
+            NSArray *excitedly = dict[@"excitedly"];
+            
+            if (index == 0) {
+                self.oneButton.hidden = NO;
+                [self.oneButton setTitle:[NSString stringWithFormat:@"%@",dict[@"handed"]] forState:(UIControlStateNormal)];
+                self.one_momentarily = dict[@"aura"] ?: @"";
+                [self.oneArray removeAllObjects];
+                for (NSDictionary *item in excitedly) {
+                    [self.oneArray addObject:[NSMutableDictionary dictionaryWithDictionary:item]];
+                }
+            } else if (index == 1) {
+                self.twoButton.hidden = NO;
+                [self.twoButton setTitle:[NSString stringWithFormat:@"%@",dict[@"handed"]] forState:(UIControlStateNormal)];
+                [self.twoArray removeAllObjects];
+                self.two_momentarily = dict[@"aura"] ?: @"";
+                for (NSDictionary *item in excitedly) {
+                    [self.twoArray addObject:[NSMutableDictionary dictionaryWithDictionary:item]];
+                }
+            } else if (index == 2) {
+                self.threeButton.hidden = NO;
+                [self.threeButton setTitle:[NSString stringWithFormat:@"%@",dict[@"handed"]] forState:(UIControlStateNormal)];
+                self.three_momentarily = dict[@"aura"] ?: @"";
+                [self.threeArray removeAllObjects];
+                for (NSDictionary *item in excitedly) {
+                    [self.threeArray addObject:[NSMutableDictionary dictionaryWithDictionary:item]];
+                }
+            }
+        }
+        [self oneClick];
+        
+    } failure:^(NSError * _Nonnull error) {
+        [AnyTimeHUD hideHUD];
+    }];
+}
 - (UIButton *)createButton {
     UIButton *button = [UIButton new];
     button.layer.cornerRadius = 22;
@@ -102,13 +163,52 @@
     button.titleLabel.font = [UIFont systemFontOfSize:15 weight:(UIFontWeightMedium)];
     return button;
 }
-
+- (void) sureButtonClick {
+    NSMutableDictionary *par = [NSMutableDictionary dictionary];
+    NSArray<NSMutableDictionary *> *resultArray;
+    if (self.selectButton == self.oneButton) {
+        resultArray = self.oneArray;
+        [par setObject:@"1" forKey:@"top"];
+        [par setObject:self.one_momentarily forKey:@"food"];
+        
+    } else if (self.selectButton == self.twoButton) {
+        resultArray = self.twoArray;
+        [par setObject:@"2" forKey:@"top"];
+        [par setObject:self.two_momentarily forKey:@"food"];
+    } else if (self.selectButton == self.threeButton) {
+        resultArray = self.threeArray;
+        [par setObject:self.three_momentarily forKey:@"top"];
+        [par setObject:self.three_momentarily forKey:@"food"];
+    }
+    
+    NSDictionary *rest = self.parameters[@"rest"];
+    NSString *funny = rest[@"funny"];
+    [par setObject:funny forKey:@"box"];
+    
+    for (NSDictionary * dict in resultArray) {
+        NSString *momentarily = dict[@"momentarily"];
+        NSString *kittens = dict[@"kittens"];
+        if ([kittens isEqualToString:@"anytimel"]) {
+            [par setObject:dict[@"longer"] ?: @"" forKey:momentarily];
+        } else {
+            [par setObject:dict[@"aura"] ?: @"" forKey:momentarily];
+        }
+    }
+    [AnyTimeHUD showLoadingHUD];
+    [AnyHttpTool submitBindCardInfoWithParameters:par success:^(id  _Nonnull responseObject) {
+        [AnyTimeHUD hideHUD];
+        [[AnyRouter sharedInstance] openURL:@"/next" parameters:self.parameters from:self callback:^(NSDictionary * _Nullable result) {}];
+    } failure:^(NSError * _Nonnull error) {
+        [AnyTimeHUD hideHUD];
+        [AnyTimeHUD showTextWithText:error.localizedDescription];
+    }];
+}
 - (void)oneClick {
     NSLog(@"oneClick");
     self.selectButton.backgroundColor = [UIColor blackColor];
     self.selectButton = self.oneButton;
     self.selectButton.backgroundColor = HEXCOLOR(0xFD761F);
-    
+    [self.tableView reloadData];
 }
 
 - (void)twoClick {
@@ -116,6 +216,7 @@
     self.selectButton.backgroundColor = [UIColor blackColor];
     self.selectButton = self.twoButton;
     self.selectButton.backgroundColor = HEXCOLOR(0xFD761F);
+    [self.tableView reloadData];
 }
 
 - (void)threeClick {
@@ -123,21 +224,85 @@
     self.selectButton.backgroundColor = [UIColor blackColor];
     self.selectButton = self.threeButton;
     self.selectButton.backgroundColor = HEXCOLOR(0xFD761F);
+    [self.tableView reloadData];
 }
 
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 1;
 }
 // 返回行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    if (self.selectButton == self.oneButton) {
+        return self.oneArray.count;
+    } else if (self.selectButton == self.twoButton) {
+        return self.twoArray.count;
+    } else if (self.selectButton == self.threeButton) {
+        return self.threeArray.count;
+    }
+    return 0;
 }
 
 // 返回 Cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AnyCertificationInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AnyCertificationInfoCell" forIndexPath:indexPath];
-    
+    if (self.selectButton == self.oneButton) {
+        NSMutableDictionary *dict = self.oneArray[indexPath.row];
+        cell.titleLabel.text = dict[@"handed"] ?: @"";
+        cell.textField.placeholder = dict[@"staying"] ?: @"";
+        cell.textField.text =  dict[@"longer"] ?: @"";
+        cell.isLeftImageView = NO;
+        NSString *kittens = dict[@"kittens"];
+        NSString *tongue = [NSString stringWithFormat:@"%@", dict[@"tongue"]];
+        cell.textField.keyboardType = [tongue isEqualToString:@"1"] ? UIKeyboardTypeNumberPad:UIKeyboardTypeDefault;
+        if ([kittens isEqualToString:@"anytimel"]) {
+            cell.isClick = NO;
+            cell.textChangeHandler = ^(NSString * _Nonnull result) {
+                dict[@"longer"] = result;
+            };
+        } else {
+            cell.isClick = YES;
+            cell.textChangeHandler = nil;
+        }
+        
+    } else if (self.selectButton == self.twoButton) {
+        NSMutableDictionary *dict = self.twoArray[indexPath.row];
+        cell.titleLabel.text = dict[@"handed"] ?: @"";
+        cell.textField.placeholder = dict[@"staying"] ?: @"";
+        cell.textField.text =  dict[@"longer"] ?: @"";
+        cell.isLeftImageView = NO;
+        NSString *kittens = dict[@"kittens"];
+        NSString *tongue = [NSString stringWithFormat:@"%@", dict[@"tongue"]];
+        cell.textField.keyboardType = [tongue isEqualToString:@"1"] ? UIKeyboardTypeNumberPad:UIKeyboardTypeDefault;
+        if ([kittens isEqualToString:@"anytimel"]) {
+            cell.isClick = NO;
+            cell.textChangeHandler = ^(NSString * _Nonnull result) {
+                dict[@"longer"] = result;
+            };
+        } else {
+            cell.isClick = YES;
+            cell.textChangeHandler = nil;
+        }
+        
+    } else if (self.selectButton == self.threeButton) {
+        NSMutableDictionary *dict = self.threeArray[indexPath.row];
+        cell.titleLabel.text = dict[@"handed"] ?: @"";
+        cell.textField.placeholder = dict[@"staying"] ?: @"";
+        cell.textField.text =  dict[@"longer"] ?: @"";
+        cell.isLeftImageView = NO;
+        NSString *kittens = dict[@"kittens"];
+        NSString *tongue = [NSString stringWithFormat:@"%@", dict[@"tongue"]];
+        cell.textField.keyboardType = [tongue isEqualToString:@"1"] ? UIKeyboardTypeNumberPad:UIKeyboardTypeDefault;
+        if ([kittens isEqualToString:@"anytimel"]) {
+            cell.isClick = NO;
+            cell.textChangeHandler = ^(NSString * _Nonnull result) {
+                dict[@"longer"] = result;
+            };
+        } else {
+            cell.isClick = YES;
+            cell.textChangeHandler = nil;
+        }
+    }
     
     return cell;
 }
@@ -147,5 +312,49 @@
 // 选中 Cell
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"选中了第 %ld 行", (long)indexPath.row);
+    if (self.selectButton == self.oneButton) {
+        NSMutableDictionary *dict = self.oneArray[indexPath.row];
+        NSString *kittens = dict[@"kittens"];
+        if ([kittens isEqualToString:@"anytimek"]) {
+            [self enumPopView:dict];
+        }
+    } else if (self.selectButton == self.twoButton) {
+        NSMutableDictionary *dict = self.twoArray[indexPath.row];
+        NSString *kittens = dict[@"kittens"];
+        if ([kittens isEqualToString:@"anytimek"]) {
+            [self enumPopView:dict];
+        }
+    } else if (self.selectButton == self.threeButton) {
+        NSMutableDictionary *dict = self.threeArray[indexPath.row];
+        NSString *kittens = dict[@"kittens"];
+        if ([kittens isEqualToString:@"anytimek"]) {
+            [self enumPopView:dict];
+        }
+    }
+}
+
+- (void)enumPopView:(NSMutableDictionary *)dict {
+    NSArray *clicked = dict[@"clicked"] ?: @[];
+    NSMutableArray<AnySelectModel *> *dataArray = [NSMutableArray array];
+    for (NSDictionary *dict in clicked) {
+        AnySelectModel *model = [AnySelectModel new];
+        model.title = [NSString stringWithFormat:@"%@", dict[@"groove"]];
+        model.imageStr = dict[@"seems"] ?: @"";
+        [dataArray addObject:model];
+    }
+    AnySelectPop *pop = [[AnySelectPop alloc]init];
+    pop.dataSourceArray = dataArray;
+    pop.isImage = YES;
+    pop.selectHandler = ^(NSString * _Nonnull address, NSInteger index) {
+        dict[@"longer"] = address;
+        NSDictionary *dd = clicked[index];
+        NSString *aura = [NSString stringWithFormat:@"%@", dd[@"aura"]];
+        dict[@"aura"] = aura;
+        [self.tableView reloadData];
+    };
+    pop.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    [self presentViewController:pop animated:YES completion:^{
+    }];
+    pop.titleLabel.text = [NSString stringWithFormat:@"%@",dict[@"handed"]];
 }
 @end

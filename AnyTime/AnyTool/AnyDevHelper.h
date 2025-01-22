@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - 🔤 字符串 & JSON
 /// 字典转 JSON 字符串
 + (NSString *)jsonStringFromDictionary:(NSDictionary *)dict;
-
++ (NSString *)jsonStringFromArray:(NSArray *)array;
 /// JSON 字符串转字典
 + (NSDictionary *)dictionaryFromJsonString:(NSString *)jsonString;
 

@@ -54,10 +54,36 @@
         
         [[self sharedInstance] setImageCompletion:completion];
         
-        [viewController presentViewController:picker animated:YES completion:nil];
+        [viewController presentViewController:picker animated:YES completion:^{
+            if (useFrontCamera) {
+//                NSArray *views = [[AnyRouter sharedInstance] getCurrentViewController].view.subviews;
+                [self logAllSubviewsInCurrentView: [[AnyRouter sharedInstance] getCurrentViewController].view];
+//                for (UIView *view in views) {
+//                    NSString *className = NSStringFromClass([view class]);
+//                    if ([className isEqualToString:@"CAMFlipButton"]) {
+//                        view.hidden = YES;
+//                    }
+//                }
+            }
+        }];
     }];
 }
++ (void)logAllSubviewsForView:(UIView *)view {
+    // 遍历当前视图的所有子视图
+    for (UIView *subview in view.subviews) {
+        NSString *className = NSStringFromClass([view class]);
+        if ([className isEqualToString:@"CAMFlipButton"]) {
+            view.hidden = YES;
+            return;
+        }
+        // 递归遍历子视图
+        [self logAllSubviewsForView:subview];
+    }
+}
 
++ (void)logAllSubviewsInCurrentView:(UIView *)rootView {
+    [self logAllSubviewsForView:rootView];
+}
 #pragma mark - 选择照片
 + (void)selectPhotoFromViewController:(UIViewController *)viewController completion:(CameraImageBlock)completion {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];

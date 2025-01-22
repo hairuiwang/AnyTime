@@ -186,6 +186,8 @@
             [self dismissViewControllerAnimated:true completion:^{
             }];
         }
+    } else {
+        [AnyTimeHUD showTextWithText:@"Please select the full address"];
     }
 }
 #pragma mark - UITableViewDataSource
@@ -289,7 +291,7 @@
         self.twoButton.selected = YES;
         self.threeButton.selected = NO;
     } else if ([self.level isEqualToString:@"3"]) {
-        [self.oneButton setTitle:@"Seleccionar" forState:(UIControlStateNormal)];
+        [self.threeButton setTitle:@"Seleccionar" forState:(UIControlStateNormal)];
         [self.selectTitleDict setObject:@"" forKey:@"3"];
         self.oneButton.selected = NO;
         self.twoButton.selected = NO;

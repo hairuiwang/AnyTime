@@ -25,8 +25,14 @@
     // Configure the view for the selected state
 }
 - (IBAction)contactTouchClick:(id)sender {
+    if (self.contactHandler) {
+        self.contactHandler();
+    }
 }
 - (IBAction)relationshipTouchClick:(id)sender {
+    if (self.relationHandler) {
+        self.relationHandler();
+    }
 }
 
 @end

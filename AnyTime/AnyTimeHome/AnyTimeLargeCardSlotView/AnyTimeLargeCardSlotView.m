@@ -34,7 +34,7 @@
     [AnyTimeHUD showLoadingHUD];
     [AnyHttpTool fetchHomePageWithAuras:@"saadaffffgf" apart:@"sdadadsad" success:^(id  _Nonnull responseObject) {
         NSLog(@"responseObject == %@",responseObject);
-        
+        [self.collectionView.mj_header endRefreshing];
         [AnyTimeHUD hideHUD];
         
         NSDictionary * dic = RDic(responseObject);
@@ -48,18 +48,19 @@
        
         [self setupCollectionView];
         [self.collectionView reloadData];
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self.collectionView.mj_header endRefreshing];
-            
-        });
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [self.collectionView.mj_header endRefreshing];
+//            
+//        });
     } failure:^(NSError * _Nonnull error) {
         [AnyTimeHUD hideHUD];
     }];
 }
 
 - (void)setupCollectionView {
-    
+    if (self.collectionView) {
+        return;
+    }
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];
@@ -77,7 +78,11 @@
     self.collectionView.scrollIndicatorInsets = self.collectionView.contentInset;
     [self addSubview:self.collectionView];
     
-    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
+    MJRefreshNormalHeader *mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
+    mj_header.stateLabel.hidden = YES;
+    mj_header.lastUpdatedTimeLabel.hidden = YES;
+    
+    self.collectionView.mj_header = mj_header;
     [self.collectionView.mj_header beginRefreshing];
     self.collectionView.mj_header.automaticallyChangeAlpha = YES;
 }
@@ -183,10 +188,7 @@
 //
 //    }];
     
-//    AnyAddressPop *toVC = [[AnyAddressPop alloc]init];
-//    toVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
-//    [[[AnyRouter sharedInstance] getCurrentViewController] presentViewController:toVC animated:YES completion:^{
-//    }];
+   
 //    AnySelectPop *pop = [[AnySelectPop alloc]init];
 //    pop.modalPresentationStyle = UIModalPresentationOverFullScreen;
 //    AnySelectModel *model = [[AnySelectModel alloc] init];

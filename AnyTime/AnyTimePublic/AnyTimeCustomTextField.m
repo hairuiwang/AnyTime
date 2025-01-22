@@ -210,7 +210,7 @@
 //       }
        
     if (self.textFieldDidChangeBlock) {
-        self.textFieldDidChangeBlock(textField.text);
+        self.textFieldDidChangeBlock(newText);
     }
     
     return YES;

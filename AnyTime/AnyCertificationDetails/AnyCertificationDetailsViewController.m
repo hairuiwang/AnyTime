@@ -35,6 +35,9 @@
     
     self.navigationItem.title = @"Product Detail";
     [self setupView];
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self getData];
 }
 - (void)setupView {
@@ -59,17 +62,23 @@
         make.top.mas_equalTo(self.view.mas_top).offset(NAVIGATION_BAR_HEIGHT);
         make.bottom.mas_equalTo(self.bottomInforView.mas_top);
     }];
+    MJRefreshNormalHeader *mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getData)];
+    mj_header.stateLabel.hidden = YES;
+    mj_header.lastUpdatedTimeLabel.hidden = YES;
+    self.tableView.mj_header = mj_header;
 }
 - (void) getData {
     [AnyTimeHUD showLoadingHUD];
     [AnyHttpTool fetchProductDetailWithBox:self.box depending:@"sflsdafhdsgf" group:@"fadflkdhsagf" success:^(id  _Nonnull responseObject) {
         [AnyTimeHUD hideHUD];
+        [self.tableView.mj_header endRefreshing];
         self.detailsDict = responseObject;
         self.bottomInforView.detailsDict = self.detailsDict;
         self.respondedArray = responseObject[@"responded"] ?: @[];
         [self.tableView reloadData];
     } failure:^(NSError * _Nonnull error) {
         [AnyTimeHUD hideHUD];
+        [self.tableView.mj_header endRefreshing];
     }];
 }
 - (void)backClick {

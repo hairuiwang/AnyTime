@@ -10,7 +10,7 @@
 #import "AnySelectCell.h"
 @interface AnySelectCell ()
 @property (nonatomic, strong) UIView *bgView;
-@property (nonatomic, strong) UIImageView *iconImageView;
+
 
 @end
 @implementation AnySelectCell

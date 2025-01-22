@@ -8,7 +8,8 @@
     
 
 #import "AnyVerifyldentityBaseViewController.h"
-
+#import "AnyAreYouPop.h"
+#import "AnyCertificationDetailsViewController.h"
 @interface AnyVerifyldentityBaseViewController ()
 
 @end
@@ -54,7 +55,19 @@
     self.sureButton = sureButton;
 }
 - (void)backClick {
-    [self.navigationController popViewControllerAnimated:true];
+    AnyAreYouPop *popVC = [[AnyAreYouPop alloc] init];
+    popVC.giveUpBlock = ^{
+        UIViewController *viewControllers = self.navigationController.viewControllers;
+        for (UIViewController *toVC in viewControllers) {
+            if ([toVC isKindOfClass:[AnyCertificationDetailsViewController class]]) {
+                [self.navigationController popToViewController:toVC animated:YES];
+                return;
+            }
+        }
+    };
+    popVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    [self presentModalViewController:popVC animated:YES];
+//    [self.navigationController popViewControllerAnimated:true];
 }
 - (void) sureButtonClick {
     

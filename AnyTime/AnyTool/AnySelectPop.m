@@ -45,6 +45,7 @@
         make.left.mas_equalTo(self.bgImageView.mas_left).offset(13);
         make.top.mas_equalTo(self.bgImageView.mas_top).offset(82);
     }];
+    self.titleLabel = titleLabel;
 
     self.tableView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
     self.tableView.backgroundColor = [UIColor clearColor];
@@ -93,6 +94,9 @@
         if (self.selectHandler != nil) {
             AnySelectModel *model = self.dataSourceArray[self.selectIndexPath.row];
             self.selectHandler(model.title, self.selectIndexPath.row);
+            [self dismissViewControllerAnimated:YES completion:^{
+                
+            }];
         }
     }
 }
@@ -112,6 +116,10 @@
     AnySelectModel *model = self.dataSourceArray[indexPath.row];
     cell.titleLabel.text = model.title;
     cell.isChose = indexPath == self.selectIndexPath;
+    NSString *imageStr = model.imageStr;
+    if (imageStr.length > 0) {
+        [cell.iconImageView sd_setImageWithURL:[NSURL URLWithString:imageStr]];
+    }
     return cell;
 }
 
@@ -121,6 +129,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     self.selectIndexPath = indexPath;
     [tableView reloadData];
+}
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 40;
 }
 
 @end

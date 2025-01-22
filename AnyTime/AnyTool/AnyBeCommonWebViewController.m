@@ -1,16 +1,16 @@
 //
 //  AnyBeCommonWebViewController.m
 //  AnyTime
-//  
+//
 //  Created by wealon on 2025.
 //  AnyTime.
-//  
-    
+//
+
 
 #import "AnyBeCommonWebViewController.h"
 #import <WebKit/WebKit.h>
 #import <StoreKit/StoreKit.h>
-
+#import "AnyCertificationDetailsViewController.h"
 @interface AnyBeCommonWebViewController () <WKNavigationDelegate, WKScriptMessageHandler>
 
 // 声明 WKWebView
@@ -22,16 +22,50 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = HEXCOLOR(0xFFECD7);
+    // 设置导航栏透明
+    [AnyNavigationBarUtil setNavigationBarTransparent:self transparent:YES];
+    
+    // 设置导航栏标题字体和颜色
+    [AnyNavigationBarUtil setNavigationBarTitleFont:self font:[UIFont boldSystemFontOfSize:17] color:[UIColor blackColor]];
+    
+    // 自定义返回按钮
+    [AnyNavigationBarUtil setCustomBackButton:self image:[UIImage imageNamed:@"back"] action:@selector(backClick)];
+    
     
     // 设置 WebView
     [self setupWebView];
     
     // 加载外部配置的 URL
     if (self.urlString && self.urlString.length > 0) {
-       ;
+        ;
         NSURL *url = [NSURL URLWithString: [self appendParamsToURL:self.urlString parameters:@{}]];
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
         [self.webView loadRequest:request];
+    }
+}
+- (void) backClick {
+    UINavigationController *navigationController = self.navigationController;
+    if (navigationController) {
+        // 检查导航栈中是否存在 AViewController
+        BOOL isAViewControllerInStack = NO;
+        for (UIViewController *viewController in navigationController.viewControllers) {
+            if ([viewController isKindOfClass:[AnyCertificationDetailsViewController class]]) {
+                isAViewControllerInStack = YES;
+                break;
+            }
+        }
+        
+        if (isAViewControllerInStack) {
+            // 如果存在 AViewController，返回到根视图控制器
+            [navigationController popToRootViewControllerAnimated:YES];
+        } else {
+            // 否则返回上一个页面
+            [navigationController popViewControllerAnimated:YES];
+        }
+    } else {
+        // 如果没有导航控制器，直接关闭当前视图控制器
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 - (NSDictionary *)fetchGlobalParameters {
@@ -54,13 +88,13 @@
     if (parameters) {
         [allParams addEntriesFromDictionary:parameters];
     }
-
+    
     NSMutableArray *queryArray = [NSMutableArray array];
     [allParams enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
         NSString *query = [NSString stringWithFormat:@"%@=%@", key, [self urlEncode:value]];
         [queryArray addObject:query];
     }];
-
+    
     NSString *queryString = [queryArray componentsJoinedByString:@"&"];
     return [url containsString:@"?"] ? [NSString stringWithFormat:@"%@&%@", url, queryString] : [NSString stringWithFormat:@"%@?%@", url, queryString];
 }
@@ -89,7 +123,7 @@
 
 #pragma mark - WKScriptMessageHandler Methods
 - (void)userContentController:(WKUserContentController *)userContentController
-           didReceiveScriptMessage:(WKScriptMessage *)message {
+      didReceiveScriptMessage:(WKScriptMessage *)message {
     // 根据消息的 name 判断执行哪个方法
     if ([message.name isEqualToString:@"rowanwood"]) {
         [self rowanwood:message];
@@ -109,7 +143,7 @@
 // 风控埋点
 - (void)rowanwood:(WKScriptMessage *)message {
     NSArray *params = message.body;
-  
+    
 }
 
 // 跳转原生或 H5

@@ -440,6 +440,20 @@
     }];
 }
 
++ (void)saveUserInfoWithParameters:(NSDictionary *)parameters success:(void (^)(id responseObject))success failure:(void (^)(NSError *error))failure
+{
+    
+    [[AnyNetRequest sharedManager] POST:SaveUserInfo parameters:parameters success:^(id  _Nonnull responseObject) {
+        if (success) {
+            success(responseObject);
+        }
+    } failure:^(NSError * _Nonnull error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
+
 
 
 /// 获取工作信息（第三项）
@@ -524,6 +538,20 @@
     }];
 }
 
++ (void)saveWorkInfoWith:(NSDictionary *)parameters
+                     success:(void (^)(id responseObject))success
+                     failure:(void (^)(NSError *error))failure
+{
+    [[AnyNetRequest sharedManager] POST:SaveWorkInfo parameters:parameters success:^(id  _Nonnull responseObject) {
+        if (success) {
+            success(responseObject);
+        }
+    } failure:^(NSError * _Nonnull error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
 
 /// 获取联系人信息
 /// - Parameters:
@@ -623,30 +651,10 @@
 ///   - far: 混淆
 ///   - success: 成功
 ///   - failure: 失败
-+ (void)submitBindCardInfoWithBox:(NSString *)box
-                              top:(NSString *)top
-                             isn:(NSString *)isn
-                            food:(NSString *)food
-                            drop:(NSString *)drop
-                          morning:(NSString *)morning
-                            early:(NSString *)early
-                         distance:(NSString *)distance
-                              far:(NSString *)far
++ (void)submitBindCardInfoWithParameters:(NSDictionary *)parameters
                           success:(void (^)(id responseObject))success
                           failure:(void (^)(NSError *error))failure
 {
-    NSDictionary *parameters = @{
-        @"box": box ?: @"",
-        @"top": top ?: @"",
-        @"isn": isn ?: @"",
-        @"food": food ?: @"",
-        @"drop": drop ?: @"",
-        @"morning": morning ?: @"",
-        @"early": early ?: @"",
-        @"distance": distance ?: @"",
-        @"far": far ?: @""
-    };
-    
     [[AnyNetRequest sharedManager] POST:BindingCard parameters:parameters success:^(id  _Nonnull responseObject) {
         if (success) {
             success(responseObject);

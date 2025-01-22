@@ -9,18 +9,25 @@
 
 #import "AnyContactInforViewController.h"
 #import "AnyContactInforCell.h"
-
+#import "AnyContactManager.h"
+#import "AnyTimeCustomPopupView.h"
 
 @interface AnyContactInforViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
-
+@property (nonatomic, strong) NSMutableArray<NSMutableDictionary *> *blow;
+@property (nonatomic, strong) AnyContactManager *manager;
 @end
 
 @implementation AnyContactInforViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    AnyContactManager *manager = [[AnyContactManager alloc]init];
+    self.manager = manager;
+    
+    self.blow = [NSMutableArray array];
     self.topImageView.image = [UIImage imageNamed:@"contact-Information"];
+    [self getData];
 }
 - (void)setupUI {
     [super setupUI];
@@ -60,13 +67,56 @@
         make.edges.mas_equalTo(self.tableView);
     }];
 }
+- (void) getData {
+    NSDictionary *rest = self.parameters[@"rest"];
+    NSString *funny = rest[@"funny"];
+    [AnyTimeHUD showLoadingHUD];
+    [AnyHttpTool fetchContactInfoWithBox:funny saying:@"dsa9344812fvndu" success:^(id  _Nonnull responseObject) {
+        [AnyTimeHUD hideHUD];
+        NSDictionary *mountain = responseObject[@"mountain"];
+        NSArray *blow = mountain[@"blow"];
+        [self.blow removeAllObjects];
+        for (NSDictionary *dict in blow) {
+            NSMutableDictionary *item = [NSMutableDictionary dictionaryWithDictionary:dict];
+            [self.blow addObject:item];
+        }
+        [self.tableView reloadData];
+    } failure:^(NSError * _Nonnull error) {
+        [AnyTimeHUD hideHUD];
+        [AnyTimeHUD showTextWithText:error.localizedDescription];
+    }];
+}
+- (void) sureButtonClick {
+        NSDictionary *rest = self.parameters[@"rest"];
+        NSString *funny = rest[@"funny"];
+    NSMutableArray *dataArray = [NSMutableArray array];
+    for (NSDictionary *dict in self.blow) {
+        [dataArray addObject:@{
+            @"amusement": [NSString stringWithFormat:@"%@", dict[@"amusement"]],
+            @"groove": [NSString stringWithFormat:@"%@", dict[@"groove"]],
+            @"if": [NSString stringWithFormat:@"%@", dict[@"if"]],
+            @"spoke": [NSString stringWithFormat:@"%@", dict[@"spoke"]]
+        }];
+    }
+    NSString *json = [AnyDevHelper jsonStringFromArray:dataArray];
+    [AnyTimeHUD showLoadingHUD];
+    [AnyHttpTool saveContactInfoWithBox:funny gone:json success:^(id  _Nonnull responseObject) {
+        [AnyTimeHUD hideHUD];
+        [[AnyRouter sharedInstance] openURL:@"/next" parameters:self.parameters from:self callback:^(NSDictionary * _Nullable result) {
+                    
+                }];
+    } failure:^(NSError * _Nonnull error) {
+        [AnyTimeHUD hideHUD];
+        [AnyTimeHUD showTextWithText:error.localizedDescription];
+    }];
+}
 #pragma mark - UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 // 返回行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 3;
+    return self.blow.count;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
@@ -78,6 +128,26 @@
 // 返回 Cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     AnyContactInforCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AnyContactInforCell" forIndexPath:indexPath];
+    NSDictionary *dict = self.blow[indexPath.row];
+    NSString *really = dict[@"really"];
+    cell.titleLabel.text = really;
+    cell.subTitleLabel.text = @"A contact must be selected";
+    cell.relationshipTextField.placeholder = dict[@"such"] ?: @"";
+    cell.contactTextField.placeholder = dict[@"innocence"] ?: @"";
+    
+    cell.relationshipTextField.text = dict[@"life"];
+    NSString *groove = [NSString stringWithFormat:@"%@", dict[@"groove"]];
+    NSString *amusement = [NSString stringWithFormat:@"%@", dict[@"amusement"]];
+    NSString *text = [NSString stringWithFormat:@"%@:%@",groove, amusement];
+    cell.contactTextField.text = text;
+    
+    cell.contactHandler = ^{
+        [self contactSelect:self.blow[indexPath.row]];
+    };
+    
+    cell.relationHandler = ^{
+        [self enumPopView:self.blow[indexPath.row]];
+    };
     
     return cell;
 }
@@ -87,5 +157,62 @@
 // 选中 Cell
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+}
+- (void)enumPopView:(NSMutableDictionary *)dict {
+    NSArray *its = dict[@"its"] ?: @[];
+    NSMutableArray<AnySelectModel *> *dataArray = [NSMutableArray array];
+    for (NSDictionary *dict in its) {
+        AnySelectModel *model = [AnySelectModel new];
+        model.title = [NSString stringWithFormat:@"%@", dict[@"groove"]];
+        [dataArray addObject:model];
+    }
+    AnySelectPop *pop = [[AnySelectPop alloc]init];
+    pop.dataSourceArray = dataArray;
+    
+    pop.selectHandler = ^(NSString * _Nonnull address, NSInteger index) {
+        dict[@"life"] = address;
+        NSDictionary *dd = its[index];
+        NSString *aura = [NSString stringWithFormat:@"%@", dd[@"aura"]];
+        dict[@"if"] = aura;
+        [self.tableView reloadData];
+    };
+    pop.modalPresentationStyle = UIModalPresentationOverFullScreen;
+    [self presentViewController:pop animated:YES completion:^{
+    }];
+    pop.titleLabel.text = [NSString stringWithFormat:@"%@",dict[@"really"]];
+}
+- (void) contactSelect:(NSMutableDictionary *)dict {
+    [AnyContactManager requestContactAccessWithCompletion:^(BOOL granted) {
+        if (granted) {
+            [self.manager  selectContactFromViewController:self callback:^(NSString * _Nonnull name, NSString * _Nonnull phoneNumber) {
+                if (name.length > 0 && phoneNumber.length > 0) {
+                    dict[@"groove"] = name;
+                    dict[@"amusement"] = phoneNumber;
+                } else {
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [AnyTimeHUD showTextWithText:@"The contact format is incorrect"];
+                    });
+                    
+                }
+                [self.tableView reloadData];
+            }];
+        } else {
+            AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initGoOutAccountWithFrame:self.view.bounds];
+            popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbg"];
+            popupView.titleText = @"Contact authority";
+            popupView.descriptionText = @"Contact rights are required";
+            popupView.firstButtonTitle = @"Confirm";
+            popupView.secondButtonTitle = @"Cancel";
+            
+            popupView.firstButtonAction = ^{
+                [AnyRouterTool  openAppSettings];
+            };
+            popupView.secondButtonAction = ^{
+            };
+            popupView.closeAction = ^{
+            };
+            [popupView showInView:self.view];
+        }
+    }];
 }
 @end

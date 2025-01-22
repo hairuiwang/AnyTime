@@ -77,7 +77,12 @@
     self.collectionView.scrollIndicatorInsets = self.collectionView.contentInset;
     [self addSubview:self.collectionView];
   
-    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
+    
+    MJRefreshNormalHeader *mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
+    mj_header.stateLabel.hidden = YES;
+    mj_header.lastUpdatedTimeLabel.hidden = YES;
+
+    self.collectionView.mj_header = mj_header;
     [self.collectionView.mj_header beginRefreshing];
     self.collectionView.mj_header.automaticallyChangeAlpha = YES;
 }

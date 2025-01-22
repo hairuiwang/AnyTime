@@ -421,19 +421,35 @@
     
     if (index == 0)
     {
-        vc.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getOrderAllList)];
+        MJRefreshNormalHeader *mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getOrderAllList)];
+        mj_header.stateLabel.hidden = YES;
+        mj_header.lastUpdatedTimeLabel.hidden = YES;
+        
+        vc.collectionView.mj_header = mj_header;
     }
     else if (index == 1)
     {
-        vc.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getOrderApplyList)];
+        MJRefreshNormalHeader *mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getOrderApplyList)];
+        mj_header.stateLabel.hidden = YES;
+        mj_header.lastUpdatedTimeLabel.hidden = YES;
+        
+        vc.collectionView.mj_header = mj_header;
     }
     else if (index == 2)
     {
-        vc.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getOrderRepaymentList)];
+        MJRefreshNormalHeader *mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getOrderRepaymentList)];
+        mj_header.stateLabel.hidden = YES;
+        mj_header.lastUpdatedTimeLabel.hidden = YES;
+        
+        
+        vc.collectionView.mj_header = mj_header;
     }
     else
     {
-        vc.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getOrderFinishedList)];
+        MJRefreshNormalHeader *mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(getOrderFinishedList)];
+        mj_header.stateLabel.hidden = YES;
+        mj_header.lastUpdatedTimeLabel.hidden = YES;
+        vc.collectionView.mj_header = mj_header;
 
     }
     

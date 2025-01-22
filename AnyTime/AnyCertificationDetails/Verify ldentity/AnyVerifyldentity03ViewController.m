@@ -9,6 +9,8 @@
 
 #import "AnyVerifyldentity03ViewController.h"
 #import "AnyVerifyldentity02Cell.h"
+#import "AnyCameraUtil.h"
+#import "AnyTimeCustomPopupView.h"
 @interface AnyVerifyldentity03ViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -98,11 +100,59 @@
 
 // 选中 Cell
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    [self clickImage];
 }
 
+- (void)clickImage {
+    [AnyCameraUtil requestCameraPermission:^(BOOL isGranted) {
+        if (isGranted) {
+            [self camerEx];
+        } else {
+            AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initGoOutAccountWithFrame:self.view.bounds];
+            popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbg"];
+            popupView.titleText = @"Camera permissions";
+            popupView.descriptionText = @"Requires camera rights";
+            popupView.firstButtonTitle = @"Confirm";
+            popupView.secondButtonTitle = @"Cancel";
+            
+            popupView.firstButtonAction = ^{
+                [AnyRouterTool  openAppSettings];
+            };
+            popupView.secondButtonAction = ^{
+            };
+            popupView.closeAction = ^{
+            };
+            [popupView showInView:self.view];
+        }
+    }];
+}
+- (void)camerEx {
+//    [AnyCameraUtil takePhotoFromViewController:self useFrontCamera:YES completion:^(UIImage * _Nullable image) {
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            [self uploadFaceIDImageWithTowers:@"1" image:image];
+//        });
+//    }];
+    [AnyCameraUtil selectPhotoFromViewController:self completion:^(UIImage * _Nullable image) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self uploadFaceIDImageWithTowers:@"1" image:image];
+        });
+        
+    }];
+}
+- (void) uploadFaceIDImageWithTowers:(NSString *)towers image:(UIImage *)image {
+    NSDictionary *rest = self.parameters[@"rest"];
+    NSString *funny = rest[@"funny"];
+    [AnyHttpTool uploadFaceIDImageWithTowers:towers box:funny aura:@"10" casually:image top:@"" weird:@"" direction:@"LKIONHYFCGO" tower:@"" success:^(id  _Nonnull responseObject) {
+        [AnyTimeHUD hideHUD];
+        [[AnyRouter sharedInstance] openURL:@"/next" parameters:self.parameters from:nil callback:^(NSDictionary * _Nullable result) { 
+        }];
+    } failure:^(NSError * _Nonnull error) {
+        [AnyTimeHUD hideHUD];
+        [AnyTimeHUD showTextWithText:error.localizedDescription];
+    }];
+}
 - (void) sureButtonClick {
-    [[AnyRouter sharedInstance] openURL:@"/anyVerifyldentitySuccessfulViewController" parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {
+    [[AnyRouter sharedInstance] openURL:@"/next" parameters:self.parameters from:nil callback:^(NSDictionary * _Nullable result) {
             
     }];
 }

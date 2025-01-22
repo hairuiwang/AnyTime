@@ -188,6 +188,16 @@
                     [[AnyRouter sharedInstance] openURL:@"/anyWithdrawalInfoViewController" parameters:productDetail from:nil callback:^(NSDictionary * _Nullable result) {}];
                 }
             } else {
+                // meiyou
+                NSString *agreed = rest[@"agreed"] ?: @"";
+                [AnyTimeHUD showLoadingHUD];
+                [AnyHttpTool getRedirectURLWithWestern:agreed inn:@"dsafcads@sfd" lead:@"v,avhfslkv44923" followed:@"fsaflifndsaf95wql" carriage:@"KHJKDSAFHJFMSAF" success:^(id  _Nonnull responseObject) {
+                    NSString *disgusting = responseObject[@"disgusting"] ?: @"";
+                    [[AnyRouter sharedInstance] openURL:disgusting parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) { }];
+                } failure:^(NSError * _Nonnull error) {
+                    [AnyTimeHUD hideHUD];
+                    [AnyTimeHUD showTextWithText:error.localizedDescription];
+                }];
                 
             }
         } failure:^(NSError * _Nonnull error) {
@@ -281,11 +291,26 @@
 /// 身份信息和工作信息页面
 + (void) anyPersonalInforViewController {
     [[AnyRouter sharedInstance] registerRoute:@"/anyPersonalInforViewController" handler:^(NSDictionary * parameters, UIViewController * vc, RouterCallback callback) {
-        NSDictionary *par = parameters[@"parameters"];
         NSString *type = [NSString stringWithFormat:@"%@", parameters[@"type"]];
+        NSDictionary *par = parameters[@"parameters"];
+        NSArray *responded = par[@"responded"];
+        NSString *handed = @"";
+        for (NSDictionary *dict in responded) {
+            NSString *natural = dict[@"natural"];
+            if ([type isEqualToString:@"1"] && [natural isEqualToString:@"anytimeg"]) {
+                handed = dict[@"handed"];
+                break;
+            } else if (![type isEqualToString:@"1"] && [natural isEqualToString:@"anytimeh"]) {
+                handed = dict[@"handed"];
+                break;
+            } else {
+                handed = @"";
+            }
+        }
         AnyPersonalInforViewController *toVC = [[AnyPersonalInforViewController alloc]init];
         toVC.parameters = par;
         toVC.type = type;
+        toVC.title = handed;
         [vc.navigationController pushViewController:toVC animated:true];
     }];
 }
@@ -293,8 +318,21 @@
 + (void) anyContactInforViewController {
     [[AnyRouter sharedInstance] registerRoute:@"/anyContactInforViewController" handler:^(NSDictionary * parameters, UIViewController * vc, RouterCallback callback) {
         NSDictionary *par = parameters[@"parameters"];
+        NSArray *responded = par[@"responded"];
+        NSString *handed = @"";
+        for (NSDictionary *dict in responded) {
+            NSString *natural = dict[@"natural"];
+            if ( [natural isEqualToString:@"anytimei"]) {
+                handed = dict[@"handed"];
+                break;
+            } else {
+                handed = @"";
+            }
+        }
+        
         AnyContactInforViewController *toVC = [[AnyContactInforViewController alloc]init];
         toVC.parameters = par;
+        toVC.title = handed;
         [vc.navigationController pushViewController:toVC animated:true];
     }];
 }
@@ -303,8 +341,20 @@
     
     [[AnyRouter sharedInstance] registerRoute:@"/anyWithdrawalInfoViewController" handler:^(NSDictionary * parameters, UIViewController * vc, RouterCallback callback) {
         NSDictionary *par = parameters[@"parameters"];
+        NSArray *responded = par[@"responded"];
+        NSString *handed = @"";
+        for (NSDictionary *dict in responded) {
+            NSString *natural = dict[@"natural"];
+            if ( [natural isEqualToString:@"anytimei"]) {
+                handed = dict[@"handed"];
+                break;
+            } else {
+                handed = @"";
+            }
+        }
         AnyWithdrawalInfoViewController *toVC = [[AnyWithdrawalInfoViewController alloc]init];
         toVC.parameters = par;
+        toVC.title = handed;
         [vc.navigationController pushViewController:toVC animated:true];
     }];
 }

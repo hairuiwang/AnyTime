@@ -130,9 +130,6 @@
     AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initPhotoGraphWithFrame:self.view.bounds];
     popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbigbg"];
     popupView.titleText = @"Please select";
-//    popupView.firstButtonTitle = @"Confirm";
-//    popupView.secondButtonTitle = @"Stop";
-    
     popupView.camcerButtonAction = ^{
         [self camerEx];
     };

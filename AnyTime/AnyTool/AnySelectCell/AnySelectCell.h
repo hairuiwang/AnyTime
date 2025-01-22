@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AnySelectCell : UITableViewCell
 @property (nonatomic, assign) BOOL isImage;
 @property (nonatomic, assign) BOOL isChose;
+@property (nonatomic, strong) UIImageView *iconImageView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @end
 

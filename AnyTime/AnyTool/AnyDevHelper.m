@@ -88,6 +88,21 @@
     return jsonData ? [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding] : nil;
 }
 
++ (NSString *)jsonStringFromArray:(NSArray *)array {
+    if (![array isKindOfClass:[NSArray class]] || array.count == 0) {
+        return @""; // 空数组或者非数组类型，返回 JSON 格式的空数组字符串
+    }
+    
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:array options:0 error:&error];
+    
+    if (error) {
+        return @"";
+    }
+    
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
+
 /// JSON 字符串转字典
 + (NSDictionary *)dictionaryFromJsonString:(NSString *)jsonString {
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
@@ -147,20 +162,25 @@
 
 /// 读取 Keychain
 + (NSString *)loadFromKeychain:(NSString *)key {
-    NSDictionary *query = @{(__bridge id)kSecClass: (__bridge id)kSecClassGenericPassword,
-                            (__bridge id)kSecAttrAccount: key,
-                            (__bridge id)kSecReturnData: @YES,
-                            (__bridge id)kSecMatchLimit: (__bridge id)kSecMatchLimitOne};
+    NSMutableDictionary *query = [NSMutableDictionary dictionary];
+    
+    // 配置查询条件
+    query[(__bridge id)kSecClass] = (__bridge id)kSecClassGenericPassword;
+    query[(__bridge id)kSecAttrAccount] = key;
+    query[(__bridge id)kSecReturnData] = @YES; // 返回数据
+    query[(__bridge id)kSecMatchLimit] = (__bridge id)kSecMatchLimitOne; // 限制为只匹配一个
     
     CFTypeRef result = NULL;
+    
+    // 执行查询
     OSStatus status = SecItemCopyMatching((__bridge CFDictionaryRef)query, &result);
     
     if (status == errSecSuccess) {
-        NSData *data = (__bridge_transfer NSData *)result;
-        NSString *value = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        return value;
+        NSData *data = (__bridge NSData *)(result);
+        NSString *password = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        return password;
     } else {
-        NSLog(@"⚠️ Keychain 读取失败: %d", (int)status);
+        NSLog(@"读取失败，错误代码: %d", (int)status);
         return nil;
     }
 }
