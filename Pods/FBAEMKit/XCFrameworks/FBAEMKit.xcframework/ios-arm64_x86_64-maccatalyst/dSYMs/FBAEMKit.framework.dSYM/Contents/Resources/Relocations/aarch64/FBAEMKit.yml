@@ -173,7 +173,7 @@ relocations:
   - { offset: 0x6FBE, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit28AEMAdvertiserSingleEntryRuleCAA0bE8MatchingA2aDP24isMatchedEventParametersySbSDySSypGSgFTW', symObjAddr: 0x2218, symBinAddr: 0xA554, symSize: 0x98 }
   - { offset: 0x701E, size: 0x8, addend: 0x0, symName: '_$sSo19NSRegularExpressionC7pattern7optionsABSS_So0aB7OptionsVtKcfcTO', symObjAddr: 0x26CC, symBinAddr: 0xAA08, symSize: 0xE8 }
   - { offset: 0x7043, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit28AEMAdvertiserSingleEntryRuleC4with8paramKey19linguisticCondition09numericalJ005arrayJ0AcA0bE8OperatorO_S2SSgSo8NSNumberCSgSaySSGSgtcfCTf4nnngnd_n', symObjAddr: 0x2A2C, symBinAddr: 0xAD68, symSize: 0xF0 }
-  - { offset: 0x722C, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit16AEMConfigurationC12ruleProviderAA26AEMAdvertiserRuleProviding_pSgvpZ', symObjAddr: 0x18710, symBinAddr: 0x40678, symSize: 0x0 }
+  - { offset: 0x722C, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit16AEMConfigurationC12ruleProviderAA26AEMAdvertiserRuleProviding_pSgvpZ', symObjAddr: 0x18698, symBinAddr: 0x40678, symSize: 0x0 }
   - { offset: 0x765D, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit16AEMConfigurationC12ruleProvider_WZ', symObjAddr: 0x6BC, symBinAddr: 0xB5BC, symSize: 0x18 }
   - { offset: 0x7677, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit16AEMConfigurationC12ruleProviderAA26AEMAdvertiserRuleProviding_pSgvau', symObjAddr: 0x6D4, symBinAddr: 0xB5D4, symSize: 0x40 }
   - { offset: 0x78AA, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit16AEMConfigurationCfETo', symObjAddr: 0x2548, symBinAddr: 0xD3EC, symSize: 0x9C }
@@ -430,24 +430,24 @@ relocations:
   - { offset: 0x123AF, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit12AEMNetworkerCACycfcTo', symObjAddr: 0x1820, symBinAddr: 0x1C2BC, symSize: 0x5C }
   - { offset: 0x1244C, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit12AEMNetworkerC17appendAttachments11attachments6toBody11addFormDataySDySSypG_AA010AEMRequestG0CSbtFTf4nnnd_n', symObjAddr: 0x1B68, symBinAddr: 0x1C544, symSize: 0x92C }
   - { offset: 0x12782, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit12AEMNetworkerC17startGraphRequest04withD4Path10parameters11tokenString10httpMethod10completionySS_SDySSypGSSSgAKyypSg_s5Error_pSgtctF033$syXlSgSo7NSErrorCSgIeyByy_ypSgs5n2_pQ8Iegng_TRyXlSgSo0S0CSgIeyByy_Tf1nnnncn_nTf4nndnng_n', symObjAddr: 0x2834, symBinAddr: 0x1D05C, symSize: 0x9B4 }
-  - { offset: 0x12B2A, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC9networkerAA13AEMNetworking_pSgvpZ', symObjAddr: 0x419B8, symBinAddr: 0x406E8, symSize: 0x0 }
-  - { offset: 0x12B4A, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC5appIDSSSgvpZ', symObjAddr: 0x419C0, symBinAddr: 0x406F0, symSize: 0x0 }
+  - { offset: 0x12B2A, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC9networkerAA13AEMNetworking_pSgvpZ', symObjAddr: 0x41940, symBinAddr: 0x406E8, symSize: 0x0 }
+  - { offset: 0x12B4A, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC5appIDSSSgvpZ', symObjAddr: 0x41948, symBinAddr: 0x406F0, symSize: 0x0 }
   - { offset: 0x12B64, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC9nullAppIDSSvpZ', symObjAddr: 0xE130, symBinAddr: 0x329B0, symSize: 0x0 }
-  - { offset: 0x12B7E, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC14analyticsAppIDSSSgvpZ', symObjAddr: 0x419D0, symBinAddr: 0x40700, symSize: 0x0 }
-  - { offset: 0x12B98, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC8reporterAA20SKAdNetworkReporting_pSgvpZ', symObjAddr: 0x419E0, symBinAddr: 0x40710, symSize: 0x0 }
-  - { offset: 0x12BB8, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC9dataStoreSo19FBSDKDataPersisting_pSgvpZ', symObjAddr: 0x419E8, symBinAddr: 0x40718, symSize: 0x0 }
-  - { offset: 0x12BD2, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC18isAEMReportEnabledSbvpZ', symObjAddr: 0x419F0, symBinAddr: 0x40720, symSize: 0x0 }
-  - { offset: 0x12BEC, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC22isLoadingConfigurationSbvpZ', symObjAddr: 0x419F1, symBinAddr: 0x40721, symSize: 0x0 }
-  - { offset: 0x12C06, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC28isConversionFilteringEnabledSbvpZ', symObjAddr: 0x419F2, symBinAddr: 0x40722, symSize: 0x0 }
-  - { offset: 0x12C20, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC24isCatalogMatchingEnabledSbvpZ', symObjAddr: 0x419F3, symBinAddr: 0x40723, symSize: 0x0 }
-  - { offset: 0x12C3A, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC36isAdvertiserRuleMatchInServerEnabledSbvpZ', symObjAddr: 0x419F4, symBinAddr: 0x40724, symSize: 0x0 }
-  - { offset: 0x12C54, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC11serialQueueSo17OS_dispatch_queueCvpZ', symObjAddr: 0x419F8, symBinAddr: 0x40728, symSize: 0x0 }
-  - { offset: 0x12C6E, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC10reportFileSSSgvpZ', symObjAddr: 0x41A00, symBinAddr: 0x40730, symSize: 0x0 }
-  - { offset: 0x12C88, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC14configurationsSDySSSayAA16AEMConfigurationCGGvpZ', symObjAddr: 0x41A10, symBinAddr: 0x40740, symSize: 0x0 }
-  - { offset: 0x12CA2, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC11invocationsSayAA13AEMInvocationCGvpZ', symObjAddr: 0x41A18, symBinAddr: 0x40748, symSize: 0x0 }
-  - { offset: 0x12CBC, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC22configRefreshTimestamp10Foundation4DateVSgvpZ', symObjAddr: 0x41A20, symBinAddr: 0x40750, symSize: 0x0 }
-  - { offset: 0x12CD6, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC30minAggregationRequestTimestamp10Foundation4DateVSgvpZ', symObjAddr: 0x41A38, symBinAddr: 0x40768, symSize: 0x0 }
-  - { offset: 0x12CF0, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC16completionBlocksSayySo7NSErrorCSgcGvpZ', symObjAddr: 0x41A50, symBinAddr: 0x40780, symSize: 0x0 }
+  - { offset: 0x12B7E, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC14analyticsAppIDSSSgvpZ', symObjAddr: 0x41958, symBinAddr: 0x40700, symSize: 0x0 }
+  - { offset: 0x12B98, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC8reporterAA20SKAdNetworkReporting_pSgvpZ', symObjAddr: 0x41968, symBinAddr: 0x40710, symSize: 0x0 }
+  - { offset: 0x12BB8, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC9dataStoreSo19FBSDKDataPersisting_pSgvpZ', symObjAddr: 0x41970, symBinAddr: 0x40718, symSize: 0x0 }
+  - { offset: 0x12BD2, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC18isAEMReportEnabledSbvpZ', symObjAddr: 0x41978, symBinAddr: 0x40720, symSize: 0x0 }
+  - { offset: 0x12BEC, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC22isLoadingConfigurationSbvpZ', symObjAddr: 0x41979, symBinAddr: 0x40721, symSize: 0x0 }
+  - { offset: 0x12C06, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC28isConversionFilteringEnabledSbvpZ', symObjAddr: 0x4197A, symBinAddr: 0x40722, symSize: 0x0 }
+  - { offset: 0x12C20, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC24isCatalogMatchingEnabledSbvpZ', symObjAddr: 0x4197B, symBinAddr: 0x40723, symSize: 0x0 }
+  - { offset: 0x12C3A, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC36isAdvertiserRuleMatchInServerEnabledSbvpZ', symObjAddr: 0x4197C, symBinAddr: 0x40724, symSize: 0x0 }
+  - { offset: 0x12C54, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC11serialQueueSo17OS_dispatch_queueCvpZ', symObjAddr: 0x41980, symBinAddr: 0x40728, symSize: 0x0 }
+  - { offset: 0x12C6E, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC10reportFileSSSgvpZ', symObjAddr: 0x41988, symBinAddr: 0x40730, symSize: 0x0 }
+  - { offset: 0x12C88, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC14configurationsSDySSSayAA16AEMConfigurationCGGvpZ', symObjAddr: 0x41998, symBinAddr: 0x40740, symSize: 0x0 }
+  - { offset: 0x12CA2, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC11invocationsSayAA13AEMInvocationCGvpZ', symObjAddr: 0x419A0, symBinAddr: 0x40748, symSize: 0x0 }
+  - { offset: 0x12CBC, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC22configRefreshTimestamp10Foundation4DateVSgvpZ', symObjAddr: 0x419A8, symBinAddr: 0x40750, symSize: 0x0 }
+  - { offset: 0x12CD6, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC30minAggregationRequestTimestamp10Foundation4DateVSgvpZ', symObjAddr: 0x419C0, symBinAddr: 0x40768, symSize: 0x0 }
+  - { offset: 0x12CF0, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC16completionBlocksSayySo7NSErrorCSgcGvpZ', symObjAddr: 0x419D8, symBinAddr: 0x40780, symSize: 0x0 }
   - { offset: 0x12D7D, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC9networkerAA13AEMNetworking_pSgvau', symObjAddr: 0x7C, symBinAddr: 0x1DCD8, symSize: 0xC }
   - { offset: 0x13BE1, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC5appIDSSSgvau', symObjAddr: 0xF8, symBinAddr: 0x1DD54, symSize: 0xC }
   - { offset: 0x13BFF, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMReporterC9nullAppIDSSvau', symObjAddr: 0x184, symBinAddr: 0x1DDE0, symSize: 0xC }
@@ -693,8 +693,8 @@ relocations:
   - { offset: 0x1E38E, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit7AEMRuleC9isMatched33_3643389AA30571238A29A144FB8AA0FELL6values19recordedEventValuesSbSDySSSdG_AHSgtFTf4nnd_n', symObjAddr: 0xF30, symBinAddr: 0x2D200, symSize: 0x1EC }
   - { offset: 0x1E47A, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit7AEMRuleC5coderACSgSo7NSCoderC_tcfcTf4gn_n', symObjAddr: 0x11D8, symBinAddr: 0x2D3EC, symSize: 0x1F8 }
   - { offset: 0x1E5E3, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMSettingsO5appIDSSSgyFZ', symObjAddr: 0x0, symBinAddr: 0x2D620, symSize: 0x190 }
-  - { offset: 0x1E606, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMSettingsO22configuredDependenciesAC04TypeD0VSgvpZ', symObjAddr: 0x30C0, symBinAddr: 0x40788, symSize: 0x0 }
-  - { offset: 0x1E697, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMSettingsO19defaultDependenciesAC04TypeD0VSgvpZ', symObjAddr: 0x30C8, symBinAddr: 0x40790, symSize: 0x0 }
+  - { offset: 0x1E606, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMSettingsO22configuredDependenciesAC04TypeD0VSgvpZ', symObjAddr: 0x3040, symBinAddr: 0x40788, symSize: 0x0 }
+  - { offset: 0x1E697, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMSettingsO19defaultDependenciesAC04TypeD0VSgvpZ', symObjAddr: 0x3048, symBinAddr: 0x40790, symSize: 0x0 }
   - { offset: 0x1E73F, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMSettingsO22configuredDependenciesAC04TypeD0VSgvau', symObjAddr: 0x1D4, symBinAddr: 0x2D7EC, symSize: 0xC }
   - { offset: 0x1E75D, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMSettingsO22configuredDependenciesAC04TypeD0VSgvgZ', symObjAddr: 0x1E0, symBinAddr: 0x2D7F8, symSize: 0x4C }
   - { offset: 0x1E771, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMSettingsO22configuredDependenciesAC04TypeD0VSgvsZ', symObjAddr: 0x22C, symBinAddr: 0x2D844, symSize: 0x4C }
@@ -713,7 +713,7 @@ relocations:
   - { offset: 0x1E9E1, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMSettingsO16TypeDependenciesV6bundleSo8NSBundleCvg', symObjAddr: 0x190, symBinAddr: 0x2D7B0, symSize: 0x4 }
   - { offset: 0x1E9FA, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMSettingsO16TypeDependenciesV6bundleSo8NSBundleCvs', symObjAddr: 0x194, symBinAddr: 0x2D7B4, symSize: 0x28 }
   - { offset: 0x1EA0D, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit11AEMSettingsO16TypeDependenciesV6bundleSo8NSBundleCvM', symObjAddr: 0x1BC, symBinAddr: 0x2D7DC, symSize: 0x10 }
-  - { offset: 0x1EAB6, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit10AEMUtilityC6sharedACvpZ', symObjAddr: 0xDBC8, symBinAddr: 0x40798, symSize: 0x0 }
+  - { offset: 0x1EAB6, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit10AEMUtilityC6sharedACvpZ', symObjAddr: 0xDB40, symBinAddr: 0x40798, symSize: 0x0 }
   - { offset: 0x1ED01, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit10AEMUtilityC6sharedACvau', symObjAddr: 0x0, symBinAddr: 0x2DBC0, symSize: 0x40 }
   - { offset: 0x1ED1F, size: 0x8, addend: 0x0, symName: '_$s8FBAEMKit10AEMUtilityC6shared_WZ', symObjAddr: 0x54, symBinAddr: 0x2DC14, symSize: 0x28 }
   - { offset: 0x1EEF9, size: 0x8, addend: 0x0, symName: '_$ss11_StringGutsV27_slowEnsureMatchingEncodingySS5IndexVAEF', symObjAddr: 0xBFC, symBinAddr: 0x2E774, symSize: 0x78 }

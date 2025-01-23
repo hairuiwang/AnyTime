@@ -265,7 +265,7 @@
         [AnyDevHelper saveToUserDefaults:LOGIN_COUNT value:self.phoneTextField.textField.text];
         
         [AnyDevHelper saveBoolToUserDefaults:LOGIN_STATUS value:YES];
-        self.endTime = [AnyDevHelper currentTimestamp];
+        self.endTime = [AnyDevHelper currentTimestampMillis];
         [AnyDevHelper saveToUserDefaults:self.endTime value:@"loginEndTime"];
         
         UIWindow *window = [UIApplication sharedApplication].windows.firstObject;

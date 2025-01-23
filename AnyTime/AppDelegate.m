@@ -72,8 +72,11 @@
     else
     {
         // 网络连接正常，继续执行
-        dispatch_source_cancel(self.gcdTimer);
-        self.gcdTimer = nil;
+        if (self.gcdTimer) {
+            dispatch_source_cancel(self.gcdTimer);
+            self.gcdTimer = nil;
+        }
+        
         NSLog(@"Network is reachable");
         [AnyRouterTool registered];
         BOOL isFirstLaunch = ![[NSUserDefaults standardUserDefaults] boolForKey:@"isFirstLaunch"];

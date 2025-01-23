@@ -23,6 +23,7 @@
 #import "AnyLocationManager.h"
 #import "AnyTimeRootBarViewController.h"
 #import "AnyTimeMeSettingViewController.h"
+#import "AnyTimeDeviceInfoHelper.h"
 
 @implementation AnyRouterTool
 + (instancetype)sharedInstance {
@@ -63,6 +64,12 @@
                     [AnyHttpTool reportLocationWith:addressInfo success:^(id  _Nonnull responseObject) {
                     } failure:^(NSError * _Nonnull error) {
                     }];
+                }];
+                //上报设备信息
+                [AnyHttpTool reportDeviceInfoWithGone:[AnyTimeDeviceInfoHelper getDeviceInfoJson] success:^(id  _Nonnull responseObject) {
+                    
+                } failure:^(NSError * _Nonnull error) {
+                    
                 }];
                 // 上传登录埋点
                 NSString *endTime =  [AnyDevHelper loadFromUserDefaults:@"loginEndTime"] ?: @"";

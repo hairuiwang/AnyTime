@@ -48,6 +48,8 @@
 		04E89A642D38F2FB008EA16E /* AnyTimeHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E89A632D38F2FB008EA16E /* AnyTimeHomeModel.m */; };
 		04E89A682D3C9D50008EA16E /* AnyTimeOrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E89A672D3C9D50008EA16E /* AnyTimeOrderModel.m */; };
 		04E89A6C2D3F9AE2008EA16E /* AnyTimeNoNetWorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E89A6B2D3F9AE2008EA16E /* AnyTimeNoNetWorkViewController.m */; };
+		04E89A6F2D421F2C008EA16E /* AnyTimeDeviceInfoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E89A6E2D421F2C008EA16E /* AnyTimeDeviceInfoHelper.m */; };
+		04E89A712D423570008EA16E /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E89A702D423570008EA16E /* CoreTelephony.framework */; };
 		6575440B2D34DC4F00A63988 /* AnyRouter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6575440A2D34DC4F00A63988 /* AnyRouter.m */; };
 		6575440E2D3505B700A63988 /* AnyDevHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6575440D2D3505B700A63988 /* AnyDevHelper.m */; };
 		657544112D35063F00A63988 /* AnyRouterTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 657544102D35063F00A63988 /* AnyRouterTool.m */; };
@@ -191,6 +193,9 @@
 		04E89A672D3C9D50008EA16E /* AnyTimeOrderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyTimeOrderModel.m; sourceTree = "<group>"; };
 		04E89A6A2D3F9AE2008EA16E /* AnyTimeNoNetWorkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyTimeNoNetWorkViewController.h; sourceTree = "<group>"; };
 		04E89A6B2D3F9AE2008EA16E /* AnyTimeNoNetWorkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyTimeNoNetWorkViewController.m; sourceTree = "<group>"; };
+		04E89A6D2D421F2C008EA16E /* AnyTimeDeviceInfoHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyTimeDeviceInfoHelper.h; sourceTree = "<group>"; };
+		04E89A6E2D421F2C008EA16E /* AnyTimeDeviceInfoHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyTimeDeviceInfoHelper.m; sourceTree = "<group>"; };
+		04E89A702D423570008EA16E /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		2D1011C7969C9D06831050AF /* Pods-AnyTimeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTimeTests.release.xcconfig"; path = "Target Support Files/Pods-AnyTimeTests/Pods-AnyTimeTests.release.xcconfig"; sourceTree = "<group>"; };
 		3414FFF15DC354AEA7298D8F /* Pods-AnyTimeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTimeTests.debug.xcconfig"; path = "Target Support Files/Pods-AnyTimeTests/Pods-AnyTimeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4D9BAC4A1E243BC4268E3570 /* Pods-AnyTime-AnyTimeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime-AnyTimeUITests.debug.xcconfig"; path = "Target Support Files/Pods-AnyTime-AnyTimeUITests/Pods-AnyTime-AnyTimeUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -283,6 +288,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04E89A712D423570008EA16E /* CoreTelephony.framework in Frameworks */,
 				826F54C2EA19383470FFFE00 /* Pods_AnyTime.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -454,6 +460,8 @@
 				046B6DDF2D3512D400EE9EF7 /* AnyTimeCustomPopupView.m */,
 				04690EED2D3788EF00BB8F5A /* UIButton+AnyEdge.h */,
 				04690EEE2D3788EF00BB8F5A /* UIButton+AnyEdge.m */,
+				04E89A6D2D421F2C008EA16E /* AnyTimeDeviceInfoHelper.h */,
+				04E89A6E2D421F2C008EA16E /* AnyTimeDeviceInfoHelper.m */,
 			);
 			path = AnyTimePublic;
 			sourceTree = "<group>";
@@ -703,6 +711,7 @@
 		D4419434A67CECABB965C0E6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04E89A702D423570008EA16E /* CoreTelephony.framework */,
 				5144912D00E9046812AF323D /* Pods_AnyTime.framework */,
 				01D88D01DB36709394BB553A /* Pods_AnyTime_AnyTimeUITests.framework */,
 				CE4B7405F01A2FAB655AFF70 /* Pods_AnyTimeTests.framework */,
@@ -966,6 +975,7 @@
 				657544F92D390A2000A63988 /* AnyLocationManager.m in Sources */,
 				657544622D36519C00A63988 /* UINavigationController+AutoHideTabBar.m in Sources */,
 				046B6DB72D33D90700EE9EF7 /* AnyTimeLargeCardSlotView.m in Sources */,
+				04E89A6F2D421F2C008EA16E /* AnyTimeDeviceInfoHelper.m in Sources */,
 				046B6DC32D33DE8100EE9EF7 /* AnyTimeLargeCardSlotThirdCell.m in Sources */,
 				6575449A2D37BC7C00A63988 /* AnyPersonalInforBaseViewController.m in Sources */,
 				657544A62D37CE5900A63988 /* AnyContactInforCell.m in Sources */,

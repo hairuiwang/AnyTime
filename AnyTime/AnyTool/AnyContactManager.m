@@ -23,7 +23,7 @@
             if (accessGranted) {
                 if (@available(iOS 18, *)) {
                     CNAuthorizationStatus authStatus = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
-                    if (authStatus == CNAuthorizationStatusLimited) {
+                    if (authStatus == CNAuthorizationStatusDenied) {
                         if (completion) {
                             completion(NO);
                         }
