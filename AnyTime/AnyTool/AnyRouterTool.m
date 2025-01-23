@@ -175,7 +175,8 @@
                         popupView.closeAction = ^{
                             NSLog(@"Close button tapped");
                         };
-                        [popupView showInView:vc.view];
+                        UIWindow *window = [UIApplication sharedApplication].windows.firstObject;
+                        [popupView showInView:window];
                     } else {
                         AnyCertificationDetailsViewController *toVC = [[AnyCertificationDetailsViewController alloc]init];
                         toVC.box = box;

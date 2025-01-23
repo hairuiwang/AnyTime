@@ -9,7 +9,7 @@
 #import "AnyTimeLoginViewController.h"
 #import <AdSupport/AdSupport.h>
 #import <AppTrackingTransparency/AppTrackingTransparency.h>
-
+#import "AnyTimeRootBarViewController.h"
 @interface AnyTimeGuidePageViewController ()<UIScrollViewDelegate>
 
 @property (nonatomic, assign) NSInteger lastPage;
@@ -202,8 +202,10 @@
 {
     [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"isFirstLaunch"];
     UIWindow *window = [UIApplication sharedApplication].windows.firstObject;
-    AnyTimeLoginViewController * loginVC = [[AnyTimeLoginViewController alloc] init];
-    window.rootViewController = loginVC;
+//    AnyTimeLoginViewController * loginVC = [[AnyTimeLoginViewController alloc] init];
+//    window.rootViewController = loginVC;
+    AnyTimeRootBarViewController * rootVC = [[AnyTimeRootBarViewController alloc] init];
+    window.rootViewController = rootVC;
 }
 /// 请求 IDFA 权限
 - (void)requestIDFAPermissionWithCompletion:(void (^)(NSString *idfa))completion {
