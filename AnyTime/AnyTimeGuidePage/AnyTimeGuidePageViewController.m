@@ -7,7 +7,8 @@
 
 #import "AnyTimeGuidePageViewController.h"
 #import "AnyTimeLoginViewController.h"
-
+#import <AdSupport/AdSupport.h>
+#import <AppTrackingTransparency/AppTrackingTransparency.h>
 
 @interface AnyTimeGuidePageViewController ()<UIScrollViewDelegate>
 
@@ -28,14 +29,17 @@
     [super viewDidLoad];
     
     self.imagesArray = @[@"anytime_guidepage1", @"anytime_guidepage2", @"anytime_guidepage3"];
-       
+    
     self.titlesArray = @[@"Easy to operate", @"Fast Approval", @"Smart Management"];
-      
+    
     self.btnTitlesArray = @[@"Next",@"Next",@"Enter"];
     
     self.descriptionsArray = @[@"Complete your loan application in just a few steps", @"No need to wait, instant loan", @"Smart financial management tools to help you easily manage your loans"];
+    
+    [self setupScrollView];
+    [self requestIDFAPermissionWithCompletion:^(NSString *idfa) {
         
-        [self setupScrollView];
+    }];
 }
 
 - (void)setupScrollView {
@@ -47,7 +51,7 @@
     self.scrollView.delegate = self;
     [self.view addSubview:self.scrollView];
     
-    for (NSInteger i = 0; i < self.imagesArray.count; i++) 
+    for (NSInteger i = 0; i < self.imagesArray.count; i++)
     {
         UIView *pageView = [[UIView alloc] initWithFrame:CGRectMake(i * SCREEN_WIDTH, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
         pageView.backgroundColor = [UIColor clearColor];
@@ -67,7 +71,7 @@
             make.left.mas_equalTo(pageView.mas_left);
             make.width.height.mas_equalTo(44);
         }];
-
+        
         
         UIButton * nextButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [nextButton setTitle:self.btnTitlesArray[i] forState:UIControlStateNormal];
@@ -83,7 +87,7 @@
             make.right.mas_equalTo(pageView.mas_right).offset(-47);
             make.height.mas_equalTo(44);
         }];
-
+        
         UILabel *descriptionLabel = [[UILabel alloc] init];
         descriptionLabel.text = self.descriptionsArray[i];
         descriptionLabel.textAlignment = NSTextAlignmentCenter;
@@ -106,7 +110,7 @@
         titleLabel.font = [UIFont boldSystemFontOfSize:24];
         titleLabel.textColor = [UIColor blackColor];
         [pageView addSubview:titleLabel];
-       
+        
         [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.bottom.mas_equalTo(descriptionLabel.mas_top).offset(-10);
             make.left.mas_equalTo(pageView.mas_left).offset(47);
@@ -126,7 +130,7 @@
 
 #pragma mark - UIScrollViewDelegate
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     NSInteger currentPage = scrollView.contentOffset.x / SCREEN_WIDTH;
     
@@ -141,7 +145,7 @@
         NSLog(@"滑动到最后一页");
         self.lastPage = currentPage;
     }
-
+    
 }
 
 - (void)pageViewTapped:(UITapGestureRecognizer *)gestureRecognizer {
@@ -181,16 +185,16 @@
 - (void)backButtonTapped
 {
     NSInteger currentPage = self.scrollView.contentOffset.x / SCREEN_WIDTH;
-       
+    
     if (currentPage == 0) {
         NSLog(@"第一页");
         return;
     }
     NSInteger prevPage = currentPage - 1;
-
-    if (prevPage >= 0) 
+    
+    if (prevPage >= 0)
     {
-       [self.scrollView setContentOffset:CGPointMake(prevPage * SCREEN_WIDTH, 0) animated:YES];
+        [self.scrollView setContentOffset:CGPointMake(prevPage * SCREEN_WIDTH, 0) animated:YES];
     }
 }
 
@@ -201,5 +205,48 @@
     AnyTimeLoginViewController * loginVC = [[AnyTimeLoginViewController alloc] init];
     window.rootViewController = loginVC;
 }
-
+/// 请求 IDFA 权限
+- (void)requestIDFAPermissionWithCompletion:(void (^)(NSString *idfa))completion {
+    if (@available(iOS 14, *)) {
+        // 检查当前的权限状态
+        ATTrackingManagerAuthorizationStatus status = [ATTrackingManager trackingAuthorizationStatus];
+        
+        if (status == ATTrackingManagerAuthorizationStatusNotDetermined) {
+            // 未申请过，发起权限申请
+            [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus newStatus) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if (newStatus == ATTrackingManagerAuthorizationStatusAuthorized) {
+                        // 授权成功，获取 IDFA
+                        NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+                        if (completion) {
+                            completion(idfa);
+                        }
+                    } else {
+                        // 用户拒绝或限制，返回空字符串
+                        if (completion) {
+                            completion(@"");
+                        }
+                    }
+                });
+            }];
+        } else if (status == ATTrackingManagerAuthorizationStatusAuthorized) {
+            // 已经授权，直接获取 IDFA
+            NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+            if (completion) {
+                completion(idfa);
+            }
+        } else {
+            // 用户拒绝或限制，返回空字符串
+            if (completion) {
+                completion(@"");
+            }
+        }
+    } else {
+        // iOS 14 以下版本，直接获取 IDFA
+        NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+        if (completion) {
+            completion(idfa);
+        }
+    }
+}
 @end

@@ -9,7 +9,9 @@
 #import "AnyTimeLargeCardSlotView.h"
 #import "AnyTimeSmallCardSlotView.h"
 #import "AnyTimeCustomPopupView.h"
-
+#import <AdSupport/AdSupport.h>
+#import <AppTrackingTransparency/AppTrackingTransparency.h>
+#import "FBSDKCoreKit/FBSDKCoreKit.h"
 @interface AnyTimeHomeViewController ()
 
 @end
@@ -92,8 +94,29 @@
     } failure:^(NSError * _Nonnull error) {
         
     }];
+    [self googleMarket];
 }
-
+- (void)googleMarket {
+    BOOL isHomeGoogleMarket = ![[NSUserDefaults standardUserDefaults] boolForKey:@"isHomeGoogleMarket"];
+    if (!isHomeGoogleMarket) {
+        NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+        [AnyHttpTool reportGoogleMarketWithMet:@"saslkfasldfhas" each:[AnyDevHelper IDFV] closer:idfa success:^(id  _Nonnull responseObject) {
+            NSDictionary *characters = responseObject[@"characters"];
+            NSString *cFBundleURLScheme = [NSString stringWithFormat:@"%@", characters[@"main"]];
+            NSString *facebookAppID = [NSString stringWithFormat:@"%@", characters[@"stirring"]];
+            NSString *facebookDisplayName = [NSString stringWithFormat:@"%@", characters[@"frying"]];
+            NSString *facebookClientToke = [NSString stringWithFormat:@"%@", characters[@"whether"]];
+            FBSDKSettings.sharedSettings.appID = facebookAppID;
+            FBSDKSettings.sharedSettings.clientToken = facebookClientToke;
+            FBSDKSettings.sharedSettings.displayName = facebookDisplayName;
+            FBSDKSettings.sharedSettings.appURLSchemeSuffix = cFBundleURLScheme;
+            [[FBSDKApplicationDelegate sharedInstance] application:[UIApplication sharedApplication] didFinishLaunchingWithOptions:nil];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isHomeGoogleMarket"];
+        } failure:^(NSError * _Nonnull error) {
+            
+        }];
+    }
+}
 /*
 #pragma mark - Navigation
 

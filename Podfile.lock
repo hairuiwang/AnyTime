@@ -14,6 +14,12 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
+  - FBAEMKit (17.4.0):
+    - FBSDKCoreKit_Basics (= 17.4.0)
+  - FBSDKCoreKit (17.4.0):
+    - FBAEMKit (= 17.4.0)
+    - FBSDKCoreKit_Basics (= 17.4.0)
+  - FBSDKCoreKit_Basics (17.4.0)
   - IQKeyboardManager (6.5.19)
   - LookinServer (1.2.8):
     - LookinServer/Core (= 1.2.8)
@@ -30,6 +36,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - FBSDKCoreKit
   - IQKeyboardManager
   - LookinServer
   - Masonry
@@ -43,6 +50,9 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AFNetworking
+    - FBAEMKit
+    - FBSDKCoreKit
+    - FBSDKCoreKit_Basics
     - IQKeyboardManager
     - LookinServer
     - Masonry
@@ -55,6 +65,9 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
+  FBAEMKit: 58cb5f302cdd715a56d4c1d0dfdd2e423ac1421a
+  FBSDKCoreKit: 94d7461d0cecf441b1ba7c41acfff41daa8ccd41
+  FBSDKCoreKit_Basics: 151b43db8b834d3f0e02f95d36a44ffd36265e45
   IQKeyboardManager: c8665b3396bd0b79402b4c573eac345a31c7d485
   LookinServer: 1b2b61c6402ae29fa22182d48f5cd067b4e99e80
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
@@ -65,6 +78,6 @@ SPEC CHECKSUMS:
   SDWebImage: 40b0b4053e36c660a764958bff99eed16610acbb
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 88583c284cba60253b164a8298e025a6e069c396
+PODFILE CHECKSUM: 6857903924398eca069b41d73d4a626f2241e748
 
-COCOAPODS: 1.13.0
+COCOAPODS: 1.15.2

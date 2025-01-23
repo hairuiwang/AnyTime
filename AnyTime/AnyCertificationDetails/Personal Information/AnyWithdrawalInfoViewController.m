@@ -197,6 +197,10 @@
     [AnyTimeHUD showLoadingHUD];
     [AnyHttpTool submitBindCardInfoWithParameters:par success:^(id  _Nonnull responseObject) {
         [AnyTimeHUD hideHUD];
+        self.endTime = [AnyDevHelper currentTimestamp];
+        [AnyHttpTool reportRiskGate:funny commanded:@"8" agreed:@"" allowance:self.stateTime large:self.endTime father:@"dfsdfsdaflkdsafndslf" success:^(id  _Nonnull responseObject) {
+        } failure:^(NSError * _Nonnull error) {
+        }];
         [[AnyRouter sharedInstance] openURL:@"/next" parameters:self.parameters from:self callback:^(NSDictionary * _Nullable result) {}];
     } failure:^(NSError * _Nonnull error) {
         [AnyTimeHUD hideHUD];

@@ -16,6 +16,7 @@
 @interface AppDelegate ()
 
 @property (nonatomic, strong) Reachability *reachability;
+@property (nonatomic, strong) dispatch_source_t gcdTimer; // GCD 定时器
 
 @end
 
@@ -35,6 +36,24 @@
       // 检查网络状态
       [self checkNetworkStatus];
  
+    // 创建定时器队列
+        dispatch_queue_t queue = dispatch_get_main_queue(); // 或自定义队列
+        self.gcdTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+
+        // 设置定时器的时间间隔
+        dispatch_source_set_timer(self.gcdTimer,
+                                  dispatch_time(DISPATCH_TIME_NOW, 0), // 开始时间
+                                  1.0 * NSEC_PER_SEC,            // 重复间隔
+                                  0);                                 // 容错时间
+
+        // 设置任务回调
+        dispatch_source_set_event_handler(self.gcdTimer, ^{
+            [self checkNetworkStatus];
+        });
+
+        // 启动定时器
+        dispatch_resume(self.gcdTimer);
+    
     return YES;
 }
 
@@ -44,12 +63,17 @@
     if (status == NotReachable) {
         // 网络不可用，弹出警告框
         NSLog(@"Network is noreachable");
-        AnyTimeNoNetWorkViewController * nonetVC = [[AnyTimeNoNetWorkViewController alloc] init];
-        self.window.rootViewController = nonetVC;
+        if (![self.window.rootViewController isKindOfClass:[AnyTimeNoNetWorkViewController class]]) {
+            AnyTimeNoNetWorkViewController * nonetVC = [[AnyTimeNoNetWorkViewController alloc] init];
+            self.window.rootViewController = nonetVC;
+            [self.window makeKeyWindow];
+        }
     } 
     else
     {
         // 网络连接正常，继续执行
+        dispatch_source_cancel(self.gcdTimer);
+        self.gcdTimer = nil;
         NSLog(@"Network is reachable");
         [AnyRouterTool registered];
         BOOL isFirstLaunch = ![[NSUserDefaults standardUserDefaults] boolForKey:@"isFirstLaunch"];

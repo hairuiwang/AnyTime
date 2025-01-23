@@ -124,6 +124,10 @@
     if ([self.type isEqualToString:@"1"]) {
         [AnyHttpTool saveUserInfoWithParameters:par success:^(id  _Nonnull responseObject) {
             [AnyTimeHUD hideHUD];
+            self.endTime = [AnyDevHelper currentTimestamp];
+            [AnyHttpTool reportRiskGate:funny commanded:@"5" agreed:@"" allowance:self.stateTime large:self.endTime father:@"csfkdsalfhsldaf" success:^(id  _Nonnull responseObject) {
+            } failure:^(NSError * _Nonnull error) {
+            }];
             [[AnyRouter sharedInstance] openURL:@"/next" parameters:self.parameters from:self callback:^(NSDictionary * _Nullable result) { }];
         } failure:^(NSError * _Nonnull error) {
             [AnyTimeHUD hideHUD];
@@ -132,6 +136,10 @@
     } else {
         [AnyHttpTool saveWorkInfoWith:par success:^(id  _Nonnull responseObject) {
             [AnyTimeHUD hideHUD];
+            self.endTime = [AnyDevHelper currentTimestamp];
+            [AnyHttpTool reportRiskGate:funny commanded:@"6" agreed:@"" allowance:self.stateTime large:self.endTime father:@"csfkdsalfhsldaf" success:^(id  _Nonnull responseObject) {
+            } failure:^(NSError * _Nonnull error) {
+            }];
             [[AnyRouter sharedInstance] openURL:@"/next" parameters:self.parameters from:self callback:^(NSDictionary * _Nullable result) { }];
         } failure:^(NSError * _Nonnull error) {
             [AnyTimeHUD hideHUD];

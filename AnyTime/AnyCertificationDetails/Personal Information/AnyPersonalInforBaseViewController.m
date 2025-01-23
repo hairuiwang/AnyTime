@@ -19,6 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupUI];
+    self.stateTime = [AnyDevHelper currentTimestamp];
 }
 - (void)setupUI {
     self.view.backgroundColor = HEXCOLOR(0xFFECD7);

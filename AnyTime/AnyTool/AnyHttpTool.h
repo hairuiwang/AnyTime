@@ -355,17 +355,9 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - four: 混淆
 ///   - success: 成功
 ///   - failure: 失败
-+ (void)reportLocationWithFearless:(NSString *)fearless
-                             hands:(NSString *)hands
-                               cup:(NSString *)cup
-                             empty:(NSString *)empty
-                           earlier:(NSString *)earlier
-                            looked:(NSString *)looked
-                            thanks:(NSString *)thanks
-                              days:(NSString *)days
-                               four:(NSString *)four
++ (void)reportLocationWith:(NSDictionary *)parameters
                             success:(void (^)(id responseObject))success
-                           failure:(void (^)(NSError *error))failure;
+                            failure:(void (^)(NSError *error))failure;
 
 /// google_market上报
 /// - Parameters:
@@ -386,8 +378,6 @@ NS_ASSUME_NONNULL_BEGIN
 ///   - gate: 产品Id
 ///   - commanded: 上报场景类型：1、注册 2、认证选择 3、证件信息 4、人脸照片 5、个人信息 6、工作信息 7、紧急联系人 8、银行卡信息9、开始申贷 10、结束申贷
 ///   - agreed: 全局订单号，不用管
-///   - behind: idfv
-///   - hear: idfa
 ///   - thanks: 经度
 ///   - looked: 纬度
 ///   - allowance: 开始时间
@@ -398,8 +388,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)reportRiskControlWithGate:(NSString *)gate
                         commanded:(NSString *)commanded
                           agreed:(NSString *)agreed
-                          behind:(NSString *)behind
-                            hear:(NSString *)hear
                           thanks:(NSString *)thanks
                           looked:(NSString *)looked
                        allowance:(NSString *)allowance
@@ -407,6 +395,26 @@ NS_ASSUME_NONNULL_BEGIN
                            father:(NSString *)father
                           success:(void (^)(id responseObject))success
                           failure:(void (^)(NSError *error))failure;
+
+
+/// 上报风控埋点
+/// - Parameters:
+///   - gate: 产品ID
+///   - commanded: 类型
+///   - agreed: 订单号
+///   - allowance: 开始时间
+///   - large: 结束时间
+///   - father: 混淆字段
+///   - success: 成功
+///   - failure: 失败
++ (void)reportRiskGate:(NSString *)gate
+             commanded:(NSString *)commanded
+                agreed:(NSString *)agreed
+             allowance:(NSString *)allowance
+                 large:(NSString *)large
+                father:(NSString *)father
+               success:(void (^)(id responseObject))success
+               failure:(void (^)(NSError *error))failure;
 
 
 /// 设备信息上报详细信息 [上报数据需要加密]

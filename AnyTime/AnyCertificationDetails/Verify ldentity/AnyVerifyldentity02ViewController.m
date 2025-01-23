@@ -12,6 +12,8 @@
 #import "AnyTimeCustomPopupView.h"
 @interface AnyVerifyldentity02ViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSString *stateTime;
+@property (nonatomic, strong) NSString *endTime;
 
 @end
 
@@ -101,6 +103,7 @@
 
 // 选中 Cell
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.stateTime = [AnyDevHelper currentTimestamp];
     [self clickImage];
 }
 - (void)clickImage {
@@ -165,7 +168,13 @@
     NSString *funny = rest[@"funny"];
     [AnyHttpTool uploadFaceIDImageWithTowers:towers box:funny aura:@"11" casually:image top:self.type weird:@"" direction:@"fsfdsglkhlfdsgh" tower:@"" success:^(id  _Nonnull responseObject) {
         [AnyTimeHUD hideHUD];
-        [[AnyRouter sharedInstance] openURL:@"/anyVerifyIdentityInfoConfirmedPop" parameters: @{@"detailParameters": self.parameters, @"parameters": responseObject} from:nil callback:^(NSDictionary * _Nullable result) {}];
+        [[AnyRouter sharedInstance] openURL:@"/anyVerifyIdentityInfoConfirmedPop" parameters: @{@"detailParameters": self.parameters, @"parameters": responseObject} from:nil callback:^(NSDictionary * _Nullable result) {
+            self.endTime = [AnyDevHelper currentTimestamp];
+            [AnyHttpTool reportRiskGate:funny commanded:@"3" agreed:@"" allowance:self.stateTime large:self.endTime father:@"fsafdsfkjlhasffsda" success:^(id  _Nonnull responseObject) {
+            } failure:^(NSError * _Nonnull error) {
+            }];
+            
+        }];
     } failure:^(NSError * _Nonnull error) {
         [AnyTimeHUD hideHUD];
         [AnyTimeHUD showTextWithText:error.localizedDescription];

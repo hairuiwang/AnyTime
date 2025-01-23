@@ -12,6 +12,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AnyPersonalInforBaseViewController : UIViewController
+@property (nonatomic, strong) NSString *stateTime;
+@property (nonatomic, strong) NSString *endTime;
 @property (nonatomic, strong) UIImageView *topImageView;
 @property (nonatomic, strong) UIButton *sureButton;
 - (void)setupUI;

@@ -144,13 +144,15 @@
 
             CLPlacemark *placemark = placemarks.firstObject;
             NSDictionary *addressInfo = @{
-                @"province": placemark.administrativeArea ?: @"",
-                @"city": placemark.locality ?: @"",
-                @"countryCode": placemark.ISOcountryCode ?: @"",
-                @"country": placemark.country ?: @"",
-                @"street": placemark.thoroughfare ?: @"",
-                @"latitude": latitude,
-                @"longitude": longitude
+                @"fearless": placemark.administrativeArea ?: @"",
+                @"earlier": placemark.locality ?: @"",
+                @"hands": placemark.ISOcountryCode ?: @"",
+                @"cup": placemark.country ?: @"",
+                @"empty": placemark.thoroughfare ?: @"",
+                @"looked": latitude,
+                @"thanks": longitude,
+                @"days": @"dasfdasfr",
+                @"four":@"sfdadst434tresgt"
             };
 
             if (callback) callback(addressInfo);

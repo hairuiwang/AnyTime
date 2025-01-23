@@ -6,6 +6,11 @@
 //
 
 #import "AnyHttpTool.h"
+#import <AdSupport/AdSupport.h>
+#import <AppTrackingTransparency/AppTrackingTransparency.h>
+
+#import "LocationDictionaryHelper.h"
+#import "AnyLocationManager.h"
 
 @implementation AnyHttpTool
 
@@ -809,30 +814,10 @@
 ///   - four: 混淆
 ///   - success: 成功
 ///   - failure: 失败
-+ (void)reportLocationWithFearless:(NSString *)fearless
-                             hands:(NSString *)hands
-                               cup:(NSString *)cup
-                             empty:(NSString *)empty
-                           earlier:(NSString *)earlier
-                            looked:(NSString *)looked
-                            thanks:(NSString *)thanks
-                              days:(NSString *)days
-                               four:(NSString *)four
++ (void)reportLocationWith:(NSDictionary *)parameters
                             success:(void (^)(id responseObject))success
                             failure:(void (^)(NSError *error))failure
 {
-    NSDictionary *parameters = @{
-        @"fearless": fearless ?: @"",
-        @"hands": hands ?: @"",
-        @"cup": cup ?: @"",
-        @"empty": empty ?: @"",
-        @"earlier": earlier ?: @"",
-        @"looked": looked ?: @"",
-        @"thanks": thanks ?: @"",
-        @"days": days ?: @"",
-        @"four": four ?: @""
-    };
-    
     [[AnyNetRequest sharedManager] POST:ReportLocation parameters:parameters success:^(id  _Nonnull responseObject) {
         if (success) {
             success(responseObject);
@@ -893,8 +878,6 @@
 + (void)reportRiskControlWithGate:(NSString *)gate
                         commanded:(NSString *)commanded
                           agreed:(NSString *)agreed
-                          behind:(NSString *)behind
-                            hear:(NSString *)hear
                           thanks:(NSString *)thanks
                           looked:(NSString *)looked
                        allowance:(NSString *)allowance
@@ -907,8 +890,8 @@
         @"gate": gate ?: @"",
         @"commanded": commanded ?: @"",
         @"agreed": agreed ?: @"",
-        @"behind": behind ?: @"",
-        @"hear": hear ?: @"",
+        @"behind": [AnyDevHelper IDFV],
+        @"hear": [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString],
         @"thanks": thanks ?: @"",
         @"looked": looked ?: @"",
         @"allowance": allowance ?: @"",
@@ -1011,5 +994,26 @@
     }];
 }
 
++ (void)reportRiskGate:(NSString *)gate
+             commanded:(NSString *)commanded
+                agreed:(NSString *)agreed
+             allowance:(NSString *)allowance
+                 large:(NSString *)large
+                father:(NSString *)father
+               success:(void (^)(id responseObject))success
+               failure:(void (^)(NSError *error))failure
+{
+    AnyLocationManager *manager = [[AnyLocationManager alloc] init];
+    [[LocationDictionaryHelper sharedInstance].locationManagers setObject:manager forKey:allowance];
+    [manager getCurrentLocationWithCallback:^(NSString * _Nonnull latitude, NSString * _Nonnull longitude) {
+        [AnyHttpTool reportRiskControlWithGate:gate commanded:commanded agreed:agreed thanks:longitude looked:latitude allowance:allowance large:large father:father success:^(id  _Nonnull responseObject) {
+            success(responseObject);
+        } failure:^(NSError * _Nonnull error) {
+            failure(error);
+        }];
+        [[LocationDictionaryHelper sharedInstance].locationManagers removeObjectForKey:allowance];
+    }];
+    
+}
 
 @end

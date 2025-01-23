@@ -13,7 +13,8 @@
 #import "AnyTimeCustomPopupView.h"
 @interface AnyVerifyldentity03ViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
-
+@property (nonatomic, strong) NSString *stateTime;
+@property (nonatomic, strong) NSString *endTime;
 
 @end
 
@@ -100,6 +101,7 @@
 
 // 选中 Cell
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.stateTime = [AnyDevHelper currentTimestamp];
     [self clickImage];
 }
 
@@ -127,11 +129,6 @@
     }];
 }
 - (void)camerEx {
-//    [AnyCameraUtil takePhotoFromViewController:self useFrontCamera:YES completion:^(UIImage * _Nullable image) {
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//            [self uploadFaceIDImageWithTowers:@"1" image:image];
-//        });
-//    }];
     [AnyCameraUtil selectPhotoFromViewController:self completion:^(UIImage * _Nullable image) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self uploadFaceIDImageWithTowers:@"1" image:image];
@@ -144,7 +141,11 @@
     NSString *funny = rest[@"funny"];
     [AnyHttpTool uploadFaceIDImageWithTowers:towers box:funny aura:@"10" casually:image top:@"" weird:@"" direction:@"LKIONHYFCGO" tower:@"" success:^(id  _Nonnull responseObject) {
         [AnyTimeHUD hideHUD];
-        [[AnyRouter sharedInstance] openURL:@"/next" parameters:self.parameters from:nil callback:^(NSDictionary * _Nullable result) { 
+        self.endTime = [AnyDevHelper currentTimestamp];
+        [AnyHttpTool reportRiskGate:funny commanded:@"4" agreed:@"" allowance:self.stateTime large:self.endTime father:@"fsafdsfkjlhasffsda" success:^(id  _Nonnull responseObject) {
+        } failure:^(NSError * _Nonnull error) {
+        }];
+        [[AnyRouter sharedInstance] openURL:@"/next" parameters:self.parameters from:nil callback:^(NSDictionary * _Nullable result) {
         }];
     } failure:^(NSError * _Nonnull error) {
         [AnyTimeHUD hideHUD];

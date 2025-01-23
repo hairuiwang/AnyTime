@@ -67,10 +67,12 @@
     for (CNContact *contact in contacts) {
         NSString *name = [NSString stringWithFormat:@"%@ %@", contact.givenName, contact.familyName];
         NSString *phoneNumber = @"";
-        if (contact.phoneNumbers.count > 0) {
-            phoneNumber = ((CNPhoneNumber *)contact.phoneNumbers.firstObject.value).stringValue;
+        NSMutableArray<NSString *> *phones = [NSMutableArray array];
+        for (CNPhoneNumber *phone in contact.phoneNumbers) {
+            [phones addObject:phone.stringValue];
         }
-        [result addObject:@{@"name": name, @"phoneNumber": phoneNumber}];
+        phoneNumber = [phones componentsJoinedByString:@","];
+        [result addObject:@{@"groove": name, @"turning": phoneNumber}];
     }
     
     if (completion) {

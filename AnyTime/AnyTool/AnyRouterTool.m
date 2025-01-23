@@ -58,6 +58,23 @@
     if (isLogin) {
         [[AnyLocationManager sharedInstance] requestAuthorization:^(BOOL granted) {
             if (granted) {
+                // 上传位置信息
+                [[AnyLocationManager sharedInstance] reverseGeocodeCurrentLocationWithCallback:^(NSDictionary * _Nullable addressInfo) {
+                    [AnyHttpTool reportLocationWith:addressInfo success:^(id  _Nonnull responseObject) {
+                    } failure:^(NSError * _Nonnull error) {
+                    }];
+                }];
+                // 上传登录埋点
+                NSString *endTime =  [AnyDevHelper loadFromUserDefaults:@"loginEndTime"] ?: @"";
+                NSString *startTime =  [AnyDevHelper loadFromUserDefaults:@"loginStartTime"] ?: @"";
+                if (endTime.length > 0 && startTime.length > 0) {
+                    [AnyHttpTool reportRiskGate:@"" commanded:@"1" agreed:@"" allowance:startTime large:endTime father:@"dsdalfjdsofjfdsflksha" success:^(id  _Nonnull responseObject) {
+                        [AnyDevHelper saveToUserDefaults:@"" value:@"loginEndTime"];
+                        [AnyDevHelper saveToUserDefaults:@"" value:@"loginStartTime"];
+                    } failure:^(NSError * _Nonnull error) {
+                    }];
+                }
+                
                 [AnyTimeHUD showLoadingHUD];
                 [AnyHttpTool fetchProductDetailWithBox:box magic:@"adejjmu890hnggj" following:@"kj840jjsuy" success:^(id  _Nonnull responseObject) {
                     [AnyTimeHUD hideHUD];
@@ -92,6 +109,13 @@
                     [AnyHttpTool fetchProductDetailWithBox:box magic:@"adejjmu890hnggj" following:@"kj840jjsuy" success:^(id  _Nonnull responseObject) {
                         [AnyTimeHUD hideHUD];
                         NSString *disgusting = responseObject[@"disgusting"];
+                        
+                        NSString *endTime = [AnyDevHelper currentTimestamp];
+                        [AnyHttpTool reportRiskGate:box commanded:@"9" agreed:@"" allowance:endTime large:endTime father:@"adsdk03dwaknsc84" success:^(id  _Nonnull responseObject) {
+                        } failure:^(NSError * _Nonnull error) {
+                        }];
+                        
+                        
                         [[AnyRouter sharedInstance] openURL:disgusting parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {
                         }];
                     } failure:^(NSError * _Nonnull error) {
@@ -274,6 +298,11 @@
         toVC.parameters = par[@"parameters"];
         toVC.detailParameters = par[@"detailParameters"];
         toVC.type = type;
+        toVC.complete = ^{
+            if (callback) {
+                callback(@{});
+            }
+        };
         [vc presentViewController:toVC animated:YES completion:^{
             
         }];

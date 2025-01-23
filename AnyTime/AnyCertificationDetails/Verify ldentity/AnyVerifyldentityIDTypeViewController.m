@@ -15,6 +15,11 @@
 @property (nonatomic, strong) NSMutableArray *selectArray;
 @property (nonatomic, strong) NSIndexPath *indexPath;
 @property (nonatomic, strong) NSArray *famous;
+
+
+@property (nonatomic, strong) NSString *stateTime;
+@property (nonatomic, strong) NSString *endTime;
+
 @end
 
 @implementation AnyVerifyldentityIDTypeViewController
@@ -30,6 +35,7 @@
     [self.openDict setObject:@"0" forKey:@"4"];
     self.navigationItem.title = @"Verify ldentity";
     [self requestData];
+    self.stateTime = [AnyDevHelper currentTimestamp];
 }
 
 - (void)setupUI {
@@ -198,6 +204,12 @@
         NSLog(@"请选择");
         return;
     }
+    self.endTime = [AnyDevHelper currentTimestamp];
+    NSDictionary *rest = self.parameters[@"rest"];
+    NSString *funny = rest[@"funny"];
+    [AnyHttpTool reportRiskGate:funny commanded:@"2" agreed:@"" allowance:self.stateTime large:self.endTime father:@"094jkj478kv496kgn" success:^(id  _Nonnull responseObject) {
+    } failure:^(NSError * _Nonnull error) {
+    }];
     NSArray *array = self.famous[self.indexPath.section];
     NSString *type = array[self.indexPath.row];
     NSString *url = [NSString stringWithFormat:@"/anyVerifyldentity02ViewController?type=%@", type];

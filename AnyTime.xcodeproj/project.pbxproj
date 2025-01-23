@@ -86,6 +86,7 @@
 		657545012D3A607900A63988 /* AnyCameraUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 657545002D3A607900A63988 /* AnyCameraUtil.m */; };
 		657545042D3D098100A63988 /* AnyAreYouPop.m in Sources */ = {isa = PBXBuildFile; fileRef = 657545032D3D098100A63988 /* AnyAreYouPop.m */; };
 		657545072D3E182200A63988 /* AnyContactManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 657545062D3E182200A63988 /* AnyContactManager.m */; };
+		6575450A2D41D4AE00A63988 /* LocationDictionaryHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 657545092D41D4AE00A63988 /* LocationDictionaryHelper.m */; };
 		826F54C2EA19383470FFFE00 /* Pods_AnyTime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5144912D00E9046812AF323D /* Pods_AnyTime.framework */; };
 		8AADE94F471CDE3BFBDA66D7 /* Pods_AnyTimeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE4B7405F01A2FAB655AFF70 /* Pods_AnyTimeTests.framework */; };
 		F693A9FC492260D76D367A52 /* Pods_AnyTime_AnyTimeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D88D01DB36709394BB553A /* Pods_AnyTime_AnyTimeUITests.framework */; };
@@ -269,6 +270,8 @@
 		657545032D3D098100A63988 /* AnyAreYouPop.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyAreYouPop.m; sourceTree = "<group>"; };
 		657545052D3E182200A63988 /* AnyContactManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnyContactManager.h; sourceTree = "<group>"; };
 		657545062D3E182200A63988 /* AnyContactManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyContactManager.m; sourceTree = "<group>"; };
+		657545082D41D4AE00A63988 /* LocationDictionaryHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationDictionaryHelper.h; sourceTree = "<group>"; };
+		657545092D41D4AE00A63988 /* LocationDictionaryHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationDictionaryHelper.m; sourceTree = "<group>"; };
 		8B64C75E68F112EDC47D02D0 /* Pods-AnyTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime.release.xcconfig"; path = "Target Support Files/Pods-AnyTime/Pods-AnyTime.release.xcconfig"; sourceTree = "<group>"; };
 		C87E2FEB068C01887AD0C655 /* Pods-AnyTime-AnyTimeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime-AnyTimeUITests.release.xcconfig"; path = "Target Support Files/Pods-AnyTime-AnyTimeUITests/Pods-AnyTime-AnyTimeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CE4B7405F01A2FAB655AFF70 /* Pods_AnyTimeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnyTimeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -576,6 +579,8 @@
 				657545032D3D098100A63988 /* AnyAreYouPop.m */,
 				657545052D3E182200A63988 /* AnyContactManager.h */,
 				657545062D3E182200A63988 /* AnyContactManager.m */,
+				657545082D41D4AE00A63988 /* LocationDictionaryHelper.h */,
+				657545092D41D4AE00A63988 /* LocationDictionaryHelper.m */,
 			);
 			path = AnyTool;
 			sourceTree = "<group>";
@@ -973,6 +978,7 @@
 				657544152D35207C00A63988 /* AnyCertificationDetailsViewController.m in Sources */,
 				657544692D365EA200A63988 /* AnyBottomProductInfor.m in Sources */,
 				657544A02D37CC5D00A63988 /* AnyContactInforViewController.m in Sources */,
+				6575450A2D41D4AE00A63988 /* LocationDictionaryHelper.m in Sources */,
 				657544182D3520D500A63988 /* AnyNavigationBarUtil.m in Sources */,
 				046B6DCD2D34AF6200EE9EF7 /* BorderLabel.m in Sources */,
 				657544F62D38F28600A63988 /* AnySelectModel.m in Sources */,
@@ -1207,6 +1213,7 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "App需要相机权限";
 				INFOPLIST_KEY_NSContactsUsageDescription = "App需要联系人权限";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App需要定位权限";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "IDFA权限";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1249,6 +1256,7 @@
 				INFOPLIST_KEY_NSCameraUsageDescription = "App需要相机权限";
 				INFOPLIST_KEY_NSContactsUsageDescription = "App需要联系人权限";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App需要定位权限";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "IDFA权限";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

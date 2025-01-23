@@ -16,7 +16,7 @@ target 'AnyTime' do
   pod 'IQKeyboardManager'
   pod 'LookinServer'
   pod 'Reachability'
-
+  pod 'FBSDKCoreKit'
   
   
   target 'AnyTimeTests' do

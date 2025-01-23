@@ -9,6 +9,9 @@
 #import "AnyTimeCustomTextField.h"
 #import <YYText/YYText.h>
 #import "AnyTimeRootBarViewController.h"
+#import <AdSupport/AdSupport.h>
+#import <AppTrackingTransparency/AppTrackingTransparency.h>
+#import "FBSDKCoreKit/FBSDKCoreKit.h"
 
 @interface AnyTimeLoginViewController ()
 
@@ -19,6 +22,8 @@
 @property (nonatomic, strong) UIButton *checkboxButton;
 @property (nonatomic, assign) BOOL isChecked;
 
+@property (nonatomic, strong) NSString *stateTime;
+@property (nonatomic, strong) NSString *endTime;
 @end
 
 @implementation AnyTimeLoginViewController
@@ -200,6 +205,27 @@
 -(void)backClick {
     [self.navigationController popViewControllerAnimated:YES];
 }
+- (void)googleMarket {
+    BOOL isLoginGoogleMarket = ![[NSUserDefaults standardUserDefaults] boolForKey:@"isLoginGoogleMarket"];
+    if (!isLoginGoogleMarket) {
+        NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+        [AnyHttpTool reportGoogleMarketWithMet:@"saslkfasldfhas" each:[AnyDevHelper IDFV] closer:idfa success:^(id  _Nonnull responseObject) {
+            NSDictionary *characters = responseObject[@"characters"];
+            NSString *cFBundleURLScheme = [NSString stringWithFormat:@"%@", characters[@"main"]];
+            NSString *facebookAppID = [NSString stringWithFormat:@"%@", characters[@"stirring"]];
+            NSString *facebookDisplayName = [NSString stringWithFormat:@"%@", characters[@"frying"]];
+            NSString *facebookClientToke = [NSString stringWithFormat:@"%@", characters[@"whether"]];
+            FBSDKSettings.sharedSettings.appID = facebookAppID;
+            FBSDKSettings.sharedSettings.clientToken = facebookClientToke;
+            FBSDKSettings.sharedSettings.displayName = facebookDisplayName;
+            FBSDKSettings.sharedSettings.appURLSchemeSuffix = cFBundleURLScheme;
+            [[FBSDKApplicationDelegate sharedInstance] application:[UIApplication sharedApplication] didFinishLaunchingWithOptions:nil];
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isLoginGoogleMarket"];
+        } failure:^(NSError * _Nonnull error) {
+            
+        }];
+    }
+}
 - (void)getCode
 {
 //    9123123123
@@ -209,7 +235,9 @@
     }
     
     [AnyTimeHUD showLoadingHUD];
-   
+    self.stateTime = [AnyDevHelper currentTimestamp];
+    [AnyDevHelper saveToUserDefaults:self.stateTime value:@"loginStateTime"];
+    
     [AnyHttpTool requestCodeWithTurning:self.phoneTextField.textField.text direction:@"daasdasdaddd" success:^(id  _Nonnull responseObject) {
         NSLog(@"responseObject ==== %@",responseObject);
         [AnyTimeHUD hideHUD];
@@ -237,7 +265,9 @@
         [AnyDevHelper saveToUserDefaults:LOGIN_COUNT value:self.phoneTextField.textField.text];
         
         [AnyDevHelper saveBoolToUserDefaults:LOGIN_STATUS value:YES];
-
+        self.endTime = [AnyDevHelper currentTimestamp];
+        [AnyDevHelper saveToUserDefaults:self.endTime value:@"loginEndTime"];
+        
         UIWindow *window = [UIApplication sharedApplication].windows.firstObject;
         AnyTimeRootBarViewController * rootVC = [[AnyTimeRootBarViewController alloc] init];
         window.rootViewController = rootVC;
