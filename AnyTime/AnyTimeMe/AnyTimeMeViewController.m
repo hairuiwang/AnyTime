@@ -206,6 +206,24 @@
 //        setVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:setVC animated:YES];
     }
+    else if ([self.data[indexPath.row] isEqualToString:@"About Us"])
+    {
+        [[AnyRouter sharedInstance] openURL:[NSString stringWithFormat:@"%@",API] parameters:nil from:self callback:^(NSDictionary * _Nullable result) {
+
+        }];
+    }
+    else if ([self.data[indexPath.row] isEqualToString:@"Service online"])
+    {
+        [[AnyRouter sharedInstance] openURL:[NSString stringWithFormat:@"%@/dragonflyN",API] parameters:nil from:self callback:^(NSDictionary * _Nullable result) {
+
+        }];
+    }
+    else if ([self.data[indexPath.row] isEqualToString:@"Privacy agreement"])
+    {
+        [[AnyRouter sharedInstance] openURL:[NSString stringWithFormat:@"%@/onionHibis",API] parameters:nil from:self callback:^(NSDictionary * _Nullable result) {
+
+        }];
+    }
 }
 
 - (void) buttonClick {

@@ -120,6 +120,7 @@
     
     // 将 JSON 字符串 Base64 编码
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+
     NSString *base64String = [self base64EncodeString:jsonString];
     
     // 返回包含Base64编码的 JSON 字符串

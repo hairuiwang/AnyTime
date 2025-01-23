@@ -285,7 +285,9 @@
 - (void)showPrivacyAgreement {
     
     NSLog(@"Privacy Agreement clicked");
-    
+    [[AnyRouter sharedInstance] openURL:[NSString stringWithFormat:@"%@/onionHibis",API] parameters:nil from:self callback:^(NSDictionary * _Nullable result) {
+
+    }];
 }
 
 

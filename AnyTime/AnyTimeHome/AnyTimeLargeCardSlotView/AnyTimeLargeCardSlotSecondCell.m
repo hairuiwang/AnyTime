@@ -54,7 +54,8 @@
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * 360, 0, 360, 114)];
         imageView.contentMode = UIViewContentModeScaleToFill;
         imageView.userInteractionEnabled = YES;
-        imageView.backgroundColor = UIColor.redColor;
+        imageView.backgroundColor = UIColor.whiteColor;
+        [imageView sd_setImageWithURL:[NSURL URLWithString:murModel.violent]];
         [self.scrollView addSubview:imageView];
         
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
