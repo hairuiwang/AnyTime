@@ -88,19 +88,21 @@
         }
         else
         {
-            AnyTimeRootBarViewController * rootVC = [[AnyTimeRootBarViewController alloc] init];
-            self.window.rootViewController = rootVC;
-            
-//            BOOL isLogin = [AnyDevHelper loadBoolFromUserDefaults:LOGIN_STATUS];
-//            if (isLogin)
-//            {
-//
-//            }
-//            else
-//            {
-//                AnyTimeLoginViewController * rootVC = [[AnyTimeLoginViewController alloc] init];
-//                self.window.rootViewController = rootVC;
-//            }
+           
+            BOOL isLogin = [AnyDevHelper loadBoolFromUserDefaults:LOGIN_STATUS];
+            if (isLogin)
+            {
+                AnyTimeRootBarViewController * rootVC = [[AnyTimeRootBarViewController alloc] init];
+                self.window.rootViewController = rootVC;
+            }
+            else
+            {
+                AnyTimeLoginViewController * rootVC = [[AnyTimeLoginViewController alloc] init];
+                
+                UINavigationController * navController = [[UINavigationController alloc] initWithRootViewController:rootVC];
+
+                self.window.rootViewController = navController;
+            }
         }
        
         [self.window makeKeyAndVisible];
