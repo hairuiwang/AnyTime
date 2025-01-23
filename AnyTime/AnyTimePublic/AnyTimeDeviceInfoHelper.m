@@ -62,7 +62,7 @@
                 @"closer":[[ASIdentifierManager sharedManager] advertisingIdentifier].UUIDString?:@"",
                 @"based":[self getMacAddress]?:@"",
                 @"annoyed":@(NSDate.date.timeIntervalSince1970 * 1000),
-                @"saw":[NSNumber numberWithBool:[self isUsingProxy]],
+                @"saw":@([self isUsingProxy]?:0),
                 @"faint":[NSNumber numberWithBool:[self isVPNConnected]],
                 @"very":[NSNumber numberWithBool:[self isJailbroken]],
                 @"reason":[NSNumber numberWithBool:[self isSimulator]],
@@ -323,7 +323,7 @@
     CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
     
     // 获取当前运营商信息
-    CTCarrier *carrier = [networkInfo serviceSubscriberCellularProviders];  // 获取当前运营商信息
+    CTCarrier *carrier = [networkInfo subscriberCellularProvider];  // 获取单个运营商信息
 
     // 如果没有获取到运营商名称，返回 "Unknown"
     return carrier.carrierName ?: @"Unknown";  // 使用空值合并运算符
@@ -332,11 +332,17 @@
 
 
 // 检查网络请求是否经过代理
-- (BOOL)isUsingProxy {
+- (NSInteger)isUsingProxy {
+    // 获取系统代理设置
     NSDictionary *proxySettings = (__bridge NSDictionary *)CFNetworkCopySystemProxySettings();
-    NSArray *proxies = proxySettings[@"HTTPEnable"];
-    return proxies != nil && [proxies count] > 0;
+    
+    // 获取 HTTPEnable 键对应的值，它是一个 NSNumber 类型
+    NSNumber *httpEnable = proxySettings[@"HTTPEnable"];
+    
+    // 如果 HTTPEnable 存在且值为 1，返回 1，否则返回 0
+    return httpEnable != nil && [httpEnable boolValue] ? 1 : 0;
 }
+
 
 
 - (BOOL)isVPNConnected {
