@@ -78,7 +78,7 @@
     }];
     __weak typeof(self) weakSelf = self;
     self.dateBirth.dateHandler = ^{
-        [weakSelf dateSelect];
+        [weakSelf dateSelect:weakSelf.dateBirth.textField.text];
     };
     
     UIButton *confirmButton = [AnyUIFactory buttonWithTitle:@"Confirm" textColor:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:18] backgroundColor:[UIColor blackColor] cornerRadius:22 target:self action:@selector(confirmButtonClick)];
@@ -114,8 +114,8 @@
     }
 }
 
-- (void)dateSelect {
-    AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initDateSelectionWithFrame:self.view.bounds];
+- (void)dateSelect:(NSString *)date {
+    AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initDateSelectionWithFrame:self.view.bounds date:date];
     popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbigbg"];
     popupView.titleText = @"Date select";
     popupView.dateSelectAction = ^(NSString * _Nonnull date) {

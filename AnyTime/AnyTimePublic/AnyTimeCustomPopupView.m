@@ -63,11 +63,12 @@
     return self;
 }
 
-- (instancetype)initDateSelectionWithFrame:(CGRect)frame
+- (instancetype)initDateSelectionWithFrame:(CGRect)frame date:(NSString *)date
 {
     self = [super initWithFrame:frame];
     if (self) {
         [self setupUI];
+        self.date = date;
         [self setupDateSelection];
     }
     return self;

@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *secondButtonTitle;
 
+@property (nonatomic, strong) NSString *date;
+
 @property (nonatomic, copy) void (^closeAction)(void);
 
 @property (nonatomic, copy) void (^firstButtonAction)(void);
@@ -40,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initNoNetWorkWithFrame:(CGRect)frame;
 
-- (instancetype)initDateSelectionWithFrame:(CGRect)frame;
+- (instancetype)initDateSelectionWithFrame:(CGRect)frame date:(NSString *)date;
 
 - (instancetype)initPhotoGraphWithFrame:(CGRect)frame;
 
