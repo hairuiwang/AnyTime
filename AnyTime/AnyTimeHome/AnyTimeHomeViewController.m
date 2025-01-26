@@ -13,10 +13,17 @@
 #import <AppTrackingTransparency/AppTrackingTransparency.h>
 #import "FBSDKCoreKit/FBSDKCoreKit.h"
 @interface AnyTimeHomeViewController ()
-
+@property(nonatomic,strong) AnyTimeLargeCardSlotView * largeCardSlotView;
+@property(nonatomic,strong) AnyTimeSmallCardSlotView * smallCardSlotView;
 @end
 
 @implementation AnyTimeHomeViewController
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self getData];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,34 +39,19 @@
         make.top.bottom.mas_equalTo(self.view);
     }];
     
-    
-    
-    AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initPhotoGraphWithFrame:self.view.bounds];
-    popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbigbg"];
-    popupView.titleText = @"Date Selection";
-    popupView.firstButtonTitle = @"Confirm";
-//    popupView.secondButtonTitle = @"Stop";
-    
-    popupView.firstButtonAction = ^{
-        NSLog(@"First button tapped");
-    };
+   
+    [AnyHttpTool initializeAddressInfoWithSuccess:^(id  _Nonnull responseObject) {
+        if ([responseObject isKindOfClass:[NSDictionary class]]) {
+            [AnyRouter sharedInstance].cityData = responseObject;
+        }
+    } failure:^(NSError * _Nonnull error) {
+        
+    }];
+    [self googleMarket];
+}
 
-    popupView.secondButtonAction = ^{
-        NSLog(@"Second button tapped");
-    };
-
-    popupView.closeAction = ^{
-        NSLog(@"Close button tapped");
-    };
-
-//    [popupView showInView:self.view];
-    
-//    [[AnyNetRequest sharedManager] POST:GetCode parameters:@{@"turning":@"9012345678", @"direction":@"fasfdsaf"} success:^(id  _Nonnull responseObject) {
-//        NSLog("responseObject = %@", responseObject);
-//    } failure:^(NSError * _Nonnull error) {
-//        NSLog("error = %@", error);
-//    }];
-    
+- (void)getData
+{
     [AnyHttpTool fetchHomePageWithAuras:@"saadaffffgf" apart:@"sdadadsad" success:^(id  _Nonnull responseObject) {
         NSLog(@"responseObject == %@",responseObject);
         
@@ -73,29 +65,33 @@
         if ([actModel.aura isEqualToString:@"anytimeb"])
         {
             //大卡位
-            AnyTimeLargeCardSlotView *customView = [[AnyTimeLargeCardSlotView alloc] initWithFrame:self.view.bounds];
-            [self.view addSubview:customView];
+            if (self.largeCardSlotView) {
+                [self.largeCardSlotView removeFromSuperview];
+            }
+            if (self.smallCardSlotView) {
+                [self.smallCardSlotView removeFromSuperview];
+            }
+            self.largeCardSlotView = [[AnyTimeLargeCardSlotView alloc] initWithFrame:self.view.bounds];
+            [self.view addSubview:self.largeCardSlotView ];
         }
         else
         {
             //小卡位
-            AnyTimeSmallCardSlotView *customView = [[AnyTimeSmallCardSlotView alloc] initWithFrame:self.view.bounds];
-            [self.view addSubview:customView];
+            if (self.largeCardSlotView) {
+                [self.largeCardSlotView removeFromSuperview];
+            }
+            if (self.smallCardSlotView) {
+                [self.smallCardSlotView removeFromSuperview];
+            }
+            self.smallCardSlotView = [[AnyTimeSmallCardSlotView alloc] initWithFrame:self.view.bounds];
+            [self.view addSubview:self.smallCardSlotView];
         }
     } failure:^(NSError * _Nonnull error) {
     
     }];
 
-    
-    [AnyHttpTool initializeAddressInfoWithSuccess:^(id  _Nonnull responseObject) {
-        if ([responseObject isKindOfClass:[NSDictionary class]]) {
-            [AnyRouter sharedInstance].cityData = responseObject;
-        }
-    } failure:^(NSError * _Nonnull error) {
-        
-    }];
-    [self googleMarket];
 }
+
 - (void)googleMarket {
     BOOL isHomeGoogleMarket = ![[NSUserDefaults standardUserDefaults] boolForKey:@"isHomeGoogleMarket"];
     if (!isHomeGoogleMarket) {

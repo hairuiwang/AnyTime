@@ -124,7 +124,7 @@
         make.right.mas_equalTo(self);
     }];
     
-    [self.codeButton addTarget:self action:@selector(startCountdown) forControlEvents:UIControlEventTouchUpInside];
+    [self.codeButton addTarget:self action:@selector(codeBtnClick) forControlEvents:UIControlEventTouchUpInside];
     
     self.textField.placeholder = @"Please enter verification code";
 
@@ -150,7 +150,16 @@
     self.textField.textColor = [UIColor blackColor];
 }
 
-- (void)startCountdown {
+- (void)codeBtnClick {
+   
+    // 返回事件
+    if (self.codeButtonTapped) {
+        self.codeButtonTapped();
+    }
+}
+
+- (void)startCountdown
+{
     self.countdown = 60;
     [self.codeButton setEnabled:NO];
     [self.codeButton setBackgroundColor:[UIColor colorWithRed:210/255.0 green:210/255.0 blue:210/255.0 alpha:1.0]];
@@ -158,10 +167,6 @@
     [self.timer invalidate];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateCountdown) userInfo:nil repeats:YES];
     
-    // 返回事件
-    if (self.codeButtonTapped) {
-        self.codeButtonTapped();
-    }
 }
 
 - (void)updateCountdown {

@@ -241,6 +241,7 @@
     [AnyHttpTool requestCodeWithTurning:self.phoneTextField.textField.text direction:@"daasdasdaddd" success:^(id  _Nonnull responseObject) {
         NSLog(@"responseObject ==== %@",responseObject);
         [AnyTimeHUD hideHUD];
+        [self.codeTextField startCountdown];
         
     } failure:^(NSError * _Nonnull error) {
       

@@ -20,9 +20,33 @@
 @property (nonatomic, strong) NSMutableArray * dataArray;
 @property (nonatomic, strong) UICollectionViewController *currentVC;
 
+@property (nonatomic, strong) UIView *buttonContainer;
+
 @end
 
 @implementation AnyTimeOrderViewController
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    UIViewController *initialVC = [self viewControllerAtIndex:0];
+    [self.pageViewController setViewControllers:@[initialVC] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    
+    for (int i = 0; i < self.tabTitles.count; i++) {
+           UIButton *button = [self.buttonContainer viewWithTag:i];
+           
+           if (i == 0) {
+               
+               [button setBackgroundImage:[UIImage imageNamed:self.tabSImages[i]] forState:UIControlStateNormal];
+               [button setTitleColor:UIColor.blackColor forState:UIControlStateNormal];
+           } else {
+               
+               [button setBackgroundImage:[UIImage imageNamed:self.tabUSImages[i]] forState:UIControlStateNormal];
+               [button setTitleColor:rgba(1, 1, 1, 0.3) forState:UIControlStateNormal];
+           }
+       }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -67,10 +91,10 @@
     }];
     
     CGFloat buttonWidth = (self.view.frame.size.width - 30) / 4;
-    UIView *buttonContainer = [[UIView alloc] init];
-    buttonContainer.tag = 101;
-    [self.view addSubview:buttonContainer];
-    [buttonContainer mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.buttonContainer = [[UIView alloc] init];
+    self.buttonContainer.tag = 101;
+    [self.view addSubview:self.buttonContainer];
+    [self.buttonContainer mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(topImageView.mas_bottom).offset(15);
         make.left.mas_equalTo(self.view.mas_left);
         make.right.mas_equalTo(self.view.mas_right);
@@ -94,7 +118,7 @@
         button.contentMode = UIViewContentModeScaleAspectFit;
 
         [button addTarget:self action:@selector(tabButtonTapped:) forControlEvents:UIControlEventTouchUpInside];
-        [buttonContainer addSubview:button];
+        [self.buttonContainer addSubview:button];
         
         if (i == 0) {
             [button setBackgroundImage:[UIImage imageNamed:self.tabSImages[i]] forState:UIControlStateNormal];
@@ -110,13 +134,10 @@
     [self.pageViewController didMoveToParentViewController:self];
     
     [self.pageViewController.view mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(buttonContainer.mas_bottom).offset(15);
-        make.top.mas_equalTo(buttonContainer.mas_bottom).offset(15);
+        make.top.mas_equalTo(self.buttonContainer.mas_bottom).offset(15);
+        make.top.mas_equalTo(self.buttonContainer.mas_bottom).offset(15);
            make.left.right.bottom.mas_equalTo(self.view);
     }];
-    
-    UIViewController *initialVC = [self viewControllerAtIndex:0];
-    [self.pageViewController setViewControllers:@[initialVC] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
     self.tabBarController.tabBar.translucent = YES;
     self.tabBarController.tabBar.backgroundImage = [UIImage new];

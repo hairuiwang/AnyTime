@@ -37,6 +37,7 @@ typedef void (^CodeButtonTappedBlock)(void);
 @property (nonatomic, strong) NSString *placeholderText;
 @property (nonatomic, assign) UIKeyboardType keyboardType; 
 
+- (void)startCountdown;
 
 - (instancetype)initWithType:(AnyTimeCustomTextFieldType)type
                   borderWidth:(CGFloat)borderWidth
