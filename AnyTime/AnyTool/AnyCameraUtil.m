@@ -47,7 +47,7 @@
         }
         
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-        picker.delegate = (id<UINavigationControllerDelegate, UIImagePickerControllerDelegate>)self;
+        picker.delegate = [self sharedInstance];
         picker.sourceType = UIImagePickerControllerSourceTypeCamera;
         picker.cameraDevice = useFrontCamera ? UIImagePickerControllerCameraDeviceFront : UIImagePickerControllerCameraDeviceRear;
         picker.allowsEditing = NO;
@@ -87,7 +87,7 @@
 #pragma mark - 选择照片
 + (void)selectPhotoFromViewController:(UIViewController *)viewController completion:(CameraImageBlock)completion {
     UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = [AnyCameraUtil sharedInstance];
+    picker.delegate = [self sharedInstance];
     picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
     picker.allowsEditing = NO;
     

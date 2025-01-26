@@ -60,28 +60,29 @@
         [[AnyLocationManager sharedInstance] requestAuthorization:^(BOOL granted) {
             if (granted) {
                 // 上传位置信息
-                [[AnyLocationManager sharedInstance] reverseGeocodeCurrentLocationWithCallback:^(NSDictionary * _Nullable addressInfo) {
-                    [AnyHttpTool reportLocationWith:addressInfo success:^(id  _Nonnull responseObject) {
-                    } failure:^(NSError * _Nonnull error) {
-                    }];
-                }];
+//                [[AnyLocationManager sharedInstance] reverseGeocodeCurrentLocationWithCallback:^(NSDictionary * _Nullable addressInfo) {
+//                    [AnyHttpTool reportLocationWith:addressInfo success:^(id  _Nonnull responseObject) {
+//                    } failure:^(NSError * _Nonnull error) {
+//                    }];
+//                }];
 
                 //上报设备信息
-                [AnyHttpTool reportDeviceInfoWithGone:[AnyTimeDeviceInfoHelper getDeviceInfoJson] success:^(id  _Nonnull responseObject) {
-
-                } failure:^(NSError * _Nonnull error) {
-                    
-                }];
+//                [AnyHttpTool reportDeviceInfoWithGone:[AnyTimeDeviceInfoHelper getDeviceInfoJson] success:^(id  _Nonnull responseObject) {
+//
+//                } failure:^(NSError * _Nonnull error) {
+//                    
+//                }];
+                
                 // 上传登录埋点
-                NSString *endTime =  [AnyDevHelper loadFromUserDefaults:@"loginEndTime"] ?: @"";
-                NSString *startTime =  [AnyDevHelper loadFromUserDefaults:@"loginStartTime"] ?: @"";
-                if (endTime.length > 0 && startTime.length > 0) {
-                    [AnyHttpTool reportRiskGate:@"" commanded:@"1" agreed:@"" allowance:startTime large:endTime father:@"dsdalfjdsofjfdsflksha" success:^(id  _Nonnull responseObject) {
-                        [AnyDevHelper saveToUserDefaults:@"" value:@"loginEndTime"];
-                        [AnyDevHelper saveToUserDefaults:@"" value:@"loginStartTime"];
-                    } failure:^(NSError * _Nonnull error) {
-                    }];
-                }
+//                NSString *endTime =  [AnyDevHelper loadFromUserDefaults:@"loginEndTime"] ?: @"";
+//                NSString *startTime =  [AnyDevHelper loadFromUserDefaults:@"loginStartTime"] ?: @"";
+//                if (endTime.length > 0 && startTime.length > 0) {
+//                    [AnyHttpTool reportRiskGate:@"" commanded:@"1" agreed:@"" allowance:startTime large:endTime father:@"dsdalfjdsofjfdsflksha" success:^(id  _Nonnull responseObject) {
+//                        [AnyDevHelper saveToUserDefaults:@"" value:@"loginEndTime"];
+//                        [AnyDevHelper saveToUserDefaults:@"" value:@"loginStartTime"];
+//                    } failure:^(NSError * _Nonnull error) {
+//                    }];
+//                }
                 
                 [AnyTimeHUD showLoadingHUD];
                 [AnyHttpTool fetchProductDetailWithBox:box magic:@"adejjmu890hnggj" following:@"kj840jjsuy" success:^(id  _Nonnull responseObject) {

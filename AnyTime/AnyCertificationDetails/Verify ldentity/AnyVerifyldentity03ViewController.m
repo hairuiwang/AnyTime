@@ -129,6 +129,15 @@
     }];
 }
 - (void)camerEx {
+    
+//    [AnyCameraUtil selectPhotoFromViewController:self completion:^(UIImage * _Nullable image) {
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//            if (image != nil) {
+//                [self uploadFaceIDImageWithTowers:@"1" image:image];
+//            }
+//        });
+//    }];
+    
     [AnyCameraUtil takePhotoFromViewController:self useFrontCamera:YES completion:^(UIImage * _Nullable image) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             if (image != nil) {
@@ -140,7 +149,7 @@
 - (void) uploadFaceIDImageWithTowers:(NSString *)towers image:(UIImage *)image {
     NSDictionary *rest = self.parameters[@"rest"];
     NSString *funny = rest[@"funny"];
-    [AnyHttpTool uploadFaceIDImageWithTowers:towers box:funny aura:@"10" casually:image top:@"" weird:@"" direction:@"LKIONHYFCGO" tower:@"" success:^(id  _Nonnull responseObject) {
+    [AnyHttpTool uploadFaceIDImageWithTowers:@"2" box:funny aura:@"10" casually:image top:@"" weird:@"" direction:@"LKIONHYFCGO" tower:@"" success:^(id  _Nonnull responseObject) {
         [AnyTimeHUD hideHUD];
         self.endTime = [AnyDevHelper currentTimestamp];
         [AnyHttpTool reportRiskGate:funny commanded:@"4" agreed:@"" allowance:self.stateTime large:self.endTime father:@"fsafdsfkjlhasffsda" success:^(id  _Nonnull responseObject) {
@@ -154,9 +163,10 @@
     }];
 }
 - (void) sureButtonClick {
-    [[AnyRouter sharedInstance] openURL:@"/next" parameters:self.parameters from:nil callback:^(NSDictionary * _Nullable result) {
-            
-    }];
+    [self clickImage];
+//    [[AnyRouter sharedInstance] openURL:@"/next" parameters:self.parameters from:nil callback:^(NSDictionary * _Nullable result) {
+//            
+//    }];
 }
 
 
