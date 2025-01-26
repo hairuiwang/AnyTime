@@ -168,7 +168,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSMutableArray<NSData *> *compressedImages = [NSMutableArray array];
         for (UIImage *image in images) {
-            NSData *compressedData = [self compressImage:image toMaxSize:650 * 1024]; // 650KB
+            NSData *compressedData = [self compressImage:image toMaxSize:400 * 1024];
             if (compressedData) {
                 [compressedImages addObject:compressedData];
             }
