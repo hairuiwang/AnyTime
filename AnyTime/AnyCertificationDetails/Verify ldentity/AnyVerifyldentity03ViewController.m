@@ -129,11 +129,12 @@
     }];
 }
 - (void)camerEx {
-    [AnyCameraUtil selectPhotoFromViewController:self completion:^(UIImage * _Nullable image) {
+    [AnyCameraUtil takePhotoFromViewController:self useFrontCamera:YES completion:^(UIImage * _Nullable image) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self uploadFaceIDImageWithTowers:@"1" image:image];
+            if (image != nil) {
+                [self uploadFaceIDImageWithTowers:@"1" image:image];
+            }
         });
-        
     }];
 }
 - (void) uploadFaceIDImageWithTowers:(NSString *)towers image:(UIImage *)image {

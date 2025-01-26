@@ -186,8 +186,9 @@
 #pragma mark - Email Sending Method (示例)
 
 - (void)sendEmailTo:(NSString *)emailAddress {
-    NSString *subject = @"Hello";
-    NSString *body = @"Please see the email content.";
+    NSString *subject = @"";
+    NSString *content = [NSString stringWithFormat:@"APP Name：AnyTime Loan\nPhone：%@\nI need help： ", [AnyDevHelper loadFromUserDefaults:LOGIN_COUNT]];
+    NSString *body = content;
     NSString *emailUrlString = [NSString stringWithFormat:@"mailto:%@?subject=%@&body=%@", emailAddress, subject, body];
     NSURL *emailUrl = [NSURL URLWithString:emailUrlString];
     

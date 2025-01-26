@@ -303,7 +303,7 @@
 + (void)anyVerifyIdentityInfoConfirmedPop {
     [[AnyRouter sharedInstance] registerRoute:@"/anyVerifyIdentityInfoConfirmedPop" handler:^(NSDictionary * parameters, UIViewController * vc, RouterCallback callback) {
         NSDictionary *par = parameters[@"parameters"];
-        NSString *type = parameters[@"type"];
+        NSString *type = par[@"type"];
         AnyVerifyIdentityInfoConfirmedPop *toVC = [[AnyVerifyIdentityInfoConfirmedPop alloc]init];
         toVC.modalPresentationStyle = UIModalPresentationOverFullScreen;
         toVC.parameters = par[@"parameters"];

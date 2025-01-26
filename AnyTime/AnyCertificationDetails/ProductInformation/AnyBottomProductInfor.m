@@ -28,6 +28,7 @@
 - (void)setupBgView {
     UIImageView *bgImageView = [UIImageView new];
     bgImageView.contentMode = UIViewContentModeScaleAspectFit;
+    bgImageView.userInteractionEnabled = YES;
     UIImage *img = [UIImage imageNamed:@"CertificationDetails_bottom_bg"];
     
     CGFloat width = SCREEN_WIDTH - 30;
@@ -127,6 +128,13 @@
         make.width.mas_equalTo(181);
         make.height.mas_equalTo(40);
     }];
+    UIButton *button = [UIButton new];
+    button.backgroundColor = [UIColor clearColor];
+    [button addTarget:self action:@selector(goApplyTouch) forControlEvents:(UIControlEventTouchUpInside)];
+    [self addSubview:button];
+    [button mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self);
+    }];
 }
 - (void)setDetailsDict:(NSDictionary *)detailsDict {
     _detailsDict = detailsDict;
@@ -151,8 +159,12 @@
     self.priceLabel.attributedText = [[NSAttributedString alloc] initWithString:self.priceLabel.text attributes:attributes];
 }
 - (void)goApplyTouch {
-    NSDictionary *rest = _detailsDict[@"rest"];
-    NSString *box = rest[@"funny"];
-    [AnyRouterTool jumpCertificationDetails:box];
+//    NSDictionary *rest = _detailsDict[@"rest"];
+//    NSString *box = rest[@"funny"];
+//    [AnyRouterTool jumpCertificationDetails:box];
+    
+    [[AnyRouter sharedInstance] openURL:@"/next" parameters:_detailsDict from:nil callback:^(NSDictionary * _Nullable result) {
+            
+        }];
 }
 @end

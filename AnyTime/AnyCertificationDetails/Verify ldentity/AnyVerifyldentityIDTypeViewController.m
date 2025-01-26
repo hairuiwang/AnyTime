@@ -28,11 +28,11 @@
     [super viewDidLoad];
     self.openDict = [NSMutableDictionary dictionary];
     self.selectArray = [NSMutableArray array];
-    [self.openDict setObject:@"0" forKey:@"0"];
-    [self.openDict setObject:@"0" forKey:@"1"];
-    [self.openDict setObject:@"0" forKey:@"2"];
-    [self.openDict setObject:@"0" forKey:@"3"];
-    [self.openDict setObject:@"0" forKey:@"4"];
+    [self.openDict setObject:@"1" forKey:@"0"];
+    [self.openDict setObject:@"1" forKey:@"1"];
+    [self.openDict setObject:@"1" forKey:@"2"];
+    [self.openDict setObject:@"1" forKey:@"3"];
+    [self.openDict setObject:@"1" forKey:@"4"];
     self.navigationItem.title = @"Verify ldentity";
     [self requestData];
     self.stateTime = [AnyDevHelper currentTimestamp];
