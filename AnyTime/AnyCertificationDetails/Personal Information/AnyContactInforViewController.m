@@ -141,11 +141,15 @@
     cell.contactTextField.placeholder = dict[@"innocence"] ?: @"";
     
     cell.relationshipTextField.text = dict[@"life"];
+    
     NSString *groove = [NSString stringWithFormat:@"%@", dict[@"groove"]];
     NSString *amusement = [NSString stringWithFormat:@"%@", dict[@"amusement"]];
-    NSString *text = [NSString stringWithFormat:@"%@:%@",groove, amusement];
-    cell.contactTextField.text = text;
-    
+    if (groove.length > 0 && amusement.length > 0) {
+        NSString *text = [NSString stringWithFormat:@"%@:%@",groove, amusement];
+        cell.contactTextField.text = text;
+    } else {
+        cell.contactTextField.text = @"";
+    }
     cell.contactHandler = ^{
         [self contactSelect:self.blow[indexPath.row]];
     };

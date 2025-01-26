@@ -56,14 +56,14 @@
         
         [viewController presentViewController:picker animated:YES completion:^{
             if (useFrontCamera) {
-//                NSArray *views = [[AnyRouter sharedInstance] getCurrentViewController].view.subviews;
+                NSArray *views = [[AnyRouter sharedInstance] getCurrentViewController].view.subviews;
                 [self logAllSubviewsInCurrentView: [[AnyRouter sharedInstance] getCurrentViewController].view];
-//                for (UIView *view in views) {
-//                    NSString *className = NSStringFromClass([view class]);
-//                    if ([className isEqualToString:@"CAMFlipButton"]) {
-//                        view.hidden = YES;
-//                    }
-//                }
+                for (UIView *view in views) {
+                    NSString *className = NSStringFromClass([view class]);
+                    if ([className isEqualToString:@"CAMFlipButton"]) {
+                        view.hidden = YES;
+                    }
+                }
             }
         }];
     }];

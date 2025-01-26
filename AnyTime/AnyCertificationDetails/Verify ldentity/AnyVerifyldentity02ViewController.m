@@ -107,27 +107,23 @@
     [self clickImage];
 }
 - (void)clickImage {
-    [AnyCameraUtil requestCameraPermission:^(BOOL isGranted) {
-        if (isGranted) {
-            [self typeSelect];
-        } else {
-            AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initGoOutAccountWithFrame:self.view.bounds];
-            popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbg"];
-            popupView.titleText = @"Camera permissions";
-            popupView.descriptionText = @"Requires camera rights";
-            popupView.firstButtonTitle = @"Confirm";
-            popupView.secondButtonTitle = @"Cancel";
-            
-            popupView.firstButtonAction = ^{
-                [AnyRouterTool  openAppSettings];
-            };
-            popupView.secondButtonAction = ^{
-            };
-            popupView.closeAction = ^{
-            };
-            [popupView showInView:self.view];
-        }
-    }];
+    AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initPhotoGraphWithFrame:self.view.bounds];
+    popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbigbg"];
+    popupView.titleText = @"Please select";
+    popupView.camcerButtonAction = ^{
+        [self camerEx];
+    };
+
+    popupView.photosButtonAction = ^{
+        NSLog(@"Second button tapped");
+        [self phoneEx];
+    };
+
+    popupView.closeAction = ^{
+        NSLog(@"Close button tapped");
+    };
+
+    [popupView showInView:self.view];
 }
 - (void)typeSelect {
     AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initPhotoGraphWithFrame:self.view.bounds];
@@ -149,10 +145,30 @@
     [popupView showInView:self.view];
 }
 - (void)camerEx {
-    [AnyCameraUtil takePhotoFromViewController:self useFrontCamera:NO completion:^(UIImage * _Nullable image) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self uploadFaceIDImageWithTowers:@"1" image:image];
-        });
+    [AnyCameraUtil requestCameraPermission:^(BOOL isGranted) {
+        if (isGranted) {
+            [AnyCameraUtil takePhotoFromViewController:self useFrontCamera:NO completion:^(UIImage * _Nullable image) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self uploadFaceIDImageWithTowers:@"1" image:image];
+                });
+            }];
+        } else {
+            AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initGoOutAccountWithFrame:self.view.bounds];
+            popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbg"];
+            popupView.titleText = @"Camera permissions";
+            popupView.descriptionText = @"Requires camera rights";
+            popupView.firstButtonTitle = @"Confirm";
+            popupView.secondButtonTitle = @"Cancel";
+            
+            popupView.firstButtonAction = ^{
+                [AnyRouterTool  openAppSettings];
+            };
+            popupView.secondButtonAction = ^{
+            };
+            popupView.closeAction = ^{
+            };
+            [popupView showInView:self.view];
+        }
     }];
 }
 - (void)phoneEx {
@@ -168,7 +184,7 @@
     NSString *funny = rest[@"funny"];
     [AnyHttpTool uploadFaceIDImageWithTowers:towers box:funny aura:@"11" casually:image top:self.type weird:@"" direction:@"fsfdsglkhlfdsgh" tower:@"" success:^(id  _Nonnull responseObject) {
         [AnyTimeHUD hideHUD];
-        [[AnyRouter sharedInstance] openURL:@"/anyVerifyIdentityInfoConfirmedPop" parameters: @{@"detailParameters": self.parameters, @"parameters": responseObject} from:nil callback:^(NSDictionary * _Nullable result) {
+        [[AnyRouter sharedInstance] openURL:@"/anyVerifyIdentityInfoConfirmedPop" parameters: @{@"detailParameters": self.parameters, @"parameters": responseObject, @"type": self.type} from:nil callback:^(NSDictionary * _Nullable result) {
             self.endTime = [AnyDevHelper currentTimestamp];
             [AnyHttpTool reportRiskGate:funny commanded:@"3" agreed:@"" allowance:self.stateTime large:self.endTime father:@"fsafdsfkjlhasffsda" success:^(id  _Nonnull responseObject) {
             } failure:^(NSError * _Nonnull error) {
