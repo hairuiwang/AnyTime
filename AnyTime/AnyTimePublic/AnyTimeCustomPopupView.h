@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSString *secondButtonTitle;
 
+@property (nonatomic, strong) NSString *date;
+
 @property (nonatomic, copy) void (^closeAction)(void);
 
 @property (nonatomic, copy) void (^firstButtonAction)(void);
