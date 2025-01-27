@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initNoNetWorkWithFrame:(CGRect)frame;
 
-- (instancetype)initDateSelectionWithFrame:(CGRect)frame;
+- (instancetype)initDateSelectionWithFrame:(CGRect)frame WithDateString:(NSString *)dateString;
 
 - (instancetype)initPhotoGraphWithFrame:(CGRect)frame;
 

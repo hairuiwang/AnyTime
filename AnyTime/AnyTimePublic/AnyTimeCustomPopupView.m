@@ -63,12 +63,12 @@
     return self;
 }
 
-- (instancetype)initDateSelectionWithFrame:(CGRect)frame
+- (instancetype)initDateSelectionWithFrame:(CGRect)frame WithDateString:(NSString *)dateString
 {
     self = [super initWithFrame:frame];
     if (self) {
         [self setupUI];
-        [self setupDateSelection];
+        [self setupDateSelectionWithDateString:dateString];
     }
     return self;
 }
@@ -292,10 +292,21 @@
     }];
 }
 
-- (void)setupDateSelection
-{
+- (void)setupDateSelectionWithDateString:(NSString *)dateString {
     CGFloat padding = 15;
- 
+    
+    // 拆分传入的日期字符串，格式是 "日-月-年"
+    NSArray *dateComponents = [dateString componentsSeparatedByString:@"-"];
+    if (dateComponents.count != 3) {
+        NSLog(@"日期格式不正确");
+        return;
+    }
+    
+    // 获取日、月、年
+    NSInteger day = [dateComponents[0] integerValue];
+    NSInteger month = [dateComponents[1] integerValue];
+    NSInteger year = [dateComponents[2] integerValue];
+    
     [self.firstButton addTarget:self action:@selector(firstButtonDateSelect) forControlEvents:UIControlEventTouchUpInside];
 
     [self.backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -349,8 +360,14 @@
         make.top.mas_equalTo(self.backgroundImageView.mas_bottom).offset(13);
         make.height.mas_equalTo(44);
     }];
- 
+    
+    // 设置日期选择器选中行
+    [self.datePicker selectRow:(month - 1) inComponent:1 animated:NO]; // 月
+    [self.datePicker selectRow:(day - 1) inComponent:0 animated:NO];   // 日
+    [self.datePicker selectRow:(year - 1900) inComponent:2 animated:NO]; // 年
 }
+
+
 
 - (void)firstButtonDateSelect
 {

@@ -115,7 +115,7 @@
 }
 
 - (void)dateSelect {
-    AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initDateSelectionWithFrame:self.view.bounds];
+    AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initDateSelectionWithFrame:self.view.bounds WithDateString:@"11-11-2020"];
     popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbigbg"];
     popupView.titleText = @"Date select";
     popupView.dateSelectAction = ^(NSString * _Nonnull date) {
