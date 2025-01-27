@@ -20,10 +20,25 @@
 @end
 @implementation AnyTimeSmallCardSlotView
 
-- (instancetype)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame withDic:(NSDictionary *)dicData;
+ {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        NSDictionary * dic = RDic(dicData);
+        AnyTimeHomeModel * homeModel = [AnyTimeHomeModel mj_objectWithKeyValues:dic];
+        AnyTimeActingModel * actModel = homeModel.acting;
+        NSLog(@"homeModel ==%@",actModel.aura);
+        self.smallCardData = RArr(actModel.murderous);
+      
+        AnyTimeHmmModel * hmmModel = homeModel.hmm;
+        self.smallCardHmmData = RArr(hmmModel.murderous);
+        
+        AnyTimeKeepModel * keepModel = homeModel.keep;
+        self.smallCardKeepData = RArr(keepModel.murderous);
         [self setupCollectionView];
+
+        [self.collectionView reloadData];
     }
     return self;
 }
@@ -60,7 +75,9 @@
 }
 
 - (void)setupCollectionView {
-    
+    if (self.collectionView) {
+        return;
+    }
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];

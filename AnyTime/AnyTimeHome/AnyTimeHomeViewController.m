@@ -12,6 +12,8 @@
 #import <AdSupport/AdSupport.h>
 #import <AppTrackingTransparency/AppTrackingTransparency.h>
 #import "FBSDKCoreKit/FBSDKCoreKit.h"
+#import "AnyLocationManager.h"
+
 @interface AnyTimeHomeViewController ()
 @property(nonatomic,strong) AnyTimeLargeCardSlotView * largeCardSlotView;
 @property(nonatomic,strong) AnyTimeSmallCardSlotView * smallCardSlotView;
@@ -30,7 +32,6 @@
     self.view.backgroundColor = UIColor.redColor;
     
     UIImageView * homeBgView = [[UIImageView alloc] init];
-//    homeBgView.image = [UIImage imageNamed:@"anytime_home_bg"];
     homeBgView.image = [UIImage imageNamed:@"anytime_home_smallcard_bg"];
     [self.view addSubview:homeBgView];
     
@@ -39,6 +40,9 @@
         make.top.bottom.mas_equalTo(self.view);
     }];
     
+    [[AnyLocationManager sharedInstance] requestAuthorization:^(BOOL granted) {
+        
+    }];
    
     [AnyHttpTool initializeAddressInfoWithSuccess:^(id  _Nonnull responseObject) {
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
@@ -71,7 +75,7 @@
             if (self.smallCardSlotView) {
                 [self.smallCardSlotView removeFromSuperview];
             }
-            self.largeCardSlotView = [[AnyTimeLargeCardSlotView alloc] initWithFrame:self.view.bounds];
+            self.largeCardSlotView = [[AnyTimeLargeCardSlotView alloc] initWithFrame:self.view.bounds withDic:dic];
             [self.view addSubview:self.largeCardSlotView ];
         }
         else
@@ -83,7 +87,7 @@
             if (self.smallCardSlotView) {
                 [self.smallCardSlotView removeFromSuperview];
             }
-            self.smallCardSlotView = [[AnyTimeSmallCardSlotView alloc] initWithFrame:self.view.bounds];
+            self.smallCardSlotView = [[AnyTimeSmallCardSlotView alloc] initWithFrame:self.view.bounds withDic:dic];
             [self.view addSubview:self.smallCardSlotView];
         }
     } failure:^(NSError * _Nonnull error) {

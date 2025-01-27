@@ -246,6 +246,7 @@
     } failure:^(NSError * _Nonnull error) {
       
         [AnyTimeHUD hideHUD];
+        [AnyTimeHUD showTextWithText:error.localizedDescription];
     }];
 }
 
@@ -275,6 +276,7 @@
         
     } failure:^(NSError * _Nonnull error) {
         [AnyTimeHUD hideHUD];
+        [AnyTimeHUD showTextWithText:error.localizedDescription];
     }];
 }
 

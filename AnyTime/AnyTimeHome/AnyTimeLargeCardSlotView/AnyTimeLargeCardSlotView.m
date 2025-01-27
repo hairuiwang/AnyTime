@@ -21,10 +21,22 @@
 
 @implementation AnyTimeLargeCardSlotView
 
-- (instancetype)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame withDic:(NSDictionary *)dicData
+{
     self = [super initWithFrame:frame];
     if (self) {
-        [self getLargeCardData];
+//        [self getLargeCardData];
+        NSDictionary * dic = RDic(dicData);
+        AnyTimeHomeModel * homeModel = [AnyTimeHomeModel mj_objectWithKeyValues:dic];
+        AnyTimeActingModel * actModel = homeModel.acting;
+        NSLog(@"homeModel ==%@",actModel.aura);
+        self.largeCardData = RArr(actModel.murderous);
+      
+        AnyTimeForestModel * forsetModel = homeModel.forest;
+        self.largeCardBannerData = RArr(forsetModel.murderous);
+       
+        [self setupCollectionView];
+        [self.collectionView reloadData];
     }
     return self;
 }

@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AnyTimeSmallCardSlotView : UIView
 
+- (instancetype)initWithFrame:(CGRect)frame withDic:(NSDictionary *)dicData;
+
 @end
 
 NS_ASSUME_NONNULL_END
