@@ -26,7 +26,7 @@
         }
         if (@available(iOS 18, *)) {
             CNAuthorizationStatus status = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
-            if (status == CNAuthorizationStatusDenied) {
+            if (status == CNAuthorizationStatusNotDetermined) {
                 if (completion) {
                     completion(NO);
                 }
