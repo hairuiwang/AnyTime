@@ -277,6 +277,7 @@
 		657545062D3E182200A63988 /* AnyContactManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnyContactManager.m; sourceTree = "<group>"; };
 		657545082D41D4AE00A63988 /* LocationDictionaryHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationDictionaryHelper.h; sourceTree = "<group>"; };
 		657545092D41D4AE00A63988 /* LocationDictionaryHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationDictionaryHelper.m; sourceTree = "<group>"; };
+		659EAA452D4872F70032E578 /* AnyTimeRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AnyTimeRelease.entitlements; sourceTree = "<group>"; };
 		8B64C75E68F112EDC47D02D0 /* Pods-AnyTime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime.release.xcconfig"; path = "Target Support Files/Pods-AnyTime/Pods-AnyTime.release.xcconfig"; sourceTree = "<group>"; };
 		C87E2FEB068C01887AD0C655 /* Pods-AnyTime-AnyTimeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AnyTime-AnyTimeUITests.release.xcconfig"; path = "Target Support Files/Pods-AnyTime-AnyTimeUITests/Pods-AnyTime-AnyTimeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CE4B7405F01A2FAB655AFF70 /* Pods_AnyTimeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnyTimeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -337,6 +338,7 @@
 		046B6D602D30F74000EE9EF7 /* AnyTime */ = {
 			isa = PBXGroup;
 			children = (
+				659EAA452D4872F70032E578 /* AnyTimeRelease.entitlements */,
 				657544122D35205F00A63988 /* AnyCertificationDetails */,
 				657544062D34DC2500A63988 /* AnyTool */,
 				046B6DB12D339E5700EE9EF7 /* AnyTimePublic */,
@@ -1253,6 +1255,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = AnyTime/AnyTimeRelease.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
