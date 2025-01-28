@@ -37,9 +37,14 @@
     self.descriptionsArray = @[@"Complete your loan application in just a few steps", @"No need to wait, instant loan", @"Smart financial management tools to help you easily manage your loans"];
     
     [self setupScrollView];
-    [self requestIDFAPermissionWithCompletion:^(NSString *idfa) {
-        
-    }];
+    
+    dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC));
+    dispatch_after(delayTime, dispatch_get_main_queue(), ^{
+        [self requestIDFAPermissionWithCompletion:^(NSString *idfa) {
+            
+        }];
+    });
+
 }
 
 - (void)setupScrollView {

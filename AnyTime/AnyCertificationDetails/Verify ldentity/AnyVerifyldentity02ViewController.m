@@ -174,7 +174,9 @@
 - (void)phoneEx {
     [AnyCameraUtil selectPhotoFromViewController:self completion:^(UIImage * _Nullable image) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self uploadFaceIDImageWithTowers:@"2" image:image];
+            if (image) {
+                [self uploadFaceIDImageWithTowers:@"2" image:image];
+            }
         });
         
     }];

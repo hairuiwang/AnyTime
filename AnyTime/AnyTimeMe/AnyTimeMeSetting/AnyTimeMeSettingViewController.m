@@ -115,7 +115,7 @@
         popupView.titleText = @"Go Out";
         popupView.descriptionText = @"Are you sure you want to logout of your account?";
         popupView.firstButtonTitle = @"Confirm";
-        popupView.secondButtonTitle = @"Go out";
+        popupView.secondButtonTitle = @"Cancel";
         
         popupView.firstButtonAction = ^{
             NSLog(@"First button tapped");

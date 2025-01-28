@@ -40,9 +40,11 @@
         make.top.bottom.mas_equalTo(self.view);
     }];
     
-    [[AnyLocationManager sharedInstance] requestAuthorization:^(BOOL granted) {
-        
-    }];
+    if ([AnyRouterTool sharedInstance].chin == 1) {
+        [[AnyLocationManager sharedInstance] requestAuthorization:^(BOOL granted) {
+            
+        }];
+    }
    
     [AnyHttpTool initializeAddressInfoWithSuccess:^(id  _Nonnull responseObject) {
         if ([responseObject isKindOfClass:[NSDictionary class]]) {

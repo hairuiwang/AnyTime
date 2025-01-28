@@ -15,6 +15,7 @@
 
 #import <ifaddrs.h>
 #import <arpa/inet.h>
+#import <CoreLocation/CoreLocation.h>
 
 @implementation AnyTimeDeviceInfoHelper
 
@@ -60,9 +61,9 @@
         @"situation":@{
                 @"each":[[UIDevice currentDevice] identifierForVendor].UUIDString?:@"",
                 @"closer":[[ASIdentifierManager sharedManager] advertisingIdentifier].UUIDString?:@"",
-                @"based":[self getMacAddress]?:@"",
+                @"based":wifiInfo[@"BSSID"]?:@"",
                 @"annoyed":@(NSDate.date.timeIntervalSince1970 * 1000),
-                @"saw":@([self isUsingProxy]?:0),
+                @"saw":@([self isUsingProxy]?1:0),
                 @"faint":[NSNumber numberWithBool:[self isVPNConnected]],
                 @"very":[NSNumber numberWithBool:[self isJailbroken]],
                 @"reason":[NSNumber numberWithBool:[self isSimulator]],

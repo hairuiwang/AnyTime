@@ -112,12 +112,38 @@
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView 
 {
-    return (self.smallCardData.count  + 1 + self.smallCardKeepData.count);
+    return (self.smallCardData.count  + 1 + 1);
 }
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 1;
+    
+    if (self.smallCardHmmData.count > 0)
+    {
+        if (section == 0)
+        {
+            return 1;
+        }
+        else if (section == 1) 
+        {
+            return 1;
+        }
+        else
+        {
+            return self.smallCardKeepData.count;
+        }
+    }
+    else
+    {
+        if (section == 0)
+        {
+            return 1;
+        }
+        else
+        {
+            return self.smallCardKeepData.count;
+        }
+    }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -139,6 +165,8 @@
         secondCell.bannerArray = self.smallCardHmmData;
         secondCell.smallCardSlotBannerSelect = ^(NSString * _Nonnull disgusting) {
             //点击预期提醒跳转
+            [[AnyRouter sharedInstance] openURL:disgusting parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {
+            }];
         };
     }
     else
