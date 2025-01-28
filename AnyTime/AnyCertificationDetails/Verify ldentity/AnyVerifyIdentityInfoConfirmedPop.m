@@ -115,7 +115,11 @@
 }
 
 
-- (void)dateSelect:(NSString *)date {
+- (void)dateSelect:(NSString *)date 
+{
+    if (date.length == 0) {
+        date = @"01-01-1900";
+    }
     AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initDateSelectionWithFrame:self.view.bounds WithDateString:date];
 
     popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbigbg"];

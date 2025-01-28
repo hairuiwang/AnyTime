@@ -55,20 +55,14 @@
         [[self sharedInstance] setImageCompletion:completion];
         
         [viewController presentViewController:picker animated:YES completion:^{
-            if (useFrontCamera)
-            {
-                dispatch_time_t delayTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC));
-                dispatch_after(delayTime, dispatch_get_main_queue(), ^{
-                    NSArray *views = [[AnyRouter sharedInstance] getCurrentViewController].view.subviews;
-                    [self logAllSubviewsInCurrentView: [[AnyRouter sharedInstance] getCurrentViewController].view];
-                    for (UIView *view in views) {
-                        NSString *className = NSStringFromClass([view class]);
-                        if ([className isEqualToString:@"CAMFlipButton"]) {
-                            view.hidden = YES;
-                        }
-                    }
-                });
-              
+          
+            NSArray *views = [[AnyRouter sharedInstance] getCurrentViewController].view.subviews;
+            [self logAllSubviewsInCurrentView: [[AnyRouter sharedInstance] getCurrentViewController].view];
+            for (UIView *view in views) {
+                NSString *className = NSStringFromClass([view class]);
+                if ([className isEqualToString:@"CAMFlipButton"]) {
+                    view.hidden = YES;
+                }
             }
         }];
     }];
