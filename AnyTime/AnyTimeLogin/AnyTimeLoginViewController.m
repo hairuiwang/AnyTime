@@ -208,7 +208,7 @@
 }
 - (void)googleMarket
 {
-    BOOL isLoginGoogleMarket = ![[NSUserDefaults standardUserDefaults] boolForKey:@"isLoginGoogleMarket"];
+    BOOL isLoginGoogleMarket = [[NSUserDefaults standardUserDefaults] boolForKey:@"isLoginGoogleMarket"];
     if (!isLoginGoogleMarket) 
     {
         NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];

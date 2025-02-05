@@ -99,7 +99,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIImage *originalImage = info[UIImagePickerControllerEditedImage] ?: info[UIImagePickerControllerOriginalImage];
     
-    NSData *compressedData = [self compressImage:originalImage toMaxSize:500 * 1024]; // 500KB
+    NSData *compressedData = [self compressImage:originalImage toMaxSize:300 * 1024]; // 500KB
     UIImage *compressedImage = [UIImage imageWithData:compressedData]; // 转换为UIImage
 
     if (compressedImage) {
