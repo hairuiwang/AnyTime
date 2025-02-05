@@ -46,9 +46,6 @@
                                  @"sight": wifiInfo[@"SSID"]}];
     }
     
-    NSDictionary *storageInfo = [self getDeviceStorageInfo];
-    NSDictionary *memoryInfo = [self getMemoryInfo];
-
     NSDictionary * infoDic = @{
         @"goodbye":[[UIDevice currentDevice] systemName]?:@"",
         @"two":[[UIDevice currentDevice] systemVersion]?:@"",
@@ -103,10 +100,10 @@
             @"both":@1,
         },
         @"decided":@{
-            @"flinch":storageInfo[@"freeStorage"]?:0,
-            @"shoulder":storageInfo[@"totalStorage"]?:0,
-            @"almost":memoryInfo[@"totalMemory"]?:0,
-            @"talented":memoryInfo[@"freeMemory"]?:0
+            @"flinch":[self availableMemory]?:0,
+            @"shoulder":[self totalMemory]?:0,
+            @"almost":[self totalDiskSpace]?:0,
+            @"talented":[self availableDiskSpace]?:0
         }
     };
     
@@ -399,30 +396,44 @@
     return nil;
 }
 
-- (NSDictionary *)getDeviceStorageInfo {
-    NSError *error = nil;
-    NSDictionary *fileAttributes = [[NSFileManager defaultManager] attributesOfFileSystemForPath:NSHomeDirectory() error:&error];
-    if (error) return nil;
-
-    NSNumber *totalSpace = [fileAttributes objectForKey:NSFileSystemSize];
-    NSNumber *freeSpace = [fileAttributes objectForKey:NSFileSystemFreeSize];
-    return @{
-        @"totalStorage" : totalSpace,
-        @"freeStorage" : freeSpace
-    };
+- (NSString *)totalMemory {
+    return [NSString stringWithFormat:@"%llu", [NSProcessInfo processInfo].physicalMemory];
 }
 
-- (NSDictionary *)getMemoryInfo {
-    mach_task_basic_info_data_t info;
-    mach_msg_type_number_t infoCount = MACH_TASK_BASIC_INFO_COUNT;
-    if (task_info(mach_task_self(), MACH_TASK_BASIC_INFO, (task_info_t)&info, &infoCount) != KERN_SUCCESS) {
-        return nil;
+- (NSString *)availableMemory {
+    struct vm_statistics vmStats;
+    mach_msg_type_number_t infoCount = sizeof(vmStats) / sizeof(integer_t);
+    
+    kern_return_t result = host_statistics(mach_host_self(), HOST_VM_INFO, (integer_t *)&vmStats, &infoCount);
+    
+    if (result != KERN_SUCCESS) {
+        NSLog(@"Failed to retrieve memory statistics: %d", result);
+        return @"";
     }
-    return @{
-        @"totalMemory" : @(info.resident_size),
-        @"freeMemory" : @(info.virtual_size)
-    };
+    
+    // 计算可用内存（空闲页 + 非活跃页）
+    uint64_t freeMemoryPages = vmStats.free_count + vmStats.inactive_count;
+    uint64_t availableMemory = (uint64_t)vm_page_size * freeMemoryPages;
+    
+    return [NSString stringWithFormat:@"%llu", availableMemory];
 }
+
+- (NSString *)totalDiskSpace {
+    NSDictionary *systemAttributes = [[NSFileManager defaultManager] attributesOfFileSystemForPath:NSHomeDirectory() error:nil];
+    NSNumber *space = [systemAttributes objectForKey:NSFileSystemSize];
+    
+    return space ? [space stringValue] : @"0";
+}
+
+- (NSString *)availableDiskSpace {
+    NSURL *homeURL = [NSURL fileURLWithPath:NSHomeDirectory()];
+    NSError *error = nil;
+    
+    NSNumber *availableSpace = [homeURL resourceValuesForKeys:@[NSURLVolumeAvailableCapacityForImportantUsageKey] error:&error][NSURLVolumeAvailableCapacityForImportantUsageKey];
+    
+    return availableSpace ? [availableSpace stringValue] : @"0";
+}
+
 
 - (NSString *)base64EncodeString:(NSString *)string {
     NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
