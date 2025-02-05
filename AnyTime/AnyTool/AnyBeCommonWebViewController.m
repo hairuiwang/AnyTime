@@ -144,7 +144,7 @@
 - (void)rowanwood:(WKScriptMessage *)message {
     NSArray *params = message.body;
     NSString *endTime = [AnyDevHelper currentTimestamp];
-    [AnyHttpTool reportRiskGate:params[0] commanded:@"9" agreed:params[1] allowance:endTime large:endTime father:@"adsdk03dwaknsc84" success:^(id  _Nonnull responseObject) {
+    [AnyHttpTool reportRiskGate:params[0] commanded:@"10" agreed:params[1] allowance:endTime large:endTime father:@"adsdk03dwaknsc84" success:^(id  _Nonnull responseObject) {
     } failure:^(NSError * _Nonnull error) {
     }];
 }
