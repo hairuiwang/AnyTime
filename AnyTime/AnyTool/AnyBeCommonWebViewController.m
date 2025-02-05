@@ -186,17 +186,37 @@
 #pragma mark - Email Sending Method (示例)
 
 - (void)sendEmailTo:(NSString *)emailAddress {
-    NSString *subject = @"";
+    NSString *subject = @""; // 设置有效主题
     NSString *content = [NSString stringWithFormat:@"APP Name：AnyTime Loan\nPhone：%@\nI need help： ", [AnyDevHelper loadFromUserDefaults:LOGIN_COUNT]];
     NSString *body = content;
-    NSString *emailUrlString = [NSString stringWithFormat:@"mailto:%@?subject=%@&body=%@", emailAddress, subject, body];
+    
+    // 对 URL 中的特殊字符进行编码
+    NSString *encodedSubject = [subject stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    NSString *encodedBody = [body stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    
+    NSString *emailUrlString = [NSString stringWithFormat:@"mailto:%@?subject=%@&body=%@", emailAddress, encodedSubject, encodedBody];
     NSURL *emailUrl = [NSURL URLWithString:emailUrlString];
     
+    // 检查能否打开 URL
     if ([[UIApplication sharedApplication] canOpenURL:emailUrl]) {
         [[UIApplication sharedApplication] openURL:emailUrl options:@{} completionHandler:nil];
     } else {
         NSLog(@"无法发送邮件");
     }
 }
+
+//- (void)sendEmailTo:(NSString *)emailAddress {
+//    NSString *subject = @"";
+//    NSString *content = [NSString stringWithFormat:@"APP Name：AnyTime Loan\nPhone：%@\nI need help： ", [AnyDevHelper loadFromUserDefaults:LOGIN_COUNT]];
+//    NSString *body = content;
+//    NSString *emailUrlString = [NSString stringWithFormat:@"mailto:%@?subject=%@&body=%@", emailAddress, subject, body];
+//    NSURL *emailUrl = [NSURL URLWithString:emailUrlString];
+//    
+//    if ([[UIApplication sharedApplication] canOpenURL:emailUrl]) {
+//        [[UIApplication sharedApplication] openURL:emailUrl options:@{} completionHandler:nil];
+//    } else {
+//        NSLog(@"无法发送邮件");
+//    }
+//}
 
 @end

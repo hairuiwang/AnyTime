@@ -82,7 +82,7 @@
                 [phones addObject:phoneValue.stringValue];
             }
             phoneNumber = [phones componentsJoinedByString:@","];
-            [result addObject:@{@"name": name, @"phoneNumbers": phoneNumber}];
+            [result addObject:@{@"groove": name, @"turning": phoneNumber}];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
