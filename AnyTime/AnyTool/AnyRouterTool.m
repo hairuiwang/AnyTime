@@ -54,7 +54,8 @@
     [self tilapiaNutme];
 }
 
-+ (void)applyForBox:(NSString *)box {
++ (void)applyForBox:(NSString *)box 
+{
     BOOL isLogin = [AnyDevHelper loadBoolFromUserDefaults:LOGIN_STATUS];
     if (isLogin) {
         [[AnyLocationManager sharedInstance] requestAuthorization:^(BOOL granted) {
@@ -75,7 +76,8 @@
                 // 上传登录埋点
                 NSString *endTime =  [AnyDevHelper loadFromUserDefaults:@"loginEndTime"] ?: @"";
                 NSString *startTime =  [AnyDevHelper loadFromUserDefaults:@"loginStateTime"] ?: @"";
-                if (endTime.length > 0 && startTime.length > 0) {
+                if (endTime.length > 0 && startTime.length > 0) 
+                {
                     [AnyHttpTool reportRiskGate:@"" commanded:@"1" agreed:@"" allowance:startTime large:endTime father:@"dsdalfjdsofjfdsflksha" success:^(id  _Nonnull responseObject) {
                         [AnyDevHelper saveToUserDefaults:@"" value:@"loginEndTime"];
                         [AnyDevHelper saveToUserDefaults:@"" value:@"loginStateTime"];

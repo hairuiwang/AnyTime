@@ -99,9 +99,12 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     UIImage *originalImage = info[UIImagePickerControllerEditedImage] ?: info[UIImagePickerControllerOriginalImage];
     
-    if (originalImage) {
+    NSData *compressedData = [self compressImage:originalImage toMaxSize:500 * 1024]; // 500KB
+    UIImage *compressedImage = [UIImage imageWithData:compressedData]; // 转换为UIImage
+
+    if (compressedImage) {
         if (self.imageCompletion) {
-            self.imageCompletion(originalImage);
+            self.imageCompletion(compressedImage);
         }
         self.imageCompletion = nil;
 //        [AnyTimeHUD showLoadingHUD];

@@ -5,47 +5,67 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
-         <BreakpointContent
-            uuid = "D2EBDF17-82C9-4CC2-98D3-8B409A3C6978"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            breakpointStackSelectionBehavior = "1"
-            scope = "1"
-            stopOnStyle = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "AD5F361B-8B83-4D0C-9E1F-31158F329CFE"
+            uuid = "D5352333-5F80-4349-B44F-A0E728237228"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AnyTime/AnyTool/AnyBeCommonWebViewController.m"
+            filePath = "AnyTime/AnyTimeLogin/AnyTimeLoginViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "-userContentController:didReceiveScriptMessage:"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
+            landmarkName = "-goLogin:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8D7AA840-B82C-4CBC-B28F-7EA96D8592BD"
+            uuid = "6234EE12-DC95-404D-8C36-98AB3B2825F9"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AnyTime/AnyTool/AnyBeCommonWebViewController.m"
+            filePath = "AnyTime/AnyTimeLogin/AnyTimeLoginViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "-userContentController:didReceiveScriptMessage:"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
+            landmarkName = "-getCode"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6234EE12-DC95-404D-8C36-98AB3B2825F9 - 54cadfd6ba9be23b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[AnyTimeLoginViewController getCode]"
+                  moduleName = "AnyTime"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/edy/Documents/Github/AnyTime/AnyTime/AnyTimeLogin/AnyTimeLoginViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "244"
+                  endingLineNumber = "244"
+                  offsetFromSymbolStart = "700">
+               </Location>
+               <Location
+                  uuid = "6234EE12-DC95-404D-8C36-98AB3B2825F9 - 6215e1afe040020d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__37-[AnyTimeLoginViewController getCode]_block_invoke"
+                  moduleName = "AnyTime"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/edy/Documents/Github/AnyTime/AnyTime/AnyTimeLogin/AnyTimeLoginViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "244"
+                  endingLineNumber = "244"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

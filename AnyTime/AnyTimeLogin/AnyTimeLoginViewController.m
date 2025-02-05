@@ -201,13 +201,16 @@
     self.textLabel.attributedText = text;
     [self.textLabel sizeToFit];
 
+    [self googleMarket];
 }
 -(void)backClick {
     [self.navigationController popViewControllerAnimated:YES];
 }
-- (void)googleMarket {
+- (void)googleMarket
+{
     BOOL isLoginGoogleMarket = ![[NSUserDefaults standardUserDefaults] boolForKey:@"isLoginGoogleMarket"];
-    if (!isLoginGoogleMarket) {
+    if (!isLoginGoogleMarket) 
+    {
         NSString *idfa = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
         [AnyHttpTool reportGoogleMarketWithMet:@"saslkfasldfhas" each:[AnyDevHelper IDFV] closer:idfa success:^(id  _Nonnull responseObject) {
             NSDictionary *characters = responseObject[@"characters"];
@@ -235,8 +238,8 @@
     }
     
     [AnyTimeHUD showLoadingHUD];
-    self.stateTime = [AnyDevHelper currentTimestamp];
-    [AnyDevHelper saveToUserDefaults:self.stateTime value:@"loginStateTime"];
+    self.stateTime = [AnyDevHelper currentTimestampMillis];
+    [AnyDevHelper saveToUserDefaults:@"loginStateTime" value:self.stateTime];
     
     [AnyHttpTool requestCodeWithTurning:self.phoneTextField.textField.text direction:@"daasdasdaddd" success:^(id  _Nonnull responseObject) {
         NSLog(@"responseObject ==== %@",responseObject);
@@ -268,7 +271,7 @@
         
         [AnyDevHelper saveBoolToUserDefaults:LOGIN_STATUS value:YES];
         self.endTime = [AnyDevHelper currentTimestampMillis];
-        [AnyDevHelper saveToUserDefaults:self.endTime value:@"loginEndTime"];
+        [AnyDevHelper saveToUserDefaults:@"loginEndTime" value:self.endTime];
         
         UIWindow *window = [UIApplication sharedApplication].windows.firstObject;
         AnyTimeRootBarViewController * rootVC = [[AnyTimeRootBarViewController alloc] init];
