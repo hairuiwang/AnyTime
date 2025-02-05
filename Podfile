@@ -14,7 +14,7 @@ target 'AnyTime' do
   pod 'MBProgressHUD'
   pod 'MJExtension'
   pod 'IQKeyboardManager'
-  pod 'LookinServer'
+#  pod 'LookinServer'
   pod 'Reachability'
   pod 'FBSDKCoreKit'
   

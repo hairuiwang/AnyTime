@@ -21,9 +21,6 @@ PODS:
     - FBSDKCoreKit_Basics (= 18.0.0)
   - FBSDKCoreKit_Basics (18.0.0)
   - IQKeyboardManager (6.5.19)
-  - LookinServer (1.2.8):
-    - LookinServer/Core (= 1.2.8)
-  - LookinServer/Core (1.2.8)
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
   - MJExtension (3.4.2)
@@ -38,7 +35,6 @@ DEPENDENCIES:
   - AFNetworking
   - FBSDKCoreKit
   - IQKeyboardManager
-  - LookinServer
   - Masonry
   - MBProgressHUD
   - MJExtension
@@ -54,7 +50,6 @@ SPEC REPOS:
     - FBSDKCoreKit
     - FBSDKCoreKit_Basics
     - IQKeyboardManager
-    - LookinServer
     - Masonry
     - MBProgressHUD
     - MJExtension
@@ -69,7 +64,6 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: d3f479a69127acebb1c6aad91c1a33907bcf6c2f
   FBSDKCoreKit_Basics: 017b6dc2a1862024815a8229e75661e627ac1e29
   IQKeyboardManager: c8665b3396bd0b79402b4c573eac345a31c7d485
-  LookinServer: 1b2b61c6402ae29fa22182d48f5cd067b4e99e80
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJExtension: e97d164cb411aa9795cf576093a1fa208b4a8dd8
@@ -78,6 +72,6 @@ SPEC CHECKSUMS:
   SDWebImage: 73c6079366fea25fa4bb9640d5fb58f0893facd8
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 6857903924398eca069b41d73d4a626f2241e748
+PODFILE CHECKSUM: 51f30dd3ad84fd5fb4cbdb75d77a17d5cc4a341c
 
-COCOAPODS: 1.13.0
+COCOAPODS: 1.16.2

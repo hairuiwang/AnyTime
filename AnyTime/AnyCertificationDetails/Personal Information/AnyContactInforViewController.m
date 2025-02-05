@@ -218,21 +218,24 @@
             }
             
         } else {
-            AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initGoOutAccountWithFrame:self.view.bounds];
-            popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbg"];
-            popupView.titleText = @"Contact authority";
-            popupView.descriptionText = @"Contact rights are required";
-            popupView.firstButtonTitle = @"Confirm";
-            popupView.secondButtonTitle = @"Cancel";
+            dispatch_async(dispatch_get_main_queue(), ^{
+                AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initGoOutAccountWithFrame:self.view.bounds];
+                popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbg"];
+                popupView.titleText = @"Contact authority";
+                popupView.descriptionText = @"Contact rights are required";
+                popupView.firstButtonTitle = @"Confirm";
+                popupView.secondButtonTitle = @"Cancel";
+                
+                popupView.firstButtonAction = ^{
+                    [AnyRouterTool  openAppSettings];
+                };
+                popupView.secondButtonAction = ^{
+                };
+                popupView.closeAction = ^{
+                };
+                [popupView showInView:self.view];
+            });
             
-            popupView.firstButtonAction = ^{
-                [AnyRouterTool  openAppSettings];
-            };
-            popupView.secondButtonAction = ^{
-            };
-            popupView.closeAction = ^{
-            };
-            [popupView showInView:self.view];
         }
     }];
 }
