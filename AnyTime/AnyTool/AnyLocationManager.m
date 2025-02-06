@@ -63,7 +63,7 @@
     [_locationManager startUpdatingLocation];
     
     // **7 秒超时处理**
-    self.timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:7.0 target:self selector:@selector(handleLocationTimeout) userInfo:nil repeats:NO];
+    self.timeoutTimer = [NSTimer scheduledTimerWithTimeInterval:4.0 target:self selector:@selector(handleLocationTimeout) userInfo:nil repeats:NO];
 }
 
 #pragma mark - 超时处理

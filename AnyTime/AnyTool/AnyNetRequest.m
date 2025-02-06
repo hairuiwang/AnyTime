@@ -200,14 +200,70 @@
 
 /// **压缩图片到指定大小**
 - (NSData *)compressImage:(UIImage *)image toMaxSize:(NSUInteger)maxSize {
-    CGFloat compression = 0.5;
-    NSData *imageData = UIImageJPEGRepresentation(image, compression);
+    // 参数边界检查
+    if (!image || maxSize == 0) return nil;
     
-    while ([imageData length] > maxSize && compression > 0.1) {
-        compression -= 0.1;
-        imageData = UIImageJPEGRepresentation(image, compression);
+    // 压缩质量二分查找参数
+    CGFloat minQuality = 0.1;
+    CGFloat maxQuality = 1.0;
+    CGFloat midQuality = 0.0;
+    
+    // 最终结果存储
+    NSData *bestData = UIImageJPEGRepresentation(image, maxQuality);
+    
+    // 首次检查是否已满足要求
+    if ([bestData length] <= maxSize) {
+        return bestData;
     }
     
-    return imageData;
+    // 二分查找最佳压缩率
+    for (int i = 0; i < 10; i++) { // 最多10次迭代（精度可达0.001）
+        midQuality = (minQuality + maxQuality) / 2.0;
+        NSData *tempData = UIImageJPEGRepresentation(image, midQuality);
+        
+        if (!tempData) break;
+        
+        if ([tempData length] > maxSize) {
+            // 质量过高，需要降低
+            maxQuality = midQuality;
+        } else {
+            // 质量可接受，尝试更高
+            minQuality = midQuality;
+            bestData = tempData;
+        }
+        
+        // 精度控制（当区间小于0.01时退出）
+        if (maxQuality - minQuality < 0.01) {
+            break;
+        }
+    }
+    
+    // 最终检查
+    if ([bestData length] > maxSize) {
+        // 附加尺寸压缩（当质量压缩到极限仍不满足时）
+        return [self compressImageByScaling:image maxSize:maxSize];
+    }
+    
+    return bestData;
+}
+- (NSData *)compressImageByScaling:(UIImage *)image maxSize:(NSUInteger)maxSize {
+    CGFloat compressionRatio = 0.9;
+    CGSize originalSize = image.size;
+    
+    NSData *compressedData = nil;
+    do {
+        CGSize newSize = CGSizeMake(originalSize.width * compressionRatio,
+                                  originalSize.height * compressionRatio);
+        UIGraphicsBeginImageContext(newSize);
+        [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+        UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        compressedData = UIImageJPEGRepresentation(scaledImage, 0.6);
+        compressionRatio *= 0.7;
+        
+    } while ([compressedData length] > maxSize && compressionRatio > 0.2);
+    
+    return compressedData ?: UIImageJPEGRepresentation(image, 0.1);
 }
 @end
