@@ -527,13 +527,16 @@
 
     // 执行点击逻辑，例如打印信息
     NSLog(@"Tapped on Page %ld - Item %ld", (long)collectionView.tag, (long)indexPath.item);
-    AnyTimeOrderBlowModel * blowModel = self.dataArray[indexPath.row];
-    
-    AnyTimeOrderBlowGoldenModel * goldenModel = [AnyTimeOrderBlowGoldenModel mj_objectWithKeyValues: blowModel.golden];
-    NSLog(@"goldenModel === %@",goldenModel.sour);
-    [[AnyRouter sharedInstance] openURL:goldenModel.sour parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {
-        NSLog(@"result %@",result);
-    }];
+    if (self.dataArray.count > 0)
+    {
+        AnyTimeOrderBlowModel * blowModel = self.dataArray[indexPath.row];
+        
+        AnyTimeOrderBlowGoldenModel * goldenModel = [AnyTimeOrderBlowGoldenModel mj_objectWithKeyValues: blowModel.golden];
+        NSLog(@"goldenModel === %@",goldenModel.sour);
+        [[AnyRouter sharedInstance] openURL:goldenModel.sour parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {
+            NSLog(@"result %@",result);
+        }];
+    }
 
 }
 

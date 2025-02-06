@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) void (^tryAgainButtonAction)(void);
 
 @property(nonatomic,assign) BOOL isNoData;
+@property (nonatomic, strong) UICollectionView *collectionView;
 
 @end
 

@@ -148,34 +148,58 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell;
-    if (indexPath.section == 0)
+    if (self.smallCardHmmData.count > 0)
     {
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AnyTimeSmallCardSlotFirstCell" forIndexPath:indexPath];
-        
-        AnyTimeSmallCardSlotFirstCell *firstCell = (AnyTimeSmallCardSlotFirstCell *)cell;  // 强制转换为对应的类型
-        if (self.smallCardData.count > 0)
+        if (indexPath.section == 0)
         {
-            firstCell.murderousModel = [AnyTimeActMurderousModel mj_objectWithKeyValues:self.smallCardData[0]];
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AnyTimeSmallCardSlotFirstCell" forIndexPath:indexPath];
+            
+            AnyTimeSmallCardSlotFirstCell *firstCell = (AnyTimeSmallCardSlotFirstCell *)cell;  // 强制转换为对应的类型
+            if (self.smallCardData.count > 0)
+            {
+                firstCell.murderousModel = [AnyTimeActMurderousModel mj_objectWithKeyValues:self.smallCardData[0]];
+            }
         }
-    }
-    else if (indexPath.section == 1)
-    {
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AnyTimeSmallCardSlotSecondCell" forIndexPath:indexPath];
-        AnyTimeSmallCardSlotSecondCell * secondCell = (AnyTimeSmallCardSlotSecondCell *)cell;
-        secondCell.bannerArray = self.smallCardHmmData;
-        secondCell.smallCardSlotBannerSelect = ^(NSString * _Nonnull disgusting) {
-            //点击预期提醒跳转
-            [[AnyRouter sharedInstance] openURL:disgusting parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {
-            }];
-        };
+        else if (indexPath.section == 1)
+        {
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AnyTimeSmallCardSlotSecondCell" forIndexPath:indexPath];
+            AnyTimeSmallCardSlotSecondCell * secondCell = (AnyTimeSmallCardSlotSecondCell *)cell;
+            secondCell.bannerArray = self.smallCardHmmData;
+            secondCell.smallCardSlotBannerSelect = ^(NSString * _Nonnull disgusting) {
+                //点击预期提醒跳转
+                [[AnyRouter sharedInstance] openURL:disgusting parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {
+                }];
+            };
+        }
+        else
+        {
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AnyTimeSmallCardSlotThirdCell" forIndexPath:indexPath];
+            AnyTimeSmallCardSlotThirdCell * thirdCell = (AnyTimeSmallCardSlotThirdCell *)cell;
+
+            thirdCell.murderousModel = [AnyTimeKeepMurderousModel mj_objectWithKeyValues:self.smallCardKeepData[indexPath.row]];
+
+        }
     }
     else
     {
-        cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AnyTimeSmallCardSlotThirdCell" forIndexPath:indexPath];
-        AnyTimeSmallCardSlotThirdCell * thirdCell = (AnyTimeSmallCardSlotThirdCell *)cell;
+        if (indexPath.section == 0)
+        {
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AnyTimeSmallCardSlotFirstCell" forIndexPath:indexPath];
+            
+            AnyTimeSmallCardSlotFirstCell *firstCell = (AnyTimeSmallCardSlotFirstCell *)cell;  // 强制转换为对应的类型
+            if (self.smallCardData.count > 0)
+            {
+                firstCell.murderousModel = [AnyTimeActMurderousModel mj_objectWithKeyValues:self.smallCardData[0]];
+            }
+        }
+        else
+        {
+            cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AnyTimeSmallCardSlotThirdCell" forIndexPath:indexPath];
+            AnyTimeSmallCardSlotThirdCell * thirdCell = (AnyTimeSmallCardSlotThirdCell *)cell;
 
-        thirdCell.murderousModel = [AnyTimeKeepMurderousModel mj_objectWithKeyValues:self.smallCardKeepData[indexPath.row]];
+            thirdCell.murderousModel = [AnyTimeKeepMurderousModel mj_objectWithKeyValues:self.smallCardKeepData[indexPath.row]];
 
+        }
     }
     return cell;
 }
@@ -205,18 +229,33 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     CGFloat width = self.bounds.size.width;
     CGFloat height = 0;
-    if (indexPath.section == 0)
+    if (self.smallCardHmmData.count > 0)
     {
-        height = 310;
-    }
-    else if (indexPath.section == 1)
-    {
-        height = 151;
+        if (indexPath.section == 0)
+        {
+            height = 310;
+        }
+        else if (indexPath.section == 1)
+        {
+            height = 151;
+        }
+        else
+        {
+            height = 200;
+        }
     }
     else
     {
-        height = 200;
+        if (indexPath.section == 0)
+        {
+            height = 310;
+        }
+        else
+        {
+            height = 200;
+        }
     }
+   
     return CGSizeMake(width, height);
 }
 

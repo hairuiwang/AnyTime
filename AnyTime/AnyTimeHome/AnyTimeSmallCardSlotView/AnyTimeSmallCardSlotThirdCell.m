@@ -79,6 +79,7 @@
     self.leftLabel.font = PFSCFont(15);
     self.leftLabel.textColor = UIColor.blackColor;
     self.leftLabel.textAlignment = NSTextAlignmentCenter;
+    self.leftLabel.adjustsFontSizeToFitWidth = YES;
     [contentImage addSubview:self.leftLabel];
     
     self.rightLabel = [[UILabel alloc] init];
@@ -86,6 +87,7 @@
     self.rightLabel.font = PFSCFont(15);
     self.rightLabel.textColor = UIColor.blackColor;
     self.rightLabel.textAlignment = NSTextAlignmentCenter;
+    self.rightLabel.adjustsFontSizeToFitWidth = YES;
     [contentImage addSubview:self.rightLabel];
  
     [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -107,6 +109,7 @@
     self.leftgrayLabel.font = PFSCFont(12);
     self.leftgrayLabel.textColor = rgba(188, 187, 185, 1);
     self.leftgrayLabel.textAlignment = NSTextAlignmentCenter;
+    self.leftgrayLabel.adjustsFontSizeToFitWidth = YES;
     [contentImage addSubview:self.leftgrayLabel];
     
     self.rightgrayLabel = [[UILabel alloc] init];
@@ -114,6 +117,7 @@
     self.rightgrayLabel.font = PFSCFont(12);
     self.rightgrayLabel.textColor = rgba(188, 187, 185, 1);
     self.rightgrayLabel.textAlignment = NSTextAlignmentCenter;
+    self.rightgrayLabel.adjustsFontSizeToFitWidth = YES;
     [contentImage addSubview:self.rightgrayLabel];
  
     [self.leftgrayLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -154,7 +158,7 @@
     self.loanLabel.text = murderousModel.pretending;
     self.contentLabel.text = [NSString stringWithFormat:@"₱%@",murderousModel.similar];
     self.leftLabel.text = murderousModel.killed;
-    self.rightLabel.text = murderousModel.disgust;
+    self.rightLabel.text = murderousModel.talking;
     self.leftgrayLabel.text = murderousModel.seem;
     self.rightgrayLabel.text = murderousModel.source;
     [self.goButton setTitle:murderousModel.scent forState:UIControlStateNormal];

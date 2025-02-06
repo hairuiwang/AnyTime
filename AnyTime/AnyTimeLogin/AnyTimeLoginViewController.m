@@ -181,7 +181,7 @@
     [self.view addSubview:self.textLabel];
     [self.textLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.checkboxButton.mas_right).offset(2);
-        make.right.mas_equalTo(tipsBgImage.mas_right).offset(-20);
+        make.right.mas_equalTo(tipsBgImage.mas_right);
         make.height.mas_equalTo(44);
         make.centerY.mas_equalTo(self.checkboxButton.mas_centerY);
     }];
@@ -199,6 +199,7 @@
     text.yy_font = [UIFont systemFontOfSize:12];
     text.yy_color = [UIColor blackColor];
     self.textLabel.attributedText = text;
+    self.textLabel.preferredMaxLayoutWidth = CGRectGetWidth(self.view.frame) - 30;
     [self.textLabel sizeToFit];
 
     [self googleMarket];
@@ -255,6 +256,9 @@
 
 - (void)goLogin:(NSString *)code
 {
+    if (self.isChecked == NO) {
+        return;
+    }
     [AnyTimeHUD showLoadingHUD];
     [AnyHttpTool loginWithBoy:self.phoneTextField.textField.text talk:code events:@"sadadadsdasdd" success:^(id  _Nonnull responseObject) {
         NSLog(@"login === %@",responseObject);
