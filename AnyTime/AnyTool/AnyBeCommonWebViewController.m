@@ -85,10 +85,33 @@
 /// **拼接公共参数**
 - (NSString *)appendParamsToURL:(NSString *)url parameters:(NSDictionary *)parameters {
     NSMutableDictionary *allParams = [NSMutableDictionary dictionaryWithDictionary:[self fetchGlobalParameters]];
+    NSString *baseURL = url;
+    NSString *existingParamsString = nil;
+    
+    // 判断 URL 是否已经包含 '?'
+    NSRange range = [url rangeOfString:@"?"];
+    if (range.location != NSNotFound) {
+        baseURL = [url substringToIndex:range.location]; // 提取主 URL
+        existingParamsString = [url substringFromIndex:range.location + 1]; // 获取参数部分
+        
+        // 解析已有参数
+        NSArray *keyValuePairs = [existingParamsString componentsSeparatedByString:@"&"];
+        for (NSString *pair in keyValuePairs) {
+            NSArray *keyValue = [pair componentsSeparatedByString:@"="];
+            if (keyValue.count == 2) {
+                NSString *key = keyValue[0];
+                NSString *value = keyValue[1];
+                allParams[key] = value;
+            }
+        }
+    }
+    
+    // 合并新参数
     if (parameters) {
         [allParams addEntriesFromDictionary:parameters];
     }
     
+    // 构造新的参数字符串
     NSMutableArray *queryArray = [NSMutableArray array];
     [allParams enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
         NSString *query = [NSString stringWithFormat:@"%@=%@", key, [self urlEncode:value]];
@@ -96,7 +119,9 @@
     }];
     
     NSString *queryString = [queryArray componentsJoinedByString:@"&"];
-    return [url containsString:@"?"] ? [NSString stringWithFormat:@"%@&%@", url, queryString] : [NSString stringWithFormat:@"%@?%@", url, queryString];
+    
+    // 拼接最终的 URL
+    return queryString.length > 0 ? [NSString stringWithFormat:@"%@?%@", baseURL, queryString] : baseURL;
 }
 /// **URL 编码**
 - (NSString *)urlEncode:(NSString *)string {
@@ -211,7 +236,7 @@
 //    NSString *body = content;
 //    NSString *emailUrlString = [NSString stringWithFormat:@"mailto:%@?subject=%@&body=%@", emailAddress, subject, body];
 //    NSURL *emailUrl = [NSURL URLWithString:emailUrlString];
-//    
+//
 //    if ([[UIApplication sharedApplication] canOpenURL:emailUrl]) {
 //        [[UIApplication sharedApplication] openURL:emailUrl options:@{} completionHandler:nil];
 //    } else {
