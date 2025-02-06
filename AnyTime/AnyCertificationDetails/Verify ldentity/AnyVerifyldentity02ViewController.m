@@ -103,10 +103,12 @@
 
 // 选中 Cell
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.stateTime = [AnyDevHelper currentTimestamp];
     [self clickImage];
 }
 - (void)clickImage {
+    
+    self.stateTime = [AnyDevHelper currentTimestamp];
+
     AnyTimeCustomPopupView *popupView = [[AnyTimeCustomPopupView alloc] initPhotoGraphWithFrame:self.view.bounds];
     popupView.backgroundImage = [UIImage imageNamed:@"anytime_alertbigbg"];
     popupView.titleText = @"Please select";

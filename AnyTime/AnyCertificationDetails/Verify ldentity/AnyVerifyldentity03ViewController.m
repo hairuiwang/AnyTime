@@ -101,11 +101,13 @@
 
 // 选中 Cell
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.stateTime = [AnyDevHelper currentTimestamp];
     [self clickImage];
 }
 
 - (void)clickImage {
+    
+    self.stateTime = [AnyDevHelper currentTimestamp];
+
     [AnyCameraUtil requestCameraPermission:^(BOOL isGranted) {
         if (isGranted) {
             [self camerEx];

@@ -30,6 +30,7 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[[AnyRouter sharedInstance] getCurrentViewController].view animated:YES];
     hud.mode = MBProgressHUDModeText;
     hud.label.text = text;
+    hud.label.numberOfLines = 0;
     hud.offset = CGPointMake(0.f, 0.f);
     hud.backgroundView.color = [UIColor colorWithWhite:0.f alpha:0.1f];
     [hud hideAnimated:YES afterDelay:2.f];
