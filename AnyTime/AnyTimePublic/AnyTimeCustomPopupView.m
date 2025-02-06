@@ -653,6 +653,7 @@
 - (void)secondCButtonTapped {
     if (self.isChecked == NO) {
         NSLog(@"no select");
+        return;
     }
     if (self.secondButtonAction) {
         self.secondButtonAction();
