@@ -168,7 +168,7 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSMutableArray<NSData *> *compressedImages = [NSMutableArray array];
         for (UIImage *image in images) {
-            NSData *compressedData = [self compressImage:image toMaxSize:400 * 1024];
+            NSData *compressedData = [self compressImage:image toMaxSize:300 * 1024];
             if (compressedData) {
                 [compressedImages addObject:compressedData];
             }
@@ -200,7 +200,7 @@
 
 /// **压缩图片到指定大小**
 - (NSData *)compressImage:(UIImage *)image toMaxSize:(NSUInteger)maxSize {
-    CGFloat compression = 0.9;
+    CGFloat compression = 0.5;
     NSData *imageData = UIImageJPEGRepresentation(image, compression);
     
     while ([imageData length] > maxSize && compression > 0.1) {
