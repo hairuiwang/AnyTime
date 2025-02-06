@@ -122,12 +122,6 @@
                         [AnyTimeHUD hideHUD];
                         NSString *disgusting = responseObject[@"disgusting"];
                         
-                        NSString *endTime = [AnyDevHelper currentTimestamp];
-                        [AnyHttpTool reportRiskGate:box commanded:@"9" agreed:@"" allowance:endTime large:endTime father:@"adsdk03dwaknsc84" success:^(id  _Nonnull responseObject) {
-                        } failure:^(NSError * _Nonnull error) {
-                        }];
-                        
-                        
                         [[AnyRouter sharedInstance] openURL:disgusting parameters:@{} from:nil callback:^(NSDictionary * _Nullable result) {
                         }];
                     } failure:^(NSError * _Nonnull error) {
@@ -226,6 +220,12 @@
                 }
             } else {
                 // meiyou
+                NSString *endTime = [AnyDevHelper currentTimestamp];
+                [AnyHttpTool reportRiskGate:funny commanded:@"9" agreed:@"" allowance:endTime large:endTime father:@"adsdk03dwaknsc84" success:^(id  _Nonnull responseObject) {
+                } failure:^(NSError * _Nonnull error) {
+                }];
+                
+                
                 NSString *agreed = rest[@"agreed"] ?: @"";
                 [AnyTimeHUD showLoadingHUD];
                 [AnyHttpTool getRedirectURLWithWestern:agreed inn:@"dsafcads@sfd" lead:@"v,avhfslkv44923" followed:@"fsaflifndsaf95wql" carriage:@"KHJKDSAFHJFMSAF" success:^(id  _Nonnull responseObject) {
