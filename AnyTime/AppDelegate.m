@@ -107,6 +107,10 @@
         
         [IQKeyboardManager sharedManager].enable = YES;
         [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
+        
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+        NSString *templatesPath = [[paths firstObject] stringByAppendingPathComponent:@"Templates"];
+        NSLog(@"Templates Path: %@", templatesPath);
     }
 }
 

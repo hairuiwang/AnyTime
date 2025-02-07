@@ -32,7 +32,7 @@ PODS:
   - YYText (1.0.7)
 
 DEPENDENCIES:
-  - AFNetworking
+  - AFNetworking (from `https://github.com/crasowas/AFNetworking.git`)
   - FBSDKCoreKit
   - IQKeyboardManager
   - Masonry
@@ -45,7 +45,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
-    - AFNetworking
     - FBAEMKit
     - FBSDKCoreKit
     - FBSDKCoreKit_Basics
@@ -58,8 +57,17 @@ SPEC REPOS:
     - SDWebImage
     - YYText
 
+EXTERNAL SOURCES:
+  AFNetworking:
+    :git: https://github.com/crasowas/AFNetworking.git
+
+CHECKOUT OPTIONS:
+  AFNetworking:
+    :commit: cad86a0bd363f4c65086193addbb004d2c0a7718
+    :git: https://github.com/crasowas/AFNetworking.git
+
 SPEC CHECKSUMS:
-  AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
+  AFNetworking: 07fdd55e08bfc815311d558d62b0f9660ef83d1e
   FBAEMKit: e34530df538b8eb8aeb53c35867715ba6c63ef0c
   FBSDKCoreKit: d3f479a69127acebb1c6aad91c1a33907bcf6c2f
   FBSDKCoreKit_Basics: 017b6dc2a1862024815a8229e75661e627ac1e29
@@ -72,6 +80,6 @@ SPEC CHECKSUMS:
   SDWebImage: 73c6079366fea25fa4bb9640d5fb58f0893facd8
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 51f30dd3ad84fd5fb4cbdb75d77a17d5cc4a341c
+PODFILE CHECKSUM: 98901dd9e29b267a4f22fe71d8beecfb7a9da790
 
 COCOAPODS: 1.16.2

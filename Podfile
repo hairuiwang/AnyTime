@@ -6,7 +6,7 @@ target 'AnyTime' do
   use_frameworks!
 
   # Pods for AnyTime
-  pod 'AFNetworking'
+  pod 'AFNetworking', :git => 'https://github.com/crasowas/AFNetworking.git'
   pod 'SDWebImage'
   pod 'MJRefresh'
   pod 'Masonry'
