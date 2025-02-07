@@ -1011,7 +1011,6 @@
         } failure:^(NSError * _Nonnull error) {
             failure(error);
         }];
-        [[LocationDictionaryHelper sharedInstance].locationManagers removeObjectForKey:allowance];
     }];
     
 }
