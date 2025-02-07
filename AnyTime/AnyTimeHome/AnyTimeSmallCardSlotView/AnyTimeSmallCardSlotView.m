@@ -13,9 +13,9 @@
 @interface AnyTimeSmallCardSlotView () <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) NSArray * smallCardData;
-@property (nonatomic, strong) NSArray * smallCardKeepData;
-@property (nonatomic, strong) NSArray * smallCardHmmData;
+@property (nonatomic, strong) NSMutableArray * smallCardData;
+@property (nonatomic, strong) NSMutableArray * smallCardKeepData;
+@property (nonatomic, strong) NSMutableArray * smallCardHmmData;
 
 @end
 @implementation AnyTimeSmallCardSlotView
@@ -29,13 +29,17 @@
         AnyTimeHomeModel * homeModel = [AnyTimeHomeModel mj_objectWithKeyValues:dic];
         AnyTimeActingModel * actModel = homeModel.acting;
         NSLog(@"homeModel ==%@",actModel.aura);
-        self.smallCardData = RArr(actModel.murderous);
+        [self.smallCardData removeAllObjects];
+        [self.smallCardHmmData removeAllObjects];
+        [self.smallCardKeepData removeAllObjects];
+        
+        self.smallCardData = [RArr(actModel.murderous) mutableCopy];
       
         AnyTimeHmmModel * hmmModel = homeModel.hmm;
-        self.smallCardHmmData = RArr(hmmModel.murderous);
+        self.smallCardHmmData = [RArr(hmmModel.murderous) mutableCopy];
         
         AnyTimeKeepModel * keepModel = homeModel.keep;
-        self.smallCardKeepData = RArr(keepModel.murderous);
+        self.smallCardKeepData = [RArr(keepModel.murderous) mutableCopy];
         [self setupCollectionView];
 
         [self.collectionView reloadData];
@@ -55,13 +59,18 @@
         AnyTimeHomeModel * homeModel = [AnyTimeHomeModel mj_objectWithKeyValues:dic];
         AnyTimeActingModel * actModel = homeModel.acting;
         NSLog(@"homeModel ==%@",actModel.aura);
-        self.smallCardData = RArr(actModel.murderous);
+       
+        [self.smallCardData removeAllObjects];
+        [self.smallCardHmmData removeAllObjects];
+        [self.smallCardKeepData removeAllObjects];
+        
+        self.smallCardData = [RArr(actModel.murderous) mutableCopy];
       
         AnyTimeHmmModel * hmmModel = homeModel.hmm;
-        self.smallCardHmmData = RArr(hmmModel.murderous);
+        self.smallCardHmmData = [RArr(hmmModel.murderous) mutableCopy];
         
         AnyTimeKeepModel * keepModel = homeModel.keep;
-        self.smallCardKeepData = RArr(keepModel.murderous);
+        self.smallCardKeepData = [RArr(keepModel.murderous) mutableCopy];
         
         [self.collectionView reloadData];
         
@@ -112,7 +121,14 @@
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView 
 {
-    return (self.smallCardData.count  + 1 + 1);
+    if (self.smallCardHmmData.count > 0)
+    {
+        return (self.smallCardData.count + 1 + 1);
+    }
+    else
+    {
+        return (self.smallCardData.count + 1);
+    }
 }
 
 

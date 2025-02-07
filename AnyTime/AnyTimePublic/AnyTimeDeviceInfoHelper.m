@@ -78,7 +78,7 @@
                 @"order": @(SCREEN_WIDTH),
                 @"gave": [self getDeviceName]?:@"",
                 @"needs": [self getDeviceModel]?:@"",
-                @"whatever": [self getDevicePhysicalSize]?:@"",
+                @"whatever": @([self getScreenDiagonalInches])?:@"",
                 @"proper": [[UIDevice currentDevice] systemVersion]?:@"",
         },
         @"useful":@{
@@ -156,77 +156,101 @@
     return address;
 }
 
-
-- (NSString *)getDevicePhysicalSize {
-    NSString *deviceModel = [self getDeviceModel];
+- (CGFloat)getScreenDiagonalInches {
+    // 获取屏幕的尺寸（单位：点）
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = CGRectGetWidth(screenBounds);
+    CGFloat screenHeight = CGRectGetHeight(screenBounds);
     
-    // iPhone 16 系列
-    if ([deviceModel isEqualToString:@"iPhone17,1"]) {  // iPhone 16（标准版）
-        return @"147.2 x 71.7 x 7.9 mm";
-    } else if ([deviceModel isEqualToString:@"iPhone17,2"]) {  // iPhone 16 Plus
-        return @"161.0 x 79.5 x 7.9 mm";
-    } else if ([deviceModel isEqualToString:@"iPhone17,3"]) {  // iPhone 16 Pro
-        return @"147.5 x 71.7 x 8.3 mm";
-    } else if ([deviceModel isEqualToString:@"iPhone17,4"]) {  // iPhone 16 Pro Max
-        return @"161.5 x 78.2 x 8.3 mm";
-    }
+    // 获取屏幕的缩放因子（单位：像素）
+    CGFloat screenScale = [[UIScreen mainScreen] scale];
     
-    // iPhone 15 系列
-    else if ([deviceModel isEqualToString:@"iPhone16,1"]) {  // iPhone 15
-        return @"146.6 x 70.6 x 7.8 mm";
-    } else if ([deviceModel isEqualToString:@"iPhone16,2"]) {  // iPhone 15 Plus
-        return @"160.8 x 78.1 x 7.8 mm";
-    } else if ([deviceModel isEqualToString:@"iPhone16,3"]) {  // iPhone 15 Pro
-        return @"146.6 x 70.6 x 8.25 mm";
-    } else if ([deviceModel isEqualToString:@"iPhone16,4"]) {  // iPhone 15 Pro Max
-        return @"160.7 x 77.6 x 8.25 mm";
-    }
-
-    // iPhone 14 系列
-    else if ([deviceModel isEqualToString:@"iPhone15,2"]) {  // iPhone 14
-        return @"146.7 x 71.5 x 7.8 mm";
-    } else if ([deviceModel isEqualToString:@"iPhone15,3"]) {  // iPhone 14 Plus
-        return @"160.8 x 78.1 x 7.8 mm";
-    } else if ([deviceModel isEqualToString:@"iPhone15,4"]) {  // iPhone 14 Pro
-        return @"147.5 x 71.5 x 7.85 mm";
-    } else if ([deviceModel isEqualToString:@"iPhone15,5"]) {  // iPhone 14 Pro Max
-        return @"160.7 x 77.6 x 7.85 mm";
-    }
-
-    // iPhone 13 系列
-    else if ([deviceModel isEqualToString:@"iPhone14,2"]) {  // iPhone 13 Pro
-        return @"146.7 x 71.5 x 7.65 mm";
-    } else if ([deviceModel isEqualToString:@"iPhone14,5"]) {  // iPhone 13
-        return @"146.7 x 71.5 x 7.65 mm";
-    } else if ([deviceModel isEqualToString:@"iPhone13,2"]) {  // iPhone 12
-        return @"146.7 x 71.5 x 7.4 mm";
-    } else if ([deviceModel isEqualToString:@"iPhone12,1"]) {  // iPhone 11
-        return @"146.7 x 71.5 x 8.3 mm";
+    // 计算屏幕的对角线（单位：点）
+    CGFloat diagonalInPoints = sqrt(pow(screenWidth, 2) + pow(screenHeight, 2));
     
-    // iPhone XS, XS Max, XR
-    } else if ([deviceModel isEqualToString:@"iPhone12,3"]) {  // iPhone XS
-        return @"143.6 x 70.9 x 7.7 mm";
-    } else if ([deviceModel isEqualToString:@"iPhone12,5"]) {  // iPhone XS Max
-        return @"157.5 x 77.4 x 7.7 mm";
-    } else if ([deviceModel isEqualToString:@"iPhone11,8"]) {  // iPhone XR
-        return @"150.9 x 75.7 x 8.3 mm";
-    }
+    // 将点转换为像素
+    CGFloat diagonalInPixels = diagonalInPoints * screenScale;
+    
+    // 假设设备的屏幕分辨率通常为 326ppi、401ppi、458ppi 等等
+    // 将像素转换为英寸
+    CGFloat diagonalInches = diagonalInPixels / 326.0;  // 假设屏幕分辨率为 326ppi（比如 iPhone 8）
+    CGFloat roundedDiagonalInches = round(diagonalInches * 10) / 10.0;
 
-    // 其他系列设备，继续根据硬件标识符补充
-    // iPhone 8, 8 Plus, X, 7, 7 Plus, 6s 系列等
-    else if ([deviceModel isEqualToString:@"iPhone10,1"]) {  // iPhone 8
-        return @"138.4 x 67.3 x 7.3 mm";
-    } else if ([deviceModel isEqualToString:@"iPhone10,4"]) {  // iPhone 8
-        return @"138.4 x 67.3 x 7.3 mm";
-    } else if ([deviceModel isEqualToString:@"iPhone9,1"]) {  // iPhone 7
-        return @"138.3 x 67.1 x 7.1 mm";
-    } else if ([deviceModel isEqualToString:@"iPhone9,2"]) {  // iPhone 7 Plus
-        return @"158.2 x 77.9 x 7.3 mm";
-    }
-
-    // 默认未知设备
-    return @"Unknown Device";  // 如果设备型号不在映射中，返回未知
+    return roundedDiagonalInches;
 }
+
+
+
+//- (NSString *)getDevicePhysicalSize {
+//    NSString *deviceModel = [self getDeviceModel];
+//    
+//    // iPhone 16 系列
+//    if ([deviceModel isEqualToString:@"iPhone17,1"]) {  // iPhone 16（标准版）
+//        return @"147.2 x 71.7 x 7.9 mm";
+//    } else if ([deviceModel isEqualToString:@"iPhone17,2"]) {  // iPhone 16 Plus
+//        return @"161.0 x 79.5 x 7.9 mm";
+//    } else if ([deviceModel isEqualToString:@"iPhone17,3"]) {  // iPhone 16 Pro
+//        return @"147.5 x 71.7 x 8.3 mm";
+//    } else if ([deviceModel isEqualToString:@"iPhone17,4"]) {  // iPhone 16 Pro Max
+//        return @"161.5 x 78.2 x 8.3 mm";
+//    }
+//    
+//    // iPhone 15 系列
+//    else if ([deviceModel isEqualToString:@"iPhone16,1"]) {  // iPhone 15
+//        return @"146.6 x 70.6 x 7.8 mm";
+//    } else if ([deviceModel isEqualToString:@"iPhone16,2"]) {  // iPhone 15 Plus
+//        return @"160.8 x 78.1 x 7.8 mm";
+//    } else if ([deviceModel isEqualToString:@"iPhone16,3"]) {  // iPhone 15 Pro
+//        return @"146.6 x 70.6 x 8.25 mm";
+//    } else if ([deviceModel isEqualToString:@"iPhone16,4"]) {  // iPhone 15 Pro Max
+//        return @"160.7 x 77.6 x 8.25 mm";
+//    }
+//
+//    // iPhone 14 系列
+//    else if ([deviceModel isEqualToString:@"iPhone15,2"]) {  // iPhone 14
+//        return @"146.7 x 71.5 x 7.8 mm";
+//    } else if ([deviceModel isEqualToString:@"iPhone15,3"]) {  // iPhone 14 Plus
+//        return @"160.8 x 78.1 x 7.8 mm";
+//    } else if ([deviceModel isEqualToString:@"iPhone15,4"]) {  // iPhone 14 Pro
+//        return @"147.5 x 71.5 x 7.85 mm";
+//    } else if ([deviceModel isEqualToString:@"iPhone15,5"]) {  // iPhone 14 Pro Max
+//        return @"160.7 x 77.6 x 7.85 mm";
+//    }
+//
+//    // iPhone 13 系列
+//    else if ([deviceModel isEqualToString:@"iPhone14,2"]) {  // iPhone 13 Pro
+//        return @"146.7 x 71.5 x 7.65 mm";
+//    } else if ([deviceModel isEqualToString:@"iPhone14,5"]) {  // iPhone 13
+//        return @"146.7 x 71.5 x 7.65 mm";
+//    } else if ([deviceModel isEqualToString:@"iPhone13,2"]) {  // iPhone 12
+//        return @"146.7 x 71.5 x 7.4 mm";
+//    } else if ([deviceModel isEqualToString:@"iPhone12,1"]) {  // iPhone 11
+//        return @"146.7 x 71.5 x 8.3 mm";
+//    
+//    // iPhone XS, XS Max, XR
+//    } else if ([deviceModel isEqualToString:@"iPhone12,3"]) {  // iPhone XS
+//        return @"143.6 x 70.9 x 7.7 mm";
+//    } else if ([deviceModel isEqualToString:@"iPhone12,5"]) {  // iPhone XS Max
+//        return @"157.5 x 77.4 x 7.7 mm";
+//    } else if ([deviceModel isEqualToString:@"iPhone11,8"]) {  // iPhone XR
+//        return @"150.9 x 75.7 x 8.3 mm";
+//    }
+//
+//    // 其他系列设备，继续根据硬件标识符补充
+//    // iPhone 8, 8 Plus, X, 7, 7 Plus, 6s 系列等
+//    else if ([deviceModel isEqualToString:@"iPhone10,1"]) {  // iPhone 8
+//        return @"138.4 x 67.3 x 7.3 mm";
+//    } else if ([deviceModel isEqualToString:@"iPhone10,4"]) {  // iPhone 8
+//        return @"138.4 x 67.3 x 7.3 mm";
+//    } else if ([deviceModel isEqualToString:@"iPhone9,1"]) {  // iPhone 7
+//        return @"138.3 x 67.1 x 7.1 mm";
+//    } else if ([deviceModel isEqualToString:@"iPhone9,2"]) {  // iPhone 7 Plus
+//        return @"158.2 x 77.9 x 7.3 mm";
+//    }
+//
+//    // 默认未知设备
+//    return @"Unknown Device";  // 如果设备型号不在映射中，返回未知
+//}
 
 
 

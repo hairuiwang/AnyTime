@@ -14,8 +14,8 @@
 @interface AnyTimeLargeCardSlotView () <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) NSArray * largeCardData;
-@property (nonatomic, strong) NSArray * largeCardBannerData;
+@property (nonatomic, strong) NSMutableArray * largeCardData;
+@property (nonatomic, strong) NSMutableArray * largeCardBannerData;
 
 @end
 
@@ -26,14 +26,17 @@
     self = [super initWithFrame:frame];
     if (self) {
 //        [self getLargeCardData];
+        [self.largeCardData removeAllObjects];
+        [self.largeCardBannerData removeAllObjects];
+        
         NSDictionary * dic = RDic(dicData);
         AnyTimeHomeModel * homeModel = [AnyTimeHomeModel mj_objectWithKeyValues:dic];
         AnyTimeActingModel * actModel = homeModel.acting;
         NSLog(@"homeModel ==%@",actModel.aura);
-        self.largeCardData = RArr(actModel.murderous);
+        self.largeCardData = [RArr(actModel.murderous) mutableCopy];
       
         AnyTimeForestModel * forsetModel = homeModel.forest;
-        self.largeCardBannerData = RArr(forsetModel.murderous);
+        self.largeCardBannerData = [RArr(forsetModel.murderous) mutableCopy];
        
         [self setupCollectionView];
         [self.collectionView reloadData];
@@ -49,14 +52,17 @@
         [self.collectionView.mj_header endRefreshing];
         [AnyTimeHUD hideHUD];
         
+        [self.largeCardData removeAllObjects];
+        [self.largeCardBannerData removeAllObjects];
+        
         NSDictionary * dic = RDic(responseObject);
         AnyTimeHomeModel * homeModel = [AnyTimeHomeModel mj_objectWithKeyValues:dic];
         AnyTimeActingModel * actModel = homeModel.acting;
         NSLog(@"homeModel ==%@",actModel.aura);
-        self.largeCardData = RArr(actModel.murderous);
+        self.largeCardData = [RArr(actModel.murderous) mutableCopy];
       
         AnyTimeForestModel * forsetModel = homeModel.forest;
-        self.largeCardBannerData = RArr(forsetModel.murderous);
+        self.largeCardBannerData = [RArr(forsetModel.murderous) mutableCopy];
        
         [self setupCollectionView];
         [self.collectionView reloadData];
